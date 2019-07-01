@@ -1,9 +1,240 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Artemis - Bienvenido {% endblock %}
 
 {% block content %}
 
-    <h1>
-        Hola, me llamo Bata
-    </h1>
+<div class="row clearfix">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">sentiment_satisfied_alt</i>
+            </div>
+            <div class="content">
+                <div class="text">Peticiones Nuevas</div>
+                <div class="number count-to" data-from="0" data-to="3" data-speed="1500" data-fresh-interval="20">125</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">sentiment_satisfied_alt</i>
+            </div>
+            <div class="content">
+                <div class="text">Quejas Nuevas</div>
+                <div class="number count-to" data-from="0" data-to="31" data-speed="1500" data-fresh-interval="20">257</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">sentiment_satisfied_alt</i>
+            </div>
+            <div class="content">
+                <div class="text">Reclamos Nuevos</div>
+                <div class="number count-to" data-from="0" data-to="26" data-speed="1500" data-fresh-interval="20"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">sentiment_satisfied_alt</i>
+            </div>
+            <div class="content">
+                <div class="text">Sugerencias Nuevas</div>
+                <div class="number count-to" data-from="0" data-to="6" data-speed="1500" data-fresh-interval="20"></div>
+            </div>
+        </div>
+</div>
 
+<div class="row clearfix">
+    <div class="col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">notification_important</i>
+            </div>
+            <div class="content">
+                <div class="text">Quejas que vencen esta semana</div>
+                <div class="number count-to" data-from="0" data-to="3" data-speed="1500" data-fresh-interval="20">125</div>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-6 col-xs-12">
+        <div class="info-box">
+            <div class="icon bg-dark-gray">
+                <i class="material-icons">notification_important</i>
+            </div>
+            <div class="content">
+                <div class="text">Reclamos que vencen esta semana</div>
+                <div class="number count-to" data-from="0" data-to="7" data-speed="1500" data-fresh-interval="20"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de PQRS <small>PQRS pendientes de atender...</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Nombre de usuario</th>
+                        <th>Categoría</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Nombre de usuario</th>
+                        <th>Categoría</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>Fallas de Cobertura</td>
+                        <td>2019/06/30</td>
+                        <td>Pendiente de Atención</td>
+                        <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- Jquery Core Js -->
+    <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static "plugins/bootstrap/js/bootstrap.js" %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static "plugins/bootstrap-select/js/bootstrap-select.js" %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static "plugins/jquery-slimscroll/jquery.slimscroll.js" %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static "plugins/node-waves/waves.js" %}"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "js/admin.js" %}"></script>
+    <script src="{% static "js/pages/tables/jquery-datatable.js" %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static "js/demo.js" %}"></script>
+    <script src="{% static "js/pages/tables/jquery-datatable.js" %}
 {% endblock %}

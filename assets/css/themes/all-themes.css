@@ -1,5 +1,5 @@
 ﻿.theme-red .navbar {
-  background-color: #F44336; }
+  background-color: rgb(37, 37, 37); }
 
 .theme-red .navbar-brand {
   color: #fff; }
@@ -30,7 +30,7 @@
 .theme-red .sidebar .menu .list li.active {
   background-color: transparent; }
   .theme-red .sidebar .menu .list li.active > :first-child i, .theme-red .sidebar .menu .list li.active > :first-child span {
-    color: #F44336; }
+    color: rgb(0, 0, 0); }
 
 .theme-red .sidebar .menu .list .toggled {
   background-color: transparent; }
@@ -41,10 +41,10 @@
 .theme-red .sidebar .legal {
   background-color: #fff; }
   .theme-red .sidebar .legal .copyright a {
-    color: #F44336 !important; }
+    color: rgb(0, 0, 0) !important; }
 
 .theme-pink .navbar {
-  background-color: #E91E63; }
+  background-color: rgb(31, 31, 31); }
 
 .theme-pink .navbar-brand {
   color: #fff; }

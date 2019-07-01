@@ -1,0 +1,49 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{% block titulo %} {% endblock %}</title>
+
+    {% include "base/head.html" %}
+
+</head>
+
+<body class="theme-red">
+    {% include "base/pageloader.html" %}
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+
+    {% include "base/searchbar.html" %}
+
+    {% include "base/topbar.html" %}
+
+    <section>
+        
+        {% include "base/leftsidebar.html" %}
+
+        {% include "base/rightsidebar.html" %}
+
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+    </section>
+    
+    {% block javascript %}
+
+    {% endblock %}
+
+    {% include "base/js.html" %}
+
+</body>
+
+</html>
