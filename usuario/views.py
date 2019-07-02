@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def dashboard(request):
     return render(request, 'usuario/dashboard.html', {})
+
+def petitionlist(request):
+    return render(request, 'peticion/petitionlist.html', {})
