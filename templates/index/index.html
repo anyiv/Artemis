@@ -36,14 +36,17 @@
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST">
+                   {% csrf_token %}
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                            <input type="text" class="form-control" id="login_username" name="username" placeholder="Username" required autofocus>
                         </div>
+                        {{ form.username.errors }}
+                        {{ form.username.help_text }}
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -52,7 +55,12 @@
                         <div class="form-line">
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
+                        {{ form.password.errors }}
+                        {{ form.password.help_text }}
                     </div>
+                    {% if form.errors %}
+                        <h5 style="color:red;">Datos incorrectos</h5>
+                    {% endif %}
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
                             <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
