@@ -7802,7 +7802,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-color: #00BCD4;
+  background-color: #000;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7832,7 +7832,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #00BCD4;
+  background-color: #000;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;

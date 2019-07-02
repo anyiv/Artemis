@@ -7,4 +7,10 @@ class index(LoginView):
     template_name = 'index/index.html'
 
 class logout(LogoutView):
-    template_name = 'logout.html'
+    template_name = 'index/logout.html'
+
+def forgotpassword(request):
+    return render(request, 'index/forgotpassword.html', {})
+
+def signup(request):
+    return render(request, 'index/signup.html', {})
