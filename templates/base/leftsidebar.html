@@ -8,8 +8,8 @@
             <img src="{% static "images/user.png"  %}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fulano Detal</div>
-            <div class="email">fulano.detal@example.com</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="email">{{ user.email }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
@@ -35,16 +35,46 @@
                     <span>Inicio</span>
                 </a>
             </li>
+            <li>
+                <a href="index.html">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <span>Peticiones</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <span>Quejas</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <span>Reclamos</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <span>Sugerencias</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="material-icons">close</i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->
     <!-- Footer -->
     <div class="legal">
         <div class="copyright">
-            &copy; 2019 <a href="javascript:void(0);">Artemis - Diseñado por Elitech</a>.
+            &copy; 2019 <a href="javascript:void(0);">Artemis - Diseñado por Elitech</a> v0.1
         </div>
         <div class="version">
-            <b>Version: </b> 0.0.1
+            <b>Últ. Sesión: </b> {{ user.last_login }}
         </div>
     </div>
     <!-- #Footer -->
