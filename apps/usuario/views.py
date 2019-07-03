@@ -7,3 +7,6 @@ def dashboard(request):
 
 def petitionlist(request):
     return render(request, 'peticion/petitionlist.html', {})
+
+def complaintlist(request):
+    return render(request, 'queja/complaintlist.html', {})
