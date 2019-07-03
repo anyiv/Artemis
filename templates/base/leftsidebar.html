@@ -2,6 +2,7 @@
 
 <!-- Left Sidebar -->
 <aside id="leftsidebar" class="sidebar">
+    <img src="/static/images/ArtLogoColorP.png"
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
@@ -14,12 +15,6 @@
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">group</i>Seguidores</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Ventas</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -37,31 +32,31 @@
             </li>
             <li id="listados">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <i class="material-icons">list</i>
                     <span>Listados</span>
                 </a>
                 <ul class="ml-menu">
                     <li id="listado_peticiones">
                         <a href="{% url 'petitionlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">chrome_reader_mode</i>
                             <span>Peticiones</span>
                         </a>
                     </li>
                     <li id="listado_quejas">
                         <a href="{% url 'complaintlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">sentiment_very_dissatisfied</i>
                             <span>Quejas</span>
                         </a>
                     </li>
                     <li id="listado_reclamos">
                         <a href="{% url 'claimlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">announcement</i>
                             <span>Reclamos</span>
                         </a>
                     </li>
                     <li id="listado_sugerencias">
                         <a href="{% url 'suggestionlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">assignment_turned_in</i>
                             <span>Sugerencias</span>
                         </a>
                     </li>

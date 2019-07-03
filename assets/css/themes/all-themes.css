@@ -1,5 +1,6 @@
 ﻿.theme-red .navbar {
-  background-color: rgb(37, 37, 37); }
+  background-color: #00072D;
+  }
 
 .theme-red .navbar-brand {
   color: #fff; }
@@ -11,7 +12,7 @@
     color: #fff; }
 
 .theme-red .nav > li > a {
-  color: #fff; }
+  color: #EEf0f2; }
   .theme-red .nav > li > a:hover {
     background-color: transparent; }
   .theme-red .nav > li > a:focus {
