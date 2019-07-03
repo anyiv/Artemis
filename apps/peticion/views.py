@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def petitionlist(request):
     return render(request, 'peticion/petitionlist.html', {})
+
+def checkpetition(request):
+    return render(request, 'peticion/checkpetition.html', {})
