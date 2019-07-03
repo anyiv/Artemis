@@ -10,3 +10,9 @@ def petitionlist(request):
 
 def complaintlist(request):
     return render(request, 'queja/complaintlist.html', {})
+
+def claimlist(request):
+    return render(request, 'reclamo/claimlist.html', {})
+
+def suggestionlist(request):
+    return render(request, 'sugerencia/suggestionlist.html', {})
