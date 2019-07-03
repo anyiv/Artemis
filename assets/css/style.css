@@ -15,8 +15,7 @@
   top: 0;
   left: 0;
   z-index: 12;
-  width: 100%;
-        }
+  width: 100%; }
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
@@ -1847,13 +1846,6 @@
         font-weight: bold;
         color: #777; }
 
-.bg-azul-art {
-  background-color: #232D63 !important;
-  color: #fff; }
-  .bg-red .content .text,
-  .bg-red .content .number {
-    color: #fff !important; }
-
 .bg-red {
   background-color: #F44336 !important;
   color: #fff; }
@@ -2378,7 +2370,7 @@
 
 /* General ===================================== */
 body {
-  background-color: #f6f6f6;
+  background-color: #d8d8d8;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -7577,7 +7569,7 @@ fieldset[disabled] .form-control {
     white-space: nowrap;
     position: relative;
     border-bottom: 1px solid #e9e9e9;
-    background: #00072D;
+    background: url("../images/user-img-background.png") no-repeat no-repeat;
     height: 135px; }
     .sidebar .user-info .image {
       margin-right: 12px;
@@ -7780,7 +7772,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #00072D;
+  background-color: #000000;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7810,7 +7802,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-color: #00072D;
+  background-color: #000;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7840,7 +7832,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #00072D;
+  background-color: #000;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;

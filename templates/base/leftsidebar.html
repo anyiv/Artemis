@@ -2,6 +2,7 @@
 
 {% load static %}
 
+<<<<<<< HEAD
 {% block titulo %} Artemis {% endblock %}
 
 {% block content %}
@@ -12,6 +13,82 @@
         <h2>
             Listado de Reclamos <small>Reclamos registradas en el sistema</small>
         </h2>
+=======
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <!-- User Info -->
+    <div class="user-info">
+        <div class="image">
+            <img src="{% static "images/user.png"  %}" width="48" height="48" alt="User" />
+        </div>
+        <div class="info-container">
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="email">{{ user.email }}</div>
+            <div class="btn-group user-helper-dropdown">
+                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">group</i>Seguidores</a></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Ventas</a></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- #User Info -->
+    <!-- Menu -->
+    <div class="menu">
+        <ul class="list">
+            <li class="header">Barra de Navegación</li>
+            <li id="inicio" class="active">
+                <a href="{% url 'dashboard' %}">
+                    <i class="material-icons">home</i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li id="listados">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <span>Listados</span>
+                </a>
+                <ul class="ml-menu">
+                    <li id="listado_peticiones">
+                        <a href="{% url 'petitionlist' %}">
+                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <span>Peticiones</span>
+                        </a>
+                    </li>
+                    <li id="listado_quejas">
+                        <a href="{% url 'complaintlist' %}">
+                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <span>Quejas</span>
+                        </a>
+                    </li>
+                    <li id="listado_reclamos">
+                        <a href="{% url 'claimlist' %}">
+                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <span>Reclamos</span>
+                        </a>
+                    </li>
+                    <li id="listado_sugerencias">
+                        <a href="{% url 'suggestionlist' %}">
+                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <span>Sugerencias</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="material-icons">close</i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </li>
+        </ul>
+>>>>>>> parent of f90031f... Modificaciones de estilo
     </div>
     <div class="header">
         <div class="body">
