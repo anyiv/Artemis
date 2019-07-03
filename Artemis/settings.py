@@ -26,7 +26,7 @@ SECRET_KEY = '084gsl9q1r7mp8oq%xj2arm_w54hlxf)lih%5)b52dse@i%1jy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.106','127.0.0.1','localhost']
 
 
 # Application definition
@@ -58,8 +58,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Artemis.urls'
-
-ALLOWED_HOSTS=['192.168.0.106',]
 
 TEMPLATES = [
     {

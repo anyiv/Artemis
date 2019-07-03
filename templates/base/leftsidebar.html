@@ -1,85 +1,196 @@
+{% extends "base/base.html" %}
+
 {% load static %}
 
-<!-- Left Sidebar -->
-<aside id="leftsidebar" class="sidebar">
-    <img src="/static/images/ArtLogoColorP.png"
-    <!-- User Info -->
-    <div class="user-info">
-        <div class="image">
-            <img src="{% static "images/user.png"  %}" width="48" height="48" alt="User" />
-        </div>
-        <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{ user.last_name }}</div>
-            <div class="email">{{ user.email }}</div>
-            <div class="btn-group user-helper-dropdown">
-                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
-                </ul>
+{% block titulo %} Artemis {% endblock %}
+
+{% block content %}
+
+
+<div class="card">
+     <div class="header">
+        <h2>
+            Listado de Reclamos <small>Reclamos registradas en el sistema</small>
+        </h2>
+    </div>
+    <div class="header">
+        <div class="body">
+            <div class="table-responsive">
+                <table id="table_id" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre de usuario</th>
+                            <th>Categoría</th>
+                            <th>Fecha de emisión</th>
+                            <th>Fecha estimada de atención </th>
+                            <th>Asunto</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre de usuario</th>
+                            <th>Categoría</th>
+                            <th>Fecha de emisión</th>
+                            <th>Fecha estimada de atención</th>
+                            <th>Asunto</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>15/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                       <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                       <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                        <tr>
+                            <td>AnaMaria</td>
+                            <td>Fallas de cobertura</td>
+                            <td>20/05/2019</td>
+                            <td>30/05/2019</td>
+                            <td>Sin cobertura</td>
+                            <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <!-- #User Info -->
-    <!-- Menu -->
-    <div class="menu">
-        <ul class="list">
-            <li class="header">Barra de Navegación</li>
-            <li id="inicio" class="active">
-                <a href="{% url 'dashboard' %}">
-                    <i class="material-icons">home</i>
-                    <span>Inicio</span>
-                </a>
-            </li>
-            <li id="listados">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
-                    <i class="material-icons">list</i>
-                    <span>Listados</span>
-                </a>
-                <ul class="ml-menu">
-                    <li id="listado_peticiones">
-                        <a href="{% url 'petitionlist' %}">
-                            <i class="material-icons">chrome_reader_mode</i>
-                            <span>Peticiones</span>
-                        </a>
-                    </li>
-                    <li id="listado_quejas">
-                        <a href="{% url 'complaintlist' %}">
-                            <i class="material-icons">sentiment_very_dissatisfied</i>
-                            <span>Quejas</span>
-                        </a>
-                    </li>
-                    <li id="listado_reclamos">
-                        <a href="{% url 'claimlist' %}">
-                            <i class="material-icons">announcement</i>
-                            <span>Reclamos</span>
-                        </a>
-                    </li>
-                    <li id="listado_sugerencias">
-                        <a href="{% url 'suggestionlist' %}">
-                            <i class="material-icons">assignment_turned_in</i>
-                            <span>Sugerencias</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="{% url 'logout' %}">
-                    <i class="material-icons">close</i>
-                    <span>Cerrar Sesión</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- #Menu -->
-    <!-- Footer -->
-    <div class="legal">
-        <div class="copyright">
-            &copy; 2019 <a href="javascript:void(0);">Artemis - Diseñado por Elitech</a> v0.1
-        </div>
-        <div class="version">
-            <b>Últ. Sesión: </b> {{ user.last_login }}
-        </div>
-    </div>
-    <!-- #Footer -->
-</aside>
-<!-- #END# Left Sidebar -->
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %} 
