@@ -29,14 +29,14 @@
     <div class="menu">
         <ul class="list">
             <li class="header">Barra de Navegación</li>
-            <li id="inicio" class="active">
+            <li id="inicio" class="{% if '/artemis/' in request.path %}active{% endif %}">
                 <a href="{% url 'dashboard_adm' %}">
                     <i class="material-icons">home</i>
                     <span>Inicio</span>
                 </a>
             </li>
-            <li id="listados">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
+            <li id="listados" class="{% if '/lista/' in request.path   %}active{% endif %}">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
                     <i class="material-icons">sentiment_satisfied_alt</i>
                     <span>Listados</span>
                 </a>
