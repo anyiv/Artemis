@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('apps.index.urls')),
+    path('', include('pwa.urls')),
     path('djangoadmin/', admin.site.urls),
     path('artemis/', include('apps.usuario.urls')),
     path('departamento/', include('apps.departamento.urls')),
@@ -25,4 +26,5 @@ urlpatterns = [
     path('queja/', include('apps.queja.urls')),
     path('reclamo/', include('apps.reclamo.urls')),
     path('sugerencia/', include('apps.sugerencia.urls')), 
+    path('averia_masiva/', include('apps.averia_masiva.urls')),
 ]

@@ -1,17 +1,18 @@
 ﻿{% load static %}
+{% load pwa %}
 
 <!DOCTYPE html>
 <html>
 
 <head>
-
+        {% progressive_web_app_meta %}
     <title>{% block titulo %} {% endblock %}</title>
 
     {% include "base/head.html" %}
 
 </head>
 
-<body class="theme-red">
+<body class="theme-blue-grey">
     {% include "base/pageloader.html" %}
 
     <!-- Overlay For Sidebars -->

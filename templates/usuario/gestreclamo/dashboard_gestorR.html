@@ -6,31 +6,31 @@
 
 {% block content %}
 <div class="block-header">
-    <h2>RECIENTES</h2>
+    <h2>LISTADOS</h2>
 </div>
 
 <div class="row clearfix">
-    <a href="{% url 'petitionlist' %}">
+    <a href="{% url 'claimlist' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3 bg-dark-gray hover-expand-effect">
                 <div class="icon">
                     <i class="material-icons" style="color:#666;">sentiment_satisfied_alt</i>
                 </div>
                 <div class="content" >
-                    <div class="text" style="color:white">Peticiones Nuevas</div>
+                    <div class="text" style="color:white">Reclamos</div>
                     <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
                 </div>
             </div>
         </a>
     </div>
-    <a href="{% url 'complaintlist' %}">
+    <a href="{% url 'claimexpire' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3 bg-dark-gray hover-expand-effect">
                 <div class="icon bg-dark-gray">
-                    <i class="material-icons" style="color:#666;">sentiment_satisfied_alt</i>
+                    <i class="material-icons" style="color:#666;">notification_important</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Quejas Nuevas</div>
+                    <div class="text" style="color:white">Reclamos prox. a vencer</div>
                     <div class="number count-to" style="color:white" data-from="0" data-to="31" data-speed="1500" data-fresh-interval="20">257</div>
                 </div>
             </div>
@@ -40,28 +40,32 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3 bg-dark-gray hover-expand-effect">
                 <div class="icon bg-dark-gray">
-                    <i class="material-icons" style="color:#666;">sentiment_satisfied_alt</i>
+                    <i class="material-icons" style="color:#666;">notification_important</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Reclamos Nuevos</div>
+                    <div class="text" style="color:white">Averías masivas</div>
                     <div class="number count-to" style="color:white" data-from="0" data-to="26" data-speed="1500" data-fresh-interval="20"></div>
                 </div>
             </div>
         </div>
     </a>
-    <a href="{% url 'suggestionlist' %}">
+    <a href="{% url 'claimfinished' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3 bg-dark-gray hover-expand-effect">
                 <div class="icon bg-dark-gray">
                     <i class="material-icons" style="color:#666;">sentiment_satisfied_alt</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Sugerencias Nuevas</div>
+                    <div class="text" style="color:white">Reclamos finalizados</div>
                     <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500" data-fresh-interval="20"></div>
                 </div>
             </div>
         </div>
     </a>
+</div>
+
+<div class="block-header">
+    <h2>CREAR...</h2>
 </div>
 
 <div class="row clearfix">
@@ -71,7 +75,7 @@
                 <i class="material-icons" style="color:#666;">notification_important</i>
             </div>
             <div class="content" >
-                <div class="text" style="color:white">Reclamos prox. a vencer</div>
+                <div class="text" style="color:white">Avería Masiva</div>
                 <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
             </div>
         </div>
@@ -82,33 +86,12 @@
                 <i class="material-icons" style="color:#666;">notification_important</i>
             </div>
             <div class="content">
-                <div class="text" style="color:white">Quejas prox. a vencer</div>
+                <div class="text" style="color:white">Otra cosa</div>
                 <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box-3 bg-dark-gray hover-expand-effect">
-            <div class="icon bg-dark-gray">
-                <i class="material-icons" style="color:#666;">notification_important</i>
-            </div>
-            <div class="content">
-                <div class="text" style="color:white">Otro campo</div>
-                <div class="number count-to" style="color:white" data-from="0" data-to="7" data-speed="1500" data-fresh-interval="20"></div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box-3 bg-dark-gray hover-expand-effect">
-            <div class="icon bg-dark-gray">
-                <i class="material-icons" style="color:#666;">notification_important</i>
-            </div>
-            <div class="content">
-                <div class="text" style="color:white">Nuevas averías masivas</div>
-                <div class="number count-to" style="color:white" data-from="0" data-to="8123" data-speed="1500" data-fresh-interval="20">125</div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <div class="card">
