@@ -20,7 +20,7 @@ urlpatterns = [
     path('', include('apps.index.urls')),
     path('', include('pwa.urls')),
     path('djangoadmin/', admin.site.urls),
-    path('artemis/', include('apps.usuario.urls')),
+    path('usuario/', include('apps.usuario.urls')),
     path('departamento/', include('apps.departamento.urls')),
     path('peticion/', include('apps.peticion.urls')),
     path('queja/', include('apps.queja.urls')),

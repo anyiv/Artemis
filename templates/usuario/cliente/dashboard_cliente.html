@@ -1,0 +1,128 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Bienvenido | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="block-header">
+    <h2>CREAR SOLICITUDES</h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'dashboard_cliente' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                        <i class="material-icons" style="color:#666;">email</i>
+                    </div>
+                    <div class="content">
+                         <div class="text" style="color:white">Registrar</div>
+                    <div class="number" style="color:white">Petición</div>
+                </div>
+            </div>
+    </a>
+    </div>
+    <a href="{% url 'claimexpire' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+             <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                        <i class="material-icons" style="color:#666;">email</i>
+                    </div>
+                    <div class="content">
+                         <div class="text" style="color:white">Registrar</div>
+                    <div class="number" style="color:white">Queja</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'claimlist' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                        <i class="material-icons" style="color:#666;">email</i>
+                    </div>
+                    <div class="content">
+                         <div class="text" style="color:white">Registrar</div>
+                    <div class="number" style="color:white">Reclamo</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'claimfinished' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                        <i class="material-icons" style="color:#666;">email</i>
+                    </div>
+                    <div class="content">
+                         <div class="text" style="color:white">Registrar</div>
+                    <div class="number" style="color:white">Sugerencia</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Mis Reclamos abiertos<small>Mi Reclamos pendientes de atender...</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                    <tr>
+                        <th>Código del reclamo</th>
+                        <th>Tipo de reclamo</th>
+                        <th>Servicio afectado</th>
+                        <th>Fecha de emisión</th>
+                        <th>Fecha estimada de resolución</th>
+                        <th>Estado</th>
+                        <td>Anexo</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 19041729</td>
+                        <td>Avería</td>
+                        <td>Internet residencial</td>
+                        <td>2019/06/30</td>
+                        <td>2020/07/01</td>
+                        <td>Pendiente de Atención</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-white btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons" style="color:#2196F3">remove_red_eye</i></button>
+                            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3021291829</td>
+                        <td>Mal cobro</td>
+                        <td>N/A</td>
+                        <td>2019/06/</td>
+                        <td>2020/07/01</td>
+                        <td>En proceso</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-white btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons" style="color: #2196F3">remove_red_eye</i></button>
+                            </center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

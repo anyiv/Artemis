@@ -11,6 +11,3 @@ def dashboard_gestorR(request):
 
 def dashboard_cliente(request):
     return render(request, 'usuario/cliente/dashboard_cliente.html', {})
-
-
-
