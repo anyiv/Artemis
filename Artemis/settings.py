@@ -136,3 +136,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'assets'),)
 LOGIN_URL = reverse_lazy('index')
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard_checker')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
+AUTH_USER_MODEL = 'usuario.User'
