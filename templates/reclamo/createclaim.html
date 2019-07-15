@@ -24,9 +24,60 @@
             </ul>
         </div>
         <div class="body">
-           
-
-           
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                    <div class=" col-md-4 ">
+                       <div class="form-group">
+                            <div class="form-line">
+                            <p>
+                                <b>Asunto</b>
+                            </p>
+                                <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                <div class="col-md-4"></div>
+                    <div class=" col-md-4 ">
+                        <p>
+                            <b>Categoría</b>
+                        </p>
+                        <select class="form-control">
+                            <option>Cobro</option>
+                            <option>Conexión</option>
+                            <option>Señal</option>
+                            <option>Productos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                <div class="col-md-4"></div>
+                    <div class=" col-md-4 ">
+                        <p>
+                            <b>Tipo de avería</b>
+                        </p>
+                        <select class="form-control">
+                            <option>n/a</option>
+                            <option>No sé</option>
+                            <option>Tampoco sé</option>
+                            <option>El cliente no debe colocar esto</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                <div class="col-md-4"></div>
+                    <div class=" col-md-4 ">
+                        <p>
+                            <b>Descripción</b>
+                        </p>
+                       <div class="form-group">
+                            <div class="form-line">
+                                <textarea rows="4" class="form-control no-resize" placeholder="Por favor escriba su reclamo aquí..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
  </div>
 
@@ -34,5 +85,7 @@
 {% endblock %}
 
 {% block javascript %}
+
+<script src="{% static "js/pages/forms/advanced-form-elements.js" %}" type="text/javascript"></script> 
 
 {% endblock %}
