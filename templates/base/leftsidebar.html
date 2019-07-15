@@ -29,47 +29,246 @@
     <div class="menu">
         <ul class="list">
             <li class="header">Barra de Navegación</li>
+
+            <!--INICIO-->
             <li id="inicio" class="{% if '/artemis/' in request.path %}active{% endif %}">
                 <a href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestorR' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
                     <i class="material-icons">home</i>
                     <span>Inicio</span>
                 </a>
             </li>
+
+            <!--CREAR QPRS-->
+            {% if user.type_u.codigo == 'cli' or user.type_u.codigo == 'atc' %} {% comment "Cliente y Atención al Cliente" %} {% endcomment %}
+            <li id="crear" class="">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
+                    <i class="material-icons">create</i>
+                    <span>Crear</span>
+                </a>
+                <ul class="ml-menu">
+                    <li id="crear_peticion">
+                        <a href="#">
+                            <i class="material-icons">question_answer</i>
+                            <span>Petición</span>
+                        </a>
+                    </li>
+                    <li id="crear_queja">
+                        <a href="#">
+                            <i class="material-icons">thumb_down</i>
+                            <span>Queja</span>
+                        </a>
+                    </li>
+                    <li id="crear_reclamo">
+                        <a href="#">
+                            <i class="material-icons">report</i>
+                            <span>Reclamo</span>
+                        </a>
+                    </li>
+                    <li id="crear_sugerencia">
+                        <a href="#">
+                            <i class="material-icons">loyalty</i>
+                            <span>Sugerencia</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+
+            <!--LISTADOS-->
+            {% if user.type_u.codigo == 'atc' %} {% comment "ATENCIÓN AL CLIENTE" %}{% endcomment %}
             <li id="listados" class="{% if '/lista/' in request.path   %}active{% endif %}">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
-                    <i class="material-icons">sentiment_satisfied_alt</i>
+                    <i class="material-icons">format_list_bulleted</i>
                     <span>Listados</span>
                 </a>
                 <ul class="ml-menu">
                     <li id="listado_peticiones">
                         <a href="{% url 'petitionlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">question_answer</i>
                             <span>Peticiones</span>
                         </a>
                     </li>
                     <li id="listado_quejas">
                         <a href="{% url 'complaintlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">thumb_down</i>
                             <span>Quejas</span>
                         </a>
                     </li>
                     <li id="listado_reclamos">
                         <a href="{% url 'claimlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">report</i>
                             <span>Reclamos</span>
                         </a>
                     </li>
                     <li id="listado_sugerencias">
                         <a href="{% url 'suggestionlist' %}">
-                            <i class="material-icons">sentiment_satisfied_alt</i>
+                            <i class="material-icons">loyalty</i>
                             <span>Sugerencias</span>
                         </a>
                     </li>
                 </ul>
             </li>
+            {% endif %}
+
+            <!--CONSULTAR (PQRS Cliente)-->
+            {% if user.type_u.codigo == 'cli' %} {% comment "PQRS DE UN CLIENTE" %}{% endcomment %}
+            <li id="inicio" class="">
+                <a href="#">
+                    <i class="material-icons">find_in_page</i>
+                    <span>Consultar</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <!--CONSULTAR (Gestor PQRS y técnico)-->
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
+            <li id="consultar" class="">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle ">
+                    <i class="material-icons">find_in_page</i>
+                    <span>Consultar</span>
+                </a>
+                <ul class="ml-menu">
+                {% if user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "SÓLO EL GESTOR DE RECLAMOS Y EL TECNICO" %}{% endcomment %}
+                    <li id="consultar_reclamos">
+                        <a href="#">
+                            <i class="material-icons">report</i>
+                            <span>Reclamos</span>
+                        </a>
+                    </li>
+                {% elif user.type_u.codigo == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
+                    <li id="consultar_peticiones">
+                        <a href="#">
+                            <i class="material-icons">question_answer</i>
+                            <span>PQS</span>
+                        </a>
+                    </li>
+                {% endif %}
+                    <li id="consultar_clientes">
+                        <a href="#">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Clientes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+
+            <!--GESTIONAR CRUD-->
+            {% if user.type_u.codigo == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
+            <li id="gestionar" class="">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle ">
+                    <i class="material-icons">dashboard</i>
+                    <span>Gestionar</span>
+                </a>
+                <ul class="ml-menu">
+                    <li id="gestionar_dptos">
+                        <a href="#">
+                            <i class="material-icons">domain</i>
+                            <span>Departamentos</span>
+                        </a>
+                    </li>
+                    <li id="gestionar_categorias_reclamos">
+                        <a href="">
+                            <i class="material-icons">report</i>
+                            <span>Categorías de Reclamos</span>
+                        </a>
+                    </li>
+                    <li id="gestionar_tipos_averias">
+                        <a href="#">
+                            <i class="material-icons">bug_report</i>
+                            <span>Tipos de Averías</span>
+                        </a>
+                    </li>
+                    <li id="gestionar_usuarios">
+                        <a href="#">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li id="gestionar_respuestas_predefinidas">
+                        <a href="#">
+                            <i class="material-icons">comment</i>
+                            <span>Respuestas Predefinidas</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
+            <!--ATENDER PQS/RECLAMO-->
+            <li id="atender" class="">
+                <a href="#">
+                    <i class="material-icons">build</i>
+                    <span>Atender</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'ger' %} {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
+            <!--REPORTES-->
+            <li id="reportes" class="">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
+                    <i class="material-icons">insert_chart</i>
+                    <span>Reportes</span>
+                </a>
+                <ul class="ml-menu">
+                    <li id="reporte_pqs_marcadas">
+                        <a href="#">
+                            <i class="material-icons">bookmarks</i>
+                            <span>PQS Marcadas</span>
+                        </a>
+                    </li>
+                    {% if user.type_u.codigo != 'gpqs' %} {% comment "LOS QUE SIGUEN SOLO PARA EL GERENTE" %}{% endcomment %}
+                    <li id="reporte_satisfaccion">
+                        <a href="#">
+                            <i class="material-icons">favorite</i>
+                            <span>Satisfacción de Usuarios</span>
+                        </a>
+                    </li>
+                    <li id="reporte_fallas">
+                        <a href="#">
+                            <i class="material-icons">domain</i>
+                            <span>Fallas por Departamento</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endif %}
+
+            {% if user.type_u.codigo == 'cli' %} {% comment "SÓLO CLIENTES" %}{% endcomment %}
+            <!--SATISFACCIÓN-->
+            <li id="satisfaccion" class="">
+                <a href="#">
+                    <i class="material-icons">favorite</i>
+                    <span>Satisfacción</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.type_u.codigo == 'grec' %} {% comment "SÓLO GESTOR DE RECLAMOS" %}{% endcomment %}
+            <!--GESTIONAR AVERIAS MASIVAS-->
+            <li id="averias_masivas" class="">
+                <a href="#">
+                    <i class="material-icons">bug_report</i>
+                    <span>Averías Masivas</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <!--CONFIGURACION DE USUARIO-->
+            <li id="configuracion" class="">
+                <a href="#">
+                    <i class="material-icons">settings</i>
+                    <span>Configuración</span>
+                </a>
+            </li>
+
+            <!--CERRAR SESION-->
             <li>
                 <a href="{% url 'logout' %}">
-                    <i class="material-icons">close</i>
+                    <i class="material-icons">power_settings_new</i>
                     <span>Cerrar Sesión</span>
                 </a>
             </li>
