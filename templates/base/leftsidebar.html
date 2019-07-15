@@ -30,7 +30,7 @@
         <ul class="list">
             <li class="header">Barra de Navegación</li>
             <li id="inicio" class="{% if '/artemis/' in request.path %}active{% endif %}">
-                <a href="{% url 'dashboard_cliente' %}">
+                <a href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestorR' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
                     <i class="material-icons">home</i>
                     <span>Inicio</span>
                 </a>
