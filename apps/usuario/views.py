@@ -7,7 +7,7 @@ def dashboard_checker(request):
     if request.user.type_u.codigo == 'cli':
         return redirect('cliente/')
     elif request.user.type_u.codigo == 'grec':
-        return redirect('gestorR/')
+        return redirect('gestreclamo/')
     elif request.user.type_u.codigo == 'atc':
         return redirect('atencioncli/')
     elif request.user.type_u.codigo == 'gpqs':
