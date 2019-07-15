@@ -46,6 +46,10 @@
   color: #fff;
 }
 
+.sidebar {
+  background-color: #7EA2AA;
+}
+
 .sidebar .menu .list li.active {
   background-color: rgba(0, 0, 0, 0);
 }
