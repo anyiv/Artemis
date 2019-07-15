@@ -7,3 +7,6 @@ def petitionlist(request):
 
 def checkpetition(request):
     return render(request, 'peticion/checkpetition.html', {})
+
+def createpetition(request):
+    return render(request, 'peticion/createpetition.html', {})
