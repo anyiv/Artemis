@@ -1,0 +1,72 @@
+.navbar {
+  background-color: #546E7A;
+}
+
+.navbar-brand {
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-brand:active {
+  color: #fff;
+}
+
+.navbar-brand:focus {
+  color: #fff;
+}
+
+.nav > li > a {
+  color: #fff;
+}
+
+.nav > li > a:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav > li > a:focus {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav .open > a {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav .open > a:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.nav .open > a:focus {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.bars {
+  color: #fff;
+}
+
+.sidebar .menu .list li.active {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar .menu .list li.active > :first-child i, .sidebar .menu .list li.active > :first-child span {
+  color: #546E7A;
+}
+
+.sidebar .menu .list .toggled {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar .menu .list .ml-menu {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar .legal {
+  background-color: #fff;
+}
+
+.sidebar .legal .copyright a {
+  color: #546E7A !important;
+}
+/*# sourceMappingURL=theme.css.map */

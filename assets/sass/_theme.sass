@@ -1,0 +1,65 @@
+@import _theme-color-variables
+
+.navbar 
+    background-color: $theme
+
+.navbar-brand 
+    color: $theme-navbar-brand
+
+    &:hover 
+        color: $theme-navbar-brand_hover
+
+    &:active 
+        color: $theme-navbar-brand_active
+
+    &:focus 
+        color: $theme-navbar-brand_focus
+
+
+.nav 
+    > li 
+        > a 
+            color: $theme-nav-anchor
+
+            &:hover 
+                background-color: $theme-nav-anchor_hover  
+
+            &:focus 
+                background-color: $theme-nav-anchor_focus
+    
+    .open 
+        > a 
+            background-color: $theme-nav-anchor-opened
+
+            &:hover 
+                background-color: $theme-nav-anchor-opened_hover
+    
+            &:focus 
+                background-color: $theme-nav-anchor-opened_focus
+    
+
+.bars 
+    color: $theme-bar
+
+.sidebar 
+    .menu 
+        .list 
+            li.active 
+                background-color: $theme-menu-list-active
+
+                > :first-child 
+                    i, span 
+                        color: $theme
+            
+            .toggled 
+                background-color: $theme-menu-list-toggled
+    
+            .ml-menu 
+                background-color: $theme-menu-list-submenu
+    
+    .legal 
+        background-color: $theme-legal-bg
+
+        .copyright 
+            a 
+                color: $theme !important
