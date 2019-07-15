@@ -11,9 +11,9 @@
 </div>
 
 <div class="row clearfix">
-    <a href="{% url 'dashboard_cliente' %}">
+    <a href="{% url 'createpetition' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect"  data-toggle="tooltip" data-placement="bottom" title="Registre una petición aquí.">
                 <div class="icon">
                         <i class="material-icons" style="color:#666;">email</i>
                     </div>
@@ -22,11 +22,11 @@
                     <div class="number" style="color:white">Petición</div>
                 </div>
             </div>
+        </div>
     </a>
-    </div>
-    <a href="{% url 'claimexpire' %}">
+    <a href="{% url 'createcomplaint' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-             <div class="info-box-3 bg-dark-gray hover-expand-effect">
+             <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre una queja aquí.">
                 <div class="icon">
                         <i class="material-icons" style="color:#666;">email</i>
                     </div>
@@ -39,7 +39,7 @@
     </a>
     <a href="{% url 'createclaim' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre un reclamo aquí.">
                 <div class="icon">
                         <i class="material-icons" style="color:#666;">email</i>
                     </div>
@@ -50,9 +50,9 @@
             </div>
         </div>
     </a>
-    <a href="{% url 'claimfinished' %}">
+    <a href="{% url 'createsuggestion' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre una sugerencia aquí">
                 <div class="icon">
                         <i class="material-icons" style="color:#666;">email</i>
                     </div>
@@ -78,7 +78,7 @@
                 <thead>
                     <tr>
                         <th>Código del reclamo</th>
-                        <th>Tipo de reclamo</th>
+                        <th>Categoría de reclamo</th>
                         <th>Servicio afectado</th>
                         <th>Fecha de emisión</th>
                         <th>Fecha estimada de resolución</th>
