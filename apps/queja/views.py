@@ -6,3 +6,6 @@ def complaintlist(request):
 
 def createcomplaint(request):
     return render(request, 'queja/createcomplaint.html', {})
+
+def atc_createcomplaint(request):
+    return render(request, 'queja/atc_createcomplaint.html', {})

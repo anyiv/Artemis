@@ -13,3 +13,6 @@ def claimexpire(request):
 
 def createclaim(request):
     return render(request, 'reclamo/createclaim.html', {})
+
+def atc_createclaim(request):
+    return render(request, 'reclamo/atc_createclaim.html', {})
