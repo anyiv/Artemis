@@ -10,3 +10,6 @@ def claimfinished(request):
 
 def claimexpire(request):
     return render(request, 'reclamo/claimexpire.html', {})
+
+def createclaim(request):
+    return render(request, 'reclamo/createclaim.html', {})
