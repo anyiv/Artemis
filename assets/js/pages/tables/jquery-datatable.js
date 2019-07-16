@@ -1,4 +1,4 @@
-$('.js-basic-example').DataTable({
+$('#table-list').DataTable({
     responsive: {
         details :{
             display: $.fn.dataTable.Responsive.display.modal({
