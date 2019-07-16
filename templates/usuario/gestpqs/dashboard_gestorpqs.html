@@ -1,1 +1,138 @@
 {% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Bienvenido | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="block-header">
+    <h2>LISTADOS</h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'dashboard_gestorPQS' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Peticiones</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_gestorPQS' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Quejas</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="20" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_gestorPQS' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Sugerencias</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="26" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    
+    <!--
+    <a href="{% url 'dashboard_gestorPQS' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Sugerencias</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a> -->
+
+</div>
+
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de PQS <small>PQS recibidas...</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Nombre de usuario</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Nombre de usuario</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Petición</td>
+                        <td>pablo01</td>
+                        <td>2019/06/30</td>
+                        <td>Sin revisión</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button> <button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">update</i></button></center>
+                    </tr>
+                    <tr>
+                        <td>Queja</td>
+                        <td>maaano_14</td>
+                        <td>2019/06/30</td>
+                        <td>Sin revisión</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button> <button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">update</i></button></center>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

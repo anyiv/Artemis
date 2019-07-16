@@ -2,14 +2,14 @@
 
 {% load static %}
 
-{% block titulo %} Crear categoría de reclamo | Artemis {% endblock %}
+{% block titulo %} Crear respuesta predefinida | Artemis {% endblock %}
 
 {% block content %}
 
 <div class="card">
     <div class="header bg-grey">
         <h2>
-            Crear Categoría de Reclamos
+            Crear Respuesta Predefinida 
         </h2>
     </div>
     <div class="body">
@@ -19,9 +19,14 @@
                 <div class="form-group">
                     <div class="form-line">
                         <p>
-                            <b>Nombre</b>
+                            <b>Categoría Asociada</b>
                         </p>
-                        <input type="text" class="form-control" placeholder="Ingrese el nombre aquí...">
+                        <select class="form-control show-tick">
+                            <option>Petición</option>
+                            <option>Queja</option>
+                            <option>Reclamo</option>
+                            <option>Sugerencia</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -29,17 +34,14 @@
         <div class="row clearfix">
             <div class="col-md-4"></div>
             <div class=" col-md-4 ">
+                <p>
+                    <b>Descripción</b>
+                </p>
                 <div class="form-group">
-                    <p>
-                        <b>Departamento asociado</b>
-                    </p>
-                    <select class="form-control">
-                        <option>Móvil</option>
-                        <option>Fijo</option>
-                        <option>Televisión</option>
-                        <option>Ventas</option>
-                        <option>Finanzas</option>
-                    </select>
+                    <div class="form-line">
+                        <textarea rows="4" class="form-control no-resize"
+                            placeholder="Ingrese la descripción de la respuesta predefinida aquí..."></textarea>
+                    </div>
                 </div>
             </div>
         </div>
