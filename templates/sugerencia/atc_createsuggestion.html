@@ -1,0 +1,139 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %}Crear Sugerencia | Artemis {% endblock %}
+
+{% block content %}
+<div class="card">
+        <div class="header bg-grey">
+            <h2>
+                Registrar Sugerencia <small>Una sugerencia es una declaración de recomendación, que tiene por objeto mejorar el servicio que presta la empresa.</small>
+            </h2>
+        </div>
+        <div class="body">
+        <div class="row clearfix">
+                <div class="col-md-6">
+                    <div class="header bg-blue-grey">
+                            <h2>
+                                Datos del cliente:
+                            </h2>
+                    </div>
+                </div>
+                    <div class=" col-md-6">
+                       <div class="form-group">
+                            <div class="header bg-blue-grey">
+                            <h2>
+                                Datos de la sugerencia:
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                            <p>
+                                <b>Nro de identificación</b>
+                            </p>
+                                <input type="text" class="form-control" placeholder="Ingrese el nro de idenficación.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                           <div class="button-demo">
+                           <p style="color:white;">
+                                <b>Buscar</b>
+                            </p>
+                                <button type="button" class="btn bg-grey waves-effect waves-circle waves-float">
+                                    <i class="material-icons">search</i>
+                                </button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-6">
+                       <div class="form-group">
+                            <div class="form-line">
+                            <p>
+                                <b>Asunto</b>
+                            </p>
+                                <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row clearfix">     
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                     <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                            <p>
+                                <b>Nombre</b>
+                            </p>
+                                <input type="text" class="form-control" placeholder="Nombre del cliente.">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                            <p>
+                                <b>Apellido</b>
+                            </p>
+                                <input type="text" class="form-control" placeholder="Apellido del cliente.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-6">
+                        <p>
+                            <b>Descripción</b>
+                        </p>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <textarea rows="4" class="form-control no-resize" placeholder="Por favor escriba su sugerencia aquí..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-2"> 
+                    </div>
+                     <div class="col-md-3">
+                        <div class="form-group">
+                        <div class="button-demo">
+                        <a href="{% url 'dashboard_cliente' %}">
+                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                        </a>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                        <div class="button-demo">
+                            <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                        <div class="button-demo">
+                            <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+{% endblock %}
