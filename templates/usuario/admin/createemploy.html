@@ -1,0 +1,162 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Crear usuario empleado | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header bg-grey">
+        <h2>
+            Crear usuario empleado
+        </h2>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-md-3"></div>
+            <div class=" col-md-3">
+                <div class="form-group">
+                    <div class="form-line">
+                        <p>
+                            <b>Nro de identificación</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Nro de identificación.">
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-3">
+                <div class="form-group">
+                    <div class="form-line">
+                        <p>
+                            <b>Nombre de Usuario</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Usuario.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-3"></div>
+            <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Nombre</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Nombre del empleado.">
+                    </div>
+                </div>
+            </div>
+             <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Apellido</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Apellido del empleado.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-3"></div>
+            <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Dirección</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Dirección del empleado.">
+                    </div>
+                </div>
+            </div>
+             <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Teléfono</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Apellido del empleado.">
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row clearfix">
+            <div class="col-md-3"></div>
+            <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Correo</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Correo del empleado.">
+                    </div>
+                </div>
+            </div>
+             <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Contraseña</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Contaseña.">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-3"></div>
+            <div class=" col-md-3 ">
+                <div class="form-group">
+                   <div class="form-line">
+                        <p>
+                            <b>Cargo</b>
+                        </p>
+                        <select class="form-control show-tick">
+                            <option>Atención al cliente</option>
+                            <option>Técnico</option>
+                            <option>Gestor de Reclamos</option>
+                            <option>Gestor de PQS</option>
+                            <option>Administrador</option>
+                            <option>Gerente</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <a href="{% url 'dashboard_admin' %}">
+                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

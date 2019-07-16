@@ -10,3 +10,6 @@ def checkpetition(request):
 
 def createpetition(request):
     return render(request, 'peticion/createpetition.html', {})
+
+def atc_createpetition(request):
+    return render(request, 'peticion/atc_createpetition.html', {})

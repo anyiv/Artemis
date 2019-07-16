@@ -7,7 +7,7 @@ def dashboard_checker(request):
     if request.user.type_u.codigo == 'cli':
         return redirect('cliente/')
     elif request.user.type_u.codigo == 'grec':
-        return redirect('gestorR/')
+        return redirect('gestreclamo/')
     elif request.user.type_u.codigo == 'atc':
         return redirect('atencioncli/')
     elif request.user.type_u.codigo == 'gpqs':
@@ -19,8 +19,8 @@ def dashboard_checker(request):
     elif request.user.type_u.codigo == 'ger':
         return redirect('gerente/')
 
-def dashboard_gestorR(request):
-    return render(request, 'usuario/gestreclamo/dashboard_gestorR.html', {})
+def dashboard_gestreclamo(request):
+    return render(request, 'usuario/gestreclamo/dashboard_gestreclamo.html', {})
 
 def dashboard_cliente(request):
     return render(request, 'usuario/cliente/dashboard_cliente.html', {})
@@ -39,3 +39,6 @@ def dashboard_admin(request):
 
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
+
+def createemploy(request):
+    return render(request, 'usuario/admin/createemploy.html', {})

@@ -1,0 +1,78 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Crear Avería Masiva | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header bg-grey">
+        <h2>
+            Crear Avería Masiva
+        </h2>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4 ">
+                <div class="form-group">
+                    <div class="form-line">
+                        <p>
+                            <b>Nombre</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="Ingrese el nombre aquí...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <p>
+                        <b>Servicio asociado</b>
+                    </p>
+                    <select class="form-control">
+                        <option>Telefonía Móvil</option>
+                        <option>Telefonía Fija</option>
+                        <option>Televisión por cable</option>
+                        <option>Internet</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <a href="{% url 'dashboard_admin' %}">
+                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

@@ -1,1 +1,182 @@
 {% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Bienvenido | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="block-header">
+    <h2>CREAR</h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'createdep' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Cree un departamento aquí.">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">domain</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Crear</div>
+                    <div class="number" style="color:white">Departamento</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'createclaimcategory' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Cree una categoría de reclamo aquí.">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">report</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Crear</div>
+                    <div class="number" style="color:white">Categoría Reclamo</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'createfailure' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Crear tipo de avería masiva aquí.">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">bug_report</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Crear</div>
+                    <div class="number" style="color:white">Tipo Avería Masiva</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'createemploy' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Crear usuario empleado aquí">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">supervised_user_circle</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Crear</div>
+                    <div class="number" style="color:white">Empleado</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Cree una respuesta predefinida aquí">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">comment</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Crear</div>
+                    <div class="number" style="color:white">Respuesta Predef.</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="block-header">
+    <h2>LISTADOS</h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Departamentos</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Categorías de Reclamos</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="20" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Tipos de Averías Marivas</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="26" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Empleados</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="100" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Clientes</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="300" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'dashboard_admin' %}">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons" style="color:#666;">make_list</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Respuestas Predefinidas</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

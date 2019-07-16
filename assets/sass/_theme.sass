@@ -1,0 +1,169 @@
+@import _theme-color-variables
+
+/* ======= BODY =============================*/
+body
+    background: $theme-body
+    font-family: 'Roboto', Arial, Tahoma, sans-serif
+
+
+/* ======= TOP BAR =============================*/    
+.navbar 
+    background-color: $theme-top-bar
+
+
+.navbar-brand
+    color: $theme-navbar-brand
+
+    &:hover 
+        color: $theme-navbar-brand_hover
+
+    &:active 
+        color: $theme-navbar-brand_active
+
+    &:focus 
+        color: $theme-navbar-brand_focus
+
+
+.nav 
+    > li 
+        > a 
+            color: $theme-nav-anchor
+
+            &:hover 
+                background-color: $theme-nav-anchor_hover  
+
+            &:focus 
+                background-color: $theme-nav-anchor_focus
+    
+    .open 
+        > a 
+            background-color: $theme-nav-anchor-opened
+
+            &:hover 
+                background-color: $theme-nav-anchor-opened_hover
+    
+            &:focus 
+                background-color: $theme-nav-anchor-opened_focus
+
+
+.navbar-header
+    .bars 
+        color: $theme-bar
+
+        &:focus 
+            color: $theme-bar
+
+
+/* ======= LEFT BAR =============================*/
+.sidebar
+    background-color: $theme-sidebar
+
+    .menu 
+        .list
+            .header 
+                background: $theme-sidebar-menu-list-header
+
+            li.active 
+                background-color: $theme-sidebar-menu-list-li_active
+
+                > :first-child 
+                    i, span 
+                        color: $theme-top-bar
+            
+            .toggled 
+                background-color: $theme-menu-list-toggled
+    
+            .ml-menu 
+                background-color: $theme-menu-list-submenu
+    
+    .legal 
+        background-color: $theme-legal-bg
+
+        .copyright 
+            a 
+                color: $theme-top-bar !important
+
+
+/* ======= CARD =============================*/
+.card
+    background: $theme-card
+
+    .header
+        background: $theme-card-header
+
+
+/* ======= TABLE =============================*/
+.table
+    background: $theme-table
+
+    thead, tfoot
+        background: $theme-table-thead_tfoot
+        text-align: center
+
+    tbody 
+        tr 
+            td, th 
+                padding: 10px
+                border-top: 1px solid #eee
+                border-bottom: 1px solid #eee
+                text-align: center
+
+        tr.primary 
+            td, th 
+                background-color: #1f91f3
+                color: #fff
+
+        tr.success 
+            td, th 
+                background-color: #2b982b
+                color: #fff
+
+        tr.info 
+            td, th 
+                background-color: #00b0e4
+                color: #fff   
+
+        tr.warning 
+            td, th 
+                background-color: #ff9600
+                color: #fff
+
+        tr.danger 
+            td, th 
+                background-color: #fb483a
+                color: #fff
+  
+    thead 
+        tr 
+            th 
+                padding: 10px
+                border-bottom: 1px solid #eee
+
+
+.table-bordered 
+    border-top: 1px solid #eee
+
+    tbody 
+        tr 
+            td, th 
+                padding: 10px
+                border: 1px solid #eee      
+    
+    thead 
+        tr 
+            th 
+                padding: 10px
+                border: 1px solid #eee
+
+
+/* ======= INFOBOX =============================*/
+.info-box-3
+    background-color: $theme-infobox-3
+    
+    .icon
+        .i
+            color: $theme-infobox-3-icon
+
+    .content
+        .text, .number
+            color: $theme-infobox-3-text
