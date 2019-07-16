@@ -5655,6 +5655,133 @@ fieldset[disabled] .form-control {
   width: 55%;
 }
 
+/* Jquery DataTable ============================ */
+.dataTables_wrapper {
+  position: relative;
+}
+
+.dataTables_wrapper select {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+
+.dataTables_wrapper select:active, .dataTables_wrapper select:focus {
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+
+.dataTables_wrapper input[type="search"] {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  font-size: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dataTables_wrapper input[type="search"]:focus, .dataTables_wrapper input[type="search"]:active {
+  border-bottom: 2px solid #1f91f3;
+}
+
+.dataTables_wrapper .dt-buttons {
+  float: left;
+}
+
+.dataTables_wrapper .dt-buttons a.dt-button {
+  background-color: #607D8B;
+  color: #fff;
+  padding: 7px 12px;
+  margin-right: 5px;
+  text-decoration: none;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  border: none;
+  font-size: 13px;
+  outline: none;
+}
+
+.dataTables_wrapper .dt-buttons a.dt-button:active {
+  opacity: 0.8;
+}
+
+.dt-button-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 400px;
+  text-align: center;
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 3px;
+  margin-top: -100px;
+  margin-left: -200px;
+  z-index: 21;
+}
+
+.dt-button-info h2 {
+  color: #777;
+}
+
+.dt-button-info div {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* For Internet Explorer 10 ===================== */
+html.ie10 .sidebar .menu .list li {
+  line-height: 30px;
+}
+
+html.ie10 .sidebar .menu .list .ml-menu li.active a:not(.menu-toggle).toggled:before {
+  top: 6px !important;
+  line-height: 20px !important;
+}
+
+html.ie10 .sidebar .user-info .info-container {
+  top: 15px;
+}
+
+html.ie10 .search-bar input[type="text"] {
+  padding: 26px 60px 26px 56px;
+}
+
+html.ie10 .dropdown-menu ul.menu li a {
+  margin-top: -22px;
+}
+
+html.ie10 .bs-searchbox .form-control {
+  width: 90%;
+}
+
+/* For Internet Explorer 11 ===================== */
+html.ie11 .sidebar .menu .list .ml-menu li.active a:not(.menu-toggle).toggled:before {
+  top: 6px !important;
+  line-height: 20px !important;
+}
+
+html.ie11 .sidebar .user-info .info-container {
+  top: 15px;
+}
+
+html.ie11 .search-bar input[type="text"] {
+  padding: 26px 60px 26px 56px;
+}
+
+html.ie11 .dropdown-menu ul.menu li a {
+  margin-top: -22px;
+}
+
+html.ie11 .bs-searchbox .form-control {
+  width: 90%;
+}
+
 /* ======= BODY =============================*/
 /* ======= TOP BAR =============================*/
 /* ======= LEFT BAR =============================*/
