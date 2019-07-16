@@ -1,4 +1,4 @@
-@import '_mixins';
+@import '../sass/_mixins.sass';
 @import '_variables';
 
 /* Navbar ====================================== */
@@ -180,5 +180,3 @@
 
 /* For Internet Explorer 11 ===================== */
 @import 'browser-support/_ie11.scss';
-
-@import '../sass/_theme.sass';
