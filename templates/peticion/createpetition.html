@@ -6,66 +6,69 @@
 
 {% block content %}
 <div class="card">
-        <div class="header bg-grey">
-            <h2>
-                Registrar Petición <small>Una petición es aquello que puede solicitar o reclamar ante la empresa por razones de interés general o interés particular, así elevar solicitudes de información y/o consulta y para obtener una resolución de las mismas.</small>
-            </h2>
-        </div>
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                       <div class="form-group">
-                            <div class="form-line">
-                            <p>
-                                <b>Asunto</b>
-                            </p>
-                                <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                     <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
+    <div class="header bg-grey">
+        <h2>
+            Registrar Petición <small>Una petición es aquello que puede solicitar o reclamar ante la empresa por razones
+                de interés general o interés particular, así elevar solicitudes de información y/o consulta y para
+                obtener una resolución de las mismas.</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4 ">
+                <div class="form-group">
+                    <div class="form-line">
                         <p>
-                            <b>Descripción</b>
+                            <b>Asunto</b>
                         </p>
-                       <div class="form-group">
-                            <div class="form-line">
-                                <textarea rows="4" class="form-control no-resize" placeholder="Por favor escriba su petición aquí..."></textarea>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
                     </div>
                 </div>
-                <div class="row clearfix">
-                    <div class="col-md-2"></div>
-                     <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4 ">
+                <p>
+                    <b>Descripción</b>
+                </p>
+                <div class="form-group">
+                    <div class="form-line">
+                        <textarea rows="4" class="form-control no-resize"
+                            placeholder="Por favor escriba su petición aquí..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
                         <a href="{% url 'dashboard_cliente' %}">
                             <button type="button" class="btn bg-teal waves-effect">Atrás</button>
                         </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                        </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                    </div>
+                </div>
+            </div>
         </div>
- </div>
+    </div>
+</div>
 
 
 {% endblock %}

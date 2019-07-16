@@ -19,8 +19,8 @@ def dashboard_checker(request):
     elif request.user.type_u.codigo == 'ger':
         return redirect('gerente/')
 
-def dashboard_gestorR(request):
-    return render(request, 'usuario/gestreclamo/dashboard_gestorR.html', {})
+def dashboard_gestreclamo(request):
+    return render(request, 'usuario/gestreclamo/dashboard_gestreclamo.html', {})
 
 def dashboard_cliente(request):
     return render(request, 'usuario/cliente/dashboard_cliente.html', {})

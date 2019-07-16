@@ -7,4 +7,5 @@ urlpatterns = [
     path('reclamosproxavencer/', views.claimexpire, name='claimexpire'),
     path('registrar/', views.createclaim, name='createclaim'),
     path('atc_registrar/', views.atc_createclaim, name='atc_createclaim'),
+    path('consultar/', views.checkclaim, name='checkclaim'),
 ]
