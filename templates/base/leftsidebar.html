@@ -15,11 +15,9 @@
                 <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">group</i>Seguidores</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Ventas</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                    <li><a href="{% url 'changepassword' %}"><i class="material-icons">lock</i>Cambiar clave</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Cerrar Sesión</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
