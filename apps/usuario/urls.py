@@ -10,4 +10,5 @@ urlpatterns = [
     path('tecnico/', views.dashboard_tecnico, name='dashboard_tecnico'),
     path('admin/', views.dashboard_admin, name='dashboard_admin'),
     path('gerente/', views.dashboard_gerente, name='dashboard_gerente'),
+    path('crear/', views.createemploy, name='createemploy'),
 ]
