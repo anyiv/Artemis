@@ -19,3 +19,6 @@ def atc_createclaim(request):
 
 def checkclaim(request):
     return render(request, 'reclamo/checkclaim.html', {})
+
+def createclaimcategory(request):
+    return render(request, 'reclamo/createclaimcategory.html', {})
