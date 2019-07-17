@@ -15,11 +15,9 @@
                 <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">group</i>Seguidores</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Ventas</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                    <li><a href="{% url 'changepassword' %}"><i class="material-icons">lock</i>Cambiar clave</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Cerrar Sesión</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -47,25 +45,25 @@
                 </a>
                 <ul class="ml-menu">
                     <li id="crear_peticion">
-                        <a href="#">
+                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createpetition' %} {% elif user.type_u.codigo == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
                             <i class="material-icons">question_answer</i>
                             <span>Petición</span>
                         </a>
                     </li>
                     <li id="crear_queja">
-                        <a href="#">
+                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createcomplaint' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Queja</span>
                         </a>
                     </li>
                     <li id="crear_reclamo">
-                        <a href="#">
+                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">report</i>
                             <span>Reclamo</span>
                         </a>
                     </li>
                     <li id="crear_sugerencia">
-                        <a href="#">
+                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createsuggestion' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
                             <i class="material-icons">loyalty</i>
                             <span>Sugerencia</span>
                         </a>

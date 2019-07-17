@@ -27,4 +27,6 @@ urlpatterns = [
     path('reclamo/', include('apps.reclamo.urls')),
     path('sugerencia/', include('apps.sugerencia.urls')), 
     path('averia_masiva/', include('apps.averia_masiva.urls')),
+    path('resp_predefinida/', include('apps.resp_predefinida.urls')),
+
 ]

@@ -14,3 +14,6 @@ def forgotpassword(request):
 
 def signup(request):
     return render(request, 'index/signup.html', {})
+
+def changepassword(request):
+    return render(request, 'index/changepassword.html', {})
