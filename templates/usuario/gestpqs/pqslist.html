@@ -1,0 +1,105 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Listado PQS | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de PQS <small>Peticiones, quejas y sugerencias registradas en el sistema.</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b style="color:black">Filtrar</b>
+                                </p>
+                                <select class="form-control show-tick">
+                                    <option>Petición</option>
+                                    <option>Queja</option>
+                                    <option>Reclamo</option>
+                                    <option>Sugerencia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre de usuario</th>
+                                <th>Categoría</th>
+                                <th>Fecha de emisión</th>
+                                <th>Asunto</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre de usuario</th>
+                                <th>Categoría</th>
+                                <th>Fecha de emisión</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <th>PT-01</th>
+                                <td>sara21</td>
+                                <td>Petición</td>
+                                <td>2019/06/30</td>
+                                <td>Sin revisión</td>
+                                <td>
+                                    <center><button type="button"
+                                            class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                                class="material-icons">remove_red_eye</i></button></center>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>QJ-01</th>
+                                <td>manu66</td>
+                                <td>Queja</td>
+                                <td>2019/06/30</td>
+                                <td>Sin revisión</td>
+                                <td>
+                                    <center><button type="button"
+                                            class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                                class="material-icons">remove_red_eye</i></button></center>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>SG-01</th>
+                                <td>nachored</td>
+                                <td>Sugerencia</td>
+                                <td>2019/06/30</td>
+                                <td>Sin revisión</td>
+                                <td>
+                                    <center><button type="button"
+                                            class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                                class="material-icons">remove_red_eye</i></button></center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,5 +1,5 @@
 /* General ===================================== */
-@import url(..\css\materialize.css);
+@import url(/home/anyi/Artemis/assets/css/materialize.css);
 body {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -4212,11 +4212,11 @@ body {
 
 /* ======= CARD =============================*/
 .card {
-  background: #3E717A;
+  background: #68858c;
 }
 
 .card .header {
-  background: #124559;
+  background: #3E717A;
 }
 
 /* ======= TABLE =============================*/
