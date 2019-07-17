@@ -1,10 +1,10 @@
-$('#tabla-generica').DataTable({
+var tabla = $('#tabla-gestpqs').DataTable({
     responsive: {
         details: {
             display: $.fn.dataTable.Responsive.display.modal({
                 header: function(row) {
                     var data = row.data();
-                    return 'Details for ' + data[0] + ' ' + data[1];
+                    return 'Detalles de ' + data[1] + ' ' + data[0];
                 }
             }),
             render: $.fn.dataTable.Responsive.renderer.tableAll({
@@ -13,14 +13,14 @@ $('#tabla-generica').DataTable({
         }
 
     },
-
+    "dom": '<"toolbar">frtip',
     "language": {
         "sProcessing": "Procesando...",
         "sLengthMenu": "Mostrar _MENU_ registros",
         "sZeroRecords": "No se encontraron resultados",
         "sEmptyTable": "Ningún dato disponible en esta tabla",
         "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoEmpty": "No hay registros que mostrar",
         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix": "",
         "sSearch": "Buscar:",
@@ -38,6 +38,29 @@ $('#tabla-generica').DataTable({
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
         }
     }
+});
+
+$('div.toolbar').empty(); // clears the content generated    
+$('.dataTables_filter').empty(); // clears the content generated    
+
+$('div.toolbar').append("<div class='col-sm-12 col-sm-4'><span style='color:black'>Mostrar <select id='tamano' class='form-group' data-width='fit'><option>1</option><option>2</option><option>50</option><option>100</option></select> Registros</span></div>" +
+    "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Filtrar por: </span><select id='tipopqrs' class='form-group' data-width='fit'><option>Todos</option><option>Avería</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div></div>" +
+    "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Buscar: </span><input id='filtro' class='form-group'></input></div></div>")
+
+$('#filtro').keyup(function() {
+    tabla.search(this.value).draw();
+});
+
+$('#tipopqrs').on('change', function() {
+    if (this.value == 'Todos') {
+        tabla.search('').draw();
+    } else {
+        tabla.search(this.value).draw();
+    }
+});
+
+$('#tamano').on('change', function() {
+    tabla.page.len(this.value).draw();
 });
 
 //Exportable table

@@ -12,9 +12,9 @@ class Tipo_Usuario(models.Model):
         return self.descripcion
 
 class User(AbstractUser):
-    city = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
+    city = models.TextField(max_length=30, blank=True)
+    address = models.CharField(max_length=100, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     type_u = models.ForeignKey(Tipo_Usuario, on_delete=models.CASCADE, blank=True, null=True, default = 'cli')
-    last_access = models.DateTimeField(default=timezone.now)
+    last_access = models.DateTimeField(default=timezone.now)    
