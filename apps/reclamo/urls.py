@@ -9,4 +9,5 @@ urlpatterns = [
     path('atc_registrar/', views.atc_createclaim, name='atc_createclaim'),
     path('crearcategoría/', views.createclaimcategory, name='createclaimcategory'),
     path('consultar/', views.checkclaim, name='checkclaim'),
+    path('atender/', views.attendclaim, name='attendclaim'),
 ]

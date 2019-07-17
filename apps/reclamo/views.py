@@ -22,3 +22,6 @@ def checkclaim(request):
 
 def createclaimcategory(request):
     return render(request, 'reclamo/createclaimcategory.html', {})
+
+def attendclaim(request):
+    return render(request, 'reclamo/attendclaim.html', {})

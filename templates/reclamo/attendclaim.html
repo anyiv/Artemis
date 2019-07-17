@@ -2,14 +2,14 @@
 
 {% load static %}
 
-{% block titulo %} Consultar Reclamo | Artemis {% endblock %}
+{% block titulo %} Atender Reclamo | Artemis {% endblock %}
 
 {% block content %}
 
 <div class="card">
     <div class="header ">
         <h2>
-            Consulta de Reclamo
+            Atención de Reclamo
         </h2>
     </div>
     <div class="body">
@@ -242,7 +242,16 @@
                             <p>
                                 <b>Categoría</b>
                             </p>
-                            <input type="text" class="form-control" placeholder="Categoría">
+                            <select class="form-control">
+                                <option>Cobro incorrecto</option>
+                                <option>Cobro no registrado en sistema</option>
+                                <option>Fallas de señal móvil</option>
+                                <option>Telefonía fija sin tono</option>
+                                <option>Señal inestable de televisión</option>
+                                <option>Sin señal en televisión</option>
+                                <option>Alta latencia de internet</option>
+                                <option>Otro</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -281,7 +290,12 @@
                             <p>
                                 <b>Tipo de avería</b>
                             </p>
-                            <input type="text" class="form-control" placeholder="Tipo de avería">
+                            <select class="form-control">
+                                <option>Falla de internet</option>
+                                <option>Telefonía Fija</option>
+                                <option>Televisión por cable</option>
+                                <option>Internet</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -291,7 +305,7 @@
                             <p>
                                 <b>Tipo de servicio</b>
                             </p>
-                            <input type="text" class="form-control" placeholder="Origen">
+                            <input type="text" class="form-control" placeholder="Tipo de servicio">
                         </div>
                     </div>
                 </div>
@@ -305,13 +319,11 @@
                         <p>
                             <b>Comentarios</b>
                         </p>
-                        <div class="body">
-                            <div class="list-group">
-                                <button type="button" class="list-group-item" style="text-align:center">No se ha podido
-                                    atender por falta de luz en la zona</button>
-                                <button type="button" class="list-group-item" style="text-align:center">El técnico está
-                                    atendiendo el reclamo</button>
-                            </div>
+                        <div class="list-group">
+                            <button type="button" class="list-group-item" style="text-align:center">No se ha podido
+                                atender por falta de luz en la zona</button>
+                            <button type="button" class="list-group-item" style="text-align:center">El técnico está
+                                atendiendo el reclamo</button>
                         </div>
                     </div>
                 </div>
@@ -336,20 +348,25 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <a href="{% url 'dashboard_gestreclamo' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                        <a href="{% url 'checkclaim' %}">
+                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
+                <div class="form-group">
+                    <div class="button-demo">
+                        <a href="{% url 'checkclaim' %}">
+                            <button type="button" class="btn bg-blue-grey waves-effect">Añadir comentario</button>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <a href="{% url 'attendclaim' %}" >
                         <button type="button" class="btn bg-green waves-effect">Atender</button>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -361,5 +378,4 @@
 {% endblock %}
 
 {% block javascript %}
-
 {% endblock %}
