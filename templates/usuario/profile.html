@@ -9,41 +9,104 @@ Artemis
 {% block content %}
 
 <div class="row clearfix">
-    <div class="col-xs-12 col-sm-4">
-        <div class="card profile-card">
+    <div class="col-xs-12 col-sm-12">
+        <div class="profile profile-card">
             <div class="profile-header">&nbsp;</div>
             <div class="profile-body">
                 <div class="image-area">
                     <img src="{% static 'images/user-lg.jpg' %}" alt="AdminBSB - Profile Image" />
                 </div>
                 <div class="content-area">
-                    <h3>Marc K. Hammond</h3>
-                    <p>Web Software Developer</p>
-                    <p>Administrator</p>
+                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <p></p>
+                    <p>{{ user.type_u }}</p>
                 </div>
             </div>
             <div class="profile-footer">
-                <ul>
-                    <li>
-                        <span>Followers</span>
-                        <span>1.234</span>
-                    </li>
-                    <li>
-                        <span>Following</span>
-                        <span>1.201</span>
-                    </li>
-                    <li>
-                        <span>Friends</span>
-                        <span>14.252</span>
-                    </li>
-                </ul>
-                <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Nombre de usuario</b>
+                                </p>
+                                <input type="text" class="form-control" placeholder="" value="{{user.username}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Teléfono</b>
+                                </p>
+                                <input type="text" class="form-control" placeholder="" value="{{user.phone }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Correo</b>
+                                </p>
+                                <input type="text" class="form-control" placeholder="" value="{{user.email }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Dirección</b>
+                                </p>
+                                <input type="text" class="form-control" placeholder=""
+                                    value="{{ user.address }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'atc' %}{% url 'dashboard_atencioncli' %}{% elif user.type_u.codigo == 'admin' %}{% url 'dashboard_admin' %}{% elif user.type_u.codigo == 'ger'%}{% url 'dashboard_gerente' %}{% elif user.type_u.codigo == 'tec' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} {% endif %}">
+                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-green waves-effect">Modificar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    {% endblock content %}
+{% endblock content %}
 
-    {% block javascript %}
+{% block javascript %}
 
-    {% endblock javascript %}
+{% endblock javascript %}
