@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="block-header">
-    <h2>LISTADOS {{ user.type_u.nombre }}</h2>
+    <h2>LISTADOS </h2>
 </div>
 
 <div class="row clearfix">
@@ -16,9 +16,10 @@
                 <div class="icon">
                     <i class="material-icons" style="color:#666;">sentiment_satisfied_alt</i>
                 </div>
-                <div class="content" >
+                <div class="content">
                     <div class="text" style="color:white">Reclamos</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                        data-fresh-interval="20">125</div>
                 </div>
             </div>
         </div>
@@ -31,12 +32,13 @@
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Reclamos prox. a vencer</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="31" data-speed="1500" data-fresh-interval="20">257</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="31" data-speed="1500"
+                        data-fresh-interval="20">257</div>
                 </div>
             </div>
         </div>
     </a>
-    <a href="{% url 'claimlist' %}">
+    <a href="{% url 'failurelist' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3 bg-dark-gray hover-expand-effect">
                 <div class="icon">
@@ -44,7 +46,8 @@
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Averías masivas</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="26" data-speed="1500" data-fresh-interval="20"></div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="26" data-speed="1500"
+                        data-fresh-interval="20"></div>
                 </div>
             </div>
         </div>
@@ -57,7 +60,8 @@
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Reclamos finalizados</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500" data-fresh-interval="20"></div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500"
+                        data-fresh-interval="20"></div>
                 </div>
             </div>
         </div>
@@ -74,9 +78,10 @@
             <div class="icon bg-dark-gray">
                 <i class="material-icons" style="color:#666;">notification_important</i>
             </div>
-            <div class="content" >
+            <div class="content">
                 <div class="text" style="color:white">Avería Masiva</div>
-                <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
+                <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                    data-fresh-interval="20">125</div>
             </div>
         </div>
     </div>
@@ -87,11 +92,12 @@
             </div>
             <div class="content">
                 <div class="text" style="color:white">Otra cosa</div>
-                <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500" data-fresh-interval="20">125</div>
+                <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                    data-fresh-interval="20">125</div>
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="card">
@@ -129,7 +135,11 @@
                     <td>Fallas de Internet</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -137,7 +147,22 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
+                <tr>
+                    <td>Queja</td>
+                    <td>maaano_14</td>
+                    <td>Fallas de Cobertura</td>
+                    <td>2019/06/30</td>
+                    <td>Pendiente de Atención</td>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -145,7 +170,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -153,7 +182,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -161,7 +194,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -169,7 +206,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -177,7 +218,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -185,7 +230,11 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
                 <tr>
                     <td>Queja</td>
@@ -193,23 +242,22 @@
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
-                </tr>
-                <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
-                </tr>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 <tr>
                     <td>Queja</td>
                     <td>maaano_14</td>
                     <td>Fallas de Internet</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
-                    <td><center><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">remove_red_eye</i></button> <button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i class="material-icons">update</i></button></center>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
                 </tr>
             </tbody>
         </table>

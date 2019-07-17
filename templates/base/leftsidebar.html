@@ -8,16 +8,19 @@
             <img src="{% static "images/user.png"  %}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}
+                {{ user.last_name }}</div>
             <div class="email">{{ user.email }}</div>
             <div class="btn-group user-helper-dropdown">
-                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
-                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="material-icons">person</i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url 'changepassword' %}"><i class="material-icons">lock</i>Cambiar clave</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -30,40 +33,47 @@
 
             <!--INICIO-->
             <li id="inicio" class="{% if '/artemis/' in request.path %}active{% endif %}">
-                <a href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
+                <a
+                    href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
                     <i class="material-icons">home</i>
                     <span>Inicio</span>
                 </a>
             </li>
 
             <!--CREAR QPRS-->
-            {% if user.type_u.codigo == 'cli' or user.type_u.codigo == 'atc' %} {% comment "Cliente y Atención al Cliente" %} {% endcomment %}
+            {% if user.type_u.codigo == 'cli' or user.type_u.codigo == 'atc' %}
+            {% comment "Cliente y Atención al Cliente" %} {% endcomment %}
             <li id="crear" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);"
+                    class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
                     <i class="material-icons">create</i>
                     <span>Crear</span>
                 </a>
                 <ul class="ml-menu">
                     <li id="crear_peticion">
-                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createpetition' %} {% elif user.type_u.codigo == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
+                        <a
+                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createpetition' %} {% elif user.type_u.codigo == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
                             <i class="material-icons">question_answer</i>
                             <span>Petición</span>
                         </a>
                     </li>
                     <li id="crear_queja">
-                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createcomplaint' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
+                        <a
+                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createcomplaint' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Queja</span>
                         </a>
                     </li>
                     <li id="crear_reclamo">
-                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
+                        <a
+                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">report</i>
                             <span>Reclamo</span>
                         </a>
                     </li>
                     <li id="crear_sugerencia">
-                        <a href="{% if user.type_u.codigo == 'cli' %} {% url 'createsuggestion' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
+                        <a
+                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createsuggestion' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
                             <i class="material-icons">loyalty</i>
                             <span>Sugerencia</span>
                         </a>
@@ -75,31 +85,32 @@
             <!--LISTADOS-->
             {% if user.type_u.codigo == 'atc' %} {% comment "ATENCIÓN AL CLIENTE" %}{% endcomment %}
             <li id="listados" class="{% if '/lista/' in request.path   %}active{% endif %}">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);"
+                    class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
                     <i class="material-icons">format_list_bulleted</i>
                     <span>Listados</span>
                 </a>
                 <ul class="ml-menu">
                     <li id="listado_peticiones">
-                        <a href="{% url 'petitionlist' %}">
+                        <a href="{% url 'pqslist' %}">
                             <i class="material-icons">question_answer</i>
                             <span>Peticiones</span>
                         </a>
                     </li>
                     <li id="listado_quejas">
-                        <a href="{% url 'complaintlist' %}">
+                        <a href="{% url 'pqslist' %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Quejas</span>
                         </a>
                     </li>
                     <li id="listado_reclamos">
-                        <a href="{% url 'claimlist' %}">
+                        <a href="{% url 'pqslist' %}">
                             <i class="material-icons">report</i>
                             <span>Reclamos</span>
                         </a>
                     </li>
                     <li id="listado_sugerencias">
-                        <a href="{% url 'suggestionlist' %}">
+                        <a href="{% url 'pqslist' %}">
                             <i class="material-icons">loyalty</i>
                             <span>Sugerencias</span>
                         </a>
@@ -119,28 +130,30 @@
             {% endif %}
 
             <!--CONSULTAR (Gestor PQRS y técnico)-->
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+            {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <li id="consultar" class="">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle ">
                     <i class="material-icons">find_in_page</i>
                     <span>Consultar</span>
                 </a>
                 <ul class="ml-menu">
-                {% if user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "SÓLO EL GESTOR DE RECLAMOS Y EL TECNICO" %}{% endcomment %}
+                    {% if user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+                    {% comment "SÓLO EL GESTOR DE RECLAMOS Y EL TECNICO" %}{% endcomment %}
                     <li id="consultar_reclamos">
-                        <a href="#">
+                        <a href="{% url 'claimlist' %}">
                             <i class="material-icons">report</i>
                             <span>Reclamos</span>
                         </a>
                     </li>
-                {% elif user.type_u.codigo == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
+                    {% elif user.type_u.codigo == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
                     <li id="consultar_peticiones">
                         <a href="#">
                             <i class="material-icons">question_answer</i>
                             <span>PQS</span>
                         </a>
                     </li>
-                {% endif %}
+                    {% endif %}
                     <li id="consultar_clientes">
                         <a href="#">
                             <i class="material-icons">supervised_user_circle</i>
@@ -193,7 +206,8 @@
             </li>
             {% endif %}
 
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %} {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+            {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <!--ATENDER PQS/RECLAMO-->
             <li id="atender" class="">
                 <a href="#">
@@ -203,7 +217,8 @@
             </li>
             {% endif %}
 
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'ger' %} {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
+            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'ger' %}
+            {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
             <!--REPORTES-->
             <li id="reportes" class="">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle">
@@ -217,7 +232,8 @@
                             <span>PQS Marcadas</span>
                         </a>
                     </li>
-                    {% if user.type_u.codigo != 'gpqs' %} {% comment "LOS QUE SIGUEN SOLO PARA EL GERENTE" %}{% endcomment %}
+                    {% if user.type_u.codigo != 'gpqs' %}
+                    {% comment "LOS QUE SIGUEN SOLO PARA EL GERENTE" %}{% endcomment %}
                     <li id="reporte_satisfaccion">
                         <a href="#">
                             <i class="material-icons">favorite</i>

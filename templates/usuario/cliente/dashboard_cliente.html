@@ -13,12 +13,13 @@
 <div class="row clearfix">
     <a href="{% url 'createpetition' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect"  data-toggle="tooltip" data-placement="bottom" title="Registre una petición aquí.">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Registre una petición aquí.">
                 <div class="icon">
-                        <i class="material-icons" style="color:#666;">email</i>
-                    </div>
-                    <div class="content">
-                         <div class="text" style="color:white">Registrar</div>
+                    <i class="material-icons" style="color:#666;">email</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Registrar</div>
                     <div class="number" style="color:white">Petición</div>
                 </div>
             </div>
@@ -26,12 +27,13 @@
     </a>
     <a href="{% url 'createcomplaint' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-             <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre una queja aquí.">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Registre una queja aquí.">
                 <div class="icon">
-                        <i class="material-icons" style="color:#666;">email</i>
-                    </div>
-                    <div class="content">
-                         <div class="text" style="color:white">Registrar</div>
+                    <i class="material-icons" style="color:#666;">email</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Registrar</div>
                     <div class="number" style="color:white">Queja</div>
                 </div>
             </div>
@@ -39,12 +41,13 @@
     </a>
     <a href="{% url 'createclaim' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre un reclamo aquí.">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Registre un reclamo aquí.">
                 <div class="icon">
-                        <i class="material-icons" style="color:#666;">email</i>
-                    </div>
-                    <div class="content">
-                         <div class="text" style="color:white">Registrar</div>
+                    <i class="material-icons" style="color:#666;">email</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Registrar</div>
                     <div class="number" style="color:white">Reclamo</div>
                 </div>
             </div>
@@ -52,12 +55,13 @@
     </a>
     <a href="{% url 'createsuggestion' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom" title="Registre una sugerencia aquí">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
+                title="Registre una sugerencia aquí">
                 <div class="icon">
-                        <i class="material-icons" style="color:#666;">email</i>
-                    </div>
-                    <div class="content">
-                         <div class="text" style="color:white">Registrar</div>
+                    <i class="material-icons" style="color:#666;">email</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Registrar</div>
                     <div class="number" style="color:white">Sugerencia</div>
                 </div>
             </div>
@@ -72,50 +76,44 @@
             Mis Reclamos abiertos<small>Mi Reclamos pendientes de atender...</small>
         </h2>
     </div>
-    <div class="body table-responsive">
-        <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
-            <thead>
-                <tr>
-                    <th>Código del reclamo</th>
-                    <th>Categoría de reclamo</th>
-                    <th>Servicio afectado</th>
-                    <th>Fecha de emisión</th>
-                    <th>Fecha estimada de resolución</th>
-                    <th>Estado</th>
-                    <td>Anexo</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> 19041729</td>
-                    <td>Avería</td>
-                    <td>Internet residencial</td>
-                    <td>2019/06/30</td>
-                    <td>2020/07/01</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-white btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons" style="color:#2196F3">remove_red_eye</i></button>
-                        </center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3021291829</td>
-                    <td>Mal cobro</td>
-                    <td>N/A</td>
-                    <td>2019/06/</td>
-                    <td>2020/07/01</td>
-                    <td>En proceso</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-white btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons" style="color: #2196F3">remove_red_eye</i></button>
-                        </center>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="body">
+        <div class="table-responsive">
+            <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Código del reclamo</th>
+                        <th>Categoría de reclamo</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <td>Opciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 19041729</td>
+                        <td>Avería</td>
+                        <td>2019/06/30</td>
+                        <td>En proceso</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3021291829</td>
+                        <td>Mal cobro</td>
+                        <td>2019/06/</td>
+                        <td>En proceso</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
