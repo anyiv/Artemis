@@ -1,59 +1,69 @@
-    <!-- Top Bar -->
-    <nav class=" navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="{% url 'dashboard_checker' %}">ARTEMIS - Bienvenido!</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i
-                                class="material-icons">search</i></a></li>
-                    <!-- #END# Call Search -->
-                    <!-- Notifications -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">notifications</i>
-                            <span class="label-count">1</span>
-                        </a>
-                        <ul class="dropdown-menu notify">
-                            <li class="header">NOTIFICACIONES</li>
-                            <li class="body">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-light-green">
-                                                <i class="material-icons">person_add</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4>12 nuevos miembros</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> hace 14 minutos
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="javascript:void(0);">Ver todas las notificaciones</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- #END# Notifications -->
-
-                    <!--CERRAR SESION-->
-                    <li>
-                        <a href="{% url 'logout' %}">
-                            <i class="material-icons">power_settings_new</i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+{% load static %}
+<!-- Top Bar -->
+<nav class=" navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="bars"></a>
+            <a class="navbar-brand" href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} 
+                {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} 
+                {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} 
+                {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} 
+                {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} 
+                {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} 
+                {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
+                <img class="img-responsive" src="{% static 'images/logo.png' %}"
+                    style="width:150px; display:table-cell;">
+            </a>
         </div>
-    </nav>
-    <!-- #Top Bar -->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Call Search -->
+                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i
+                            class="material-icons">search</i></a></li>
+                <!-- #END# Call Search -->
+                <!-- Notifications -->
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">notifications</i>
+                        <span class="label-count">1</span>
+                    </a>
+                    <ul class="dropdown-menu notify">
+                        <li class="header">NOTIFICACIONES</li>
+                        <li class="body">
+                            <ul class="menu">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-light-green">
+                                            <i class="material-icons">person_add</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>12 nuevos miembros</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> hace 14 minutos
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="javascript:void(0);">Ver todas las notificaciones</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- #END# Notifications -->
+
+                <!--CERRAR SESION-->
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="material-icons">power_settings_new</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- #Top Bar -->
