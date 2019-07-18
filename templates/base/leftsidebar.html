@@ -260,7 +260,7 @@
             {% if user.type_u.codigo == 'cli' %} {% comment "SÓLO CLIENTES" %}{% endcomment %}
             <!--SATISFACCIÓN-->
             <li id="satisfaccion" class="">
-                <a href="#">
+                <a href="{% url 'finishedclaimlist' %}">
                     <i class="material-icons">favorite</i>
                     <span>Satisfacción</span>
                 </a>

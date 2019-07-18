@@ -31,3 +31,11 @@ def claimcategorylist(request):
 
 def checkclaimcategory(request):
     return render(request, 'reclamo/checkclaimcategory.html', {})
+
+def finishedclaimlist(request):
+    return render(request, 'reclamo/finishedclaimlist.html', {})
+
+def satisfactionsurvey(request):
+    return render(request, 'reclamo/satisfactionsurvey.html', {})
+    
+    
