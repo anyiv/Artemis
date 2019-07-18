@@ -73,18 +73,20 @@
 </div>
 
 <div class="row clearfix">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 disabled">
-        <div class="info-box-3  hover-expand-effect">
-            <div class="icon ">
-                <i class="material-icons">notification_important</i>
-            </div>
-            <div class="content">
-                <div class="text" style="color:white">Avería Masiva</div>
-                <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
-                    data-fresh-interval="20">125</div>
+    <a href="{% url 'createfailure' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 disabled">
+            <div class="info-box-3  hover-expand-effect">
+                <div class="icon ">
+                    <i class="material-icons">notification_important</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Avería Masiva</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
             </div>
         </div>
-    </div>
+    </a><!--
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="info-box-3  hover-expand-effect">
             <div class="icon ">
@@ -96,7 +98,7 @@
                     data-fresh-interval="20">125</div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 </div>
 
@@ -110,7 +112,7 @@
         <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
             <thead>
                 <tr>
-                    <th>Tipo</th>
+                    <th>Código</th>
                     <th>Nombre de usuario</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
@@ -120,7 +122,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th>Tipo</th>
+                    <th>Código</th>
                     <th>Nombre de usuario</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
@@ -130,7 +132,7 @@
             </tfoot>
             <tbody>
                 <tr>
-                    <td>Queja</td>
+                    <td>RC-01</td>
                     <td>maaano_14</td>
                     <td>Fallas de Internet</td>
                     <td>2019/06/30</td>
@@ -142,7 +144,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Queja</td>
+                    <td>RC-02</td>
                     <td>maaano_14</td>
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
@@ -153,19 +155,7 @@
                                     class="material-icons">remove_red_eye</i></button></center>
                     </td>
                 <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Queja</td>
+                    <td>RP-03</td>
                     <td>maaano_14</td>
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
@@ -177,7 +167,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Queja</td>
+                    <td>RC-04</td>
                     <td>maaano_14</td>
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
@@ -189,7 +179,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Queja</td>
+                    <td>RC-06</td>
                     <td>maaano_14</td>
                     <td>Fallas de Cobertura</td>
                     <td>2019/06/30</td>
@@ -201,56 +191,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Queja</td>
+                    <td>RC-06</td>
                     <td>maaano_14</td>
                     <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                <tr>
-                    <td>Queja</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Internet</td>
                     <td>2019/06/30</td>
                     <td>Pendiente de Atención</td>
                     <td>

@@ -2,9 +2,7 @@
 
 {% load static %}
 
-{% block titulo %}
-Artemis
-{% endblock  %}
+{% block titulo %}Consultar Cliente | Artemis{% endblock  %}
 
 {% block content %}
 
@@ -17,9 +15,9 @@ Artemis
                     <img src="{% static 'images/user-lg.jpg' %}" alt="AdminBSB - Profile Image" />
                 </div>
                 <div class="content-area">
-                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <h3>Hugo Frías</h3>
                     <p></p>
-                    <p>{{ user.type_u }}</p>
+                    <p>Cliente Registrado</p>
                 </div>
             </div>
             <div class="profile-footer">
@@ -31,7 +29,7 @@ Artemis
                                 <p>
                                     <b>Nombre de usuario</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.username}}">
+                                <input type="text" class="form-control" placeholder="hugoelquejumbroso" disabled="">
                             </div>
                         </div>
                     </div>
@@ -44,7 +42,7 @@ Artemis
                                 <p>
                                     <b>Teléfono</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.phone }}">
+                                <input type="text" class="form-control" placeholder="0426-6666666" disabled="">
                             </div>
                         </div>
                     </div>
@@ -57,7 +55,7 @@ Artemis
                                 <p>
                                     <b>Correo</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.email }}">
+                                <input type="text" class="form-control" placeholder="hugo___@cantv.net" disabled="">
                             </div>
                         </div>
                     </div>
@@ -70,7 +68,7 @@ Artemis
                                 <p>
                                     <b>Dirección</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{ user.address }}">
+                                <input type="text" class="form-control" placeholder="Urb. La Quinta Paila, Sector Dante, Casa Adolfo H., Tercera Planta, En la poceta" disabled="">
                             </div>
                         </div>
                     </div>
@@ -94,8 +92,8 @@ Artemis
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <a href="{% url 'updateprofile' %}">
-                                        <button type="button" class="btn bg-green waves-effect">Modificar</button>
+                                    <a href="{% url 'clientlist' %}">
+                                        <button type="button" class="btn bg-red waves-effect">Suspender</button>
                                     </a>
                                 </div>
                             </div>

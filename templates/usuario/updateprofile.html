@@ -2,9 +2,7 @@
 
 {% load static %}
 
-{% block titulo %}
-Artemis
-{% endblock  %}
+{% block titulo %} Modificar perfil | Artemis {% endblock  %}
 
 {% block content %}
 
@@ -31,7 +29,8 @@ Artemis
                                 <p>
                                     <b>Nombre de usuario</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.username}}">
+                                <input type="text" class="form-control" placeholder="{{user.username}}" value=""
+                                    disabled="">
                             </div>
                         </div>
                     </div>
@@ -70,7 +69,20 @@ Artemis
                                 <p>
                                     <b>Dirección</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{ user.address }}">
+                                <input type="text" class="form-control" placeholder="{{ user.address }}" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Foto de Perfil</b>
+                                </p>
+                                <input type="file" class="form-control" placeholder="{{ user.address }}">
                             </div>
                         </div>
                     </div>
@@ -94,9 +106,7 @@ Artemis
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <a href="{% url 'updateprofile' %}">
-                                        <button type="button" class="btn bg-green waves-effect">Modificar</button>
-                                    </a>
+                                    <button type="button" class="btn bg-green waves-effect">Guardar</button>
                                 </div>
                             </div>
                         </div>

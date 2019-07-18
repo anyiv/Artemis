@@ -10,4 +10,6 @@ urlpatterns = [
     path('crearcategoría/', views.createclaimcategory, name='createclaimcategory'),
     path('consultar/', views.checkclaim, name='checkclaim'),
     path('atender/', views.attendclaim, name='attendclaim'),
+    path('listadocategorias/', views.claimcategorylist, name='claimcategorylist'),
+    path('consultarcategoria/', views.checkclaimcategory, name='checkclaimcategory'),
 ]

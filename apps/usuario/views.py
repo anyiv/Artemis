@@ -48,3 +48,18 @@ def pqslist(request):
 
 def profile(request):
     return render(request, 'usuario/profile.html', {})
+
+def updateprofile(request):
+    return render(request, 'usuario/updateprofile.html',{})
+
+def clientlist(request):
+    return render(request, 'usuario/cliente/clientlist.html',{})
+
+def checkclient(request):
+    return render(request, 'usuario/cliente/checkclient.html',{})
+
+def employeelist(request):
+    return render(request, 'usuario/empleado/employeelist.html',{})
+
+def checkemployee(request):
+    return render(request, 'usuario/empleado/checkemployee.html',{})

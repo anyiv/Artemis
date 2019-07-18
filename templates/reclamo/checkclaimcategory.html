@@ -2,31 +2,26 @@
 
 {% load static %}
 
-{% block titulo %} Crear respuesta predefinida | Artemis {% endblock %}
+{% block titulo %} Consultar categoría de reclamo | Artemis {% endblock %}
 
 {% block content %}
 
 <div class="card">
     <div class="header">
         <h2>
-            Crear Respuesta Predefinida 
+            Consultar Categoría de Reclamo
         </h2>
     </div>
     <div class="body">
-        <div class="row clearfix">
+    <div class="row clearfix">
             <div class="col-md-4"></div>
             <div class=" col-md-4 ">
                 <div class="form-group">
                     <div class="form-line">
                         <p>
-                            <b>Categoría Asociada</b>
+                            <b>Código</b>
                         </p>
-                        <select class="form-control show-tick">
-                            <option>Petición</option>
-                            <option>Queja</option>
-                            <option>Reclamo</option>
-                            <option>Sugerencia</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="CR-01" disabled="">
                     </div>
                 </div>
             </div>
@@ -34,14 +29,29 @@
         <div class="row clearfix">
             <div class="col-md-4"></div>
             <div class=" col-md-4 ">
-                <p>
-                    <b>Descripción</b>
-                </p>
                 <div class="form-group">
                     <div class="form-line">
-                        <textarea rows="4" class="form-control no-resize"
-                            placeholder="Ingrese la descripción de la respuesta predefinida aquí..."></textarea>
+                        <p>
+                            <b>Nombre</b>
+                        </p>
+                        <input type="text" class="form-control" placeholder="" value="Cobro incorrecto">
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4 ">
+                <div class="form-group">
+                    <p>
+                        <b>Departamento asociado</b>
+                    </p>
+                    <select class="form-control">
+                        <option>Finanzas</option>
+                        <option>Telefonía fija</option>
+                        <option>Red internet</option>
+                        <option>Ventas</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -50,7 +60,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <a href="{% url 'dashboard_admin' %}">
+                        <a href="{% url 'claimcategorylist' %}">
                             <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
                         </a>
                     </div>
@@ -59,14 +69,14 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                        <button type="button" class="btn bg-red waves-effect">Eliminar</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                        <button type="button" class="btn bg-green waves-effect">Modificar</button>
                     </div>
                 </div>
             </div>

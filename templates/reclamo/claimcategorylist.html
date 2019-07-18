@@ -1,0 +1,74 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Categorías de Reclamos | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de Categorías de Reclamos
+        </h2>
+    </div>
+    <div class="body table-responsive">
+        <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre de Categoría</th>
+                    <th>Departamento Asociado</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nombre de usuario</th>
+                    <th>Nombre de Categoría</th>
+                    <th>Departamento Asociado</th>
+                    <th>Opciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>CR-01</td>
+                    <td>Cobro incorrecto</td>
+                    <td>Finanzas</td>
+                    <td>
+                        <center><a href="{% url 'checkclaimcategory' %}"> <button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></a></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CR-02</td>
+                    <td>Fallas de internet</td>
+                    <td>Internet</td>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CR-03</td>
+                    <td>Señal inestable de televisión</td>
+                    <td>Televisión</td>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

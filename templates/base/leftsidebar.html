@@ -5,7 +5,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            <img src="{% static "images/user.png"  %}" width="48" height="48" alt="User" />
+            <img src="{% static "images/user-lg.jpg"  %}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}
@@ -196,6 +196,12 @@
                             <span>Empleados</span>
                         </a>
                     </li>
+                    <li id="gestionar_clientes">
+                        <a href="#">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Clientes</span>
+                        </a>
+                    </li>
                     <li id="gestionar_respuestas_predefinidas">
                         <a href="#">
                             <i class="material-icons">comment</i>
@@ -271,6 +277,7 @@
             </li>
             {% endif %}
 
+            {% comment "" %}
             <!--CONFIGURACION DE USUARIO-->
             <li id="configuracion" class="">
                 <a href="#">
@@ -278,6 +285,7 @@
                     <span>Configuración</span>
                 </a>
             </li>
+            {% endcomment %}
 
             <!--CERRAR SESION-->
             <li>
