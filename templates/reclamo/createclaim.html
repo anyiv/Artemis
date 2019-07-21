@@ -5,109 +5,81 @@
 {% block titulo %}Crear Reclamo | Artemis {% endblock %}
 
 {% block content %}
-<div class="card">
-        <div class="header ">
-            <h2>
-                Registrar Reclamo <small>El reclamo es una declaración por el incumplimiento de un servicio que ha sido contratado, ocasionado por la deficiente prestación o suspensión injustificada del servicio.</small>
-            </h2>
-            <!--
-            <ul class="header-dropdown m-r-0">
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="material-icons">info_outline</i>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0);">
-                        <i class="material-icons">help_outline</i>
-                    </a>
-                </li>
-            </ul>
-            -->
-        </div>
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                       <div class="form-group">
-                            <div class="form-line">
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header ">
+                    <h2 style="color:white;">
+                        Registrar Reclamo <small style="color:black;">El reclamo es una declaración por el
+                            incumplimiento de
+                            un servicio que ha sido contratado, ocasionado por la deficiente prestación o suspensión
+                            injustificada del servicio.</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
                             <p>
-                                <b>Asunto</b>
+                                <b>Categoría</b>
                             </p>
-                                <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
+                            <select class="form-control">
+                                <option>Cobro</option>
+                                <option>Conexión</option>
+                                <option>Señal</option>
+                                <option>Productos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Descripción</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="12" class="form-control no-resize"
+                                        placeholder="Por favor escriba su reclamo aquí..."
+                                        maxlength=500></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'dashboard_cliente' %}">
+                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row clearfix">
-                <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                        <p>
-                            <b>Categoría</b>
-                        </p>
-                        <select class="form-control">
-                            <option>Cobro</option>
-                            <option>Conexión</option>
-                            <option>Señal</option>
-                            <option>Productos</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                        <p>
-                            <b>Tipo de avería</b>
-                        </p>
-                        <select class="form-control">
-                            <option>n/a</option>
-                            <option>No sé</option>
-                            <option>Tampoco sé</option>
-                            <option>El cliente no debe colocar esto</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                     <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                        <p>
-                            <b>Descripción</b>
-                        </p>
-                       <div class="form-group">
-                            <div class="form-line">
-                                <textarea rows="4" class="form-control no-resize" placeholder="Por favor escriba su reclamo aquí..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-2"></div>
-                     <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                         <a href="{% url 'dashboard_cliente' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                        </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
         </div>
- </div>
+    </div>
+</div>
 
 
 {% endblock %}

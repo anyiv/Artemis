@@ -5,67 +5,65 @@
 {% block titulo %}Crear Queja | Artemis {% endblock %}
 
 {% block content %}
-<div class="card">
-        <div class="header">
-            <h2>
-                Registrar Queja <small>Una queja es una declaración de insatisfacción con la conducta o la acción de los empleados cumplen con sus funciones en la empresa y que requiere una respuesta.</small>
-            </h2>
-        </div>
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                       <div class="form-group">
-                            <div class="form-line">
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h2 style="color:white;">
+                        Registrar Queja <small style="color:black">Una queja es una declaración de insatisfacción con la
+                            conducta o la acción de los empleados cumplen con sus funciones en la empresa y que requiere
+                            una respuesta.</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
                             <p>
-                                <b>Asunto</b>
+                                <b>Descripción</b>
                             </p>
-                                <input type="text" class="form-control" placeholder="Ingrese el asunto aquí...">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="12" class="form-control no-resize"
+                                        placeholder="Por favor escriba su queja aquí..." maxlength=500></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'dashboard_cliente' %}">
+                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row clearfix">
-                     <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                        <p>
-                            <b>Descripción</b>
-                        </p>
-                       <div class="form-group">
-                            <div class="form-line">
-                                <textarea rows="4" class="form-control no-resize" placeholder="Por favor escriba su queja aquí..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-2"></div>
-                     <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                        <a href="{% url 'dashboard_cliente' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                        </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
         </div>
- </div>
+    </div>
+</div>
 
 
 {% endblock %}
