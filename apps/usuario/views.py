@@ -4,6 +4,9 @@ from django.shortcuts import redirect
 # Create your views here.
 
 def dashboard_checker(request):
+    print('AQUIIIIIIIIIIIIII')
+    print(request.user)
+    print(request.user.type_u)
     if request.user.type_u.codigo == 'cli':
         return redirect('cliente/')
     elif request.user.type_u.codigo == 'grec':

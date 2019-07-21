@@ -1,6 +1,4 @@
 Artemis/__pycache__/*
-apps/departamento/__pycache__/*
-apps/departamento/
 apps/index/__pycache__/*
 apps/index/migrations/*
 apps/peticion/__pycache__/*
@@ -13,7 +11,5 @@ apps/sugerencia/__pycache__/*
 apps/sugerencia/migrations/*
 apps/usuario/__pycache__/*
 apps/usuario/migrations/*
-apps/averia_masiva/__pycache__/*
-apps/averia_masiva/migrations/*
 .vscode
 *.pyc
