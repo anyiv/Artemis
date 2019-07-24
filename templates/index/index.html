@@ -1,6 +1,7 @@
 ﻿{% load static %}
 
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,7 +12,8 @@
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+        type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
@@ -30,20 +32,21 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Art<b>emis</b></a>
+            <img class="img-responsive" src="{% static 'images/logo.png' %}" style="width:450px; display:table-cell;"><br/><br/>
             <small>Artemis - Sistema de Gestión de PQRS</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST">
-                   {% csrf_token %}
+                    {% csrf_token %}
                     <div class="msg">Inicia sesión para utilizar el sistema</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" id="login_username" name="username" placeholder="Nombre de Usuario" required autofocus>
+                            <input type="text" class="form-control" id="login_username" name="username"
+                                placeholder="Nombre de Usuario" required autofocus>
                         </div>
                         {{ form.username.errors }}
                         {{ form.username.help_text }}
@@ -53,13 +56,14 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña"
+                                required>
                         </div>
                         {{ form.password.errors }}
                         {{ form.password.help_text }}
                     </div>
                     {% if form.errors %}
-                        <h5 style="color:red;">Datos incorrectos</h5>
+                    <h5 style="color:red;">Datos incorrectos</h5>
                     {% endif %}
                     <div class="row">
                         <div class="col-xs-8 p-t-5">

@@ -32,7 +32,7 @@
             <li class="header">Barra de Navegación</li>
 
             <!--INICIO-->
-            <li id="inicio" class="{% if '/artemis/' in request.path %}active{% endif %}">
+            <li id="inicio" class="{% if '/inicio/' in request.path %}active{% endif %}">
                 <a
                     href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
                     <i class="material-icons">home</i>
@@ -40,38 +40,38 @@
                 </a>
             </li>
 
-            <!--CREAR QPRS-->
+            <!--CREAR PQRS-->
             {% if user.type_u.codigo == 'cli' or user.type_u.codigo == 'atc' %}
             {% comment "Cliente y Atención al Cliente" %} {% endcomment %}
             <li id="crear" class="">
-                <a id="a_listados" href="javascript:void(0);"
-                    class="menu-toggle {% if '/lista/' in request.path  %}toggled{% endif %}">
+                <a id="a_listados" href="#"
+                    class="menu-toggle {% if '/registrar/' in request.path or '/atc_registrar/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">create</i>
                     <span>Crear</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="crear_peticion">
+                    <li id="crear_peticion" class="{% if '/peticion/registrar/' in request.path or '/peticion/atc_registrar/' in request.path %}active{% endif %}">
                         <a
                             href="{% if user.type_u.codigo == 'cli' %} {% url 'createpetition' %} {% elif user.type_u.codigo == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
                             <i class="material-icons">question_answer</i>
                             <span>Petición</span>
                         </a>
                     </li>
-                    <li id="crear_queja">
+                    <li id="crear_queja" class="{% if '/queja/registrar/' in request.path or '/queja/atc_registrar/' in request.path %}active{% endif %}">
                         <a
                             href="{% if user.type_u.codigo == 'cli' %} {% url 'createcomplaint' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Queja</span>
                         </a>
                     </li>
-                    <li id="crear_reclamo">
+                    <li id="crear_reclamo" class="{% if '/reclamo/registrar/' in request.path or '/reclamo/atc_registrar/' in request.path %}active{% endif %}">
                         <a
-                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
+                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createclaim' %} {% endif %}">
                             <i class="material-icons">report</i>
                             <span>Reclamo</span>
                         </a>
                     </li>
-                    <li id="crear_sugerencia">
+                    <li id="crear_sugerencia" class="{% if '/sugerencia/registrar/' in request.path or '/sugerencia/atc_registrar/' in request.path%}active{% endif %}">
                         <a
                             href="{% if user.type_u.codigo == 'cli' %} {% url 'createsuggestion' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
                             <i class="material-icons">loyalty</i>

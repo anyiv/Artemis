@@ -5,19 +5,19 @@ from django.shortcuts import redirect
 
 def dashboard_checker(request):
     if request.user.type_u.codigo == 'cli':
-        return redirect('cliente/')
+        return redirect('inicio/cliente/')
     elif request.user.type_u.codigo == 'grec':
-        return redirect('gestreclamo/')
+        return redirect('inicio/gestreclamo/')
     elif request.user.type_u.codigo == 'atc':
-        return redirect('atencioncli/')
+        return redirect('inicio/atencioncli/')
     elif request.user.type_u.codigo == 'gpqs':
-        return redirect('gestorPQS/')
+        return redirect('inicio/gestorPQS/')
     elif request.user.type_u.codigo == 'tc':
-        return redirect('tecnico/')
+        return redirect('inicio/tecnico/')
     elif request.user.type_u.codigo == 'admin':
-        return redirect('admin/')
+        return redirect('inicio/admin/')
     elif request.user.type_u.codigo == 'ger':
-        return redirect('gerente/')
+        return redirect('inicio/gerente/')
 
 def dashboard_gestreclamo(request):
     return render(request, 'usuario/gestreclamo/dashboard_gestreclamo.html', {})
