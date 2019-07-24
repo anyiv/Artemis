@@ -6,71 +6,79 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="header">
-        <h2>
-            Crear Categoría de Reclamos
-        </h2>
-    </div>
-    <div class="body">
-        <form method="POST" id="formulario">
-            {% csrf_token %}
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                <div class=" col-md-4 ">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <p>
-                                <b>Nombre</b>
-                            </p>
-                            {{ form.nombre }}
-                            {{ form.nombre.errors }}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Crear Categoría de Reclamos
+                    </h2>
+                </div>
+                <div class="body">
+                    <form method="POST" id="formulario">
+                        {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Nombre</b>
+                                        </p>
+                                        {{ form.nombre }}
+                                        {{ form.nombre.errors }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    {{ form.descripcion }}
+                                    {{ form.descripcion.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'dashboard_admin' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" class="btn bg-green waves-effect"
+                                            onclick="javascript:confirmarSeleccion();">Crear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                <div class=" col-md-4 ">
-                    <div class="form-group">
-                        <p>
-                            <b>Descripción</b>
-                        </p>
-                        {{ form.descripcion }}
-                        {{ form.descripcion.errors }}
-                    </div>
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-2"></div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="button-demo">
-                            <a href="{% url 'dashboard_admin' %}">
-                                <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="button-demo">
-                            <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" class="btn bg-green waves-effect"
-                                onclick="javascript:confirmarSeleccion();">Crear</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
 
 
 {% endblock %}

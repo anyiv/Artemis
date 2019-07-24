@@ -6,85 +6,93 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="header">
-        <h2>
-            Consultar Categoría de Reclamo
-        </h2>
-    </div>
-    <div class="body">
-        <form method="POST" id="formulario">
-            {% csrf_token %}
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                <div class=" col-md-4 ">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <p>
-                                <b>Código</b>
-                            </p>
-                            {{ form.codCategoria }}
-                        </div>
-                    </div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Consultar Categoría de Reclamo
+                    </h2>
                 </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                <div class=" col-md-4 ">
-                    <div class="form-group">
-                        <div class="form-line">
-                            <p>
-                                <b>Nombre</b>
-                            </p>
-                            {{ form.nombre }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row clearfix">
-                <div class="col-md-4"></div>
-                <div class=" col-md-4 ">
-                    <div class="form-group">
-                        <p>
-                            <b>Descripción</b>
-                        </p>
-                            {{ form.descripcion }}
-                    </div>
-                </div>
-            </div>
-            {{ form.estatus }}
-            <div class="row clearfix">
-                <div class="col-md-2"></div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="button-demo">
-                            <a href="{% url 'claimcategorylist' %}">
-                                <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="button-demo">
-                            <button type="button" onclick="javascript:confirmarSeleccion();"
-                                class="btn bg-red waves-effect">Eliminar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <a href="{% url 'updateclaimcategory' object.codCategoria %}">
-                            <div class="button-demo">
-                                <button type="button" class="btn bg-green waves-effect">Modificar</button>
+                <div class="body">
+                    <form method="POST" id="formulario">
+                        {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Código</b>
+                                        </p>
+                                        {{ form.codCategoria }}
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Nombre</b>
+                                        </p>
+                                        {{ form.nombre }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    {{ form.descripcion }}
+                                </div>
+                            </div>
+                        </div>
+                        {{ form.estatus }}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'claimcategorylist' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" onclick="javascript:confirmarSeleccion();"
+                                            class="btn bg-red waves-effect">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <a href="{% url 'updateclaimcategory' object.codCategoria %}">
+                                        <div class="button-demo">
+                                            <button type="button" class="btn bg-green waves-effect">Modificar</button>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+
 
 
 {% endblock %}

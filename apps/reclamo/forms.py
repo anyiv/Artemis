@@ -12,8 +12,8 @@ class IncluirCategoriaForm(forms.ModelForm):
         ]
 
         widgets = {
-            'nombre' : forms.TextInput(attrs={'class':'form-control'}),
-            'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8}),
+            'nombre' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar nombre de categoría aquí.'}),
+            'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Ingresar descripción de categoría aquí.'}),
         }
 
 class ConsultarCategoriaForm(forms.ModelForm):
