@@ -18,3 +18,4 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20, blank=True, null=True)
     type_u = models.ForeignKey(Tipo_Usuario, on_delete=models.CASCADE, blank=True, null=True, default = 'cli')
     last_access = models.DateTimeField(default=timezone.now)    
+

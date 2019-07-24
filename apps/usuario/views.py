@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.views.generic import ListView
+from .models import User
+from apps.datos_externos.models import Empleado, Cliente
+from apps.reclamo.models import Categoria
+from apps.resp_predefinida.models import RespuestaPredefinida
 
 # Create your views here.
 
@@ -34,8 +39,18 @@ def dashboard_gestorPQS(request):
 def dashboard_tecnico(request):
     return render(request, 'usuario/tecnico/dashboard_tecnico.html', {})
 
-def dashboard_admin(request):
-    return render(request, 'usuario/admin/dashboard_admin.html', {})
+class dashboard_admin(ListView):
+    model = User
+    template_name = "usuario/admin/dashboard_admin.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(dashboard_admin, self).get_context_data(**kwargs)
+        context['cant_categorias'] = Categoria.objects.filter(estatus='A').count()
+        context['cant_empleados'] = Empleado.objects.filter(estatus='A').count()
+        context['cant_clientes'] = Cliente.objects.filter(estatus='A').count()
+        context['cant_rp'] = RespuestaPredefinida.objects.filter(estatus='A').count()
+        return context
+
 
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.reclamo',
     'apps.sugerencia',
     'apps.usuario',
+    'apps.resp_predefinida',
+    'apps.datos_externos',
 ]
 
 MIDDLEWARE = [
