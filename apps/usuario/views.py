@@ -61,6 +61,9 @@ def createemploy(request):
 def pqslist(request):
     return render(request, 'usuario/gestpqs/pqslist.html', {})
 
+def pqrslist(request):
+    return render(request, 'usuario/atencioncli/pqrslist.html', {})
+
 def profile(request):
     return render(request, 'usuario/profile.html', {})
 

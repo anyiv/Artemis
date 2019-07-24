@@ -44,7 +44,7 @@ $('div.toolbar').empty(); // clears the content generated
 $('.dataTables_filter').empty(); // clears the content generated    
 
 $('div.toolbar').append("<div class='col-sm-12 col-sm-4'><span style='color:black'>Mostrar <select id='tamano' class='form-group' data-width='fit'><option>1</option><option>2</option><option>50</option><option>100</option></select> Registros</span></div>" +
-    "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Filtrar por: </span><select id='tipopqrs' class='form-group' data-width='fit'><option>Todos</option><option>Avería</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div></div>" +
+    "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Filtrar por: </span><select id='tipopqrs' class='form-group' data-width='fit'><option>Todos</option><option>Petición</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div></div>" +
     "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Buscar: </span><input id='filtro' class='form-group'></input></div></div>")
 
 $('#filtro').keyup(function() {
