@@ -73,6 +73,9 @@ def updateprofile(request):
 def clientlist(request):
     return render(request, 'usuario/cliente/clientlist.html',{})
 
+def clientlist_pqs(request):
+    return render(request, 'usuario/cliente/clientlist_pqs.html',{})
+
 def checkclient(request):
     return render(request, 'usuario/cliente/checkclient.html',{})
 

@@ -106,7 +106,7 @@
             {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
             {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <li id="consultar" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle ">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">find_in_page</i>
                     <span>Consultar</span>
                 </a>
@@ -120,15 +120,15 @@
                         </a>
                     </li>
                     {% elif user.type_u.codigo == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
-                    <li id="consultar_peticiones">
-                        <a href="#">
+                    <li id="consultar_peticiones" class="{% if '/pqs/lista/' in request.path %}active{% endif %}">
+                        <a href="{% url 'pqslist' %}">
                             <i class="material-icons">question_answer</i>
                             <span>PQS</span>
                         </a>
                     </li>
                     {% endif %}
-                    <li id="consultar_clientes">
-                        <a href="#">
+                    <li id="consultar_clientes" class="{% if '/clientes/lista/' in request.path %}active{% endif %}">
+                        <a href="{% url 'clientlist_pqs' %}">
                             <i class="material-icons">supervised_user_circle</i>
                             <span>Clientes</span>
                         </a>
@@ -140,12 +140,12 @@
             <!--GESTIONAR CRUD-->
             {% if user.type_u.codigo == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
             <li id="gestionar" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle ">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista' in request.path %}toggled{% endif %}">
                     <i class="material-icons">dashboard</i>
                     <span>Gestionar</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="gestionar_usuarios">
+                    <li id="gestionar_usuarios" class="{% if '/empleado/lista' in request.path %}active{% endif %}">
                         <a href="#">
                             <i class="material-icons">supervised_user_circle</i>
                             <span>Empleados</span>
@@ -157,13 +157,13 @@
                             <span>Clientes</span>
                         </a>
                     </li>
-                    <li id="gestionar_categorias_reclamos">
+                    <li id="gestionar_categorias_reclamos" class="{% if '/categoria/lista' in request.path %}active{% endif %}">
                         <a href="">
                             <i class="material-icons">report</i>
                             <span>Categorías de Reclamos</span>
                         </a>
                     </li>
-                    <li id="gestionar_respuestas_predefinidas">
+                    <li id="gestionar_respuestas_predefinidas" class="{% if '/resp_predefinida/lista' in request.path %}active{% endif %}">
                         <a href="#">
                             <i class="material-icons">comment</i>
                             <span>Respuestas Predefinidas</span>
