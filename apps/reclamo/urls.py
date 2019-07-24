@@ -10,9 +10,10 @@ urlpatterns = [
     path('atc_registrar/', views.atc_createclaim, name='atc_createclaim'),
     path('consultar/', views.checkclaim, name='checkclaim'),
     path('atender/', views.attendclaim, name='attendclaim'),
-    path('categorias/crear', views.createclaimcategory.as_view(), name='createclaimcategory'),
-    path('categorias/lista', views.claimcategorylist, name='claimcategorylist'),
-    path('categoria/consulta', views.checkclaimcategory, name='checkclaimcategory'),
+    path('categoria/crear', views.createclaimcategory.as_view(), name='createclaimcategory'),
+    path('categoria/lista', views.claimcategorylist.as_view(), name='claimcategorylist'),
+    path('categoria/consulta/<pk>/', views.checkclaimcategory.as_view(), name='checkclaimcategory'),
+    path('categoria/modificar/<pk>/', views.updateclaimcategory.as_view(), name='updateclaimcategory'),
     path('satisfaccion/lista', views.finishedclaimlist, name='finishedclaimlist'),
     path('satisfaccion/encuesta', views.satisfactionsurvey, name='satisfactionsurvey'),
 ]

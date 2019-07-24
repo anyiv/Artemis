@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
-from .forms import IncluirCategoriaForm
+from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm
 from .models import Categoria
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView, DeleteView
 
 # Create your views here.
 
@@ -36,16 +38,34 @@ class createclaimcategory(SuccessMessageMixin, CreateView):
 def attendclaim(request):
     return render(request, 'reclamo/attendclaim.html', {})
 
-def claimcategorylist(request):
-    return render(request, 'reclamo/claimcategorylist.html', {})
+class claimcategorylist(ListView):
+    model = Categoria
+    template_name = "reclamo/claimcategorylist.html"
 
-def checkclaimcategory(request):
-    return render(request, 'reclamo/checkclaimcategory.html', {})
+    def get_context_data(self, **kwargs):
+        context = super(claimcategorylist, self).get_context_data(**kwargs)
+        context['object_list'] = Categoria.objects.filter(estatus='A')
+        return context
+
+class checkclaimcategory(SuccessMessageMixin, UpdateView):
+    model = Categoria
+    form_class = ConsultarCategoriaForm
+    template_name = "reclamo/checkclaimcategory.html"
+    success_url = reverse_lazy('claimcategorylist')
+    success_message = "e"
 
 def finishedclaimlist(request):
     return render(request, 'reclamo/finishedclaimlist.html', {})
 
 def satisfactionsurvey(request):
     return render(request, 'reclamo/satisfactionsurvey.html', {})
-    
-    
+
+class updateclaimcategory(SuccessMessageMixin, UpdateView):
+    model = Categoria
+    form_class = ActualizarCategoriaForm
+    template_name = "reclamo/updateclaimcategory.html"
+    success_message = "e"
+
+    def get_success_url(self):
+        id_cat = self.kwargs['pk']
+        return reverse_lazy('checkclaimcategory', kwargs={'pk':id_cat})

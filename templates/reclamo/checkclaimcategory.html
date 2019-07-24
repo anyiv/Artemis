@@ -13,70 +13,76 @@
         </h2>
     </div>
     <div class="body">
-    <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <div class="form-line">
-                        <p>
-                            <b>Código</b>
-                        </p>
-                        <input type="text" class="form-control" placeholder="CR-01" disabled="">
+        <form method="POST" id="formulario">
+            {% csrf_token %}
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                <div class=" col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <p>
+                                <b>Código</b>
+                            </p>
+                            {{ form.codCategoria }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <div class="form-line">
-                        <p>
-                            <b>Nombre</b>
-                        </p>
-                        <input type="text" class="form-control" placeholder="" value="Cobro incorrecto">
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                <div class=" col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <p>
+                                <b>Nombre</b>
+                            </p>
+                            {{ form.nombre }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <p>
-                        <b>Descripción</b>
-                    </p>
-                    <textarea rows="12" class="form-control no-resize"
-                        placeholder="Se ha cobrado un monto que no era el correcto." maxlength=500></textarea>
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                <div class=" col-md-4 ">
+                    <div class="form-group">
+                        <p>
+                            <b>Descripción</b>
+                        </p>
+                            {{ form.descripcion }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'claimcategorylist' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+            {{ form.estatus }}
+            <div class="row clearfix">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <a href="{% url 'claimcategorylist' %}">
+                                <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <button type="button" onclick="javascript:confirmarSeleccion();"
+                                class="btn bg-red waves-effect">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <a href="{% url 'updateclaimcategory' object.codCategoria %}">
+                            <div class="button-demo">
+                                <button type="button" class="btn bg-green waves-effect">Modificar</button>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-red waves-effect">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-green waves-effect">Modificar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -84,5 +90,35 @@
 {% endblock %}
 
 {% block javascript %}
-
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Modificada", "La categoría ha sido modificada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar eliminación",
+            text: "¿Está seguro que desea eliminar la categoría?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                document.getElementById('estatus').value = 'I';
+                formulario.submit();
+            } else {
+                swal("Cancelada", "La categoría no ha sido eliminada.", "error");
+            }
+        });
+    }
+</script>
 {% endblock %}

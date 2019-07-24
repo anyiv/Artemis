@@ -23,40 +23,23 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th>Nombre de usuario</th>
+                    <th>Código</th>
                     <th>Nombre de Categoría</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+            {% for categoria in object_list %}
                 <tr>
-                    <td>CR-01</td>
-                    <td>Cobro incorrecto</td>
+                    <td>{{ categoria.codCategoria }}</td>
+                    <td>{{ categoria.nombre }}</td>
                     <td>
-                        <center><a href="{% url 'checkclaimcategory' %}"> <button type="button"
+                        <center><a href="{% url 'checkclaimcategory' categoria.codCategoria %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
                 </tr>
-                <tr>
-                    <td>CR-02</td>
-                    <td>Fallas de internet</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>CR-03</td>
-                    <td>Señal inestable de televisión</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                </tr>
-                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
@@ -65,5 +48,13 @@
 {% endblock %}
 
 {% block javascript %}
-
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Eliminada", "La categoría ha sido eliminada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}

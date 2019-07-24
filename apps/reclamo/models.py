@@ -8,16 +8,16 @@ class Categoria(models.Model):
         ult_categoria = categoria.objects.all().count()
 
         if not ult_categoria:
-            return '0000CATRE'
+            return 'CTR-0000'
 
         nro_categoria = int(ult_categoria)
-        nvo_codcategoria = str(nro_categoria).zfill(4) + 'CATRE'
+        nvo_codcategoria = 'CTR-' + str(nro_categoria).zfill(4) 
 
         return nvo_codcategoria
 
     codCategoria = models.CharField(max_length=8, default=cod_categoria, primary_key=True)
-    nombre = models.CharField(max_length=16)
-    descripcion = models.CharField(max_length=60)
+    nombre = models.CharField(max_length=40)
+    descripcion = models.CharField(max_length=120)
     ESTATUS = ( 
         ('A','Activo'),
         ('I','Inactivo'),
