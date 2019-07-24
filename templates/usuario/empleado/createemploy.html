@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block titulo %} Crear respuesta predefinida | Artemis {% endblock %}
+{% block titulo %} Crear usuario empleado | Artemis {% endblock %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Crear Respuesta Predefinida
+                        Crear usuario empleado
                     </h2>
                 </div>
                 <div class="body">
@@ -23,14 +23,9 @@
                             <div class="form-group">
                                 <div class="form-line">
                                     <p>
-                                        <b>Categoría Asociada</b>
+                                        <b>Nro de identificación</b>
                                     </p>
-                                    <select class="form-control show-tick">
-                                        <option>Petición</option>
-                                        <option>Queja</option>
-                                        <option>Reclamo</option>
-                                        <option>Sugerencia</option>
-                                    </select>
+                                    <input type="text" class="form-control" placeholder="Nro de identificación.">
                                 </div>
                             </div>
                         </div>
@@ -38,13 +33,45 @@
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <textarea rows="4" class="form-control no-resize"
-                                        placeholder="Ingrese la descripción de la respuesta predefinida aquí..."></textarea>
+                                    <p>
+                                        <b>Nombre de Usuario</b>
+                                    </p>
+                                    <input type="text" class="form-control" placeholder="Usuario.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Contraseña</b>
+                                    </p>
+                                    <input type="text" class="form-control" placeholder="Nombre del empleado.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class=" col-md-2"></div>
+                        <div class=" col-md-8">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Cargo</b>
+                                    </p>
+                                    <select class="form-control show-tick">
+                                        <option>Atención al cliente</option>
+                                        <option>Técnico</option>
+                                        <option>Gestor de Reclamos</option>
+                                        <option>Gestor de PQS</option>
+                                        <option>Administrador</option>
+                                        <option>Gerente</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +82,7 @@
                             <div class="form-group">
                                 <div class="button-demo">
                                     <a href="{% url 'dashboard_admin' %}">
-                                        <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
                                     </a>
                                 </div>
                             </div>
@@ -80,6 +107,7 @@
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}

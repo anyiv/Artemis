@@ -41,7 +41,7 @@ def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
 
 def createemploy(request):
-    return render(request, 'usuario/admin/createemploy.html', {})
+    return render(request, 'usuario/empleado/createemploy.html', {})
 
 def pqslist(request):
     return render(request, 'usuario/gestpqs/pqslist.html', {})
