@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from .forms import IncluirCategoriaForm
+from .models import Categoria
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 
@@ -20,8 +26,12 @@ def atc_createclaim(request):
 def checkclaim(request):
     return render(request, 'reclamo/checkclaim.html', {})
 
-def createclaimcategory(request):
-    return render(request, 'reclamo/createclaimcategory.html', {})
+class createclaimcategory(SuccessMessageMixin, CreateView):
+    model = Categoria
+    form_class = IncluirCategoriaForm
+    template_name = "reclamo/createclaimcategory.html"
+    success_url = reverse_lazy('createclaimcategory')
+    success_message = "e"
 
 def attendclaim(request):
     return render(request, 'reclamo/attendclaim.html', {})

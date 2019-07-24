@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('lista/', views.claimlist, name='claimlist'),
@@ -7,11 +8,11 @@ urlpatterns = [
     path('lista/proximovencimiento', views.claimexpire, name='claimexpire'),
     path('registrar/', views.createclaim, name='createclaim'),
     path('atc_registrar/', views.atc_createclaim, name='atc_createclaim'),
-    path('categoría/crear', views.createclaimcategory, name='createclaimcategory'),
     path('consultar/', views.checkclaim, name='checkclaim'),
     path('atender/', views.attendclaim, name='attendclaim'),
+    path('categorias/crear', views.createclaimcategory.as_view(), name='createclaimcategory'),
     path('categorias/lista', views.claimcategorylist, name='claimcategorylist'),
-    path('categoria/lista', views.checkclaimcategory, name='checkclaimcategory'),
+    path('categoria/consulta', views.checkclaimcategory, name='checkclaimcategory'),
     path('satisfaccion/lista', views.finishedclaimlist, name='finishedclaimlist'),
     path('satisfaccion/encuesta', views.satisfactionsurvey, name='satisfactionsurvey'),
 ]

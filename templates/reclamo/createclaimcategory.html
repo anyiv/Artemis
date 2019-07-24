@@ -13,55 +13,62 @@
         </h2>
     </div>
     <div class="body">
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <div class="form-line">
+        <form method="POST" id="formulario">
+            {% csrf_token %}
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                <div class=" col-md-4 ">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <p>
+                                <b>Nombre</b>
+                            </p>
+                            {{ form.nombre }}
+                            {{ form.nombre.errors }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4"></div>
+                <div class=" col-md-4 ">
+                    <div class="form-group">
                         <p>
-                            <b>Nombre</b>
+                            <b>Descripción</b>
                         </p>
-                        <input type="text" class="form-control" placeholder="Ingrese el nombre aquí...">
+                        {{ form.descripcion }}
+                        {{ form.descripcion.errors }}
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <p>
-                        <b>Descripción</b>
-                    </p>
+            <div class="row clearfix">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <a href="{% url 'dashboard_admin' %}">
+                                <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'dashboard_admin' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
-                        </a>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <button type="button" class="btn bg-green waves-effect"
+                                onclick="javascript:confirmarSeleccion();">Crear</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -69,5 +76,34 @@
 {% endblock %}
 
 {% block javascript %}
-
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Creada", "La categoría ha sido creada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar creación",
+            text: "¿Está seguro que desea crear la categoría?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "La categoría no ha sido creada.", "error");
+            }
+        });
+    }
+</script>
 {% endblock %}

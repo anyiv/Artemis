@@ -4405,7 +4405,8 @@ section.content {
 
 .modal-col-teal {
   background-color: #009688; }
-  .modal-col-teal .modal-body,
+  .modal-col-teal .modal-body{
+    color: #eee; }
   .modal-col-teal .modal-title {
     color: #fff !important; }
   .modal-col-teal .modal-footer {

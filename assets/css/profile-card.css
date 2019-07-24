@@ -149,4 +149,18 @@
     background-color: #3F51B5;
     border-color: #3F51B5; }
 
-    
+.errorlist{
+  color: black;
+}
+
+.modal-col-teal {
+  background-color: #009688; }
+  .modal-col-teal .modal-body,
+  .modal-col-teal .modal-title {
+    color: #fff !important; }
+  .modal-col-teal .modal-footer {
+    background-color: rgba(0, 0, 0, 0.12); }
+    .modal-col-teal .modal-footer .btn-link {
+      color: #fff !important; }
+      .modal-col-teal .modal-footer .btn-link:hover, .modal-col-teal .modal-footer .btn-link:active, .modal-col-teal .modal-footer .btn-link:focus {
+        background-color: rgba(0, 0, 0, 0.12); }
