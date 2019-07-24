@@ -24,49 +24,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for rp in object_list %}
                     <tr>
-                        <td>RPS-01</td>
-                        <td>Gracias por su recomendación, lo tendremos en cuenta...</td>
-                        <td>Sugerencia</td>
+                        <td> {{ rp.codRespuestaP }} </td>
+                        <td> {{ rp.descripcion|truncatechars:100 }} </td>
+                        <td> {{ rp.get_categoria_display }} </td>
                         <td>
-                            <center><button type="button"
+                            <center><a href="{% url 'checkpredanswer' rp.codRespuestaP %}">
+                            <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></center>
+                                        class="material-icons">remove_red_eye</i></button></a></center>
                         </td>
                     </tr>
-                    <tr>
-                        <td>RPP-02</td>
-                        <td>Muchas gracias por enviar su petición, mantente atento a nuestras publicaciones en
-                            RRSS...</td>
-                        <td>Petición</td>
-                        <td>
-                            <center><button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></center>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>RPQ-02</td>
-                        <td>Nos disculpamos por las molestias ocacionadas, le enviaremos un chocolate por
-                            retribución</td>
-                        <td>Queja</td>
-                        <td>
-                            <center><button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></center>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>RPR-02</td>
-                        <td>¡Gracias por contactarnos! Estaremos solucionando su problema en los proximos días...
-                        </td>
-                        <td>Reclamo</td>
-                        <td>
-                            <center><button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></center>
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

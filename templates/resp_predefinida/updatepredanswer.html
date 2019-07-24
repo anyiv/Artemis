@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block titulo %} Crear respuesta predefinida | Artemis {% endblock %}
+{% block titulo %} Modificar respuesta predefinida | Artemis {% endblock %}
 
 {% block content %}
 
@@ -13,22 +13,21 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        Crear Respuesta Predefinida
+                        Modificar Respuesta Predefinida
                     </h2>
                 </div>
                 <div class="body">
                     <form method="POST" id="formulario">
-                    {% csrf_token %}
+                        {% csrf_token %}
                         <div class="row clearfix">
                             <div class="col-md-2"></div>
                             <div class=" col-md-8">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <p>
-                                            <b>Categoría Asociada</b>
+                                            <b>Código</b>
                                         </p>
-                                        {{ form.categoria }}
-                                        {{ form.categoria.errors }}
+                                        {{ form.codRespuestaP }}
                                     </div>
                                 </div>
                             </div>
@@ -36,23 +35,37 @@
                         <div class="row clearfix">
                             <div class="col-md-2"></div>
                             <div class=" col-md-8">
-                                <p>
-                                    <b>Descripción</b>
-                                </p>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        {{ form.descripcion }}
-                                        {{ form.descripcion.errors }}
+                                        <p>
+                                            <b>Categoria</b>
+                                        </p>
+                                        {{ form.categoria }}
+                                        {{ form.categoria.errors }}
+                                        <input type="hidden" name="categoria" value="{{ form.categoria.value }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row clearfix">
                             <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    {{ form.descripcion }}
+                                    {{ form.descripcion.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        {{ form.estatus }}
+                        <div class="row clearfix">
+                            <div class="col-md-3"></div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <a href="{% url 'dashboard_admin' %}">
+                                        <a href="{% url 'checkpredanswer' object.codRespuestaP %}">
                                             <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
                                         </a>
                                     </div>
@@ -61,15 +74,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
                                         <button type="button" onclick="javascript:confirmarSeleccion();"
-                                            class="btn bg-green waves-effect">Crear</button>
+                                            class="btn bg-green waves-effect">Modificar</button>
                                     </div>
                                 </div>
                             </div>
@@ -82,24 +88,16 @@
 </div>
 
 
+
 {% endblock %}
 
 {% block javascript %}
 
-{% if messages %}
-{% for m in messages %}
-{% if m.message == "e" %}
-<script>
-    swal("Creada", "La respuesta predefinida ha sido creada con éxito.", "success");
-</script>
-{% endif %}
-{% endfor %}
-{% endif %}
 <script>
     function confirmarSeleccion() {
         swal({
-            title: "Confirmar creación",
-            text: "¿Está seguro que desea crear la respuesta predefinida?",
+            title: "Confirmar modificación",
+            text: "¿Está seguro que desea modificar la respuesta predefinida?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#58a05d",
@@ -111,7 +109,7 @@
             if (isConfirm) {
                 formulario.submit();
             } else {
-                swal("Cancelada", "La respuesta predefinida no ha sido creada.", "error");
+                swal("Cancelada", "La respuesta predefinida no ha sido modificada.", "error");
             }
         });
     }
