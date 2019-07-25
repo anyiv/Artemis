@@ -24,28 +24,15 @@ class Oficina(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
-class Empleado(models.Model):
-
-    def cod_Empleado():
-        empleado = Empleado
-        ult_empleado = empleado.objects.all().count()
-
-        if not ult_empleado:
-            return 'EMP-0000'
-
-        nro_empleado = int(ult_empleado)
-        nvo_codempleado = 'EMP-' + str(nro_empleado).zfill(4) 
-
-        return nvo_codempleado
-
-    codEmpleado = models.CharField(max_length=8, default=cod_Empleado, primary_key=True)
-    codOficina = models.ForeignKey(Oficina,on_delete=models.CASCADE)    
-    identificacion = models.CharField(max_length=15)    
+class Persona(models.Model):
+    identificacion = models.CharField(max_length=15, primary_key=True)    
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    direccion = models.CharField(max_length=60,default='Barquisimeto')
-    correo = models.EmailField(max_length=30,default='correo@artemis.com')
+    direccion = models.CharField(max_length=60)
     telefono = models.CharField(max_length=11)
+
+class Empleado(Persona):
+    codOficina = models.ForeignKey(Oficina,on_delete=models.CASCADE)    
     CARGOS = ( 
         ('ger','Gerente'),
         ('admin','Administrador del Sistema'),
@@ -61,27 +48,7 @@ class Empleado(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
-class Cliente(models.Model):
-
-    def cod_Cliente():
-        cliente = Cliente
-        ult_cliente = cliente.objects.all().count()
-
-        if not ult_cliente:
-            return 'CLI-0000'
-
-        nro_cliente = int(ult_cliente)
-        nvo_codcliente = 'EMP-' + str(nro_cliente).zfill(4) 
-
-        return nvo_codcliente
-
-    codCliente = models.CharField(max_length=8, default=cod_Cliente, primary_key=True)
-    identificacion = models.CharField(max_length=15)    
-    nombre = models.CharField(max_length=30)
-    nombre = models.CharField(max_length=30)
-    direccion = models.CharField(max_length=60,default='Barquisimeto')
-    correo = models.EmailField(max_length=30,default='correo@artemis.com')
-    telefono = models.CharField(max_length=11)
+class Cliente(Persona):
     ESTATUS = ( 
         ('A','Activo'),
         ('I','Inactivo'),

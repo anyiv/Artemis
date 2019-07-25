@@ -34,14 +34,14 @@
             <!--INICIO-->
             <li id="inicio" class="{% if '/inicio/' in request.path %}active{% endif %}">
                 <a
-                    href="{% if user.type_u.codigo == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.type_u.codigo == 'admin' %} {% url 'dashboard_admin' %} {% elif user.type_u.codigo == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.type_u.codigo == 'grec' %} {% url 'dashboard_gestreclamo' %} {% elif user.type_u.codigo == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.type_u.codigo == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.type_u.codigo == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
+                    href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.codTipoUser.codTipoUser == 'admin' %} {% url 'dashboard_admin' %} {% elif user.codTipoUser.codTipoUser == 'tc' %} {% url 'dashboard_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'dashboard_gestreclamo' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'dashboard_atencioncli' %} {% elif user.codTipoUser.codTipoUser == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
                     <i class="material-icons">home</i>
                     <span>Inicio</span>
                 </a>
             </li>
 
             <!--CREAR PQRS-->
-            {% if user.type_u.codigo == 'cli' or user.type_u.codigo == 'atc' %}
+            {% if user.codTipoUser.codTipoUser == 'cli' or user.codTipoUser.codTipoUser == 'atc' %}
             {% comment "Cliente y Atención al Cliente" %} {% endcomment %}
             <li id="crear" class="">
                 <a id="a_listados" href="#"
@@ -52,28 +52,28 @@
                 <ul class="ml-menu">
                     <li id="crear_peticion" class="{% if '/peticion/registrar/' in request.path or '/peticion/atc_registrar/' in request.path %}active{% endif %}">
                         <a
-                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createpetition' %} {% elif user.type_u.codigo == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
+                            href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'createpetition' %} {% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_createpetition' %} {% endif %}">
                             <i class="material-icons">question_answer</i>
                             <span>Petición</span>
                         </a>
                     </li>
                     <li id="crear_queja" class="{% if '/queja/registrar/' in request.path or '/queja/atc_registrar/' in request.path %}active{% endif %}">
                         <a
-                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createcomplaint' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
+                            href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'createcomplaint' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_createcomplaint' %} {% endif %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Queja</span>
                         </a>
                     </li>
                     <li id="crear_reclamo" class="{% if '/reclamo/registrar/' in request.path or '/reclamo/atc_registrar/' in request.path %}active{% endif %}">
                         <a
-                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createclaim' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createclaim' %} {% endif %}">
+                            href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'createclaim' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_createclaim' %} {% endif %}">
                             <i class="material-icons">report</i>
                             <span>Reclamo</span>
                         </a>
                     </li>
                     <li id="crear_sugerencia" class="{% if '/sugerencia/registrar/' in request.path or '/sugerencia/atc_registrar/' in request.path%}active{% endif %}">
                         <a
-                            href="{% if user.type_u.codigo == 'cli' %} {% url 'createsuggestion' %}{% elif user.type_u.codigo == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
+                            href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'createsuggestion' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_createsuggestion' %} {% endif %}">
                             <i class="material-icons">loyalty</i>
                             <span>Sugerencia</span>
                         </a>
@@ -83,7 +83,7 @@
             {% endif %}
 
             <!--LISTADOS-->
-            {% if user.type_u.codigo == 'atc' %} {% comment "ATENCIÓN AL CLIENTE" %}{% endcomment %}
+            {% if user.codTipoUser.codTipoUser == 'atc' %} {% comment "ATENCIÓN AL CLIENTE" %}{% endcomment %}
             <li id="listados" class="{% if '/pqrs/lista/' in request.path %} active {% endif %}">
                 <a href="{% url 'pqrslist' %}">
                     <i class="material-icons">question_answer</i>
@@ -93,7 +93,7 @@
             {% endif %}
 
             <!--CONSULTAR (PQRS Cliente)-->
-            {% if user.type_u.codigo == 'cli' %} {% comment "PQRS DE UN CLIENTE" %}{% endcomment %}
+            {% if user.codTipoUser.codTipoUser == 'cli' %} {% comment "PQRS DE UN CLIENTE" %}{% endcomment %}
             <li id="inicio" class="">
                 <a href="#">
                     <i class="material-icons">find_in_page</i>
@@ -103,7 +103,7 @@
             {% endif %}
 
             <!--CONSULTAR (Gestor PQRS y técnico)-->
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+            {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
             {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <li id="consultar" class="">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path %}toggled{% endif %}">
@@ -111,7 +111,7 @@
                     <span>Consultar</span>
                 </a>
                 <ul class="ml-menu">
-                    {% if user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+                    {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
                     {% comment "SÓLO EL GESTOR DE RECLAMOS Y EL TECNICO" %}{% endcomment %}
                     <li id="consultar_reclamos">
                         <a href="{% url 'claimlist' %}">
@@ -119,9 +119,9 @@
                             <span>Reclamos</span>
                         </a>
                     </li>
-                    {% elif user.type_u.codigo == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
-                    <li id="consultar_peticiones" class="{% if '/pqs/lista/' in request.path %}active{% endif %}">
-                        <a href="{% url 'pqslist' %}">
+                    {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
+                    <li id="consultar_peticiones">
+                        <a href="#">
                             <i class="material-icons">question_answer</i>
                             <span>PQS</span>
                         </a>
@@ -138,7 +138,7 @@
             {% endif %}
 
             <!--GESTIONAR CRUD-->
-            {% if user.type_u.codigo == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
+            {% if user.codTipoUser.codTipoUser == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
             <li id="gestionar" class="">
                 <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/categoria/' in request.path or '/empleados/' in request.path or '/clientes/' in request.path or '/resp_predefinida/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">dashboard</i>
@@ -174,7 +174,7 @@
             </li>
             {% endif %}
 
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'grec' or user.type_u.codigo == 'tc' %}
+            {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
             {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <!--ATENDER PQS/RECLAMO-->
             <li id="atender" class="">
@@ -185,7 +185,7 @@
             </li>
             {% endif %}
 
-            {% if user.type_u.codigo == 'gpqs' or user.type_u.codigo == 'ger' %}
+            {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'ger' %}
             {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
             <!--REPORTES-->
             <li id="reportes" class="">
@@ -200,7 +200,7 @@
                             <span>PQS Marcadas</span>
                         </a>
                     </li>
-                    {% if user.type_u.codigo != 'gpqs' %}
+                    {% if user.codTipoUser.codTipoUser != 'gpqs' %}
                     {% comment "LOS QUE SIGUEN SOLO PARA EL GERENTE" %}{% endcomment %}
                     <li id="reporte_satisfaccion">
                         <a href="#">
@@ -219,12 +219,22 @@
             </li>
             {% endif %}
 
-            {% if user.type_u.codigo == 'cli' %} {% comment "SÓLO CLIENTES" %}{% endcomment %}
+            {% if user.codTipoUser.codTipoUser == 'cli' %} {% comment "SÓLO CLIENTES" %}{% endcomment %}
             <!--SATISFACCIÓN-->
             <li id="satisfaccion" class="">
                 <a href="{% url 'finishedclaimlist' %}">
                     <i class="material-icons">favorite</i>
                     <span>Satisfacción</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.codTipoUser.codTipoUser == 'grec' %} {% comment "SÓLO GESTOR DE RECLAMOS" %}{% endcomment %}
+            <!--GESTIONAR AVERIAS MASIVAS-->
+            <li id="averias_masivas" class="">
+                <a href="#">
+                    <i class="material-icons">bug_report</i>
+                    <span>Averías Masivas</span>
                 </a>
             </li>
             {% endif %}

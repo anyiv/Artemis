@@ -9,19 +9,19 @@ from apps.resp_predefinida.models import RespuestaPredefinida
 # Create your views here.
 
 def dashboard_checker(request):
-    if request.user.type_u.codigo == 'cli':
+    if request.user.codTipoUser.codTipoUser == 'cli':
         return redirect('inicio/cliente/')
-    elif request.user.type_u.codigo == 'grec':
+    elif request.user.codTipoUser.codTipoUser == 'grec':
         return redirect('inicio/gestreclamo/')
-    elif request.user.type_u.codigo == 'atc':
+    elif request.user.codTipoUser.codTipoUser == 'atc':
         return redirect('inicio/atencioncli/')
-    elif request.user.type_u.codigo == 'gpqs':
+    elif request.user.codTipoUser.codTipoUser == 'gpqs':
         return redirect('inicio/gestorPQS/')
-    elif request.user.type_u.codigo == 'tc':
+    elif request.user.codTipoUser.codTipoUser == 'tc':
         return redirect('inicio/tecnico/')
-    elif request.user.type_u.codigo == 'admin':
+    elif request.user.codTipoUser.codTipoUser == 'admin':
         return redirect('inicio/admin/')
-    elif request.user.type_u.codigo == 'ger':
+    elif request.user.codTipoUser.codTipoUser == 'ger':
         return redirect('inicio/gerente/')
 
 def dashboard_gestreclamo(request):
