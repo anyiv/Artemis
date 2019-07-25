@@ -140,31 +140,32 @@
             <!--GESTIONAR CRUD-->
             {% if user.type_u.codigo == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
             <li id="gestionar" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista' in request.path %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/categoria/' in request.path or '/empleados/' in request.path or '/clientes/' in request.path or '/resp_predefinida/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">dashboard</i>
                     <span>Gestionar</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="gestionar_usuarios" class="{% if '/empleado/lista' in request.path %}active{% endif %}">
-                        <a href="#">
-                            <i class="material-icons">supervised_user_circle</i>
-                            <span>Empleados</span>
-                        </a>
-                    </li>
-                    <li id="gestionar_clientes">
-                        <a href="#">
-                            <i class="material-icons">supervised_user_circle</i>
-                            <span>Clientes</span>
-                        </a>
-                    </li>
-                    <li id="gestionar_categorias_reclamos" class="{% if '/categoria/lista' in request.path %}active{% endif %}">
-                        <a href="">
+                    <li id="gestionar_categorias_reclamos" class="{% if '/categoria/' in request.path %}active{% endif %}">
+                        <a href="{% url 'claimcategorylist' %}">
                             <i class="material-icons">report</i>
                             <span>Categorías de Reclamos</span>
                         </a>
                     </li>
-                    <li id="gestionar_respuestas_predefinidas" class="{% if '/resp_predefinida/lista' in request.path %}active{% endif %}">
-                        <a href="#">
+                    <li id="gestionar_empleados" class="{% if '/empleados/' in request.path %}active{% endif %}">
+                        <a href="{% url 'employeelist' %}">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Empleados</span>
+                        </a>
+                    </li>
+                    <li id="gestionar_clientes" class="{% if '/clientes/' in request.path %}active{% endif %}">
+                        <a href="{% url 'clientlist' %}">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <span>Clientes</span>
+                        </a>
+                    </li>
+
+                    <li id="gestionar_respuestas_predefinidas" class="{% if '/resp_predefinida/' in request.path %}active{% endif %}">
+                        <a href="{% url 'predanswerlist' %}">
                             <i class="material-icons">comment</i>
                             <span>Respuestas Predefinidas</span>
                         </a>
@@ -224,16 +225,6 @@
                 <a href="{% url 'finishedclaimlist' %}">
                     <i class="material-icons">favorite</i>
                     <span>Satisfacción</span>
-                </a>
-            </li>
-            {% endif %}
-
-            {% if user.type_u.codigo == 'grec' %} {% comment "SÓLO GESTOR DE RECLAMOS" %}{% endcomment %}
-            <!--GESTIONAR AVERIAS MASIVAS-->
-            <li id="averias_masivas" class="">
-                <a href="#">
-                    <i class="material-icons">bug_report</i>
-                    <span>Averías Masivas</span>
                 </a>
             </li>
             {% endif %}
