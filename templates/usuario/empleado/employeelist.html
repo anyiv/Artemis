@@ -10,15 +10,25 @@
             Listado de Empleados <small>Empleados registrados en el sistema</small>
         </h2>
     </div>
+    <div class="row clearfix">
+        <div class="col-xs-11">
+        </div>
+        <div class="col-xs-1">
+            <br />
+            <a href="{% url 'createemployee' %}"><button type="button"
+                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                        class="material-icons">add</i></button></a>
+        </div>
+    </div>
     <div class="body table-responsive">
         <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
             <thead>
                 <tr>
                     <th>Nombre de usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Foto</th>
-                    <th>Tipo</th>
+                    <th>Cargo</th>
+                    <th>Tipo de Usuario</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -26,61 +36,28 @@
                 <tr>
                     <th>Nombre de usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Foto</th>
-                    <th>Tipo</th>
+                    <th>Cargo</th>
+                    <th>Tipo de Usuario</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+                {% for empleado in object_list %}
                 <tr>
-                    <td>larrydav</td>
-                    <td>Larry</td>
-                    <td>Dávila</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>Técnico</td>
+                    <td>{{ empleado.nombreUsuario }}</td>
+                    <td>{{ empleado.idEmpleado.nombre }} {{ empleado.idEmpleado.apellido }}</td>
+                    <td><img class="image-responsive img-circle" src="{{ empleado.foto.url }}"
+                            style="width:64px;height:64px;object-fit:cover;" alt="Foto de Perfil" /></td>
+                    <td>{{ empleado.idEmpleado.cargo }}</td>
+                    <td>{{ empleado.codTipoUser }}</td>
                     <td>
                         <center><a href="{% url 'checkemployee' %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
                 </tr>
-                <tr>
-                    <td>vndrtg</td>
-                    <td>Viviana</td>
-                    <td>Ávila</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>At. al Cliente</td>
-                    <td>
-                        <center><a href="{% url 'checkemployee' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>marnaomi18</td>
-                    <td>Naomi</td>
-                    <td>Machado</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>Gestor de Reclamos</td>
-                    <td>
-                        <center><a href="{% url 'checkemployee' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>josh_homme</td>
-                    <td>Joshua</td>
-                    <td>Homme</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>Gestor de PQS</td>
-                    <td>
-                        <center><a href="{% url 'checkemployee' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

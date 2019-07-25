@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
+from django.urls import reverse_lazy
 from .models import User
+from .forms import ActualizarUsuarioForm
 from apps.datos_externos.models import Empleado, Cliente
 from apps.reclamo.models import Categoria
 from apps.resp_predefinida.models import RespuestaPredefinida
+from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
 
 # Create your views here.
 
@@ -55,8 +59,8 @@ class dashboard_admin(ListView):
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
 
-def createemploy(request):
-    return render(request, 'usuario/empleado/createemploy.html', {})
+def createemployee(request):
+    return render(request, 'usuario/empleado/createemployee.html', {})
 
 def pqslist(request):
     return render(request, 'usuario/gestpqs/pqslist.html', {})
@@ -67,11 +71,24 @@ def pqrslist(request):
 def profile(request):
     return render(request, 'usuario/profile.html', {})
 
-def updateprofile(request):
-    return render(request, 'usuario/updateprofile.html',{})
+class updateprofile(SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = ActualizarUsuarioForm
+    template_name = "usuario/updateprofile.html"
+    success_url = reverse_lazy('profile')
+    success_message = "e"
 
-def clientlist(request):
-    return render(request, 'usuario/cliente/clientlist.html',{})
+    def get_object(self, queryset=None):
+        return self.request.user
+
+class clientlist(ListView):
+    model = User
+    template_name = "usuario/cliente/clientlist.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(clientlist, self).get_context_data(**kwargs)
+        context['object_list'] = User.objects.filter(idEmpleado = None)
+        return context
 
 def clientlist_pqs(request):
     return render(request, 'usuario/cliente/clientlist_pqs.html',{})
@@ -79,8 +96,14 @@ def clientlist_pqs(request):
 def checkclient(request):
     return render(request, 'usuario/cliente/checkclient.html',{})
 
-def employeelist(request):
-    return render(request, 'usuario/empleado/employeelist.html',{})
+class employeelist(ListView):
+    model = User
+    template_name = "usuario/empleado/employeelist.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(employeelist, self).get_context_data(**kwargs)
+        context['object_list'] = User.objects.filter(idCliente = None)
+        return context
 
 def checkemployee(request):
     return render(request, 'usuario/empleado/checkemployee.html',{})

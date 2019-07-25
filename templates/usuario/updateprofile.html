@@ -12,42 +12,23 @@
             <div class="profile-header">&nbsp;</div>
             <div class="profile-body">
                 <div class="image-area">
-                    <img src="{% static 'images/user-lg.jpg' %}" alt="AdminBSB - Profile Image" />
+                    <img class="image-responsive" src="{{ user.foto.url }}"
+                        alt="Foto de Perfil de {{ user.nombreUsuario }}" style="width:200px;height:200px;object-fit:cover;"/>
                 </div>
                 <div class="content-area">
-                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <h3>{% if user.idCliente is not none %}
+                        {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
+                        {% else %}
+                        {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
+                        {% endif %}</h3>
                     <p></p>
                     <p>{{ user.codTipoUser }}</p>
+                    <small>Si deseas modificar tus datos personales (Dirección, teléfono, nombre, apellido), te invitamos a que te acerques a una de nuestras oficinas.</small>
                 </div>
             </div>
+            <form method="POST" id="formulario" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="profile-footer">
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nombre de usuario</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="{{user.username}}" value=""
-                                    disabled="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Teléfono</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.phone }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row clearfix">
                     <div class=" col-md-4 "></div>
                     <div class=" col-md-4 ">
@@ -56,20 +37,8 @@
                                 <p>
                                     <b>Correo</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.email }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Dirección</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="{{ user.address }}" disabled="">
+                                {{ form.correo }}
+                                {{ form.correo.errors }}
                             </div>
                         </div>
                     </div>
@@ -82,7 +51,8 @@
                                 <p>
                                     <b>Foto de Perfil</b>
                                 </p>
-                                <input type="file" class="form-control" placeholder="{{ user.address }}">
+                                    {{ form.foto }}
+                                    {{ form.foto.errors }}
                             </div>
                         </div>
                     </div>
@@ -106,13 +76,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <button type="button" class="btn bg-green waves-effect">Guardar</button>
+                                    <button type="button" class="btn bg-green waves-effect" onclick="javascript:confirmarSeleccion();">Guardar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -120,5 +91,25 @@
 {% endblock content %}
 
 {% block javascript %}
-
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar modificación",
+            text: "¿Está seguro que desea modificar su usuario?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "Su usuario no ha sido modificado.", "error");
+            }
+        });
+    }
+</script>
 {% endblock javascript %}

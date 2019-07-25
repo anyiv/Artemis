@@ -14,10 +14,15 @@ Artemis
             <div class="profile-header">&nbsp;</div>
             <div class="profile-body">
                 <div class="image-area">
-                    <img src="{% static 'images/user-lg.jpg' %}" alt="AdminBSB - Profile Image" />
+                    <img class="image-responsive" src="{{ user.foto.url }}"
+                        alt="Foto de Perfil de {{ user.nombreUsuario }}" style="width:200px;height:200px;object-fit:cover;" />
                 </div>
                 <div class="content-area">
-                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                    <h3>{% if user.idCliente is not none %}
+                        {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
+                        {% else %}
+                        {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
+                        {% endif %}</h3>
                     <p></p>
                     <p>{{ user.codTipoUser }}</p>
                 </div>
@@ -31,7 +36,7 @@ Artemis
                                 <p>
                                     <b>Nombre de usuario</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.username}}">
+                                <input type="text" class="form-control" placeholder="" value="{{user.nombreUsuario}}" readonly>
                             </div>
                         </div>
                     </div>
@@ -44,7 +49,7 @@ Artemis
                                 <p>
                                     <b>Teléfono</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.phone }}">
+                                <input type="text" class="form-control" placeholder="" value="{% if user.idCliente is not none %}{{ user.idCliente.telefono }}{% else %}{{ user.idEmpleado.telefono }}{% endif %}" readonly>
                             </div>
                         </div>
                     </div>
@@ -57,7 +62,7 @@ Artemis
                                 <p>
                                     <b>Correo</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{user.email }}">
+                                <input type="text" class="form-control" placeholder="" value="{{user.correo }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -70,7 +75,7 @@ Artemis
                                 <p>
                                     <b>Dirección</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="" value="{{ user.address }}">
+                                <input type="text" class="form-control" placeholder="" value="{% if user.idCliente is not none %}{{ user.idCliente.direccion }}{% else %}{{ user.idEmpleado.direccion }}{% endif %}" readonly>
                             </div>
                         </div>
                     </div>
@@ -85,7 +90,7 @@ Artemis
                             <div class="form-group">
                                 <div class="button-demo">
                                     <a
-                                        href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'dashboard_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'dashboard_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'dashboard_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'dashboard_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'dashboard_gestreclamo' %} {% endif %}">
+                                        href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'dashboard_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'dashboard_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'dashboard_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'dashboard_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'dashboard_gestreclamo' %} {% endif %}" readonly>
                                         <button type="button" class="btn bg-teal waves-effect">Atrás</button>
                                     </a>
                                 </div>
@@ -110,5 +115,13 @@ Artemis
 {% endblock content %}
 
 {% block javascript %}
-
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Modificado", "Su usuario ha sido modificado con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock javascript %}

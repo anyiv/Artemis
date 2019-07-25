@@ -24,34 +24,37 @@ class Oficina(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
-class Persona(models.Model):
+    def __str__(self):
+        return self.nombre
+
+class Empleado(models.Model):
     identificacion = models.CharField(max_length=15, primary_key=True)    
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     direccion = models.CharField(max_length=60)
     telefono = models.CharField(max_length=11)
-
-class Empleado(Persona):
     codOficina = models.ForeignKey(Oficina,on_delete=models.CASCADE)    
-    CARGOS = ( 
-        ('ger','Gerente'),
-        ('admin','Administrador del Sistema'),
-        ('gestorr','Gestor de reclamos'),
-        ('gestorpqs','Gestor de PQS'),
-        ('atencioncli','Atención al cliente'),
-        ('tec','Técnico'),
-    )
-    cargo = models.CharField(max_length=20, choices=CARGOS, blank=False, null=False)
+    cargo = models.CharField(max_length=60, blank=False, null=False)
     ESTATUS = ( 
         ('A','Activo'),
         ('I','Inactivo'),
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
-class Cliente(Persona):
+    def __str__(self):
+        return self.nombre +' '+ self.apellido
+
+class Cliente(models.Model):
+    identificacion = models.CharField(max_length=15, primary_key=True)    
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    direccion = models.CharField(max_length=60)
+    telefono = models.CharField(max_length=11)
     ESTATUS = ( 
         ('A','Activo'),
         ('I','Inactivo'),
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
+    def __str__(self):
+        return self.nombre +' '+ self.apellido

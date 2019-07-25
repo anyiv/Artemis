@@ -4,13 +4,16 @@
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     <div class="user-info">
-        <div class="image">
-            <img src="{% static "images/user-lg.jpg"  %}" width="48" height="48" alt="User" />
+        <div class="image" style="margin-top:10px;">
+            <img src="{{ user.foto.url }}" style="width:48px;height:48px;object-fit:cover;" alt="User" />
         </div>
-        <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}
-                {{ user.last_name }}</div>
-            <div class="email">{{ user.email }}</div>
+        <div class="info-container" style="margin-top:-10px">
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if user.idCliente is not none %}
+            {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
+            {% else %}
+            {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
+            {% endif %}</div>
+            <div class="email">{{ user.correo }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="true">keyboard_arrow_down</i>

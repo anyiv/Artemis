@@ -16,7 +16,6 @@
                 <tr>
                     <th>Nombre de usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Foto</th>
                     <th>Opciones</th>
                 </tr>
@@ -25,67 +24,23 @@
                 <tr>
                     <th>Nombre de usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
                     <th>Foto</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+                {% for cliente in object_list %}
                 <tr>
-                    <td>hugoelquejumbroso</td>
-                    <td>Hugo</td>
-                    <td>Frías</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
+                    <td>{{ cliente.nombreUsuario }}</td>
+                    <td>{{ cliente.idCliente.nombre }} {{ cliente.idCliente.apellido }}</td>
+                    <td><img class="image-responsive img-circle" src="{{ cliente.foto.url }}" style="width:64px;height:64px;object-fit:cover;" alt="User" /></td>
                     <td>
                         <center><a href="{% url 'checkclient' %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
                 </tr>
-                <tr>
-                    <td>peterelfeliz</td>
-                    <td>Peter</td>
-                    <td>Feliz</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>
-                        <center><a href="{% url 'checkclient' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>mariamontes</td>
-                    <td>Maria</td>
-                    <td>Montes</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>
-                        <center><a href="{% url 'checkclient' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Raul_von_Ratten</td>
-                    <td>Raúl</td>
-                    <td>von Ratten</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>
-                        <center><a href="{% url 'checkclient' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>elenaenvacaciones</td>
-                    <td>Elena</td>
-                    <td>Victoria</td>
-                    <td><img src="{% static "images/user-lg.jpg"  %}" width="64" height="64" alt="User" /></td>
-                    <td>
-                        <center><a href="{% url 'checkclient' %}"> <button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></a></center>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

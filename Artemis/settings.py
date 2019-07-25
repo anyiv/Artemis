@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.usuario',
     'apps.resp_predefinida',
     'apps.datos_externos',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,5 @@ LOGIN_URL = reverse_lazy('index')
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard_checker')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 AUTH_USER_MODEL = 'usuario.User'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
