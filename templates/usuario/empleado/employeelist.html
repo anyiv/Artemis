@@ -52,7 +52,7 @@
                     <td>{{ empleado.idEmpleado.cargo }}</td>
                     <td>{{ empleado.codTipoUser }}</td>
                     <td>
-                        <center><a href="{% url 'checkemployee' %}"> <button type="button"
+                        <center><a href="{% url 'checkemployee' empleado.nombreUsuario %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
@@ -63,3 +63,23 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block javascript %}
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Suspendido", "El usuario empleado ha sido suspendido con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock javascript %}{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Suspendido", "El usuario empleado ha sido suspendido con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}

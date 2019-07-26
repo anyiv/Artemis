@@ -9,98 +9,104 @@
 <div class="row clearfix">
     <div class="col-xs-12 col-sm-12">
         <div class="profile profile-card">
-            <div class="profile-header">&nbsp;</div>
-            <div class="profile-body">
-                <div class="image-area">
-                    <img src="{% static 'images/user-lg.jpg' %}" alt="AdminBSB - Profile Image" />
-                </div>
-                <div class="content-area">
-                    <h3>Larry Dávila</h3>
-                    <p></p>
-                    <p>Técnico</p>
-                </div>
-            </div>
-            <div class="profile-footer">
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nombre de usuario</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="larrydav" disabled="">
-                            </div>
-                        </div>
+            <form method="POST" id="formulario">
+            {% csrf_token %}
+                <div class="profile-header">&nbsp;</div>
+                <div class="profile-body">
+                    <div class="image-area">
+                        <img class="image-responsive" src="{{ empleado.foto.url }}"
+                            alt="Foto de Perfil de {{ empleado.nombreUsuario }}"
+                            style="width:200px;height:200px;object-fit:cover;" />
+                    </div>
+                    <div class="content-area">
+                        <h3> {{ empleado.idEmpleado.nombre }} {{ empleado.idEmpleado.apellido }} </h3>
+                        <p></p>
+                        <p> {{ empleado.codTipoUser }} </p>
                     </div>
                 </div>
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Teléfono</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="0416-2142121" disabled="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Correo</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="larrydav@cuasar.net" disabled="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class=" col-md-4 "></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Dirección</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Urb. Sucrania, Edificio 42N, Apto N-12" disabled="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-3">
+                <div class="profile-footer">
+                    <div class="row clearfix">
+                        <div class=" col-md-4 "></div>
+                        <div class=" col-md-4 ">
                             <div class="form-group">
-                                <div class="button-demo">
-                                    <a
-                                        href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'dashboard_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'dashboard_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'dashboard_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'dashboard_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'dashboard_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'dashboard_gestorPQS' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'dashboard_gestreclamo' %} {% endif %}">
-                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'employeelist' %}">
-                                        <button type="button" class="btn bg-red waves-effect">Suspender</button>
-                                    </a>
+                                <div class="form-line">
+                                    <p>
+                                        <b>Nombre de usuario</b>
+                                    </p>
+                                    {{ form.nombreUsuario }}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class=" col-md-4 "></div>
+                        <div class=" col-md-4 ">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Teléfono</b>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ empleado.idEmpleado.telefono }}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class=" col-md-4 "></div>
+                        <div class=" col-md-4 ">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Correo</b>
+                                    </p>
+                                    {{ form.correo }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form.estatus }}
+                    <div class="row clearfix">
+                        <div class=" col-md-4 "></div>
+                        <div class=" col-md-4 ">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Dirección</b>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ empleado.idEmpleado.direccion }}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'employeelist' %} ">
+                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" onclick="javascript:confirmarSeleccion();"
+                                            class="btn bg-red waves-effect">Suspender</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -109,4 +115,26 @@
 
 {% block javascript %}
 
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar suspensión del usuario empleado",
+            text: "¿Está seguro que desea suspender el usuario empleado?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                document.getElementById('estatus').value = 'I';
+                formulario.submit();
+            } else {
+                swal("Cancelada", "El usuario empleado no ha sido suspendido.", "error");
+            }
+        });
+    }
+</script>
 {% endblock javascript %}

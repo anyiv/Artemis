@@ -17,91 +17,109 @@
                     </h2>
                 </div>
                 <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <p>
-                                        <b>Nro de identificación</b>
-                                    </p>
-                                    <input type="text" class="form-control" placeholder="Nro de identificación.">
+                    <form method="POST" id="formulario">
+                        {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Nro de identificación</b>
+                                        </p>
+                                        {{ form.idEmpleado }}
+                                        {{ form.idEmpleado.errors }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <p>
-                                        <b>Nombre de Usuario</b>
-                                    </p>
-                                    <input type="text" class="form-control" placeholder="Usuario.">
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Nombre de Usuario</b>
+                                        </p>
+                                        {{ form.nombreUsuario }}
+                                        {{ form.nombreUsuario.errors }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <p>
-                                        <b>Contraseña</b>
-                                    </p>
-                                    <input type="text" class="form-control" placeholder="Nombre del empleado.">
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Contraseña</b>
+                                        </p>
+                                        {{ form.password }}
+                                        {{ form.password.errors }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class=" col-md-2"></div>
-                        <div class=" col-md-8">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <p>
-                                        <b>Cargo</b>
-                                    </p>
-                                    <select class="form-control show-tick">
-                                        <option>Atención al cliente</option>
-                                        <option>Técnico</option>
-                                        <option>Gestor de Reclamos</option>
-                                        <option>Gestor de PQS</option>
-                                        <option>Administrador</option>
-                                        <option>Gerente</option>
-                                    </select>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Correo</b>
+                                        </p>
+                                        {{ form.correo }}
+                                        {{ form.correo.errors }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'dashboard_admin' %}">
-                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                    </a>
+                        <div class="row clearfix">
+                            <div class=" col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Tipo de usuario</b>
+                                        </p>
+                                        <select name="codTipoUser" id="id_codTipoUser" class="form-control">
+                                            <option value="">---------</option>
+                                            {% for opcion in tipousers %} <option value="{{ opcion.codTipoUser }}" selected>{{ opcion }}</option>{% endfor %}
+                                        </select>
+                                        {{ form.codTipoUser.errors }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'dashboard_admin' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" onclick="javascript:confirmarSeleccion();"
+                                            class="btn bg-green waves-effect">Crear</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -114,4 +132,34 @@
 
 {% block javascript %}
 
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Creada", "El usuario empleado ha sido creado con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar creación",
+            text: "¿Está seguro que desea crear el usuario empleado?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "El usuario empleado no ha sido creado.", "error");
+            }
+        });
+    }
+</script>
 {% endblock %}

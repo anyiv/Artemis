@@ -10,7 +10,7 @@ urlpatterns = [
     path('inicio/tecnico/', views.dashboard_tecnico, name='dashboard_tecnico'),
     path('inicio/admin/', views.dashboard_admin.as_view(), name='dashboard_admin'),
     path('inicio/gerente/', views.dashboard_gerente, name='dashboard_gerente'),
-    path('empleados/crear/', views.createemployee, name='createemployee'),
+    path('empleados/crear/', views.createemployee.as_view(), name='createemployee'),
     path('pqs/lista/', views.pqslist, name='pqslist'),
     path('pqrs/lista/', views.pqrslist, name='pqrslist'),
     path('perfil/', views.profile, name='profile'),
@@ -19,5 +19,5 @@ urlpatterns = [
     path('pqs/clientes/lista/', views.clientlist_pqs, name='clientlist_pqs'),
     path('clientes/ver/', views.checkclient, name='checkclient'),
     path('empleados/lista/', views.employeelist.as_view(), name='employeelist'),
-    path('empleados/ver/', views.checkemployee, name='checkemployee'),
+    path('empleados/ver/<pk>', views.checkemployee.as_view(), name='checkemployee'),
 ]

@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, CreateView
 from django.urls import reverse_lazy
-from .models import User
-from .forms import ActualizarUsuarioForm
+from .models import User, TipoUser
+from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado
 from apps.datos_externos.models import Empleado, Cliente
 from apps.reclamo.models import Categoria
 from apps.resp_predefinida.models import RespuestaPredefinida
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Q
+
 
 # Create your views here.
 
@@ -59,8 +59,19 @@ class dashboard_admin(ListView):
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
 
-def createemployee(request):
-    return render(request, 'usuario/empleado/createemployee.html', {})
+class createemployee(SuccessMessageMixin, CreateView):
+    model = User
+    form_class = CrearUsuario
+    template_name = "usuario/empleado/createemployee.html"
+    success_url = reverse_lazy('createemployee')
+    success_message = "e"
+
+    def get_context_data(self, **kwargs):
+        context = super(createemployee, self).get_context_data(**kwargs)
+        context['tipousers'] = TipoUser.objects.filter(estatus='A').exclude(codTipoUser='cli')
+        return context
+
+
 
 def pqslist(request):
     return render(request, 'usuario/gestpqs/pqslist.html', {})
@@ -102,8 +113,19 @@ class employeelist(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(employeelist, self).get_context_data(**kwargs)
-        context['object_list'] = User.objects.filter(idCliente = None)
+        context['object_list'] = User.objects.filter(idCliente = None, estatus='A')
         return context
 
-def checkemployee(request):
-    return render(request, 'usuario/empleado/checkemployee.html',{})
+class checkemployee(SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = ConsultarEmpleado
+    template_name = "usuario/empleado/checkemployee.html"
+    success_url = reverse_lazy('employeelist')
+    success_message = "e"
+    
+    def get_context_data(self, **kwargs):
+        context = super(checkemployee, self).get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        context['empleado'] = User.objects.get(nombreUsuario = pk)
+        context['user'] = self.request.user
+        return context
