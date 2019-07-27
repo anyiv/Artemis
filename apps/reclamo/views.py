@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm
-from .models import Categoria
+from .models import Categoria, Reclamo
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
@@ -69,3 +69,7 @@ class updateclaimcategory(SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         id_cat = self.kwargs['pk']
         return reverse_lazy('checkclaimcategory', kwargs={'pk':id_cat})
+
+class check_claimcli(DetailView):
+    model = Reclamo
+    template_name = "reclamo/check_claimcli.html"

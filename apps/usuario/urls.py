@@ -19,5 +19,5 @@ urlpatterns = [
     path('clientes/ver/<pk>/', views.checkclient.as_view(), name='checkclient'),
     path('empleados/lista/', views.employeelist.as_view(), name='employeelist'),
     path('empleados/ver/<pk>/', views.checkemployee.as_view(), name='checkemployee'),
-    path('cliente/pqrs/lista/', views.checkpqrs.as_view(), name='checkpqrs'),
+    path('cliente/pqrs/lista/', views.checkpqrslist.as_view(), name='checkpqrslist'),
 ]

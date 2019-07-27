@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView
 from django.urls import reverse_lazy
 from .models import User, TipoUser
 from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado, ConsultarCliente
@@ -142,13 +142,14 @@ class checkclient(SuccessMessageMixin, UpdateView):
         return context
 
 #CONSULTAR PQRS DEL CLIENTE
-class checkpqrs(ListView):
+class checkpqrslist(ListView):
     model = PQS
-    template_name = "usuario/cliente/checkpqrs.html"
+    template_name = "usuario/cliente/checkpqrslist.html"
     
     def get_context_data(self, **kwargs):
-        context = super(checkpqrs, self).get_context_data(**kwargs)
+        context = super(checkpqrslist, self).get_context_data(**kwargs)
         pqs = PQS.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codPQS','descripcion','fechaRegistro','categoria','estatus')
         reclamo = Reclamo.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codReclamo','descripcion','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
+

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import PQS
@@ -45,3 +45,9 @@ class createsuggestion(SuccessMessageMixin, CreateView):
 
 def atc_createsuggestion(request):
     return render(request, 'sugerencia/atc_createsuggestion.html', {})
+
+
+#CONSULTAR PQS CLIENTE
+class check_pqs(DetailView):
+    model = PQS
+    template_name= "pqs/check_pqs.html"

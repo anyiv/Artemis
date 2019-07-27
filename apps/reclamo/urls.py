@@ -16,4 +16,5 @@ urlpatterns = [
     path('categoria/modificar/<pk>/', views.updateclaimcategory.as_view(), name='updateclaimcategory'),
     path('satisfaccion/lista/', views.finishedclaimlist, name='finishedclaimlist'),
     path('satisfaccion/encuesta/', views.satisfactionsurvey, name='satisfactionsurvey'),
+    path('cliente/consultar/<pk>/', views.check_claimcli.as_view(), name='check_claimcli'),
 ]
