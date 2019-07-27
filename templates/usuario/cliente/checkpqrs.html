@@ -43,7 +43,7 @@
                     {% else %}
                     <tr>
                         <td>{{ pqrs.codPQS }}</td>
-                        <td>Reclamo</td>
+                        <td>Reclamo</td> 
                         <td>{{ pqrs.descripcion|truncatewords:5 }}</td>
                         <td>{{ pqrs.fechaRegistro|date:'l d-m-Y' }} a las {{ pqrs.fechaRegistro|date:'h:i a' }}</td>
                         <td>{% if pqrs.estatus == 'P' %}Pendiente{% elif pqrs.estatus == 'R' %}En Proceso{% elif pqrs.estatus == 'F' %}Finalizado{% endif %}</td>
