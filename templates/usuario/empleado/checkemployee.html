@@ -74,7 +74,7 @@
                                     <p>
                                         <b>Dirección</b>
                                     </p>
-                                    <input type="text" class="form-control" value="{{ empleado.idEmpleado.direccion }}"
+                                    <input type="text" class="form-control" value="'{{ empleado.idEmpleado.direccion }}'"
                                         readonly>
                                 </div>
                             </div>
@@ -95,6 +95,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if empleado.nombreUsuario != user.nombreUsuario %}
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
@@ -102,7 +103,8 @@
                                             class="btn bg-red waves-effect">Suspender</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                         
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -24,11 +24,9 @@ urlpatterns = [
     path('', include('pwa.urls')),
     path('djangoadmin/', admin.site.urls),
     path('usuario/', include('apps.usuario.urls')),
-    path('peticion/', include('apps.peticion.urls')),
-    path('queja/', include('apps.queja.urls')),
     path('reclamo/', include('apps.reclamo.urls')),
-    path('sugerencia/', include('apps.sugerencia.urls')), 
     path('resp_predefinida/', include('apps.resp_predefinida.urls')),
+    path('pqs/', include('apps.pqs.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

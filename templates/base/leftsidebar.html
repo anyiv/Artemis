@@ -20,7 +20,7 @@
                 <ul class="dropdown-menu pull-right">
                     <li><a href="{% url 'profile' %}"><i class="material-icons">person</i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'changepassword' %}"><i class="material-icons">lock</i>Cambiar clave</a></li>
+                    <li style="align-center"><a href="{% url 'changepassword' %}"><i class="material-icons">lock</i>Cambiar <br> contraseña</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a>
                     </li>
@@ -98,7 +98,7 @@
             <!--CONSULTAR (PQRS Cliente)-->
             {% if user.codTipoUser.codTipoUser == 'cli' %} {% comment "PQRS DE UN CLIENTE" %}{% endcomment %}
             <li id="inicio" class="">
-                <a href="#">
+                <a href="{% url 'checkpqrs' %}">
                     <i class="material-icons">find_in_page</i>
                     <span>Consultar</span>
                 </a>
@@ -131,7 +131,7 @@
                     </li>
                     {% endif %}
                     <li id="consultar_clientes" class="{% if '/clientes/lista/' in request.path %}active{% endif %}">
-                        <a href="{% url 'clientlist_pqs' %}">
+                        <a href="{% url 'clientlist' %}">
                             <i class="material-icons">supervised_user_circle</i>
                             <span>Clientes</span>
                         </a>

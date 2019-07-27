@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, UpdateView, CreateView
 from django.urls import reverse_lazy
 from .models import User, TipoUser
-from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado
+from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado, ConsultarCliente
 from apps.datos_externos.models import Empleado, Cliente
 from apps.reclamo.models import Categoria
+from apps.pqs.models import PQS
 from apps.resp_predefinida.models import RespuestaPredefinida
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -55,7 +55,6 @@ class dashboard_admin(ListView):
         context['cant_rp'] = RespuestaPredefinida.objects.filter(estatus='A').count()
         return context
 
-
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
 
@@ -70,8 +69,6 @@ class createemployee(SuccessMessageMixin, CreateView):
         context = super(createemployee, self).get_context_data(**kwargs)
         context['tipousers'] = TipoUser.objects.filter(estatus='A').exclude(codTipoUser='cli')
         return context
-
-
 
 def pqslist(request):
     return render(request, 'usuario/gestpqs/pqslist.html', {})
@@ -101,12 +98,6 @@ class clientlist(ListView):
         context['object_list'] = User.objects.filter(idEmpleado = None)
         return context
 
-def clientlist_pqs(request):
-    return render(request, 'usuario/cliente/clientlist_pqs.html',{})
-
-def checkclient(request):
-    return render(request, 'usuario/cliente/checkclient.html',{})
-
 class employeelist(ListView):
     model = User
     template_name = "usuario/empleado/employeelist.html"
@@ -128,4 +119,29 @@ class checkemployee(SuccessMessageMixin, UpdateView):
         pk = self.kwargs['pk']
         context['empleado'] = User.objects.get(nombreUsuario = pk)
         context['user'] = self.request.user
+        return context
+
+class checkclient(SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = ConsultarCliente
+    template_name = "usuario/cliente/checkclient.html"
+    success_url = reverse_lazy('clientlist')
+    success_message = "e"
+
+    def get_context_data(self, **kwargs):
+        context = super(checkclient, self).get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        context['cliente'] = User.objects.get(nombreUsuario = pk)
+        context['user'] = self.request.user
+        return context
+
+#CONSULTAR PQRS DEL CLIENTE
+class checkpqrs(ListView):
+    model = PQS
+    template_name = "usuario/cliente/checkpqrs.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(checkpqrs, self).get_context_data(**kwargs)
+        pqs = PQS.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codPQS','categoria','descripcion','estado')
+
         return context

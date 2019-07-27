@@ -18,6 +18,8 @@
                     </h2>
                 </div>
                 <div class="body">
+                <form method="POST" id="formulario">
+                {% csrf_token %}
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
@@ -26,12 +28,15 @@
                             </p>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <textarea rows="12" class="form-control no-resize"
-                                        placeholder="Por favor escriba su sugerencia aquí..." maxlength=500></textarea>
+                                    {{ form.descripcion }}
+                                    {{ form.descripcion.errors }}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="nombreUsuario" value="{{ user.nombreUsuario }}"
+                                id="id_nombreUsuario">
+                    <input type="hidden" name="categoria" id="id_categoria" class="form-control" value="s" required>
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class="col-md-3">
@@ -46,18 +51,19 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                                    <button type="button" onclick="javascript:confirmarSeleccion();" class="btn bg-green waves-effect">Enviar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -69,5 +75,35 @@
 
 {% block javascript %}
 
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Enviada", "La sugerencia ha sido enviada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar envío",
+            text: "¿Está seguro que desea enviar la sugerencia?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "La sugerencia no ha sido enviada.", "error");
+            }
+        });
+    }
+</script>
 
 {% endblock %}

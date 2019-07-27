@@ -40,14 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pwa',
     'apps.index',
-    'apps.peticion',
-    'apps.queja',
     'apps.reclamo',
-    'apps.sugerencia',
     'apps.usuario',
     'apps.resp_predefinida',
     'apps.datos_externos',
     'django_cleanup',
+    'apps.pqs',
 ]
 
 MIDDLEWARE = [

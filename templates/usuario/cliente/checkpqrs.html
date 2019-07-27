@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Bienvenido | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            PQRS enviados<small>Peticiones, quejas, reclamos y sugenrencias enviados.</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Código del reclamo</th>
+                        <th>Categoría de reclamo</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <td>Opciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RC-0423</td>
+                        <td>Avería</td>
+                        <td>2019/06/30</td>
+                        <td>En proceso</td>
+                        <td>
+                            <center><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

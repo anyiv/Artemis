@@ -52,4 +52,21 @@ class ConsultarEmpleado(forms.ModelForm):
             'nombreUsuario' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'correo' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'estatus' : forms.TextInput(attrs={'class':'form-control','id':'estatus','type':'hidden'}),
-        }      
+        }   
+
+class ConsultarCliente(forms.ModelForm):
+
+    class Meta:
+        model = User   
+
+        fields = [
+            'nombreUsuario',
+            'correo',
+            'estatus',
+        ]
+
+        widgets = {
+            'nombreUsuario' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
+            'correo': forms.TextInput(attrs={'class':'form-control','readonly':''}),
+            'estatus' : forms.TextInput(attrs={'class':'form-control','id':'estatus','type':'hidden'}),
+        }

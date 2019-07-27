@@ -16,8 +16,8 @@ urlpatterns = [
     path('perfil/', views.profile, name='profile'),
     path('perfil/modificar/', views.updateprofile.as_view(), name='updateprofile'),
     path('clientes/lista/', views.clientlist.as_view(), name='clientlist'),
-    path('pqs/clientes/lista/', views.clientlist_pqs, name='clientlist_pqs'),
-    path('clientes/ver/', views.checkclient, name='checkclient'),
+    path('clientes/ver/<pk>/', views.checkclient.as_view(), name='checkclient'),
     path('empleados/lista/', views.employeelist.as_view(), name='employeelist'),
-    path('empleados/ver/<pk>', views.checkemployee.as_view(), name='checkemployee'),
+    path('empleados/ver/<pk>/', views.checkemployee.as_view(), name='checkemployee'),
+    path('cliente/pqrs/lista/', views.checkpqrs, name='checkpqrs'),
 ]

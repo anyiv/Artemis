@@ -65,6 +65,7 @@
 {% endblock content %}
 
 {% block javascript %}
+
 {% if messages %}
 {% for m in messages %}
 {% if m.message == "e" %}
@@ -74,12 +75,4 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-{% endblock javascript %}{% if messages %}
-{% for m in messages %}
-{% if m.message == "e" %}
-<script>
-    swal("Suspendido", "El usuario empleado ha sido suspendido con éxito.", "success");
-</script>
-{% endif %}
-{% endfor %}
-{% endif %}
+{% endblock javascript %}

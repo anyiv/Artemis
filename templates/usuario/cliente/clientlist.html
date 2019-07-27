@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block titulo %} Artemis - Ver Clientes {% endblock titulo %}
+{% block titulo %} Clientes | Artemis {% endblock titulo %}
 
 {% block content %}
 <div class="card">
@@ -35,7 +35,7 @@
                     <td>{{ cliente.idCliente.nombre }} {{ cliente.idCliente.apellido }}</td>
                     <td><img class="image-responsive img-circle" src="{{ cliente.foto.url }}" style="width:64px;height:64px;object-fit:cover;" alt="User" /></td>
                     <td>
-                        <center><a href="{% url 'checkclient' %}"> <button type="button"
+                        <center><a href="{% url 'checkclient' cliente.nombreUsuario %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
@@ -46,3 +46,16 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block javascript %}
+
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Suspendido", "El usuario cliente ha sido suspendido con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock javascript %}
