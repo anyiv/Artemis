@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from .models import User, TipoUser
 from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado, ConsultarCliente
 from apps.datos_externos.models import Empleado, Cliente
-from apps.reclamo.models import Categoria
+from apps.reclamo.models import Categoria, Reclamo
 from apps.pqs.models import PQS
 from apps.resp_predefinida.models import RespuestaPredefinida
 from django.contrib.messages.views import SuccessMessageMixin
