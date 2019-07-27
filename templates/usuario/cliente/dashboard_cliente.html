@@ -16,7 +16,7 @@
             <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
                 title="Registre una petición aquí.">
                 <div class="icon">
-                    <i class="material-icons" >question_answer</i>
+                    <i class="material-icons">question_answer</i>
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Registrar</div>
@@ -44,7 +44,7 @@
             <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
                 title="Registre un reclamo aquí.">
                 <div class="icon">
-                    <i class="material-icons" >report</i>
+                    <i class="material-icons">report</i>
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Registrar</div>
@@ -58,7 +58,7 @@
             <div class="info-box-3 bg-dark-gray hover-expand-effect" data-toggle="tooltip" data-placement="bottom"
                 title="Registre una sugerencia aquí">
                 <div class="icon">
-                    <i class="material-icons" >loyalty</i>
+                    <i class="material-icons">loyalty</i>
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Registrar</div>
@@ -89,28 +89,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for reclamo in object_list %}
                     <tr>
-                        <td>RC-0423</td>
-                        <td>Avería</td>
-                        <td>2019/06/30</td>
-                        <td>En proceso</td>
+                        <td>{{ reclamo.codReclamo }}</td>
+                        <td>{{ reclamo.codCategoria }}</td>
+                        <td>{{ reclamo.fechaRegistro|date:'l d-m-Y' }} a las {{ reclamo.fechaRegistro|date:'h:i a' }}</td>
+                        <td>{% if reclamo.estatus == 'P' %}Pendiente{% elif reclamo.estatus == 'R' %}En
+                            Proceso{% elif reclamo.estatus == 'F' %}Finalizado{% endif %}</td>
                         <td>
                             <center><button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">remove_red_eye</i></button></center>
                         </td>
                     </tr>
-                    <tr>
-                        <td>RC-2421</td>
-                        <td>Mal cobro</td>
-                        <td>2019/06/</td>
-                        <td>En proceso</td>
-                        <td>
-                            <center><button type="button"
-                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                        class="material-icons">remove_red_eye</i></button></center>
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

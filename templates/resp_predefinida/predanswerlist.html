@@ -36,7 +36,7 @@
                     {% for rp in object_list %}
                     <tr>
                         <td> {{ rp.codRespuestaP }} </td>
-                        <td> {{ rp.descripcion|truncatechars:100 }} </td>
+                        <td> {{ rp.descripcion|truncatewords:20 }} </td>
                         <td> {{ rp.get_categoria_display }} </td>
                         <td>
                             <center><a href="{% url 'checkpredanswer' rp.codRespuestaP %}">

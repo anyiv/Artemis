@@ -31,8 +31,14 @@ def dashboard_checker(request):
 def dashboard_gestreclamo(request):
     return render(request, 'usuario/gestreclamo/dashboard_gestreclamo.html', {})
 
-def dashboard_cliente(request):
-    return render(request, 'usuario/cliente/dashboard_cliente.html', {})
+class dashboard_cliente(ListView):
+    model = Reclamo
+    template_name = "usuario/cliente/dashboard_cliente.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(dashboard_cliente, self).get_context_data(**kwargs)
+        context['object_list'] = Reclamo.objects.filter(nombreUsuario = self.request.user.nombreUsuario, estatus = 'P')
+        return context
 
 def dashboard_atencioncli(request):
     return render(request, 'usuario/atencioncli/dashboard_atencioncli.html', {})
@@ -142,6 +148,7 @@ class checkpqrs(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(checkpqrs, self).get_context_data(**kwargs)
-        pqs = PQS.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codPQS','categoria','descripcion','estado')
-
+        pqs = PQS.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codPQS','descripcion','fechaRegistro','categoria','estatus')
+        reclamo = Reclamo.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codReclamo','descripcion','fechaRegistro','codCategoria','estatus')
+        context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context

@@ -80,6 +80,9 @@ class Estado(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS,default='A')
 
+    def __str__(self):
+        return self.nombre
+
 class Ciudad(models.Model):
 
     def cod_Ciudad():
@@ -101,6 +104,9 @@ class Ciudad(models.Model):
         ('I', 'Inactivo'),
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS,default='A')
+
+    def __str__(self):
+        return self.nombre
 
 class Zona(models.Model):
 
@@ -124,6 +130,9 @@ class Zona(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS,default='A')
 
+    def __str__(self):
+        return self.nombre
+
 class Contrato(models.Model):
     nroContrato = models.AutoField(primary_key=True)
     codCliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
@@ -134,6 +143,9 @@ class Contrato(models.Model):
         ('I', 'Inactivo'),
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS,default='A')
+
+    def __str__(self):
+        return str(self.nroContrato)
 
 class Servicio(models.Model):
 
@@ -157,6 +169,9 @@ class Servicio(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS,default='A')
 
+    def __str__(self):
+        return self.nombre
+
 class DetalleContrato(models.Model):
     def cod_DetCont():
         ult_dc = DetalleContrato.objects.all().count()
@@ -172,3 +187,6 @@ class DetalleContrato(models.Model):
     codDetContrato = models.CharField(max_length=8,primary_key=True,default=cod_DetCont)
     nroContrato = models.ForeignKey(Contrato,on_delete=models.CASCADE)
     codServicio = models.ForeignKey(Servicio,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.codDetContrato

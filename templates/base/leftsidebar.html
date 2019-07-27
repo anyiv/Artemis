@@ -97,7 +97,7 @@
 
             <!--CONSULTAR (PQRS Cliente)-->
             {% if user.codTipoUser.codTipoUser == 'cli' %} {% comment "PQRS DE UN CLIENTE" %}{% endcomment %}
-            <li id="inicio" class="">
+            <li id="inicio" class="{% if '/pqrs/lista/' in request.path %}active{% endif %}">
                 <a href="{% url 'checkpqrs' %}">
                     <i class="material-icons">find_in_page</i>
                     <span>Consultar</span>
@@ -224,7 +224,7 @@
 
             {% if user.codTipoUser.codTipoUser == 'cli' %} {% comment "SÓLO CLIENTES" %}{% endcomment %}
             <!--SATISFACCIÓN-->
-            <li id="satisfaccion" class="">
+            <li id="satisfaccion" class="{% if '/satisfaccion/' in request.path %}active{% endif %}">
                 <a href="{% url 'finishedclaimlist' %}">
                     <i class="material-icons">favorite</i>
                     <span>Satisfacción</span>

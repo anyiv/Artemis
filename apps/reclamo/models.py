@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import datetime
+from apps.datos_externos.models import DetalleContrato
+from apps.usuario.models import User
 
 # Create your models here.
 class Categoria(models.Model):
@@ -25,6 +27,9 @@ class Categoria(models.Model):
     )
     estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
 
+    def __str__(self):
+        return self.nombre
+
 class Reclamo(models.Model):
 
     def cod_reclamo():
@@ -40,16 +45,20 @@ class Reclamo(models.Model):
         return nvo_codreclamo
 
     codReclamo = models.CharField(max_length=8, default=cod_reclamo, primary_key=True)
-    #codDetContrato = models.CharField(max_length=8)
+    codDetContrato = models.ForeignKey(DetalleContrato, on_delete=models.CASCADE)
     codCategoria = models.ForeignKey(Categoria, on_delete=models.CASCADE,blank=True, null=True)
-    nombreUsuario = models.CharField(max_length=20)
+    nombreUsuario = models.ForeignKey(User,on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=500)
-    fechaRegistro = models.DateField(default=datetime.now)
+    fechaRegistro = models.DateTimeField(default=datetime.now)
     fechaEstimada = models.DateField(blank=True, null=True)
-    fechaFinalizada = models.DateField(blank=True, null=True)
-    valoracion = models.CharField(max_length=1)
+    fechaFinalizada = models.DateTimeField(blank=True, null=True)
+    valoracion = models.CharField(max_length=1,blank=True, null=True)
     ESTATUS = ( 
-        ('A','Activo'),
-        ('I','Inactivo'),
+        ('P','Pendiente'),
+        ('R','En proceso'),
+        ('F','Finalizado'),
     )
-    estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
+    estatus = models.CharField(max_length=1,choices=ESTATUS, default='P')
+
+    def __str__(self):
+        return self.codReclamo + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'

@@ -20,18 +20,20 @@ class PQS(models.Model):
     codPQS = models.CharField(max_length=8,default=cod_pqs, primary_key=True)
     nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     CATEGORIA = (
-        ('p','Peticion'),
-        ('q','Queja'),
-        ('s','Sugerencia'),
+        ('P','Peticion'),
+        ('Q','Queja'),
+        ('S','Sugerencia'),
     )
     categoria = models.CharField(max_length=1,choices=CATEGORIA, blank=False, null=False)
     descripcion = models.CharField(max_length=500)
-    fechaRegistro = models.DateField(default=datetime.now)
-    fechaFinalizado = models.DateField(blank=True ,null=True)
+    fechaRegistro = models.DateTimeField(default=datetime.now)
+    fechaFinalizado = models.DateTimeField(blank=True ,null=True)
     ESTATUS = ( 
-        ('A','Activo'),
-        ('I','Inactivo'),
+        ('P','Pendiente'),
+        ('M','Marcada'),
+        ('A','Atendida'),
     )
-    estatus = models.CharField(max_length=1,choices=ESTATUS, default='A')
+    estatus = models.CharField(max_length=1,choices=ESTATUS, default='P')
 
-    
+    def __str__(self):
+        return self.codPQS + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'
