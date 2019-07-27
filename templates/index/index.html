@@ -1,10 +1,9 @@
-﻿{% load static %}
-
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-
+    {% load static %}
+    {% load pwa %}
 <head>
+        {% progressive_web_app_meta %}
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Iniciar Sesión - Artemis</title>
@@ -27,6 +26,8 @@
 
     <!-- Custom Css -->
     <link href="{% static "css/style.css" %}" rel="stylesheet">
+	<!-- Json -->
+	<link rel="manifest" href="/manifest.json">
 </head>
 
 <body class="login-page">
