@@ -53,8 +53,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser,PermissionsMixin):
     nombreUsuario = models.CharField(max_length=20, primary_key=True, unique=True)
-    idEmpleado = models.ForeignKey(Empleado,on_delete=models.CASCADE, unique=True, default=None, blank=True, null=True)  
-    idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, unique=True, default=None, blank=True, null=True)
+    idEmpleado = models.OneToOneField(Empleado,on_delete=models.CASCADE, default=None, blank=True, null=True)  
+    idCliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None, blank=True, null=True)
     codTipoUser = models.ForeignKey(TipoUser, on_delete=models.CASCADE, blank=True, null=True, default = 'cli')
     correo = models.EmailField(max_length=30,unique=True)
     foto = models.ImageField(upload_to='usuarios/fotos/', default='usuarios/fotos/default.jpg')
