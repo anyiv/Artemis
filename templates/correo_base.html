@@ -20,11 +20,10 @@
         <table>
             <tr><img src="https://artemispwa.pythonanywhere.com/static/images/logo.png" class="responsive"/></tr>
             <tr><h2>Artemis - Gestión de PQRS</h2></tr>
-            <tr>¡Hola, {% if user.idEmpleado == none %}{{ user.idCliente.nombre }} {{ user.idCliente.apellido }}{% else %}{{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}{% endif %}!</tr>
-            <tr>Nos complace comunicarnos contigo de parte de Artemis. </tr>
-            <tr>Has indicado que olvidaste tus credenciales de acceso al sistema Artemis. Tu nombre de usuario para acceder es <b>{{ user.nombreUsuario }}</b>, y si deseas recuperar tu contraseña, podrás hacerlo desde el siguiente link:</tr>
-            <tr>{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}</tr>
-            <tr>Si no has sido tú, puedes sencillamente ignorar este mensaje y no sucederá nada.</tr>
+            <tr>¡Hola, {{ nombre }}!</tr>
+            <tr>{{ linea1 }}</tr>
+            <tr>{{ linea2 }}</tr>
+            <tr>{{ linea3 }}</tr>
             <tr></tr>
             <tr>Este correo fue enviado automáticamente por Artemis.</tr>
             <tr><a href="https://artemispwa.pythonanywhere.com/">https://artemispwa.pythonanywhere.com/</a></tr>

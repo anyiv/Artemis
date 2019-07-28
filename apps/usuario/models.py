@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from apps.datos_externos.models import Empleado, Cliente
 from django.contrib.auth.models import PermissionsMixin
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 # Create your models here.
 class TipoUser(models.Model):
@@ -69,4 +72,6 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     objects = UserManager()
 
-    
+    def enviarCorreo(self, asunto, linea1, linea2, linea3, nombre):
+        contenido = render_to_string('correo_base.html',{'linea1':linea1,'linea2':linea2,'linea3':linea3,'nombre':nombre})
+        send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',self.correo,html_message=contenido)
