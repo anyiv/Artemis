@@ -14,8 +14,6 @@ class index(LoginView):
 class logout(LogoutView):
     template_name = 'index/logout.html'
 
-def forgotpassword(request):
-    return render(request, 'index/forgotpassword.html', {})
 
 class signup(SuccessMessageMixin, CreateView):
     model = User
@@ -23,6 +21,7 @@ class signup(SuccessMessageMixin, CreateView):
     template_name = "index/signup.html"
     success_url = reverse_lazy('index')
     success_message = "u"
+
 
 def changepassword(request):
     return render(request, 'index/changepassword.html', {})
