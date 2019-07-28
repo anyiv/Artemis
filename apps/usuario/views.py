@@ -95,15 +95,6 @@ class updateprofile(SuccessMessageMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-class clientlist(ListView):
-    model = User
-    template_name = "usuario/cliente/clientlist.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(clientlist, self).get_context_data(**kwargs)
-        context['object_list'] = User.objects.filter(idEmpleado = None)
-        return context
-
 class employeelist(ListView):
     model = User
     template_name = "usuario/empleado/employeelist.html"
@@ -126,6 +117,15 @@ class checkemployee(SuccessMessageMixin, UpdateView):
         context['empleado'] = User.objects.get(nombreUsuario = pk)
         context['user'] = self.request.user
         return context
+
+class clientlist(ListView):
+    model = User
+    template_name = "usuario/cliente/clientlist.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(clientlist, self).get_context_data(**kwargs)
+        context['object_list'] = User.objects.filter(idEmpleado = None)
+        return context        
 
 class checkclient(SuccessMessageMixin, UpdateView):
     model = User

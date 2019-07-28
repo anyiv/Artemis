@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load myfilters %}
+
 {% block titulo %} Crear usuario empleado | Artemis {% endblock %}
 
 {% block content %}
@@ -55,8 +57,22 @@
                                         <p>
                                             <b>Contraseña</b>
                                         </p>
-                                        {{ form.password }}
-                                        {{ form.password.errors }}
+                                        {{ form.password1| addclass:'form-control,Ingrese la contraseña' }}
+                                        {{ form.password1.errors }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Confirmar Contraseña</b>
+                                        </p>
+                                        {{ form.password2| addclass:'form-control,Confirme la contraseña' }}
+                                        {{ form.password2.errors }}
                                     </div>
                                 </div>
                             </div>

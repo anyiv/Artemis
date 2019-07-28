@@ -1,5 +1,6 @@
 from django import forms 
 from .models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class ActualizarUsuarioForm(forms.ModelForm):
 
@@ -16,7 +17,7 @@ class ActualizarUsuarioForm(forms.ModelForm):
             'foto' : forms.FileInput(),
         }
 
-class CrearUsuario(forms.ModelForm):
+class CrearUsuario(UserCreationForm):
 
     class Meta:
         model = User
@@ -24,17 +25,20 @@ class CrearUsuario(forms.ModelForm):
         fields = [
             'idEmpleado',
             'nombreUsuario',
-            'password',
+            'password1',
             'correo',
             'codTipoUser',
+            'idCliente',
         ]
 
         widgets = {
-            'idEmpleado' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar la identificación aquí.'}),
-            'nombreUsuario' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar el nombre de usuario aquí.'}),
-            'password' : forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Ingresar lacontraseña aquí.'}),
-            'correo' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresar la dirección de correo aquí.'}),
+            'idEmpleado' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresa la identificación aquí.'}),
+            'nombreUsuario' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresa el nombre de usuario aquí.'}),
+            'password1' : forms.PasswordInput(),
+            'password2' : forms.PasswordInput(),
+            'correo' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresa la dirección de correo aquí.'}),
             'codTipoUser' : forms.Select(attrs={'class':'form-control'}),
+            'idCliente' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Ingresa la identificación aquí.'})
         }  
 
 class ConsultarEmpleado(forms.ModelForm):

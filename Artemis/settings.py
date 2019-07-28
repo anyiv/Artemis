@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.datos_externos',
     'django_cleanup',
     'apps.pqs',
+    'apps.usuario.templatetags',
 ]
 
 MIDDLEWARE = [

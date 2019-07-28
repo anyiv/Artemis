@@ -79,8 +79,8 @@
                         <div class="col-xs-6">
                             <a href="{% url 'signup' %}">¡Regístrate ahora!</a>
                         </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="{% url 'forgotpassword' %}">¿Olvidó su contraseña?</a>
+                        <div class="col-xs-6 align-center">
+                            <a href="{% url 'forgotpassword' %}">¿Olvidó sus credenciales?</a>
                         </div>
                     </div>
                 </form>
@@ -103,6 +103,26 @@
     <!-- Custom Js -->
     <script src="{% static "js/admin.js" %}"></script>
     <script src="{% static "js/pages/examples/sign-in.js" %}"></script>
+
+    <!-- Custom Css -->
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "plugins/sweetalert/sweetalert.css" %}" rel="stylesheet">
 </body>
 
 </html>
+
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "u" %}
+<!--MENSAJE CREAR USUARIO-->
+<script>
+    swal("Creada", "El usuario ha sido creado con éxito.", "success");
+</script>
+{% elif m.message == "c" %}
+<!--MENSAJE RECUPERAR CREDENCIALES-->
+<script>
+    swal("Creada", "El usuario ha sido creado con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
