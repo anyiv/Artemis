@@ -5,11 +5,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import PQS
 from .forms import CrearPeticion, CrearQueja, CrearSugerencia
+from Artemis.mixin import AuthenticatedClienteMixin
 
 # Create your views here.
 
 #PETICION
-class createpetition(SuccessMessageMixin, CreateView):
+class createpetition(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
     form_class = CrearPeticion
     template_name = "peticion/createpetition.html"
@@ -31,12 +32,11 @@ class createpetition(SuccessMessageMixin, CreateView):
 def checkpetition(request):
     return render(request, 'peticion/checkpetition.html', {})
 
-
 def atc_createpetition(request):
     return render(request, 'peticion/atc_createpetition.html', {})
 
 #QUEJA
-class createcomplaint(SuccessMessageMixin, CreateView):
+class createcomplaint(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
     form_class = CrearQueja
     template_name = "queja/createcomplaint.html"
@@ -48,7 +48,7 @@ def atc_createcomplaint(request):
 
 
 #SUGERENCIA
-class createsuggestion(SuccessMessageMixin, CreateView):
+class createsuggestion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
     form_class = CrearSugerencia
     template_name = "sugerencia/createsuggestion.html"
@@ -60,6 +60,6 @@ def atc_createsuggestion(request):
 
 
 #CONSULTAR PQS CLIENTE
-class check_pqs(DetailView):
+class check_pqs(AuthenticatedClienteMixin, DetailView):
     model = PQS
     template_name= "pqs/check_pqs.html"
