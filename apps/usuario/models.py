@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from apps.datos_externos.models import Empleado, Cliente
 from django.contrib.auth.models import PermissionsMixin
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 # Create your models here.
 class TipoUser(models.Model):
@@ -50,8 +53,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser,PermissionsMixin):
     nombreUsuario = models.CharField(max_length=20, primary_key=True, unique=True)
-    idEmpleado = models.ForeignKey(Empleado,on_delete=models.CASCADE, unique=True, default=None, blank=True, null=True)  
-    idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, unique=True, default=None, blank=True, null=True)
+    idEmpleado = models.OneToOneField(Empleado,on_delete=models.CASCADE, default=None, blank=True, null=True)  
+    idCliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None, blank=True, null=True)
     codTipoUser = models.ForeignKey(TipoUser, on_delete=models.CASCADE, blank=True, null=True, default = 'cli')
     correo = models.EmailField(max_length=30,unique=True)
     foto = models.ImageField(upload_to='usuarios/fotos/', default='usuarios/fotos/default.jpg')
@@ -69,4 +72,6 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     objects = UserManager()
 
-    
+    def enviarCorreo(self, asunto, linea1, linea2, linea3, nombre):
+        contenido = render_to_string('correo_base.html',{'linea1':linea1,'linea2':linea2,'linea3':linea3,'nombre':nombre})
+        send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',self.correo,html_message=contenido)

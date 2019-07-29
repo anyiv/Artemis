@@ -6,17 +6,18 @@ from .forms import IncluirRespuestaP, ConsultarRespuestaP, ModificarRespuestaP
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
+from Artemis.mixin import AuthenticatedAdminMixin
 
 # Create your views here.
 
-class createpredanswer(SuccessMessageMixin, CreateView):
+class createpredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = RespuestaPredefinida
     form_class = IncluirRespuestaP
     template_name = "resp_predefinida/createpredanswer.html"
     success_url = reverse_lazy('createpredanswer')
     success_message = "e"
 
-class predanswerlist(ListView):
+class predanswerlist(AuthenticatedAdminMixin, ListView):
     model = RespuestaPredefinida
     template_name = "resp_predefinida/predanswerlist.html"
 
@@ -25,14 +26,14 @@ class predanswerlist(ListView):
         context['object_list'] = RespuestaPredefinida.objects.filter(estatus='A')
         return context
 
-class checkpredanswer(SuccessMessageMixin, UpdateView):
+class checkpredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = RespuestaPredefinida
     form_class = ConsultarRespuestaP
     template_name = "resp_predefinida/checkpredanswer.html"
     success_url = reverse_lazy('predanswerlist')
     success_message = "e"
 
-class updatepredanswer(SuccessMessageMixin, UpdateView):
+class updatepredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = RespuestaPredefinida
     form_class = ModificarRespuestaP
     template_name = "resp_predefinida/updatepredanswer.html"

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
+from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin
 
 # Create your views here.
 
@@ -28,7 +29,7 @@ def atc_createclaim(request):
 def checkclaim(request):
     return render(request, 'reclamo/checkclaim.html', {})
 
-class createclaimcategory(SuccessMessageMixin, CreateView):
+class createclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = Categoria
     form_class = IncluirCategoriaForm
     template_name = "reclamo/createclaimcategory.html"
@@ -38,7 +39,7 @@ class createclaimcategory(SuccessMessageMixin, CreateView):
 def attendclaim(request):
     return render(request, 'reclamo/attendclaim.html', {})
 
-class claimcategorylist(ListView):
+class claimcategorylist(AuthenticatedAdminMixin, ListView):
     model = Categoria
     template_name = "reclamo/claimcategorylist.html"
 
@@ -47,7 +48,7 @@ class claimcategorylist(ListView):
         context['object_list'] = Categoria.objects.filter(estatus='A')
         return context
 
-class checkclaimcategory(SuccessMessageMixin, UpdateView):
+class checkclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ConsultarCategoriaForm
     template_name = "reclamo/checkclaimcategory.html"
@@ -60,7 +61,7 @@ def finishedclaimlist(request):
 def satisfactionsurvey(request):
     return render(request, 'reclamo/satisfactionsurvey.html', {})
 
-class updateclaimcategory(SuccessMessageMixin, UpdateView):
+class updateclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ActualizarCategoriaForm
     template_name = "reclamo/updateclaimcategory.html"
@@ -70,6 +71,6 @@ class updateclaimcategory(SuccessMessageMixin, UpdateView):
         id_cat = self.kwargs['pk']
         return reverse_lazy('checkclaimcategory', kwargs={'pk':id_cat})
 
-class check_claimcli(DetailView):
+class check_claimcli(AuthenticatedClienteMixin, DetailView):
     model = Reclamo
     template_name = "reclamo/check_claimcli.html"

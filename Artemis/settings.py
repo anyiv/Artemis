@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'apps.pqs',
     'apps.usuario.templatetags',
+    'django_inlinecss',
 ]
 
 MIDDLEWARE = [
@@ -70,8 +71,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'Artemis.urls'
 
 TEMPLATES = [
     {

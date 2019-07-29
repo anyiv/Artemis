@@ -8,6 +8,7 @@ from apps.reclamo.models import Categoria, Reclamo
 from apps.pqs.models import PQS
 from apps.resp_predefinida.models import RespuestaPredefinida
 from django.contrib.messages.views import SuccessMessageMixin
+from Artemis.mixin import *
 
 
 # Create your views here.
@@ -28,10 +29,11 @@ def dashboard_checker(request):
     elif request.user.codTipoUser.codTipoUser == 'ger':
         return redirect('inicio/gerente/')
 
-def dashboard_gestreclamo(request):
-    return render(request, 'usuario/gestreclamo/dashboard_gestreclamo.html', {})
+class dashboard_gestreclamo(AuthenticatedGestorReclamosMixin, DetailView):
+    model = Reclamo
+    template_name = "usuario/gestreclamo/dashboard_gestreclamo.html"
 
-class dashboard_cliente(ListView):
+class dashboard_cliente(AuthenticatedClienteMixin, ListView):
     model = Reclamo
     template_name = "usuario/cliente/dashboard_cliente.html"
 
@@ -40,7 +42,7 @@ class dashboard_cliente(ListView):
         context['object_list'] = Reclamo.objects.filter(nombreUsuario = self.request.user.nombreUsuario, estatus = 'P')
         return context
 
-class dashboard_atencioncli(ListView):
+class dashboard_atencioncli(AuthenticatedAtClienteMixin, ListView):
     model = User
     template_name = "usuario/atencioncli/dashboard_atencioncli.html"
     
@@ -58,7 +60,7 @@ def dashboard_gestorPQS(request):
 def dashboard_tecnico(request):
     return render(request, 'usuario/tecnico/dashboard_tecnico.html', {})
 
-class dashboard_admin(ListView):
+class dashboard_admin(AuthenticatedAdminMixin, ListView):
     model = User
     template_name = "usuario/admin/dashboard_admin.html"
 
@@ -73,7 +75,7 @@ class dashboard_admin(ListView):
 def dashboard_gerente(request):
     return render(request, 'usuario/gerente/dashboard_gerente.html', {})
 
-class createemployee(SuccessMessageMixin, CreateView):
+class createemployee(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = CrearUsuario
     template_name = "usuario/empleado/createemployee.html"
@@ -94,7 +96,7 @@ def pqrslist(request):
 def profile(request):
     return render(request, 'usuario/profile.html', {})
 
-class updateprofile(SuccessMessageMixin, UpdateView):
+class updateprofile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ActualizarUsuarioForm
     template_name = "usuario/updateprofile.html"
@@ -104,7 +106,7 @@ class updateprofile(SuccessMessageMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-class employeelist(ListView):
+class employeelist(AuthenticatedAdminMixin, ListView):
     model = User
     template_name = "usuario/empleado/employeelist.html"
 
@@ -113,7 +115,7 @@ class employeelist(ListView):
         context['object_list'] = User.objects.filter(idCliente = None, estatus='A')
         return context
 
-class checkemployee(SuccessMessageMixin, UpdateView):
+class checkemployee(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ConsultarEmpleado
     template_name = "usuario/empleado/checkemployee.html"
@@ -127,7 +129,7 @@ class checkemployee(SuccessMessageMixin, UpdateView):
         context['user'] = self.request.user
         return context
 
-class clientlist(ListView):
+class clientlist(AuthenticatedAdminMixin, ListView):
     model = User
     template_name = "usuario/cliente/clientlist.html"
 
@@ -136,7 +138,7 @@ class clientlist(ListView):
         context['object_list'] = User.objects.filter(idEmpleado = None)
         return context        
 
-class checkclient(SuccessMessageMixin, UpdateView):
+class checkclient(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ConsultarCliente
     template_name = "usuario/cliente/checkclient.html"
@@ -151,7 +153,7 @@ class checkclient(SuccessMessageMixin, UpdateView):
         return context
 
 #CONSULTAR PQRS DEL CLIENTE
-class checkpqrslist(ListView):
+class checkpqrslist(AuthenticatedClienteMixin, ListView):
     model = PQS
     template_name = "usuario/cliente/checkpqrslist.html"
     
@@ -161,4 +163,3 @@ class checkpqrslist(ListView):
         reclamo = Reclamo.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codReclamo','descripcion','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
-
