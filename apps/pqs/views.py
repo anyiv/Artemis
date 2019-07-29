@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import PQS
 from .forms import CrearPeticion, CrearQueja, CrearSugerencia
-from Artemis.mixin import AuthenticatedClienteMixin
+from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin
 
 # Create your views here.
 
@@ -60,6 +60,12 @@ def atc_createsuggestion(request):
 
 
 #CONSULTAR PQS CLIENTE
-class check_pqs(AuthenticatedClienteMixin, DetailView):
+class check_pqs(AuthenticatedClienteGPQSMixin, DetailView):
     model = PQS
     template_name= "pqs/check_pqs.html"
+
+
+#ATENDER PQS
+class attendpqs(DetailView):
+    model = PQS
+    template_name = "pqs/attendpqs.html"

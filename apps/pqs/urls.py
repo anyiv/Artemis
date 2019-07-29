@@ -9,5 +9,6 @@ urlpatterns = [
     path('queja/atc_registrar/', views.atc_createcomplaint, name='atc_createcomplaint'),
     path('sugerencia/registrar/', views.createsuggestion.as_view(), name='createsuggestion'),
     path('sugerencia/atc_registrar/', views.atc_createsuggestion, name='atc_createsuggestion'),
-    path('cliente/pqs/consulta/<pk>/', views.check_pqs.as_view(), name='check_pqs'),
+    path('pqs/consulta/<pk>/', views.check_pqs.as_view(), name='check_pqs'),
+    path('pqs/atender/<pk>/', views.attendpqs.as_view(), name='attendpqs'),
 ]

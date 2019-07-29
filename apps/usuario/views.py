@@ -29,7 +29,7 @@ def dashboard_checker(request):
     elif request.user.codTipoUser.codTipoUser == 'ger':
         return redirect('inicio/gerente/')
 
-class dashboard_gestreclamo(AuthenticatedGestorReclamosMixin, DetailView):
+class dashboard_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
     model = Reclamo
     template_name = "usuario/gestreclamo/dashboard_gestreclamo.html"
 
@@ -54,8 +54,18 @@ class dashboard_atencioncli(AuthenticatedAtClienteMixin, ListView):
         return context
 
 
-def dashboard_gestorPQS(request):
-    return render(request, 'usuario/gestpqs/dashboard_gestorpqs.html', {})
+class dashboard_gestorPQS(ListView):
+    model = PQS
+    template_name = "usuario/gestpqs/dashboard_gestorpqs.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(dashboard_gestorPQS, self).get_context_data(**kwargs)
+        pqs = PQS.objects.values('codPQS','nombreUsuario','fechaRegistro','categoria','estatus')
+        context['object_list'] = pqs.order_by('-fechaRegistro')
+        context['cant_pet'] = PQS.objects.filter(categoria='P',estatus='P').count()
+        context['cant_que'] = PQS.objects.filter(categoria='Q',estatus='P').count()
+        context['cant_sug'] = PQS.objects.filter(categoria='S',estatus='P').count()
+        return context
 
 def dashboard_tecnico(request):
     return render(request, 'usuario/tecnico/dashboard_tecnico.html', {})

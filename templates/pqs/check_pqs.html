@@ -31,6 +31,21 @@
                             </div>
                         </div>
                     </div>
+                    {% if user.codTipoUser.codTipoUser == 'gpqs' %}
+                     <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Nombre de Usuario</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ pqs.nombreUsuario }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
@@ -99,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+                    {% if user.codTipoUser.codTipoUser == 'cli' %}
                     <div class="row clearfix">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
@@ -112,6 +128,32 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
+                    {% if user.codTipoUser.codTipoUser == 'gpqs' %}
+                    <div class="row clearfix">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'dashboard_gestorPQS' %} ">
+                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'attendpqs' pqs.codPQS %}">
+                                        <center><button type="button" class="btn bg-green waves-effect">Atender</button>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
