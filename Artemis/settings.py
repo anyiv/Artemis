@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django_cleanup',
     'apps.pqs',
     'apps.usuario.templatetags',
-    'django_inlinecss',
 ]
 
 MIDDLEWARE = [
