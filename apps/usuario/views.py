@@ -46,10 +46,6 @@ class dashboard_atencioncli(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(dashboard_atencioncli, self).get_context_data(**kwargs)
-        context['cant_pet'] = PQS.objects.filter(categoria='P').count()
-        context['cant_que'] = PQS.objects.filter(categoria='Q').count()
-        context['cant_rec'] = Reclamo.objects.count()
-        context['cant_sug'] = PQS.objects.filter(categoria='S').count()
         pqs = PQS.objects.values('codPQS','nombreUsuario','fechaRegistro','categoria','estatus')
         reclamo = Reclamo.objects.values('codReclamo','nombreUsuario','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
