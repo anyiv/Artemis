@@ -175,6 +175,12 @@
                     </li>
                 </ul>
             </li>
+            <li id="configuracion" class="">
+                <a href="{% url 'externaldata' %}">
+                    <i class="material-icons">sync</i>
+                    <span>Datos Externos</span>
+                </a>
+            </li>
             {% endif %}
 
             {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}

@@ -27,6 +27,7 @@ urlpatterns = [
     path('reclamo/', include('apps.reclamo.urls')),
     path('resp_predefinida/', include('apps.resp_predefinida.urls')),
     path('pqs/', include('apps.pqs.urls')),
+    path('datosexternos/', include('apps.datos_externos.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -61,7 +61,8 @@
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
-                            <input type="checkbox" id="marcar" style="border: 2px solid #000000;background-color: #000000;" checked />
+                            <input type="checkbox" id="marcar"
+                                style="border: 2px solid #000000;background-color: #000000;" checked />
                             <label for="marcar">Marcar</label>
                         </div>
                     </div>
@@ -79,10 +80,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <div class="button-demo">
+                                <div class="button-demo js-modal-buttons">
                                     <a href="#">
-                                        <center><button type="button" class="btn bg-green waves-effect">Enviar
-                                                respuesta</button>
+                                        <center><button type="button"
+                                                class="btn bg-green waves-effect">Responder</button>
                                         </center>
                                     </a>
                                 </div>
@@ -94,6 +95,27 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros
+                vestibulum ut. Ut accumsan
+                vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

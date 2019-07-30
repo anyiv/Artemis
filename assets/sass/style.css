@@ -1789,6 +1789,10 @@ section.content {
   background-color: #F44336 !important;
   color: #fff;
 }
+.bg-blue-dark {
+  background-color: #00072D!important;
+  color: #fff;
+}
 
 .bg-red .content .text,
 .bg-red .content .number {
