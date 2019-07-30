@@ -11,4 +11,5 @@ urlpatterns = [
     path('cambiarclave/<uidb64>/<token>/', PasswordResetConfirmView.as_view() , name='password_reset_confirm'),
     path('correo_enviado/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('contrasenna_cambiada/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('ajax/validar_identidad/', views.validar_cliente, name='validar_cliente'),
 ]

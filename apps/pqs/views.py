@@ -4,10 +4,9 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import PQS
+from apps.usuario.models import User
 from .forms import CrearPeticion, CrearQueja, CrearSugerencia
-from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin
-
-# Create your views here.
+from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin, AuthenticatedAtClienteMixin
 
 #PETICION
 class createpetition(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -32,8 +31,12 @@ class createpetition(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView)
 def checkpetition(request):
     return render(request, 'peticion/checkpetition.html', {})
 
-def atc_createpetition(request):
-    return render(request, 'peticion/atc_createpetition.html', {})
+class atc_createpetition(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearPeticion
+    template_name = "peticion/atc_createpetition.html"
+    success_url = reverse_lazy('atc_createpetition')
+    success_message = "e"
 
 #QUEJA
 class createcomplaint(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -43,9 +46,12 @@ class createcomplaint(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView
     success_url = reverse_lazy('createcomplaint')
     success_message = "e"
 
-def atc_createcomplaint(request):
-    return render(request, 'queja/atc_createcomplaint.html', {})
-
+class atc_createcomplaint(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearQueja
+    template_name = "queja/atc_createcomplaint.html"
+    success_url = reverse_lazy('atc_createcomplaint')
+    success_message = "e"
 
 #SUGERENCIA
 class createsuggestion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -55,9 +61,12 @@ class createsuggestion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateVie
     success_url = reverse_lazy('createsuggestion')
     success_message = "e"
 
-def atc_createsuggestion(request):
-    return render(request, 'sugerencia/atc_createsuggestion.html', {})
-
+class atc_createsuggestion(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearSugerencia
+    template_name = "sugerencia/atc_createsuggestion.html"
+    success_url = reverse_lazy('atc_createsuggestion')
+    success_message = "e"
 
 #CONSULTAR PQS CLIENTE
 class check_pqs(AuthenticatedClienteGPQSMixin, DetailView):

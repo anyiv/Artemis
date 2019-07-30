@@ -14,6 +14,8 @@
         </h2>
     </div>
     <div class="body">
+    <form method="POST" id="formulario">
+    {% csrf_token %}
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-md-6">
@@ -30,7 +32,7 @@
                                 <p>
                                     <b>Nro de identificación</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="Ingrese el nro de idenficación.">
+                                <input type="text" class="form-control" name="identificacion" id="identificacion" placeholder="Ingrese el nro de idenficación.">
                             </div>
                         </div>
                     </div>
@@ -40,19 +42,20 @@
                                 <b>Buscar</b>
                             </p>
                             <div class="button-demo">
-                                <button type="button" class="btn bg-grey waves-effect waves-effect btn-md">
+                                <button type="button" onclick="javascript:validarIdentidad();" class="btn bg-grey waves-effect waves-effect btn-md">
                                     <i class="material-icons">search</i>
                                 </button>
                             </div>
                         </div>
                     </div>
+                    {{ form.nombreUsuario }}
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-line">
                                 <p>
                                     <b>Nombre</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="Nombre del cliente.">
+                                <input type="text" id="nombre" class="form-control" placeholder="Nombre del cliente." readonly>
                             </div>
                         </div>
                     </div>
@@ -62,7 +65,7 @@
                                 <p>
                                     <b>Apellido</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="Apellido del cliente.">
+                                <input type="text" id="apellido" class="form-control" placeholder="Apellido del cliente." readonly>
                             </div>
                         </div>
                     </div>
@@ -72,7 +75,7 @@
                                 <p>
                                     <b>Dirección</b>
                                 </p>
-                                <input type="text" class="form-control" placeholder="Dirección del cliente.">
+                                <input type="text" id="direccion" class="form-control" placeholder="Dirección del cliente." readonly>
                             </div>
                         </div>
                     </div>
@@ -91,51 +94,58 @@
                                 <b>Descripción</b>
                             </p>
                             <div class="form-line">
-                                <textarea rows="6" class="form-control no-resize"
-                                    placeholder="Por favor escriba su Sugerencia aquí..."></textarea>
+                                {{ form.descripcion }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'dashboard_atencioncli' %}">
-                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                        </a>
+        <input type="hidden" name="categoria" id="id_categoria" class="form-control" value="S" required>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <a href="{% url 'dashboard_atencioncli' %}">
+                                <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="button-demo">
+                            <button type="button" onclick="javascript:confirmarSugerencia();" class="btn bg-green waves-effect">Enviar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 </div>
 
 
 {% endblock %}
 
 {% block javascript %}
-
-
+<script src="{% static 'js/verificar_cliente.js' %}" type="text/javascript"></script> 
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>exitoSugerencia();</script>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}
