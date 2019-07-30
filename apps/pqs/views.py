@@ -4,10 +4,9 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import PQS
+from apps.usuario.models import User
 from .forms import CrearPeticion, CrearQueja, CrearSugerencia
-from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin
-
-# Create your views here.
+from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin, AuthenticatedAtClienteMixin
 
 #PETICION
 class createpetition(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -32,8 +31,12 @@ class createpetition(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView)
 def checkpetition(request):
     return render(request, 'peticion/checkpetition.html', {})
 
-def atc_createpetition(request):
-    return render(request, 'peticion/atc_createpetition.html', {})
+class atc_createpetition(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearPeticion
+    template_name = "peticion/atc_createpetition.html"
+    success_url = reverse_lazy('atc_createpetition')
+    success_message = "e"
 
 #QUEJA
 class createcomplaint(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
