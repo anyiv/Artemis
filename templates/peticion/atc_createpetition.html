@@ -125,7 +125,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="button-demo">
-                                <button type="button" onclick="javascript:confirmarSeleccion();" class="btn bg-green waves-effect">Enviar</button>
+                                <button type="button" onclick="javascript:confirmarPeticion();" class="btn bg-green waves-effect">Enviar</button>
                             </div>
                         </div>
                     </div>
@@ -141,10 +141,11 @@
 
 {% block javascript %}
 <script src="{% static 'js/verificar_cliente.js' %}" type="text/javascript"></script> 
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
 {% if messages %}
 {% for m in messages %}
 {% if m.message == "e" %}
-<script>exito();</script>
+<script>exitoPeticion();</script>
 {% endif %}
 {% endfor %}
 {% endif %}

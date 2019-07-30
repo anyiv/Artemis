@@ -32,7 +32,7 @@ class CrearQueja(forms.ModelForm):
         widgets = {
             'categoria' : forms.TextInput(attrs={'class':'form-control'}),
             'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Por favor ingrese su queja aquí...'}),
-            'nombreUsuario' : forms.TextInput(attrs={'type':'hidden'}),
+            'nombreUsuario' : forms.TextInput(attrs={'type':'hidden','id':'nombreusuario'}),
         }
 
 class CrearSugerencia(forms.ModelForm):
@@ -49,5 +49,5 @@ class CrearSugerencia(forms.ModelForm):
         widgets = {
             'categoria' : forms.TextInput(attrs={'class':'form-control'}),
             'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Por favor ingrese su sugerencia aquí...'}),
-            'nombreUsuario' : forms.TextInput(attrs={'type':'hidden'}),
+            'nombreUsuario' : forms.TextInput(attrs={'type':'hidden','id':'nombreusuario'}),
         }

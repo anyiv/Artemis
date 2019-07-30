@@ -46,9 +46,12 @@ class createcomplaint(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView
     success_url = reverse_lazy('createcomplaint')
     success_message = "e"
 
-def atc_createcomplaint(request):
-    return render(request, 'queja/atc_createcomplaint.html', {})
-
+class atc_createcomplaint(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearQueja
+    template_name = "queja/atc_createcomplaint.html"
+    success_url = reverse_lazy('atc_createcomplaint')
+    success_message = "e"
 
 #SUGERENCIA
 class createsuggestion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -58,9 +61,12 @@ class createsuggestion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateVie
     success_url = reverse_lazy('createsuggestion')
     success_message = "e"
 
-def atc_createsuggestion(request):
-    return render(request, 'sugerencia/atc_createsuggestion.html', {})
-
+class atc_createsuggestion(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
+    model = PQS
+    form_class = CrearSugerencia
+    template_name = "sugerencia/atc_createsuggestion.html"
+    success_url = reverse_lazy('atc_createsuggestion')
+    success_message = "e"
 
 #CONSULTAR PQS CLIENTE
 class check_pqs(AuthenticatedClienteGPQSMixin, DetailView):

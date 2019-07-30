@@ -32,31 +32,3 @@
             });
         }
     };
-
-    function confirmarSeleccion() {
-        if ($("#nombreusuario").val() != '') {
-            swal({
-                title: "Confirmar envío",
-                text: "¿Está seguro que desea enviar la petición?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#58a05d",
-                confirmButtonText: "Sí",
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function(isConfirm) {
-                if (isConfirm) {
-                    formulario.submit();
-                } else {
-                    swal("Cancelada", "La petición no ha sido enviada.", "error");
-                }
-            });
-        } else {
-            swal("Error", "Debe cargar un cliente para poder enviar la petición", "warning");
-        }
-    }
-
-    function exito() {
-        swal("Enviada", "La petición ha sido enviada con éxito.", "success");
-    }
