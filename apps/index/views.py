@@ -16,7 +16,7 @@ from django.http import JsonResponse
 def validar_cliente(request):
     identidad = request.POST.get('identificacion', None)
 
-    ce = Cliente.objects.filter(identificacion=identidad).exists()
+    ce = Cliente.objects.filter(identificacion=identidad,estatus='A').exists()
     cliente = usuario = None
 
     if ce:

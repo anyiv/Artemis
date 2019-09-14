@@ -1789,10 +1789,6 @@ section.content {
   background-color: #F44336 !important;
   color: #fff;
 }
-.bg-blue-dark {
-  background-color: #00072D!important;
-  color: #fff;
-}
 
 .bg-red .content .text,
 .bg-red .content .number {
@@ -4297,6 +4293,18 @@ body {
   color: #555;
 }
 
+.info-box-2 {
+  background-color: #6a687a;
+}
+
+.info-box-2 .icon .i {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.info-box-2 .content .text, .info-box-2 .content .number {
+  color: #555;
+}
+
 /* Table ======================================= */
 #table-list_length {
   color: black;
@@ -4437,18 +4445,3 @@ html.ie11 .bs-searchbox .form-control {
   width: 90%;
 }
 /*# sourceMappingURL=style.css.map */
-
-.button-demo {
-  text-align: left;
-}
-
-@media (max-width: 767px){
-  .button-demo {
-    text-align: center;
-  }
-}
-
-.small {
-  font-size: smaller;
-  color: black;
-}

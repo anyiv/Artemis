@@ -20,4 +20,7 @@ urlpatterns = [
     path('empleados/lista/', views.employeelist.as_view(), name='employeelist'),
     path('empleados/ver/<pk>/', views.checkemployee.as_view(), name='checkemployee'),
     path('cliente/pqrs/lista/', views.checkpqrslist.as_view(), name='checkpqrslist'),
+    path('reporte/fallas/', views.fails_report, name='fails_report'),
+    path('reporte/satisfaccionclientes/', views.satisfaction_report, name='satisfaction_report'),
+     path('reporte/pqsmarcadas/', views.pqs_report, name='pqs_report'),
 ]

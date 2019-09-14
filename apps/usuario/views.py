@@ -173,3 +173,13 @@ class checkpqrslist(AuthenticatedClienteMixin, ListView):
         reclamo = Reclamo.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codReclamo','descripcion','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
+
+#REPORTES DEL GERENTE
+def fails_report(request):
+    return render(request, 'usuario/gerente/fails_report.html', {})
+
+def satisfaction_report(request):
+    return render(request, 'usuario/gerente/satisfaction_report.html', {})
+
+def pqs_report(request):
+    return render(request, 'usuario/gerente/pqs_report.html', {})

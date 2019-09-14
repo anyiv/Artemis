@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %}Bienvenido | Artemis {% endblock  %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Reporte de PQS marcadas como resaltantes por el Gestor de PQS <small style="color:#171d40; align-justify;">
+            </small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="body table-responsive">
+            <table id="table-list" class="table table-bordered nowrap" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Fecha de emisión</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Fecha de emisión</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>maaano_14</td>
+                        <td>2019/06/30</td>
+                        <td>probando</td>
+                        <td>P</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+
+
+{% block javascript %}
+
+{% endblock  %}
