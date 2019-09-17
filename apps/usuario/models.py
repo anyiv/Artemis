@@ -74,4 +74,4 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def enviarCorreo(self, asunto, linea1, linea2, linea3, nombre):
         contenido = render_to_string('correo_base.html',{'linea1':linea1,'linea2':linea2,'linea3':linea3,'nombre':nombre})
-        send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',self.correo,html_message=contenido)
+        send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',{self.correo},html_message=contenido)

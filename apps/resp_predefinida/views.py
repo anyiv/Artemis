@@ -10,36 +10,36 @@ from Artemis.mixin import AuthenticatedAdminMixin
 
 # Create your views here.
 
-class createpredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
+class crear_resp(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = RespuestaPredefinida
     form_class = IncluirRespuestaP
-    template_name = "resp_predefinida/createpredanswer.html"
-    success_url = reverse_lazy('createpredanswer')
+    template_name = "resp_predefinida/crear_resp.html"
+    success_url = reverse_lazy('crear_resp')
     success_message = "e"
 
-class predanswerlist(AuthenticatedAdminMixin, ListView):
+class lista_resp(AuthenticatedAdminMixin, ListView):
     model = RespuestaPredefinida
-    template_name = "resp_predefinida/predanswerlist.html"
+    template_name = "resp_predefinida/lista_resp.html"
 
     def get_context_data(self, **kwargs):
-        context = super(predanswerlist, self).get_context_data(**kwargs)
+        context = super(lista_resp, self).get_context_data(**kwargs)
         context['object_list'] = RespuestaPredefinida.objects.filter(estatus='A')
         return context
 
-class checkpredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class consultar_resp(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = RespuestaPredefinida
     form_class = ConsultarRespuestaP
-    template_name = "resp_predefinida/checkpredanswer.html"
-    success_url = reverse_lazy('predanswerlist')
+    template_name = "resp_predefinida/consultar_resp.html"
+    success_url = reverse_lazy('lista_resp')
     success_message = "e"
 
-class updatepredanswer(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class modificar_resp(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = RespuestaPredefinida
     form_class = ModificarRespuestaP
-    template_name = "resp_predefinida/updatepredanswer.html"
-    success_url = reverse_lazy('checkpredanswer')
+    template_name = "resp_predefinida/modificar_resp.html"
+    success_url = reverse_lazy('consultar_resp')
     success_message = "e"
 
     def get_success_url(self):
         id_cat = self.kwargs['pk']
-        return reverse_lazy('checkpredanswer', kwargs={'pk':id_cat})
+        return reverse_lazy('consultar_resp', kwargs={'pk':id_cat})

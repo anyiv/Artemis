@@ -11,66 +11,66 @@ from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin
 
 # Create your views here.
 
-def claimlist(request):
-    return render(request, 'reclamo/claimlist.html', {})
+def g_listareclamos(request):
+    return render(request, 'reclamo/g_listareclamos.html', {})
 
-def claimfinished(request):
-    return render(request, 'reclamo/claimfinished.html', {})
+def g_reclamosfinalizados(request):
+    return render(request, 'reclamo/g_reclamosfinalizados.html', {})
 
-def claimexpire(request):
-    return render(request, 'reclamo/claimexpire.html', {})
+def reclamosporvencer(request):
+    return render(request, 'reclamo/reclamosporvencer.html', {})
 
-def createclaim(request):
-    return render(request, 'reclamo/createclaim.html', {})
+def cli_crearReclamo(request):
+    return render(request, 'reclamo/cli_crearReclamo.html', {})
 
-def atc_createclaim(request):
-    return render(request, 'reclamo/atc_createclaim.html', {})
+def atc_crearReclamo(request):
+    return render(request, 'reclamo/atc_crearReclamo.html', {})
 
-def checkclaim(request):
-    return render(request, 'reclamo/checkclaim.html', {})
+def gt_consultarReclamo(request):
+    return render(request, 'reclamo/gt_consultarReclamo.html', {})
 
-class createclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
+class crearcatreclamo(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = Categoria
     form_class = IncluirCategoriaForm
-    template_name = "categoria_reclamo/createclaimcategory.html"
-    success_url = reverse_lazy('createclaimcategory')
+    template_name = "categoria_reclamo/crearcatreclamo.html"
+    success_url = reverse_lazy('crearcatreclamo')
     success_message = "e"
 
-def attendclaim(request):
-    return render(request, 'reclamo/attendclaim.html', {})
+def atenderReclamo(request):
+    return render(request, 'reclamo/atenderReclamo.html', {})
 
-class claimcategorylist(AuthenticatedAdminMixin, ListView):
+class listacatreclamo(AuthenticatedAdminMixin, ListView):
     model = Categoria
-    template_name = "categoria_reclamo/claimcategorylist.html"
+    template_name = "categoria_reclamo/listacatreclamo.html"
 
     def get_context_data(self, **kwargs):
-        context = super(claimcategorylist, self).get_context_data(**kwargs)
+        context = super(listacatreclamo, self).get_context_data(**kwargs)
         context['object_list'] = Categoria.objects.filter(estatus='A')
         return context
 
-class checkclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class consultarcatreclamo(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ConsultarCategoriaForm
-    template_name = "categoria_reclamo/checkclaimcategory.html"
-    success_url = reverse_lazy('claimcategorylist')
+    template_name = "categoria_reclamo/consultarcatreclamo.html"
+    success_url = reverse_lazy('listacatreclamo')
     success_message = "e"
 
-def finishedclaimlist(request):
-    return render(request, 'reclamo/finishedclaimlist.html', {})
+def cli_reclamosfinalizados(request):
+    return render(request, 'reclamo/cli_reclamosfinalizados.html', {})
 
-def satisfactionsurvey(request):
-    return render(request, 'reclamo/satisfactionsurvey.html', {})
+def encuesta_cliente(request):
+    return render(request, 'reclamo/encuesta_cliente.html', {})
 
-class updateclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class modificarcatreclamo(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ActualizarCategoriaForm
-    template_name = "categoria_reclamo/updateclaimcategory.html"
+    template_name = "categoria_reclamo/modificarcatreclamo.html"
     success_message = "e"
 
     def get_success_url(self):
         id_cat = self.kwargs['pk']
-        return reverse_lazy('checkclaimcategory', kwargs={'pk':id_cat})
+        return reverse_lazy('consultarcatreclamo', kwargs={'pk':id_cat})
 
-class check_claimcli(AuthenticatedClienteMixin, DetailView):
+class cli_consultarReclamo(AuthenticatedClienteMixin, DetailView):
     model = Reclamo
-    template_name = "reclamo/check_claimcli.html"
+    template_name = "reclamo/cli_consultarReclamo.html"

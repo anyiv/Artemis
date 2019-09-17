@@ -1,0 +1,70 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Consultar PQRS emitidas | Artemis {% endblock %}
+
+<!--LISTADO DE QPRS ENVIADAS PARA USUARIO: CLIENTE-->
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            PQRS enviados<small style="color:#171d40; align-justify;">Peticiones, quejas, reclamos y sugenrencias enviados.</small>
+        </h2>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table id="tabla-atcli" class="table table-bordered nowrap" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Fecha de emisión</th>
+                        <th>Estado</th>
+                        <td>Opciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pqrs in object_list %}
+                    {% if pqrs.categoria == 'P' or pqrs.categoria == 'Q' or pqrs.categoria == 'S' %}
+                    <tr>
+                        <td>{{ pqrs.codPQS }}</td>
+                        <td>{% if pqrs.categoria == 'P' %}Petición{% elif pqrs.categoria == 'Q' %}Queja{% elif pqrs.categoria == 'S'%}Sugerencia{% endif %}</td>
+                        <td>{{ pqrs.descripcion|truncatewords:5 }}</td>
+                        <td>{{ pqrs.fechaRegistro|date:'l d-m-Y' }} a las {{ pqrs.fechaRegistro|date:'h:i a' }}</td>
+                        <td>{% if pqrs.estatus == 'P' %}Pendiente{% elif pqrs.estatus == 'M' %}Marcada{% elif pqrs.estatus == 'A' %}Atendida{% endif %}</td>
+                        <td>
+                            <center><a href="{% url 'consultarpqs' pqrs.codPQS %}"><button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></a></center>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ pqrs.codPQS }}</td>
+                        <td>Reclamo</td> 
+                        <td>{{ pqrs.descripcion|truncatewords:5 }}</td>
+                        <td>{{ pqrs.fechaRegistro|date:'l d-m-Y' }} a las {{ pqrs.fechaRegistro|date:'h:i a' }}</td>
+                        <td>{% if pqrs.estatus == 'P' %}Pendiente{% elif pqrs.estatus == 'R' %}En Proceso{% elif pqrs.estatus == 'F' %}Finalizado{% endif %}</td>
+                        <td>
+                            <center><a href="{% url 'cli_consultarReclamo' pqrs.codPQS %}">
+                            <button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></a></center>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/pages/tables/tabla-atcli.js' %}" type="text/javascript"></script>
+{% endblock %}

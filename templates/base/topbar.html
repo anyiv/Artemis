@@ -6,13 +6,13 @@
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
-            <a class="navbar-brand" href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'dashboard_cliente' %} 
-                {% elif user.codTipoUser.codTipoUser == 'admin' %} {% url 'dashboard_admin' %} 
-                {% elif user.codTipoUser.codTipoUser == 'tc' %} {% url 'dashboard_tecnico' %} 
-                {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'dashboard_gestreclamo' %} 
-                {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'dashboard_gestorPQS' %} 
-                {% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'dashboard_atencioncli' %} 
-                {% elif user.codTipoUser.codTipoUser == 'ger' %} {% url 'dashboard_gerente' %} {% endif %}">
+            <a class="navbar-brand" href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'inicio_cliente' %} 
+                {% elif user.codTipoUser.codTipoUser == 'admin' %} {% url 'inicio_admin' %} 
+                {% elif user.codTipoUser.codTipoUser == 'tc' %} {% url 'inicio_tecnico' %} 
+                {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'inicio_gestreclamo' %} 
+                {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'inicio_gestorpqs' %} 
+                {% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'inicio_atencioncli' %} 
+                {% elif user.codTipoUser.codTipoUser == 'ger' %} {% url 'inicio_gerente' %} {% endif %}">
                 <img class="img-responsive" src="{% static 'images/logo.png' %}"
                     style="width:150px; display:table-cell; margin-top:-8px">
             </a>

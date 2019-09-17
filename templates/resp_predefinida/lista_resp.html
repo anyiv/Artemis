@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Crear respuesta predefinida | Artemis {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de Respuestas Predefinidas
+        </h2>
+    </div>
+    <div class="row clearfix">
+        <div class="col-xs-11">
+        </div>
+        <div class="col-xs-1">
+        <br/>
+            <a href="{% url 'crear_resp' %}"><button type="button" class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                    class="material-icons">add</i></button></a>
+        </div>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table id="table-list" class="table table-bordered table-hover nowrap" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rp in object_list %}
+                    <tr>
+                        <td> {{ rp.codRespuestaP }} </td>
+                        <td> {{ rp.descripcion|truncatewords:20 }} </td>
+                        <td> {{ rp.get_categoria_display }} </td>
+                        <td>
+                            <center><a href="{% url 'consultar_resp' rp.codRespuestaP %}">
+                                    <button type="button"
+                                        class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                            class="material-icons">remove_red_eye</i></button></a></center>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

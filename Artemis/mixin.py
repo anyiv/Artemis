@@ -58,6 +58,12 @@ def gpqs_cli(user):
     return (user.is_authenticated == True) and ((user.codTipoUser.codTipoUser == 'cli') or (user.codTipoUser.codTipoUser == 'gpqs'))
 
 """
+Verifica si el usuario Inicio Sesión y es Cliente o Gestor PQS o Atención al Cliente
+"""
+def gpqs_atcli(user):
+    return (user.is_authenticated == True) and ((user.codTipoUser.codTipoUser == 'cli') or (user.codTipoUser.codTipoUser == 'gpqs') or (user.codTipoUser.codTipoUser == 'atc'))
+
+"""
 Mixin que verifica si el Usuario Inicio Sesion y 
 si no lo hizo lo devuelve al index
 """
@@ -156,6 +162,16 @@ class AuthenticatedAtClienteMixin(object):
     @method_decorator(user_passes_test(user_atc, login_url='index'))
     def dispatch(self, request, *args, **kwargs):
         return super(AuthenticatedAtClienteMixin, self).dispatch(request, *args, **kwargs)
+
+"""
+Mixin que verifica si el Usuario Inicio Sesion 
+y es Gestor PQS, Cliente o Atención al CLiente, si no lo es, 
+lo devuelve a la pagina de inico para los usuarios
+"""
+class AuthenticatedGPQSAtClienteClienteMixin(object):
+    @method_decorator(user_passes_test(gpqs_atcli, login_url='index'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(AuthenticatedGPQSAtClienteClienteMixin, self).dispatch(request, *args, **kwargs)
 
 """
 NOTA: Para la utilizacion de los Mixins en las vistas 

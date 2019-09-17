@@ -29,37 +29,37 @@ def dashboard_checker(request):
     elif request.user.codTipoUser.codTipoUser == 'ger':
         return redirect('inicio/gerente/')
 
-class dashboard_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
+class inicio_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
     model = Reclamo
-    template_name = "usuario/gestreclamo/dashboard_gestreclamo.html"
+    template_name = "usuario/gestreclamo/inicio_gestreclamo.html"
 
-class dashboard_cliente(AuthenticatedClienteMixin, ListView):
+class inicio_cliente(AuthenticatedClienteMixin, ListView):
     model = Reclamo
-    template_name = "usuario/cliente/dashboard_cliente.html"
+    template_name = "usuario/cliente/inicio_cliente.html"
 
     def get_context_data(self, **kwargs):
-        context = super(dashboard_cliente, self).get_context_data(**kwargs)
+        context = super(inicio_cliente, self).get_context_data(**kwargs)
         context['object_list'] = Reclamo.objects.filter(nombreUsuario = self.request.user.nombreUsuario, estatus = 'P')
         return context
 
-class dashboard_atencioncli(AuthenticatedAtClienteMixin, ListView):
+class inicio_atencioncli(AuthenticatedAtClienteMixin, ListView):
     model = User
-    template_name = "usuario/atencioncli/dashboard_atencioncli.html"
+    template_name = "usuario/atencioncli/inicio_atencioncli.html"
     
     def get_context_data(self, **kwargs):
-        context = super(dashboard_atencioncli, self).get_context_data(**kwargs)
+        context = super(inicio_atencioncli, self).get_context_data(**kwargs)
         pqs = PQS.objects.values('codPQS','nombreUsuario','fechaRegistro','categoria','estatus')
         reclamo = Reclamo.objects.values('codReclamo','nombreUsuario','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
 
 
-class dashboard_gestorPQS(ListView):
+class inicio_gestorpqs(ListView):
     model = PQS
-    template_name = "usuario/gestpqs/dashboard_gestorpqs.html"
+    template_name = "usuario/gestpqs/inicio_gestorpqs.html"
     
     def get_context_data(self, **kwargs):
-        context = super(dashboard_gestorPQS, self).get_context_data(**kwargs)
+        context = super(inicio_gestorpqs, self).get_context_data(**kwargs)
         pqs = PQS.objects.values('codPQS','nombreUsuario','fechaRegistro','categoria','estatus')
         context['object_list'] = pqs.order_by('-fechaRegistro')
         context['cant_pet'] = PQS.objects.filter(categoria='P',estatus='P').count()
@@ -67,119 +67,117 @@ class dashboard_gestorPQS(ListView):
         context['cant_sug'] = PQS.objects.filter(categoria='S',estatus='P').count()
         return context
 
-def dashboard_tecnico(request):
-    return render(request, 'usuario/tecnico/dashboard_tecnico.html', {})
+def inicio_tecnico(request):
+    return render(request, 'usuario/tecnico/inicio_tecnico.html', {})
 
-class dashboard_admin(AuthenticatedAdminMixin, ListView):
+class inicio_admin(AuthenticatedAdminMixin, ListView):
     model = User
-    template_name = "usuario/admin/dashboard_admin.html"
+    template_name = "usuario/admin/inicio_admin.html"
 
     def get_context_data(self, **kwargs):
-        context = super(dashboard_admin, self).get_context_data(**kwargs)
+        context = super(inicio_admin, self).get_context_data(**kwargs)
         context['cant_categorias'] = Categoria.objects.filter(estatus='A').count()
         context['cant_empleados'] = Empleado.objects.filter(estatus='A').count()
         context['cant_clientes'] = Cliente.objects.filter(estatus='A').count()
         context['cant_rp'] = RespuestaPredefinida.objects.filter(estatus='A').count()
         return context
 
-def dashboard_gerente(request):
-    return render(request, 'usuario/gerente/dashboard_gerente.html', {})
+def inicio_gerente(request):
+    return render(request, 'usuario/gerente/inicio_gerente.html', {})
 
-class createemployee(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
+class crear_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = CrearUsuario
-    template_name = "usuario/empleado/createemployee.html"
-    success_url = reverse_lazy('createemployee')
+    template_name = "usuario/empleado/crear_empleado.html"
+    success_url = reverse_lazy('crear_empleado')
     success_message = "e"
 
     def get_context_data(self, **kwargs):
-        context = super(createemployee, self).get_context_data(**kwargs)
+        context = super(crear_empleado, self).get_context_data(**kwargs)
         context['tipousers'] = TipoUser.objects.filter(estatus='A').exclude(codTipoUser='cli')
         return context
 
-def pqslist(request):
-    return render(request, 'usuario/gestpqs/pqslist.html', {})
+def g_listapqs(request):
+    return render(request, 'usuario/gestpqs/g_listapqs.html', {})
 
-def pqrslist(request):
-    return render(request, 'usuario/atencioncli/pqrslist.html', {})
 
-def profile(request):
-    return render(request, 'usuario/profile.html', {})
+def perfil(request):
+    return render(request, 'usuario/perfil.html', {})
 
-class updateprofile(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class modificar_perfil(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ActualizarUsuarioForm
-    template_name = "usuario/updateprofile.html"
-    success_url = reverse_lazy('profile')
+    template_name = "usuario/modificar_perfil.html"
+    success_url = reverse_lazy('perfil')
     success_message = "e"
 
     def get_object(self, queryset=None):
         return self.request.user
 
-class employeelist(AuthenticatedAdminMixin, ListView):
+class lista_empleados(AuthenticatedAdminMixin, ListView):
     model = User
-    template_name = "usuario/empleado/employeelist.html"
+    template_name = "usuario/empleado/lista_empleados.html"
 
     def get_context_data(self, **kwargs):
-        context = super(employeelist, self).get_context_data(**kwargs)
+        context = super(lista_empleados, self).get_context_data(**kwargs)
         context['object_list'] = User.objects.filter(idCliente = None, estatus='A')
         return context
 
-class checkemployee(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class consultar_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ConsultarEmpleado
-    template_name = "usuario/empleado/checkemployee.html"
-    success_url = reverse_lazy('employeelist')
+    template_name = "usuario/empleado/consultar_empleado.html"
+    success_url = reverse_lazy('lista_empleados')
     success_message = "e"
     
     def get_context_data(self, **kwargs):
-        context = super(checkemployee, self).get_context_data(**kwargs)
+        context = super(consultar_empleado, self).get_context_data(**kwargs)
         pk = self.kwargs['pk']
         context['empleado'] = User.objects.get(nombreUsuario = pk)
         context['user'] = self.request.user
         return context
 
-class clientlist(AuthenticatedAdminMixin, ListView):
+class listacliente(AuthenticatedAdminMixin, ListView):
     model = User
-    template_name = "usuario/cliente/clientlist.html"
+    template_name = "usuario/cliente/listacliente.html"
 
     def get_context_data(self, **kwargs):
-        context = super(clientlist, self).get_context_data(**kwargs)
+        context = super(listacliente, self).get_context_data(**kwargs)
         context['object_list'] = User.objects.filter(idEmpleado = None)
         return context        
 
-class checkclient(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
+class consultarcliente(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = ConsultarCliente
-    template_name = "usuario/cliente/checkclient.html"
-    success_url = reverse_lazy('clientlist')
+    template_name = "usuario/cliente/consultarcliente.html"
+    success_url = reverse_lazy('listacliente')
     success_message = "e"
 
     def get_context_data(self, **kwargs):
-        context = super(checkclient, self).get_context_data(**kwargs)
+        context = super(consultarcliente, self).get_context_data(**kwargs)
         pk = self.kwargs['pk']
         context['cliente'] = User.objects.get(nombreUsuario = pk)
         context['user'] = self.request.user
         return context
 
 #CONSULTAR PQRS DEL CLIENTE
-class checkpqrslist(AuthenticatedClienteMixin, ListView):
+class lista_pqrscliente(AuthenticatedClienteMixin, ListView):
     model = PQS
-    template_name = "usuario/cliente/checkpqrslist.html"
+    template_name = "usuario/cliente/lista_pqrscliente.html"
     
     def get_context_data(self, **kwargs):
-        context = super(checkpqrslist, self).get_context_data(**kwargs)
+        context = super(lista_pqrscliente, self).get_context_data(**kwargs)
         pqs = PQS.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codPQS','descripcion','fechaRegistro','categoria','estatus')
         reclamo = Reclamo.objects.filter(nombreUsuario=self.request.user.nombreUsuario).values('codReclamo','descripcion','fechaRegistro','codCategoria','estatus')
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
 
 #REPORTES DEL GERENTE
-def fails_report(request):
-    return render(request, 'usuario/gerente/fails_report.html', {})
+def reporte_fallas(request):
+    return render(request, 'usuario/gerente/reporte_fallas.html', {})
 
-def satisfaction_report(request):
-    return render(request, 'usuario/gerente/satisfaction_report.html', {})
+def reporte_encuestas(request):
+    return render(request, 'usuario/gerente/reporte_encuestas.html', {})
 
-def pqs_report(request):
-    return render(request, 'usuario/gerente/pqs_report.html', {})
+def reporte_pqs(request):
+    return render(request, 'usuario/gerente/reporte_pqs.html', {})

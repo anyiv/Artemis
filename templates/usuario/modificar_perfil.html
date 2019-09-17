@@ -1,0 +1,115 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Modificar perfil | Artemis {% endblock  %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12">
+        <div class="profile profile-card">
+            <div class="profile-header">&nbsp;</div>
+            <div class="profile-body">
+                <div class="image-area">
+                    <img class="image-responsive" src="{{ user.foto.url }}"
+                        alt="Foto de Perfil de {{ user.nombreUsuario }}" style="width:200px;height:200px;object-fit:cover;"/>
+                </div>
+                <div class="content-area">
+                    <h3>{% if user.idCliente is not none %}
+                        {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
+                        {% else %}
+                        {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
+                        {% endif %}</h3>
+                    <p></p>
+                    <p>{{ user.codTipoUser }}</p>
+                    <small>Si deseas modificar tus datos personales (Dirección, teléfono, nombre, apellido), te invitamos a que te acerques a una de nuestras oficinas.</small>
+                </div>
+            </div>
+            <form method="POST" id="formulario" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-footer">
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Correo</b>
+                                </p>
+                                {{ form.correo }}
+                                {{ form.correo.errors }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class=" col-md-4 "></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p>
+                                    <b>Foto de Perfil</b>
+                                </p>
+                                    {{ form.foto }}
+                                    {{ form.foto.errors }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a
+                                        href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'inicio_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'inicio_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'inicio_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'inicio_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'inicio_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'inicio_gestorpqs' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'inicio_gestreclamo' %} {% endif %}">
+                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <button type="button" class="btn bg-green waves-effect" onclick="javascript:confirmarSeleccion();">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar modificación",
+            text: "¿Está seguro que desea modificar su usuario?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "Su usuario no ha sido modificado.", "error");
+            }
+        });
+    }
+</script>
+{% endblock javascript %}

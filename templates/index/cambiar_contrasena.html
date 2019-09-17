@@ -1,0 +1,94 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Artemis {% endblock %}
+
+{% block content %}
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Cambiar Contraseña Actual
+                    </h2>
+                </div>
+                <div class="body">
+                    <form method="POST" id="formulario">
+                        {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Contraseña Nueva</b>
+                                        </p>
+                                        <input type="password" id="id_new_password_1" name="new_password_1"
+                                            class="form-control" placeholder="Ingrese la nueva contraseña aquí..."
+                                            required="">
+                                    </div>
+                                </div>
+                                {{ form.new_password_1.errors }}
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Confirmar contraseña</b>
+                                        </p>
+                                        <input type="password" id="id_new_password_2" name="new_password_2"
+                                            class="form-control" placeholder="Confirme la nueva contraseña aquí..."
+                                            required="">
+                                    </div>
+                                </div>
+                                {{ form.new_password_2.errors }}
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a
+                                            href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'inicio_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'inicio_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'inicio_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'inicio_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'inicio_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'inicio_gestorpqs' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'inicio_gestreclamo' %} {% endif %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="submit" class="btn bg-green waves-effect">Cambiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Atender PQS | Artemis{% endblock  %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Atender
+                        {% if pqs.categoria == 'P' %} Petición
+                        {% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Código</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <p>
+                                <b>Nombre de Usuario</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ pqs.nombreUsuario }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Descripción</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="9" class="form-control no-resize"
+                                        readonly>{{ pqs.descripcion }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <div class="demo-checkbox">
+                                <input type="checkbox" id="md_checkbox_40" class="filled-in chk-col-black"  />
+                                <label for="md_checkbox_40" style="color:black;font-size:1em;">Marcar</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'consultarpqs' pqs.codPQS %} ">
+                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo js-modal-buttons">
+
+                                    <center><button type="button" data-color="blue-grey"
+                                            class="btn bg-green waves-effect">Responder</button>
+                                    </center>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Responder a cliente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <p>
+                            <b>Selecciones respuesta predefinida:</b> <!--Recordar implementar el contador-->
+                        </p>
+                        <select class="form-control">
+                        {% for rp in resp %}
+                            <option>{{ rp.descripcion }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row clearfix" style="margin-top:1.5em;">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <textarea rows="12" class="form-control no-resize"
+                                    placeholder="Escriba su respuesta aquí." maxlength=500></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-link waves-effect">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
+{% endblock javascript %}

@@ -2,14 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('peticion/registrar/',views.createpetition.as_view(), name='createpetition'),
-    path('peticion/atc_registrar/',views.atc_createpetition.as_view(), name='atc_createpetition'),
-    path('peticion/consultar/',views.checkpetition, name='checkpetition'),
-    path('queja/registrar/', views.createcomplaint.as_view(), name='createcomplaint'),
-    path('queja/atc_registrar/', views.atc_createcomplaint.as_view(), name='atc_createcomplaint'),
-    path('sugerencia/registrar/', views.createsuggestion.as_view(), name='createsuggestion'),
-    path('sugerencia/atc_registrar/', views.atc_createsuggestion.as_view(), name='atc_createsuggestion'),
-    path('pqs/consulta/<pk>/', views.check_pqs.as_view(), name='check_pqs'),
-    path('pqs/atender/<pk>/', views.attendpqs.as_view(), name='attendpqs'),
-    path('pqs/marcadas/',views.pqsmarked, name='pqsmarked'),
+    path('peticion/registrar/',views.cli_crearpeticion.as_view(), name='cli_crearpeticion'),
+    path('peticion/atc_registrar/',views.atc_crearpeticion.as_view(), name='atc_crearpeticion'),
+    path('queja/registrar/', views.cli_crearqueja.as_view(), name='cli_crearqueja'),
+    path('queja/atc_registrar/', views.atc_crearqueja.as_view(), name='atc_crearqueja'),
+    path('sugerencia/registrar/', views.cli_crearsugerencia.as_view(), name='cli_crearsugerencia'),
+    path('sugerencia/atc_registrar/', views.atc_crearsugerencia.as_view(), name='atc_crearsugerencia'),
+    path('consulta/<pk>/', views.consultarpqs.as_view(), name='consultarpqs'),
+    path('atender/<pk>/', views.atenderpqs.as_view(), name='atenderpqs'),
+    path('marcadas/',views.pqsmarcados, name='pqsmarcados'),
 ]

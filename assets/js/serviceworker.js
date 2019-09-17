@@ -8,7 +8,7 @@ var filesToCache = [
 //'/templates/base/js.html',
 //'/templates/base/topbar.html',
 //'/templates/index/index.html',
-//'/templates/index/changepassword.html',
+//'/templates/index/cambiar_contrasena.html',
 //'/templates/index/signup.html',
 //'/templates/index/forgotpassword.html'
 ];

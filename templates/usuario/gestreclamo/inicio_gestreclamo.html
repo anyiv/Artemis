@@ -1,0 +1,121 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Artemis - Bienvenido {% endblock %}
+
+{% block content %}
+<div class="block-header">
+    <h2>LISTADOS </h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'g_listareclamos' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">report</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Reclamos</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                        data-fresh-interval="20">125</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'reclamosporvencer' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 bg-dark-gray hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">notification_important</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Reclamos prox. a vencer</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="31" data-speed="1500"
+                        data-fresh-interval="20">257</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'g_reclamosfinalizados' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 hover-expand-effect">
+                <div class="icon ">
+                    <i class="material-icons">assignment_turned_in</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Reclamos finalizados</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500"
+                        data-fresh-interval="20"></div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+
+<div class="card">
+    <div class="header">
+        <h2>
+            Listado de Reclamos <small style="color:#171d40; align-justify;">Reclamos pendientes de atender...</small>
+        </h2>
+    </div>
+    <div class="body table-responsive">
+        <table id="table-list" class="table table-bordered nowrap" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre de usuario</th>
+                    <th>Categoría</th>
+                    <th>Fecha de emisión</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre de usuario</th>
+                    <th>Categoría</th>
+                    <th>Fecha de emisión</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>RC-01</td>
+                    <td>maaano_14</td>
+                    <td>Fallas de Internet</td>
+                    <td>2019/06/30</td>
+                    <td>Pendiente de Atención</td>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RC-02</td>
+                    <td>maaano_14</td>
+                    <td>Fallas de Cobertura</td>
+                    <td>2019/06/30</td>
+                    <td>Pendiente de Atención</td>
+                    <td>
+                        <center><button type="button"
+                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                    class="material-icons">remove_red_eye</i></button></center>
+                    </td>
+                <tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

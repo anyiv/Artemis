@@ -1,0 +1,153 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Consultar Cliente | Artemis{% endblock  %}
+
+<!--CONSULTAR RECLAMO PARA USUARIOS: CLIENTE -->
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Consultar Reclamo
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Código</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.codReclamo }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Tipo de solicitud</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="Reclamo"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Categoría del Reclamo</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.codCategoria }}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Fecha de emisión</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.fechaRegistro }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Estatus</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.get_estatus_display }}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Fecha de Estimada</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.fechaEstimada }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Fecha de Finalización</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ reclamo.fechaFinalizado }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <p>
+                                <b>Descripción</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="12" class="form-control no-resize"
+                                        readonly>{{ reclamo.descripcion }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'lista_pqrscliente' %} ">
+                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+
+{% endblock javascript %}

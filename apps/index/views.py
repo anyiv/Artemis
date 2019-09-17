@@ -7,7 +7,7 @@ from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from Artemis.mixin import LoginAuthenticatedMixin, LoginRequiredMixin
-from .forms import CambiarContraseña
+from .forms import Cambiarcontrasena
 from django.http import JsonResponse
 
 #Vista que valida que un cliente esté registrado en el sistema para que un usuario
@@ -56,15 +56,15 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('index')
     success_message = "u"
 
-# class changepassword(LoginRequiredMixin, FormView):
+# class cambiar_contrasena(LoginRequiredMixin, FormView):
 #     model = User
-#     form_class = CambiarContraseña
-#     template_name = "index/changepassword.html"
+#     form_class = Cambiarcontrasena
+#     template_name = "index/cambiar_contrasena.html"
 
 #     def get_form_kwargs(self):
-#         kwargs = super(changepassword, self).get_form_kwargs()
+#         kwargs = super(cambiar_contrasena, self).get_form_kwargs()
 #         kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
 #         return kwargs
 
-def changepassword(request):
-    return render(request, 'index/changepassword.html', {})
+def cambiar_contrasena(request):
+    return render(request, 'index/cambiar_contrasena.html', {})

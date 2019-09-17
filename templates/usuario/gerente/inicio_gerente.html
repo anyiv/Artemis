@@ -1,0 +1,64 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %}Bienvenido | Artemis {% endblock  %}
+
+{% block content %}
+
+<div class="block-header">
+    <h2>Reportes</h2>
+</div>
+
+<div class="row clearfix">
+    <a href="{% url 'reporte_fallas' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 " data-toggle="tooltip" data-placement="bottom"
+                title="Estadistica de fallas de servicios.">
+                <div class="icon">
+                    <i class="material-icons">equalizer</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Estadistica</div>
+                    <div class="number" style="color:white">Fallas</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'reporte_encuestas' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 " data-toggle="tooltip" data-placement="bottom"
+                title="Estadistica de nivel de satisfacción de clientes.">
+                <div class="icon">
+                    <i class="material-icons">equalizer</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Estadistica</div>
+                    <div class="number" style="color:white">Satisfacción </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'reporte_pqs' %}">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box-3 " data-toggle="tooltip" data-placement="bottom"
+                title="Estadistica de nivel de satisfacción de clientes.">
+                <div class="icon">
+                    <i class="material-icons">equalizer</i>
+                </div>
+                <div class="content">
+                    <div class="text" style="color:white">Reporte</div>
+                    <div class="number" style="color:white"> PQS marcadas </div>
+                </div>
+            </div>
+        </div>
+    </a>         
+</div>
+
+{% endblock  %}
+
+
+{% block javascript %}
+
+
+{% endblock  %}
