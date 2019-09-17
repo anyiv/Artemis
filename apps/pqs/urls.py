@@ -11,4 +11,5 @@ urlpatterns = [
     path('sugerencia/atc_registrar/', views.atc_createsuggestion.as_view(), name='atc_createsuggestion'),
     path('pqs/consulta/<pk>/', views.check_pqs.as_view(), name='check_pqs'),
     path('pqs/atender/<pk>/', views.attendpqs.as_view(), name='attendpqs'),
+    path('pqs/marcadas/',views.pqsmarked, name='pqsmarked'),
 ]

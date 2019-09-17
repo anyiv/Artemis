@@ -215,22 +215,31 @@
                                 <div class="form-group">
                                     <div class="button-demo">
                                         <a href="{% url 'dashboard_gestreclamo' %}">
-                                            <center><button type="button"
+                                            <button type="button"
                                                     class="btn bg-teal waves-effect">Atrás</button>
-                                            </center>
+                                            
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
+                            <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'checkclaim' %}">
+                                            <button type="button"
+                                                    class="btn bg-indigo waves-effect">Agregar Comentario</button>
+                                            
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
                                         <a href="{% url 'attendclaim' %}">
-                                            <center><button type="button"
+                                            <button type="button"
                                                     class="btn bg-green waves-effect">Atender</button>
-                                            </center>
+                                            
                                         </a>
                                     </div>
                                 </div>
@@ -238,14 +247,29 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="historial">
-                        <b>Profile Content</b>
-                        <p>
-                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut
-                            tation electram moderatius.
-                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                            sadipscing mel.
-                        </p>
+                        <div class="body table-responsive">
+                            <table class="table">
+                                <thead  >
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Comentario</th>
+                                        <th>Usuario Encargado</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr>
+                                        <th scope="row" style="text-align:left;">1</th>
+                                        <td style="text-align:left;">Mark</td>
+                                        <td style="text-align:left;">Otto</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" style="text-align:left;">2</th>
+                                        <td style="text-align:left;">Jacob</td>
+                                        <td style="text-align:left;">Thornton</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,5 +281,5 @@
 {% endblock %}
 
 {% block javascript %}
-<script src=" {% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %} "></script>
+
 {% endblock %}

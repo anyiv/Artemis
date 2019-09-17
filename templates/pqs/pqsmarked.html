@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} PQS Marcadas | Artemis{% endblock  %}
+<!--El dataTable no sirve:)-->
+
+{% block content %}
+<div class="card">
+    <div class="header">
+        <h2>
+            Reporte de PQS marcadas <small style="color:#171d40; align-justify;">Las peticiones, quejas y sugerencias que podrían ser útiles para la empresa.</small>
+        </h2>
+    </div>
+    <div class="body table-responsive">
+        <table id="tabla-atcli" class="table table-bordered dataTable js-exportable" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Nombre de Cliente</th>
+                    <th>Categoría</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nombre de Cliente</th>
+                    <th>Categoría</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>AnaMaria</td>
+                    <td>Fallas de cobertura</td>
+                    <td>15/05/2019</td>
+                    <td>
+                        <center><a href="#"> <button type="button"
+                                    class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
+                                        class="material-icons">remove_red_eye</i></button></a></center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+ <script src=" {% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %} "></script>
+<script src=" {% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %} "></script>
+<script src=" {% static ' plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+<script src=" {% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %} "></script>
+<script src=" {% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %} "></script>
+<script src=" {% static ' plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+<script src=" {% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %} "></script>
+<script src=" {% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %} "></script>
+
+{% endblock javascript %}

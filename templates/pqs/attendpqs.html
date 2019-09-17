@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block titulo %} Consultar PQS | Artemis{% endblock  %}
+{% block titulo %} Atender PQS | Artemis{% endblock  %}
 
 {% block content %}
 
@@ -83,11 +83,11 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo js-modal-buttons">
-                                    
-                                        <center><button type="button" data-color="blue-grey"
-                                                class="btn bg-green waves-effect">Responder</button>
-                                        </center>
-                                    
+
+                                    <center><button type="button" data-color="blue-grey"
+                                            class="btn bg-green waves-effect">Responder</button>
+                                    </center>
+
                                 </div>
                             </div>
                         </div>
@@ -102,10 +102,33 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="defaultModalLabel">Responder a cliente</h4>
             </div>
             <div class="modal-body">
-                Aquí van lo de las respuestas
+                <div class="row clearfix">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <p>
+                            <b>Selecciones respuesta predefinida:</b>
+                        </p>
+                        <select class="form-control">
+                            <option>Algo</option>
+                            <option>Algo2</option>
+                            <option>algo3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row clearfix" style="margin-top:1.5em;">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <textarea rows="12" class="form-control no-resize"
+                                    placeholder="Escriba su respuesta aquí." maxlength=500></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>

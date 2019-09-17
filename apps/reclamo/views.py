@@ -32,7 +32,7 @@ def checkclaim(request):
 class createclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = Categoria
     form_class = IncluirCategoriaForm
-    template_name = "reclamo/createclaimcategory.html"
+    template_name = "categoria_reclamo/createclaimcategory.html"
     success_url = reverse_lazy('createclaimcategory')
     success_message = "e"
 
@@ -41,7 +41,7 @@ def attendclaim(request):
 
 class claimcategorylist(AuthenticatedAdminMixin, ListView):
     model = Categoria
-    template_name = "reclamo/claimcategorylist.html"
+    template_name = "categoria_reclamo/claimcategorylist.html"
 
     def get_context_data(self, **kwargs):
         context = super(claimcategorylist, self).get_context_data(**kwargs)
@@ -51,7 +51,7 @@ class claimcategorylist(AuthenticatedAdminMixin, ListView):
 class checkclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ConsultarCategoriaForm
-    template_name = "reclamo/checkclaimcategory.html"
+    template_name = "categoria_reclamo/checkclaimcategory.html"
     success_url = reverse_lazy('claimcategorylist')
     success_message = "e"
 
@@ -64,7 +64,7 @@ def satisfactionsurvey(request):
 class updateclaimcategory(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):
     model = Categoria
     form_class = ActualizarCategoriaForm
-    template_name = "reclamo/updateclaimcategory.html"
+    template_name = "categoria_reclamo/updateclaimcategory.html"
     success_message = "e"
 
     def get_success_url(self):

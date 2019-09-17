@@ -78,3 +78,8 @@ class check_pqs(AuthenticatedClienteGPQSMixin, DetailView):
 class attendpqs(DetailView):
     model = PQS
     template_name = "pqs/attendpqs.html"
+
+#PQS MARCADAS
+
+def pqsmarked(request):
+    return render(request, 'pqs/pqsmarked.html', {})
