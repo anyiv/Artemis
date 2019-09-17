@@ -15,210 +15,237 @@
     <div class="body">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="header bg-blue-grey">
-                            <h2>
-                                Datos del cliente:
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nro de identificación</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Nro de idenficación.">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#consulta" data-toggle="tab">Consulta</a></li>
+                    <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="consulta" style="margin-top:1.5em;">
+                        <div class="row clearfix">
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="header bg-blue-grey">
+                                        <h2>
+                                            Datos del cliente:
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Nro de identificación</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Nro de idenficación.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Número de contrato</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Nro de contrato.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Nombre</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Apellido</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Apellido">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Teléfono</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Teléfono">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Correo</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Correo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Dirección</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Dirección">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="header bg-blue-grey">
+                                        <h2>
+                                            Datos del Reclamo:
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Código</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Código del reclamo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Estado</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Estado del reclamo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Fecha de emisión</b>
+                                        </p>
+                                        <div class="input-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date"
+                                                    placeholder="Ej: 30/07/2016">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Fecha de compromiso</b>
+                                        </p>
+                                        <div class="input-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date"
+                                                    placeholder="Ej: 30/07/2016">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Categoría</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Categoría">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Tipo de servicio</b>
+                                            </p>
+                                            <input type="text" class="form-control" placeholder="Tipo de servicio">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-12">
+                                    <div class="form-group">
+                                        <p>
+                                            <b>Descripción</b>
+                                        </p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="6" class="form-control no-resize"
+                                                    placeholder="Descripción del reclamo..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <p>
+                                            <b>Comentarios</b>
+                                        </p>
+                                        <div class="list-group">
+                                            <button type="button" class="list-group-item" style="text-align:center">No
+                                                se ha
+                                                podido
+                                                atender por falta de luz en la zona</button>
+                                            <button type="button" class="list-group-item" style="text-align:center">El
+                                                técnico
+                                                está
+                                                atendiendo el reclamo</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Número de contrato</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Nro de contrato.">
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'dashboard_gestreclamo' %}">
+                                            <center><button type="button"
+                                                    class="btn bg-teal waves-effect">Atrás</button>
+                                            </center>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nombre</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Nombre">
+                            <div class="col-md-3">
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Apellido</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Apellido">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Teléfono</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Teléfono">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Correo</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Correo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Dirección</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Dirección">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="header bg-blue-grey">
-                            <h2>
-                                Datos del Reclamo:
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Código</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Código del reclamo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Estado</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Estado del reclamo">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-line">
-                            <p>
-                                <b>Fecha de emisión</b>
-                            </p>
-                            <div class="input-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control date" placeholder="Ej: 30/07/2016">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'attendclaim' %}">
+                                            <center><button type="button"
+                                                    class="btn bg-green waves-effect">Atender</button>
+                                            </center>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-line">
-                            <p>
-                                <b>Fecha de compromiso</b>
-                            </p>
-                            <div class="input-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control date" placeholder="Ej: 30/07/2016">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Categoría</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Categoría">
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Tipo de servicio</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Tipo de servicio">
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-md-12">
-                        <div class="form-group">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea rows="6" class="form-control no-resize"
-                                        placeholder="Descripción del reclamo..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <p>
-                                <b>Comentarios</b>
-                            </p>
-                            <div class="list-group">
-                                <button type="button" class="list-group-item" style="text-align:center">No se ha
-                                    podido
-                                    atender por falta de luz en la zona</button>
-                                <button type="button" class="list-group-item" style="text-align:center">El técnico
-                                    está
-                                    atendiendo el reclamo</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row clearfix">
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'dashboard_gestreclamo' %}">
-                            <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                            </center>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'attendclaim' %}">
-                            <center><button type="button" class="btn bg-green waves-effect">Atender</button>
-                            </center>
-                        </a>
+                    <div role="tabpanel" class="tab-pane fade" id="historial">
+                        <b>Profile Content</b>
+                        <p>
+                            Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut
+                            tation electram moderatius.
+                            Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
+                            pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
+                            sadipscing mel.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -230,5 +257,5 @@
 {% endblock %}
 
 {% block javascript %}
-
+<script src=" {% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %} "></script>
 {% endblock %}

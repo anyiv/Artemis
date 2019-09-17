@@ -7,70 +7,77 @@
 <!--ENCUESTA DE SATISFACCION PARA USUARIOS: CLIENTE -->
 
 {% block content %}
-
-<div class="card">
-    <div class="header">
-        <h2>
-            Encuesta de satisfacción
-        </h2>
-    </div>
-    <div class="body">
-        <center>
-            <h2 style="color:black;">¡Cuéntanos tu experiencia!</h2>
-            <h3 style="color:black;">Reclamo RC-1423</h3>
-            <p style="color:#403e49;">Avería solucionada tras 31 días de espera.</p>
-            <p style="color:#403e49;">Atendido por: José Ignacio Martínez.</p>
-            <br />
-        </center>
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <div class="form-group">
-                    <div class="form-line">
+<div class="row clearfix">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Encuesta de satisfacción
+                </h2>
+            </div>
+            <div class="body">
+                <center>
+                    <h2 style="color:black;">¡Cuéntanos tu experiencia!</h2>
+                    <h4 style="color:black;">Para nosotros es importante saber cómo fue tu experiencia al momento de atender su reclamo</h4>
+                    <h3 style="color:black;">Reclamo RC-1423</h3>
+                    <p style="color:#403e49;">Reclamo solucionado tras 21 días de espera.</p>
+                    <p style="color:#403e49;">Atendido por: José Ignacio Martínez.</p>
+                    <br />
+                </center>
+                <div class="row clearfix">
+                    <div class="col-md-4"></div>
+                    <div class=" col-md-4 ">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <p style="text-align:center;">
+                                    <b>¿Cómo valorarías la atención que recibiste?</b>
+                                </p>
+                                <center><i class="material-icons" style="color:yellow; "
+                                        style="color:yellow; ">star_border</i><i class="material-icons"
+                                        style="color:yellow; ">star_border</i><i class="material-icons"
+                                        style="color:yellow; ">star_border</i><i class="material-icons"
+                                        style="color:yellow; ">star_border</i><i class="material-icons"
+                                        style="color:yellow; ">star_border</i></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-3"></div>
+                    <div class=" col-md-6">
                         <p>
-                            <b>¿Cómo valorarías la atención que recibiste?</b>
+                            <b>Deja tu opinión acá:</b>
                         </p>
-                        <center><i class="material-icons" style="color:yellow; "
-                                style="color:yellow; ">star_border</i><i class="material-icons"
-                                style="color:yellow; ">star_border</i><i class="material-icons"
-                                style="color:yellow; ">star_border</i><i class="material-icons"
-                                style="color:yellow; ">star_border</i><i class="material-icons"
-                                style="color:yellow; ">star_border</i></center>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <textarea rows="6" class="form-control no-resize"
+                                    placeholder="Ingresa tu opinión aquí"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4 ">
-                <p>
-                    <b>Deja tu opinión acá:</b>
-                </p>
-                <div class="form-group">
-                    <div class="form-line">
-                        <textarea rows="4" class="form-control no-resize"
-                            placeholder="Ingresa tu opinión aquí"></textarea>
+                <div class="row clearfix">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'finishedclaimlist' %}">
+                                    <center><button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'finishedclaimlist' %}">
-                            <center><button type="button" class="btn bg-teal waves-effect">Cancelar</button></center>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="button-demo">
-                        <a href="{% url 'finishedclaimlist' %}">
-                            <center><button type="button" class="btn bg-green waves-effect">Valorar</button></center>
-                        </a>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'finishedclaimlist' %}">
+                                    <center><button type="button" class="btn bg-green waves-effect">Valorar</button>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

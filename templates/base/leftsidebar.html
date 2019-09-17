@@ -119,7 +119,21 @@
                     <li id="consultar_reclamos">
                         <a href="{% url 'claimlist' %}">
                             <i class="material-icons">report</i>
-                            <span>Reclamos</span>
+                            <span>Reclamos </span>
+                        </a>
+                    </li>
+                    {% if user.codTipoUser.codTipoUser == 'grec' %}
+                    <li id="consultar_reclamos">
+                        <a href="{% url 'claimexpire' %}">
+                            <i class="material-icons">notification_important</i>
+                            <span>Reclamos prox a vencer</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li id="consultar_reclamos">
+                        <a href="{% url 'claimfinished' %}">
+                            <i class="material-icons">assignment_turned_in</i>
+                            <span>Reclamos finalizados</span>
                         </a>
                     </li>
                     {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% comment "SÓLO EL GESTOR DE PQS" %}{% endcomment %}
@@ -130,12 +144,6 @@
                         </a>
                     </li>
                     {% endif %}
-                    <li id="consultar_clientes" class="{% if '/clientes/lista/' in request.path %}active{% endif %}">
-                        <a href="{% url 'clientlist' %}">
-                            <i class="material-icons">supervised_user_circle</i>
-                            <span>Clientes</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             {% endif %}
@@ -183,13 +191,13 @@
             </li>
             {% endif %}
 
-            {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
+            {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
             {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
             <!--ATENDER PQS/RECLAMO-->
             <li id="atender" class="">
                 <a href="#">
                     <i class="material-icons">build</i>
-                    <span>Atender</span>
+                    <span>En Proceso</span>
                 </a>
             </li>
             {% endif %}

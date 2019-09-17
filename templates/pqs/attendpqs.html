@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block titulo %} Consultar Cliente | Artemis{% endblock  %}
+{% block titulo %} Consultar PQS | Artemis{% endblock  %}
 
 {% block content %}
 
@@ -14,7 +14,8 @@
                 <div class="header">
                     <h2>
                         Atender
-                        {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
+                        {% if pqs.categoria == 'P' %} Petición
+                        {% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
                     </h2>
                 </div>
                 <div class="body">
@@ -61,9 +62,10 @@
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
-                            <input type="checkbox" id="marcar"
-                                style="border: 2px solid #000000;background-color: #000000;" checked />
-                            <label for="marcar">Marcar</label>
+                            <div class="demo-checkbox">
+                                <input type="checkbox" id="md_checkbox_40" class="filled-in chk-col-black" checked />
+                                <label for="md_checkbox_40" style="color:black;font-size:1em;">Marcar</label>
+                            </div>
                         </div>
                     </div>
                     <div class="row clearfix">
@@ -81,11 +83,11 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo js-modal-buttons">
-                                    <a href="#">
-                                        <center><button type="button"
+                                    
+                                        <center><button type="button" data-color="blue-grey"
                                                 class="btn bg-green waves-effect">Responder</button>
                                         </center>
-                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -103,23 +105,17 @@
                 <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros
-                vestibulum ut. Ut accumsan
-                vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                Aquí van lo de las respuestas
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-link waves-effect">Enviar</button>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock content %}
 
 {% block javascript %}
-
+<script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
 {% endblock javascript %}
