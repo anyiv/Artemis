@@ -59,7 +59,6 @@ class inicio_atencioncli(AuthenticatedAtClienteMixin, ListView):
         context['object_list'] = pqs.union(reclamo).order_by('-fechaRegistro')
         return context
 
-
 class inicio_gestorpqs(ListView):
     model = PQS
     template_name = "usuario/gestpqs/inicio_gestorpqs.html"
@@ -91,7 +90,7 @@ class inicio_admin(AuthenticatedAdminMixin, ListView):
 def inicio_gerente(request):
     return render(request, 'usuario/gerente/inicio_gerente.html', {})
 
-
+#EMPLEADOS
 class crear_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = CrearUsuario
@@ -103,23 +102,6 @@ class crear_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
         context = super(crear_empleado, self).get_context_data(**kwargs)
         context['tipousers'] = TipoUser.objects.filter(estatus='A').exclude(codTipoUser='cli')
         return context
-
-def g_listapqs(request):
-    return render(request, 'usuario/gestpqs/g_listapqs.html', {})
-
-
-def perfil(request):
-    return render(request, 'usuario/perfil.html', {})
-
-class modificar_perfil(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = User
-    form_class = ActualizarUsuarioForm
-    template_name = "usuario/modificar_perfil.html"
-    success_url = reverse_lazy('perfil')
-    success_message = "e"
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 class lista_empleados(AuthenticatedAdminMixin, ListView):
     model = User
@@ -144,6 +126,7 @@ class consultar_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateVie
         context['user'] = self.request.user
         return context
 
+#CLIENTES
 class listacliente(AuthenticatedAdminMixin, ListView):
     model = User
     template_name = "usuario/cliente/listacliente.html"
@@ -166,6 +149,21 @@ class consultarcliente(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView)
         context['cliente'] = User.objects.get(nombreUsuario = pk)
         context['user'] = self.request.user
         return context
+
+
+#PERFIL
+def perfil(request):
+    return render(request, 'usuario/perfil.html', {})
+
+class modificar_perfil(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = ActualizarUsuarioForm
+    template_name = "usuario/modificar_perfil.html"
+    success_url = reverse_lazy('perfil')
+    success_message = "e"
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 #CONSULTAR PQRS DEL CLIENTE
 class lista_pqrscliente(AuthenticatedClienteMixin, ListView):

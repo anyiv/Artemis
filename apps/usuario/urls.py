@@ -11,7 +11,6 @@ urlpatterns = [
     path('inicio/admin/', views.inicio_admin.as_view(), name='inicio_admin'),
     path('inicio/gerente/', views.inicio_gerente, name='inicio_gerente'),
     path('empleados/crear/', views.crear_empleado.as_view(), name='crear_empleado'),
-    path('pqs/lista/', views.g_listapqs, name='g_listapqs'),
     path('perfil/', views.perfil, name='perfil'),
     path('perfil/modificar/', views.modificar_perfil.as_view(), name='modificar_perfil'),
     path('clientes/lista/', views.listacliente.as_view(), name='listacliente'),

@@ -88,3 +88,7 @@ class atenderpqs(DetailView):
 #PQS MARCADAS
 def pqsmarcados(request):
     return render(request, 'pqs/pqsmarcados.html', {})
+
+
+def g_listapqs(request):
+    return render(request, 'usuario/gestpqs/g_listapqs.html', {})
