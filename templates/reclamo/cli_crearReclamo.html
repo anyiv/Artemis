@@ -13,84 +13,87 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="header ">
-                    <h2 >
-                        Registrar Reclamo <small style="color:#171d40; align-justify;">El reclamo es una declaración por el
+                    <h2>
+                        Registrar Reclamo <small style="color:#171d40; align-justify;">El reclamo es una declaración por
+                            el
                             incumplimiento de
                             un servicio que ha sido contratado, ocasionado por la deficiente prestación o suspensión
                             injustificada del servicio.</small>
                     </h2>
                 </div>
                 <div class="body">
-                 <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Tipo de servicio</b>
-                            </p>
-                            <select class="form-control">
-                                <option>Telefonía fija</option>
-                                <option>Televisión</option>
-                                <option>Internet</option>
-                            </select>
+                    <form method="POST" id="formulario">
+                        {% csrf_token %}
+                        <div class="row clearfix">
+                            <input type="hidden" name="nombreUsuario" value="{{ user.nombreUsuario }}"
+                                id="id_nombreUsuario">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <p>
+                                    <b>Tipo de servicio</b>
+                                </p>
+                                <select class="form-control" name="codDetContrato" required id="id_codDetContrato">
+                                    {% for servicio in serv %}
+                                    <option value="{{servicio.codDetContrato}}">{{ servicio.codServicio.nombre }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Categoría</b>
-                            </p>
-                            <select class="form-control">
-                                <option>Cobro</option>
-                                <option>Conexión</option>
-                                <option>Señal</option>
-                                <option>Productos</option>
-                            </select>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <p>
+                                    <b>Categoría</b>
+                                </p>
+                                <select class="form-control" name="codCategoria" id="id_codCategoria">
+                                    {% for ct in catreclamo %}
+                                    <option value="{{ ct.codCategoria }}">{{ ct.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea rows="12" class="form-control no-resize"
-                                        placeholder="Por favor escriba su reclamo aquí..."
-                                        maxlength=500></textarea>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-8">
+                                <p>
+                                    <b>Descripción</b>
+                                </p>
+                                <div class="form-group">
+                                    {{ form.descripcion }}
+                                    {{ form.descripcion.errors }}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'inicio_cliente' %}">
-                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                    </a>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'inicio_cliente' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" onclick="javascript:confirmarSeleccion();"
+                                            class="btn bg-green waves-effect">Enviar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <button type="button" class="btn bg-blue-grey waves-effect">Limpiar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -101,5 +104,35 @@
 
 {% block javascript %}
 
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Enviado", "El Reclamo ha sido enviado con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<script>
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar envío",
+            text: "¿Está seguro que desea enviar el reclamo?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelada", "El reclamo no ha sido enviada.", "error");
+            }
+        });
+    }
+</script>
 
 {% endblock %}

@@ -85,30 +85,20 @@
                 </tr>
             </tfoot>
             <tbody>
+            {% for reclamo in object_list %}
                 <tr>
-                    <td>RC-01</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Internet</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
+                    <td>{{ reclamo.codReclamo }}</td>
+                    <td>{{ reclamo.nombreUsuario }} </td>
+                    <td> {{ reclamo.codCategoria }} </td>
+                    <td> {{ reclamo.fechaRegistro }} </td>
+                    <td>{{ reclamo.get_estatus_display }}</td>
                     <td>
                         <center><button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                     class="material-icons">remove_red_eye</i></button></center>
                     </td>
                 </tr>
-                <tr>
-                    <td>RC-02</td>
-                    <td>maaano_14</td>
-                    <td>Fallas de Cobertura</td>
-                    <td>2019/06/30</td>
-                    <td>Pendiente de Atención</td>
-                    <td>
-                        <center><button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
-                    </td>
-                <tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

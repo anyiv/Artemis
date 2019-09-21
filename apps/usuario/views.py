@@ -29,9 +29,15 @@ def dashboard_checker(request):
     elif request.user.codTipoUser.codTipoUser == 'ger':
         return redirect('inicio/gerente/')
 
+#INICIOS DE USUARIOS
 class inicio_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
     model = Reclamo
     template_name = "usuario/gestreclamo/inicio_gestreclamo.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(inicio_gestreclamo, self).get_context_data(**kwargs)
+        context['object_list'] = Reclamo.objects.filter(estatus = 'P')
+        return context
 
 class inicio_cliente(AuthenticatedClienteMixin, ListView):
     model = Reclamo
@@ -84,6 +90,7 @@ class inicio_admin(AuthenticatedAdminMixin, ListView):
 
 def inicio_gerente(request):
     return render(request, 'usuario/gerente/inicio_gerente.html', {})
+
 
 class crear_empleado(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):
     model = User

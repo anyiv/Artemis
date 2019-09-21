@@ -17,140 +17,146 @@
         </h2>
     </div>
     <div class="body">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="header bg-blue-grey">
-                            <h2>
-                                Datos del cliente:
-                            </h2>
-                        </div>
-                    </div>
-                    <div class=" col-md-8">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nro de identificación</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Ingrese el nro de idenficación.">
+        <form method="POST" id="formulario">
+            {% csrf_token %}
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="header bg-blue-grey">
+                                <h2>
+                                    Datos del cliente:
+                                </h2>
                             </div>
                         </div>
-                    </div>
-                    <div class=" col-md-3">
-                        <div class="form-group">
-                            <div class="button-demo">
-                                <p>
-                                    <b>Buscar</b>
-                                </p>
-                                <button type="button" class="btn bg-grey waves-effect waves-circle waves-float">
-                                    <i class="material-icons">search</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Nombre</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Nombre del cliente.">
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-md-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Apellido</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Apellido del cliente.">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p>
-                                    <b>Dirección</b>
-                                </p>
-                                <input type="text" class="form-control" placeholder="Dirección del cliente.">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="header bg-blue-grey">
-                            <h2>
-                                Datos del Reclamo:
-                            </h2>
-                        </div>
-                    </div>
-                    <div class=" col-md-6 ">
-                        <p>
-                            <b>Categoría</b>
-                        </p>
-                        <select class="form-control">
-                            <option>Cobro</option>
-                            <option>Conexión</option>
-                            <option>Señal</option>
-                            <option>Productos</option>
-                        </select>
-                    </div>
-                    <div class=" col-md-6 ">
-                        <p>
-                            <b>Tipo de servicio</b>
-                        </p>
-                        <select class="form-control">
-                            <option>Internet</option>
-                            <option>Tv</option>
-                            <option>Tlf fijo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <p>
-                            <b>Descripción</b>
-                        </p>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <textarea rows="6" class="form-control no-resize"
-                                    placeholder="Por favor escriba su reclamo aquí..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-3">
+                        {{ form.nombreUsuario }}
+                        <div class=" col-md-8">
                             <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'inicio_atencioncli' %}">
-                                        <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                    </a>
+                                <div class="form-line">
+                                    <p>
+                                        <b>Nro de identificación</b>
+                                    </p>
+                                    <input type="text" class="form-control" name="identificacion" id="identificacion"
+                                        placeholder="Ingrese el nro de idenficación.">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class=" col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    <p>
+                                        <b>Buscar</b>
+                                    </p>
+                                    <button type="button" id="boton" onclick="javascript:validarIdentidad();"
+                                        class="btn bg-grey waves-effect waves-circle waves-float">
+                                        <i class="material-icons">search</i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class=" col-md-6">
                             <div class="form-group">
-                                <div class="button-demo">
-                                    <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                                <div class="form-line">
+                                    <p>
+                                        <b>Nombre</b>
+                                    </p>
+                                    <input type="text" id="nombre" class="form-control"
+                                        placeholder="Nombre del cliente.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Apellido</b>
+                                    </p>
+                                    <input type="text" id="apellido" class="form-control"
+                                        placeholder="Apellido del cliente.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Dirección</b>
+                                    </p>
+                                    <input type="text" id="direccion" class="form-control"
+                                        placeholder="Dirección del cliente.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="header bg-blue-grey">
+                                <h2>
+                                    Datos del Reclamo:
+                                </h2>
+                            </div>
+                        </div>
+                        <div class=" col-md-6 ">
+                            <p>
+                                <b>Tipo de servicio</b>
+                            </p>
+                            <select class="form-control" id="servicios" class="selectpicker" disabled>
+                            <option>---</option>
+                            </select>
+                        </div>
+                        <div class=" col-md-6 ">
+                            <p>
+                                <b>Categoría</b>
+                            </p>
+                            <select class="form-control" name="codCategoria" id="id_codCategoria">
+                            {% for ct in catreclamo %}
+                                <option value="{{ ct.codCategoria }}">{{ ct.nombre }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <p>
+                                <b>Descripción</b>
+                            </p>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="6" class="form-control no-resize"
+                                        placeholder="Por favor escriba su reclamo aquí..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'inicio_atencioncli' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" class="btn bg-green waves-effect">Enviar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -159,5 +165,6 @@
 
 {% block javascript %}
 
+<script src="{% static 'js/verificar_cliente.js' %}" type="text/javascript"></script> 
 
 {% endblock %}

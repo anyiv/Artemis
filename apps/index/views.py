@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
 from apps.usuario.models import User
-from apps.datos_externos.models import Cliente
+from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -28,13 +28,27 @@ def validar_cliente(request):
         usuario = User.objects.get(idCliente=identidad)
     
     if usuario and cliente:
+        detalle_contrato = []
+
+        try:
+            contrato = Contrato.objects.get(codCliente = cliente)
+            detcon = DetalleContrato.objects.filter(nroContrato = contrato)
+            for d in detcon:
+                detalle_contrato.append((
+                    d.codDetContrato,
+                    d.codServicio.nombre
+                ))
+        except:
+            pass
+
         data = {
             'cliente_existe' : ce,
             'usuario_existe' : ue,
             'nombre_usuario' : usuario.nombreUsuario,
             'nombre' : cliente.nombre,
             'apellido' : cliente.apellido,
-            'direccion' : cliente.direccion
+            'direccion' : cliente.direccion,
+            'servicios' : detalle_contrato
         }
     else:
         data = {
@@ -43,7 +57,7 @@ def validar_cliente(request):
         }
     return JsonResponse(data)
 
-class index(LoginAuthenticatedMixin, LoginView):
+class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
     template_name = 'index/index.html'
 
 class logout(LogoutView):
@@ -53,7 +67,7 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = CrearUsuario
     template_name = "index/signup.html"
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('signup')
     success_message = "u"
 
 # class cambiar_contrasena(LoginRequiredMixin, FormView):

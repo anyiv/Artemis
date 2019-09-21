@@ -142,3 +142,17 @@
         });
     }
 </script>
+
+{% for m in messages %}
+{% if m.message == "u" %}
+<!--MENSAJE CREAR USUARIO-->
+<script>
+    swal("Creada", "El usuario ha sido creado con éxito.", "success");
+</script>
+{% elif m.message == "c" %}
+<!--MENSAJE RECUPERAR CREDENCIALES-->
+<script>
+    swal("Creada", "El usuario ha sido creado con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}

@@ -3,11 +3,11 @@ from . import views
 from django.conf.urls import url, include
 
 urlpatterns = [
-    path('lista/todos/', views.g_listareclamos, name='g_listareclamos'),
-    path('lista/finalizados/', views.g_reclamosfinalizados, name='g_reclamosfinalizados'),
+    path('lista/todos/', views.g_listareclamos.as_view(), name='g_listareclamos'),
+    path('lista/finalizados/', views.g_reclamosfinalizados.as_view(), name='g_reclamosfinalizados'),
     path('lista/proximovencimiento/', views.reclamosporvencer, name='reclamosporvencer'),
-    path('registrar/', views.cli_crearReclamo, name='cli_crearReclamo'),
-    path('atc_registrar/', views.atc_crearReclamo, name='atc_crearReclamo'),
+    path('registrar/', views.cli_crearReclamo.as_view(), name='cli_crearReclamo'),
+    path('atc_registrar/', views.atc_crearReclamo.as_view(), name='atc_crearReclamo'),
     path('consultar/<pk>', views.gt_consultarReclamo, name='gt_consultarReclamo'),
     path('atender/', views.atenderReclamo, name='atenderReclamo'),
     path('categoria/crear/', views.crearcatreclamo.as_view(), name='crearcatreclamo'),

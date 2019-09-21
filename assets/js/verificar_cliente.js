@@ -19,6 +19,14 @@
                             $("#nombre").val(data.nombre);
                             $("#apellido").val(data.apellido);
                             $("#direccion").val(data.direccion);
+                            $('#servicios').empty();
+                            $.each(data.servicios, function(indice, servicio){
+                                opc = new Option(servicio[1],servicio[0]);
+                                document.getElementById('servicios').add(opc);
+                            });
+                            document.getElementById('servicios').disabled = false
+                            $('#servicios').selectpicker('refresh');
+                            $('#servicios').selectpicker('render');
                             swal("Existe", "El cliente se encuentra en la base de datos y ha sido cargado con éxito", "success");
                         } else {
                             $("#formulario").trigger("reset");

@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Categoria
+from .models import Categoria, Reclamo
 
 class IncluirCategoriaForm(forms.ModelForm):
 
@@ -50,4 +50,21 @@ class ActualizarCategoriaForm(forms.ModelForm):
             'codCategoria' : forms.TextInput(attrs={'class':'form-control', 'readonly':''}),
             'nombre' : forms.TextInput(attrs={'class':'form-control'}),
             'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8}),
+        }
+
+class IncluirReclamo(forms.ModelForm):
+
+    class Meta:
+        model = Reclamo
+
+        fields = [
+            'nombreUsuario',
+            'descripcion',
+            'codDetContrato',
+            'codCategoria',
+        ]
+
+        widgets = {
+            'nombreUsuario' : forms.TextInput(attrs={'id':'nombreusuario', 'type':'hidden'}),
+            'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':12,'placeholder':'Por favor escriba su reclamo aquí...'}),
         }

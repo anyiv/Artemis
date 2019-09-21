@@ -21,7 +21,7 @@
                     <div class="content-area">
                         <h3> {{ empleado.idEmpleado.nombre }} {{ empleado.idEmpleado.apellido }} </h3>
                         <p></p>
-                        <p> {{ empleado.codTipoUser }} </p>
+                        <p style="text-align:center;"> {{ empleado.codTipoUser }} </p>
                     </div>
                 </div>
                 <div class="profile-footer">
@@ -74,7 +74,7 @@
                                     <p>
                                         <b>Dirección</b>
                                     </p>
-                                    <input type="text" class="form-control" value="'{{ empleado.idEmpleado.direccion }}'"
+                                    <input type="text" class="form-control" value="{{ empleado.idEmpleado.direccion }}"
                                         readonly>
                                 </div>
                             </div>

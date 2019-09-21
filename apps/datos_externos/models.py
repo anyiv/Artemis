@@ -180,9 +180,9 @@ class DetalleContrato(models.Model):
             return 'DC-0000'
 
         nro_dc = int(ult_dc)
-        nvo_dc = 'CIU-' + str(nro_dc).zfill(4) 
+        nvo_dc = 'DC-' + str(nro_dc).zfill(4) 
 
-        return nvo_codciudad
+        return nvo_dc
 
     codDetContrato = models.CharField(max_length=8,primary_key=True,default=cod_DetCont)
     nroContrato = models.ForeignKey(Contrato,on_delete=models.CASCADE)

@@ -47,11 +47,12 @@ class Reclamo(models.Model):
     codReclamo = models.CharField(max_length=8, default=cod_reclamo, primary_key=True)
     codDetContrato = models.ForeignKey(DetalleContrato, on_delete=models.CASCADE)
     codCategoria = models.ForeignKey(Categoria, on_delete=models.CASCADE,blank=True, null=True)
-    nombreUsuario = models.ForeignKey(User,on_delete=models.CASCADE)
+    nombreUsuario = models.ForeignKey(User,on_delete=models.CASCADE, related_name='autor')
     descripcion = models.CharField(max_length=500)
     fechaRegistro = models.DateTimeField(default=datetime.now)
     fechaEstimada = models.DateField(blank=True, null=True)
     fechaFinalizada = models.DateTimeField(blank=True, null=True)
+    responsableReclamo = models.ManyToManyField(User, blank=True, null=True)
     valoracion = models.CharField(max_length=1,blank=True, null=True)
     ESTATUS = ( 
         ('P','Pendiente'),
