@@ -19,24 +19,24 @@ function validarIdentidad() {
                         $("#nombre").val(data.nombre);
                         $("#apellido").val(data.apellido);
                         $("#direccion").val(data.direccion);
-                        if (document.getElementById('servicios') != null) {
-                            $('#servicios').empty();
+                        if (document.getElementById('id_codDetContrato') != null) {
+                            $('#id_codDetContrato').empty();
                             $.each(data.servicios, function (indice, servicio) {
                                 opc = new Option(servicio[1], servicio[0]);
-                                document.getElementById('servicios').add(opc);
+                                document.getElementById('id_codDetContrato').add(opc);
                             });
-                            document.getElementById('servicios').disabled = false
-                            $('#servicios').selectpicker('refresh');
-                            $('#servicios').selectpicker('render');
+                            document.getElementById('id_codDetContrato').disabled = false
+                            $('#id_codDetContrato').selectpicker('refresh');
+                            $('#id_codDetContrato').selectpicker('render');
                         }
-                        swal("Existe", "El cliente se encuentra en la base de datos y ha sido cargado con éxito", "success");
+                        swal("Existe", "El cliente se encuentra registrado y ha sido cargado con éxito", "success");
                     } else {
                         $("#formulario").trigger("reset");
-                        swal("Existe, pero...", "El cliente se encuentra en la base de datos pero no tiene un usuario registrado en el sistema", "warning");
+                        swal("Existe, pero...", "El cliente se ha encontrado pero no tiene un usuario registrado en el sistema", "warning");
                     }
                 } else {
                     $("#formulario").trigger("reset");
-                    swal("No existe", "El cliente no se ha encontrado en la BD.", "info");
+                    swal("No existe", "El cliente no se ha encontrado.", "info");
                 }
             }
         });

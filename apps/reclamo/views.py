@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
-from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin
+from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin, AuthenticatedGPQSAtClienteClienteMixin
 
 # Create your views here.
 
@@ -69,7 +69,7 @@ def cli_reclamosfinalizados(request):
 def encuesta_cliente(request):
     return render(request, 'reclamo/encuesta_cliente.html', {})
 
-class cli_consultarReclamo(AuthenticatedClienteMixin, DetailView):
+class cli_consultarReclamo(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = Reclamo
     template_name = "reclamo/cli_consultarReclamo.html"
 
