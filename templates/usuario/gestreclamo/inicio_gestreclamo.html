@@ -93,9 +93,9 @@
                     <td> {{ reclamo.fechaRegistro }} </td>
                     <td>{{ reclamo.get_estatus_display }}</td>
                     <td>
-                        <center><button type="button"
+                        <center><a type="button" href="{% url 'gt_consultarReclamo' reclamo.codReclamo %}"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
+                                    class="material-icons">remove_red_eye</i></a></center>
                     </td>
                 </tr>
             {% endfor %}

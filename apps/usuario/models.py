@@ -75,3 +75,10 @@ class User(AbstractBaseUser,PermissionsMixin):
     def enviarCorreo(self, asunto, linea1, linea2, linea3, nombre):
         contenido = render_to_string('correo_base.html',{'linea1':linea1,'linea2':linea2,'linea3':linea3,'nombre':nombre})
         send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',{self.correo},html_message=contenido)
+
+class EficienciaGestor(models.Model):
+    nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    diasActivo = models.IntegerField(default=0)
+    recAtendidos = models.IntegerField(default=0)
+    eficiencia = models.FloatField(default=0)
+

@@ -64,13 +64,12 @@
     </div>
     <div class="body">
         <div class="table-responsive">
-            <table id="tabla-gestpqs" class="table table-bordered nowrap" >
+            <table id="tabla-gestpqs" class="table table-bordered " >
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Categoría</th>
                         <th>Nombre de usuario</th>
-                        <th>Fecha de emisión</th>
                         <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
@@ -80,7 +79,6 @@
                         <th>Código</th>
                         <th>Categoría</th>
                         <th>Nombre de usuario</th>
-                        <th>Fecha de emisión</th>
                         <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
@@ -91,7 +89,6 @@
                         <td> {{ pqs.codPQS }} </td>
                         <td> {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %} </td>
                         <td> {{ pqs.nombreUsuario }} </td>
-                        <td> {{ pqs.fechaRegistro|date:"Y-m-d" }} </td>
                         <td> {{ pqs.estatus }} </td>
                         <td> 
                             <center><a href="{% url 'consultarpqs' pqs.codPQS %}">

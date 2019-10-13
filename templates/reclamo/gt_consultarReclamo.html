@@ -38,7 +38,7 @@
                                             <p>
                                                 <b>Nro de identificación</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nro de idenficación.">
+                                            <input type="text" class="form-control" placeholder="Nro de idenficación." value="{{ reclamo.codDetContrato.nroContrato.codCliente.identificacion }}">
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                             <p>
                                                 <b>Número de contrato</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nro de contrato.">
+                                            <input type="text" class="form-control" placeholder="Nro de contrato." value="{{ reclamo.codDetContrato.nroContrato.nroContrato }}">
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                             <p>
                                                 <b>Nombre</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nombre">
+                                            <input type="text" class="form-control" placeholder="Nombre" value="{{reclamo.codDetContrato.nroContrato.codCliente.nombre}}">
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                             <p>
                                                 <b>Apellido</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Apellido">
+                                            <input type="text" class="form-control" placeholder="Apellido" value="{{reclamo.codDetContrato.nroContrato.codCliente.apellido}}">
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                             <p>
                                                 <b>Teléfono</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Teléfono">
+                                            <input type="text" class="form-control" placeholder="Teléfono" value="{{reclamo.codDetContrato.nroContrato.codCliente.telefono}}">
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                             <p>
                                                 <b>Correo</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Correo">
+                                            <input type="text" class="form-control" placeholder="Correo" value="{{user_cliente.correo}}">
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                             <p>
                                                 <b>Dirección</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Dirección">
+                                            <input type="text" class="form-control" placeholder="Dirección" value="{{reclamo.codDetContrato.nroContrato.codCliente.direccion}}">
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                             <p>
                                                 <b>Código</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Código del reclamo">
+                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                             <p>
                                                 <b>Estado</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Estado del reclamo">
+                                            <input type="text" class="form-control" value=" {{ reclamo.get_estatus_display }} ">
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                                         <div class="input-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control date"
-                                                    placeholder="Ej: 30/07/2016">
+                                                    value=" {{ reclamo.fechaRegistro }} ">
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                         <div class="input-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control date"
-                                                    placeholder="Ej: 30/07/2016">
+                                                    value=" {{ reclamo.fechaEstimada }} ">
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@
                                             <p>
                                                 <b>Categoría</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Categoría">
+                                            <input type="text" class="form-control" value=" {{ reclamo.codCategoria }} ">
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                                             <p>
                                                 <b>Tipo de servicio</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Tipo de servicio">
+                                            <input type="text" class="form-control" placeholder="Tipo de servicio" value="{{ reclamo.codDetContrato.codServicio.nombre }}">
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <textarea rows="6" class="form-control no-resize"
-                                                    placeholder="Descripción del reclamo..."></textarea>
+                                                    >{{ reclamo.descripcion }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -225,7 +225,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <a href="{% url 'gt_consultarReclamo' %}">
+                                        <a href="#">
                                             <button type="button" class="btn bg-indigo waves-effect">Agregar
                                                 Comentario</button>
 

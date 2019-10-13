@@ -52,7 +52,7 @@ class Reclamo(models.Model):
     fechaRegistro = models.DateTimeField(default=datetime.now)
     fechaEstimada = models.DateField(blank=True, null=True)
     fechaFinalizada = models.DateTimeField(blank=True, null=True)
-    responsableReclamo = models.ManyToManyField(User, blank=True, null=True)
+    responsableReclamo = models.ManyToManyField(User, blank=True)
     valoracion = models.CharField(max_length=1,blank=True, null=True)
     ESTATUS = ( 
         ('P','Pendiente'),
@@ -63,3 +63,5 @@ class Reclamo(models.Model):
 
     def __str__(self):
         return self.codReclamo + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'
+
+    

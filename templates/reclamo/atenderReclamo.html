@@ -139,7 +139,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="button-demo">
-                        <a href="{% url 'gt_consultarReclamo' %}">
+                        <a href="#">
                             <center><button type="button" class="btn bg-teal waves-effect">Cancelar</button></center>
                         </a>
                     </div>
@@ -190,9 +190,9 @@
                             <b>Selecciones respuesta predefinida:</b>
                         </p>
                         <select class="form-control">
-                            <option>Algo</option>
-                            <option>Algo2</option>
-                            <option>algo3</option>
+                        {% for resp in rp %}
+                            <option>{{ resp.descripcion }}</option>
+                        {% endfor %}
                         </select>
                     </div>
                 </div>

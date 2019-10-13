@@ -3,6 +3,8 @@ from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo
 from .models import Categoria, Reclamo
+from apps.usuario.models import User
+from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Contrato, DetalleContrato, Cliente, Servicio
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -57,11 +59,24 @@ class atc_crearReclamo(SuccessMessageMixin, CreateView):
         context['catreclamo'] = Categoria.objects.filter(estatus='A')
         return context
 
-def gt_consultarReclamo(request):
-    return render(request, 'reclamo/gt_consultarReclamo.html', {})
+class gt_consultarReclamo(DetailView):
+    model = Reclamo
+    template_name = "reclamo/gt_consultarReclamo.html"
 
-def atenderReclamo(request):
-    return render(request, 'reclamo/atenderReclamo.html', {})
+    def get_context_data(self, **kwargs):
+        context = super(gt_consultarReclamo, self).get_context_data(**kwargs)
+        context['user_cliente'] = User.objects.get(idCliente=context['reclamo'].codDetContrato.nroContrato.codCliente.identificacion)
+        return context
+    
+
+class atenderReclamo(SuccessMessageMixin, DetailView):
+    model = Reclamo
+    template_name= "reclamo/atenderReclamo.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(atenderReclamo, self).get_context_data(**kwargs)
+        context['rp'] = RespuestaPredefinida.objects.filter(categoria='rec',estatus='A')
+        return context
 
 def cli_reclamosfinalizados(request):
     return render(request, 'reclamo/cli_reclamosfinalizados.html', {})
