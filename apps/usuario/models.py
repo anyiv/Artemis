@@ -6,6 +6,9 @@ from django.contrib.auth.models import PermissionsMixin
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils import timezone
 
 # Create your models here.
 class TipoUser(models.Model):
@@ -76,9 +79,32 @@ class User(AbstractBaseUser,PermissionsMixin):
         contenido = render_to_string('correo_base.html',{'linea1':linea1,'linea2':linea2,'linea3':linea3,'nombre':nombre})
         send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',{self.correo},html_message=contenido)
 
+    def login_grec(self):
+        last_login = self.last_login.date()
+        hoy = timezone.now().date()
+        if last_login != hoy:
+            eg = EficienciaGestor.objects.get(nombreUsuario = self)
+            eg.diasActivo += 1
+            eg.save()
+            self.actualizar_eficiencia()
+
+    def actualizar_rec_atendidos(self):
+        print("TBD")
+
+    def actualizar_eficiencia(self):
+        eg = EficienciaGestor.objects.get(nombreUsuario = self)
+        eg.eficiencia = eg.recAtendidos / eg.diasActivo
+        eg.save()
+
 class EficienciaGestor(models.Model):
     nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     diasActivo = models.IntegerField(default=0)
     recAtendidos = models.IntegerField(default=0)
     eficiencia = models.FloatField(default=0)
 
+@receiver(post_save, sender=User)
+def crear_eficiciencia(sender, instance, **kwargs):
+    if instance.codTipoUser.codTipoUser == "grec" and EficienciaGestor.objects.get(nombreUsuario = instance.nombreUsuario) == None:
+        eg = EficienciaGestor()
+        eg.nombreUsuario = instance
+        eg.save()

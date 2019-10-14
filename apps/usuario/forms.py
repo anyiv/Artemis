@@ -50,12 +50,14 @@ class ConsultarEmpleado(forms.ModelForm):
             'nombreUsuario',
             'correo',
             'estatus',
+            'is_active',
         ]
 
         widgets = {
             'nombreUsuario' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'correo' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'estatus' : forms.TextInput(attrs={'class':'form-control','id':'estatus','type':'hidden'}),
+            'is_active' : forms.TextInput(attrs={'class':'form-control','id':'is_active','type':'hidden'}),
         }   
 
 class ConsultarCliente(forms.ModelForm):
@@ -67,10 +69,12 @@ class ConsultarCliente(forms.ModelForm):
             'nombreUsuario',
             'correo',
             'estatus',
+            'is_active',
         ]
 
         widgets = {
             'nombreUsuario' : forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'correo': forms.TextInput(attrs={'class':'form-control','readonly':''}),
             'estatus' : forms.TextInput(attrs={'class':'form-control','id':'estatus','type':'hidden'}),
+            'is_active' : forms.TextInput(attrs={'class':'form-control','id':'is_active','type':'hidden'}),
         }

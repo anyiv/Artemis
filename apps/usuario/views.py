@@ -133,7 +133,7 @@ class listacliente(AuthenticatedAdminMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(listacliente, self).get_context_data(**kwargs)
-        context['object_list'] = User.objects.filter(idEmpleado = None)
+        context['object_list'] = User.objects.filter(idEmpleado = None, estatus="A")
         return context        
 
 class consultarcliente(AuthenticatedAdminMixin, SuccessMessageMixin, UpdateView):

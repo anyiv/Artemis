@@ -66,6 +66,7 @@
                         </div>
                     </div>
                     {{ form.estatus }}
+                    {{ form.is_active }}
                     <div class="row clearfix">
                         <div class=" col-md-4 "></div>
                         <div class=" col-md-4 ">
@@ -130,6 +131,7 @@
         }, function (isConfirm) {
             if (isConfirm) {
                 document.getElementById('estatus').value = 'I';
+                document.getElementById('is_active').value = 'False';
                 formulario.submit();
             } else {
                 swal("Cancelada", "El usuario empleado no ha sido suspendido.", "error");

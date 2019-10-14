@@ -2,6 +2,9 @@ from django.db import models
 from datetime import datetime
 from apps.datos_externos.models import DetalleContrato
 from apps.usuario.models import User
+from apps.usuario.models import EficienciaGestor
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Categoria(models.Model):
@@ -64,4 +67,42 @@ class Reclamo(models.Model):
     def __str__(self):
         return self.codReclamo + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'
 
+class Configuracion(models.Model):
+    nombre = models.CharField(max_length=10)
+    valor = models.IntegerField()
+
+@receiver(post_save, sender=Reclamo)
+def asignar_reclamo(sender, instance, **kwargs):
+    if instance.responsableReclamo.all().count() == 0:
+        minimo = Configuracion.objects.get(id=1).valor
+        maximo = Configuracion.objects.get(id=2).valor
+        gestores = User.objects.filter(codTipoUser = "grec", estatus = "A", is_active = True)
+        gestores_posibles = list()
+        gestores_max = list() 
+        correspondencia = list()
+        correspondencia_max = list()
+
+        for gestor in gestores:
+            eg = EficienciaGestor.objects.get(nombreUsuario = gestor)
+            cantidad = Reclamo.objects.filter(responsableReclamo=gestor).exclude(estatus="F").count()
+            
+            if cantidad < minimo:
+                instance.responsableReclamo.add(gestor)
+                instance.save()
+                return
+            elif cantidad < maximo:
+                gestores_posibles.append(gestor)
+                correspondencia.append(cantidad / eg.eficiencia)
+            else:
+                gestores_max.append(gestor)
+                correspondencia_max.append(cantidad / eg.eficiencia)
+
+        if len(correspondencia) != 0:
+            indice = correspondencia.index(min(correspondencia))
+            instance.responsableReclamo.add(gestores_posibles[indice])
+            instance.save()
+        elif len(correspondencia_max) != 0:
+            indice = correspondencia_max.index(min(correspondencia_max))
+            instance.responsableReclamo.add(gestores_max[indice])
+            instance.save()
     

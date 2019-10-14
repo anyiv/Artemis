@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import (
+    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
+    logout as auth_logout, update_session_auth_hash,
+)
+from django.http import HttpResponseRedirect
 from apps.usuario.models import User
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
 from apps.usuario.forms import CrearUsuario
@@ -59,6 +64,12 @@ def validar_cliente(request):
 
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
     template_name = 'index/index.html'
+
+    def form_valid(self, form):
+        if form.get_user().codTipoUser.codTipoUser == "grec":
+            form.get_user().login_grec()
+        auth_login(self.request, form.get_user())
+        return HttpResponseRedirect(self.get_success_url())
 
 class logout(LogoutView):
     template_name = 'index/logout.html'
