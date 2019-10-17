@@ -20,54 +20,49 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Código</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Código</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Nombre y apellido</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}"
+                                            readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-12">
+                                <p>
+                                    <b>Descripción</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <textarea rows="9" class="form-control no-resize"
+                                            readonly>{{ pqs.descripcion }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-8">
+                                <div class="demo-checkbox">
+                                    <input type="checkbox" id="md_checkbox_40" class="filled-in chk-col-black" />
+                                    <label for="md_checkbox_40" style="color:black;font-size:1em;">Marcar</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <p>
-                                <b>Nombre de Usuario</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.nombreUsuario }}" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea rows="9" class="form-control no-resize"
-                                        readonly>{{ pqs.descripcion }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <div class="demo-checkbox">
-                                <input type="checkbox" id="md_checkbox_40" class="filled-in chk-col-black"  />
-                                <label for="md_checkbox_40" style="color:black;font-size:1em;">Marcar</label>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row clearfix">
                         <div class="col-md-3"></div>
                         <div class="col-md-3">
@@ -83,11 +78,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo js-modal-buttons">
-
                                     <center><button type="button" data-color="blue-grey"
                                             class="btn bg-green waves-effect">Responder</button>
                                     </center>
-
                                 </div>
                             </div>
                         </div>
@@ -109,12 +102,13 @@
                     <div class="col-md-2"></div>
                     <div class=" col-md-8">
                         <p>
-                            <b>Selecciones respuesta predefinida:</b> <!--Recordar implementar el contador-->
+                            <b>Selecciones respuesta predefinida:</b>
+                            <!--Recordar implementar el contador-->
                         </p>
                         <select class="form-control">
-                        {% for rp in resp %}
+                            {% for rp in resp %}
                             <option>{{ rp.descripcion }}</option>
-                        {% endfor %}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>

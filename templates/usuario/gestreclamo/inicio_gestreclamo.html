@@ -18,7 +18,7 @@
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Reclamos</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="8" data-speed="1500"
+                    <div class="number count-to" style="color:white" data-from="0" data-to=" {{ contrec }} " data-speed="1500"
                         data-fresh-interval="20">125</div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="content">
                     <div class="text" style="color:white">Reclamos finalizados</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="6" data-speed="1500"
+                    <div class="number count-to" style="color:white" data-from="0" data-to=" {{ recfin }} " data-speed="1500"
                         data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -59,28 +59,26 @@
 <div class="card">
     <div class="header">
         <h2>
-            Listado de Reclamos <small style="color:#171d40; align-justify;">Reclamos pendientes de atender...</small>
+            Listado de Reclamos <small style="color:#171d40; align-justify;">Reclamos pendientes de atender.</small>
         </h2>
     </div>
     <div class="body table-responsive">
-        <table id="table-list" class="table table-bordered nowrap" style="width: 100%">
+        <table id="tabla-generica" class="table table-bordered nowrap" style="width: 100%">
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Nombre de usuario</th>
+                    <th>Nombre del cliente</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
-                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>Código</th>
-                    <th>Nombre de usuario</th>
+                    <th>Nombre del cliente</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
-                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
@@ -88,10 +86,9 @@
             {% for reclamo in object_list %}
                 <tr>
                     <td>{{ reclamo.codReclamo }}</td>
-                    <td>{{ reclamo.nombreUsuario }} </td>
+                    <td>{{ reclamo.nombreUsuario.idCliente.nombre }} {{ reclamo.nombreUsuario.idCliente.apellido }} </td>
                     <td> {{ reclamo.codCategoria }} </td>
                     <td> {{ reclamo.fechaRegistro }} </td>
-                    <td>{{ reclamo.get_estatus_display }}</td>
                     <td>
                         <center><a type="button" href="{% url 'gt_consultarReclamo' reclamo.codReclamo %}"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
@@ -107,5 +104,7 @@
 {% endblock %}
 
 {% block javascript %}
+
+<script src="{% static 'js/pages/tables/tabla-generica.js' %}" type="text/javascript"></script>
 
 {% endblock %}

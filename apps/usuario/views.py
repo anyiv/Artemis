@@ -36,7 +36,9 @@ class inicio_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(inicio_gestreclamo, self).get_context_data(**kwargs)
-        context['object_list'] = Reclamo.objects.filter(estatus = 'P')
+        context['object_list'] = Reclamo.objects.filter(estatus = 'P',responsableReclamo=self.request.user)
+        context['contrec'] = Reclamo.objects.filter(responsableReclamo=self.request.user).count()
+        context['recfin'] = Reclamo.objects.filter(responsableReclamo=self.request.user, estatus='F').count()
         return context
 
 class inicio_cliente(AuthenticatedClienteMixin, ListView):
@@ -65,8 +67,7 @@ class inicio_gestorpqs(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(inicio_gestorpqs, self).get_context_data(**kwargs)
-        pqs = PQS.objects.values('codPQS','nombreUsuario','fechaRegistro','categoria','estatus')
-        context['object_list'] = pqs.order_by('-fechaRegistro')
+        context['object_list'] = PQS.objects.all().reverse()
         context['cant_pet'] = PQS.objects.filter(categoria='P',estatus='P').count()
         context['cant_que'] = PQS.objects.filter(categoria='Q',estatus='P').count()
         context['cant_sug'] = PQS.objects.filter(categoria='S',estatus='P').count()
@@ -82,8 +83,8 @@ class inicio_admin(AuthenticatedAdminMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(inicio_admin, self).get_context_data(**kwargs)
         context['cant_categorias'] = Categoria.objects.filter(estatus='A').count()
-        context['cant_empleados'] = Empleado.objects.filter(estatus='A').count()
-        context['cant_clientes'] = Cliente.objects.filter(estatus='A').count()
+        context['cant_empleados'] = User.objects.filter(idCliente=None, estatus='A').count()
+        context['cant_clientes'] = User.objects.filter(idEmpleado=None, estatus='A').count()
         context['cant_rp'] = RespuestaPredefinida.objects.filter(estatus='A').count()
         return context
 

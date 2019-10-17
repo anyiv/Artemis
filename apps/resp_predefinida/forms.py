@@ -47,7 +47,7 @@ class ModificarRespuestaP(forms.ModelForm):
              'codRespuestaP',
             'categoria',
             'descripcion',
-            'estatus',
+            'estatus'
         ]
 
         widgets = {

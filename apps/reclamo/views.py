@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
-from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo
+from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, AtenderReclamo
 from .models import Categoria, Reclamo
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
@@ -72,6 +72,9 @@ class gt_consultarReclamo(DetailView):
 class atenderReclamo(SuccessMessageMixin, DetailView):
     model = Reclamo
     template_name= "reclamo/atenderReclamo.html"
+    form_class = AtenderReclamo
+    success_url = reverse_lazy('gt_consultarReclamo')
+    success_message = "e"
 
     def get_context_data(self, **kwargs):
         context = super(atenderReclamo, self).get_context_data(**kwargs)

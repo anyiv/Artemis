@@ -80,9 +80,15 @@ class User(AbstractBaseUser,PermissionsMixin):
         send_mail('Artemis - ' + asunto,strip_tags(contenido),'admin@artemis.com',{self.correo},html_message=contenido)
 
     def login_grec(self):
-        last_login = self.last_login.date()
-        hoy = timezone.now().date()
-        if last_login != hoy:
+        if self.last_login:
+            last_login = self.last_login.date()
+            hoy = timezone.now().date()
+            if last_login != hoy:
+                eg = EficienciaGestor.objects.get(nombreUsuario = self)
+                eg.diasActivo += 1
+                eg.save()
+                self.actualizar_eficiencia()
+        else:
             eg = EficienciaGestor.objects.get(nombreUsuario = self)
             eg.diasActivo += 1
             eg.save()

@@ -43,9 +43,9 @@ var tabla = $('#tabla-atcli').DataTable({
 $('div.toolbar').empty(); // clears the content generated    
 $('.dataTables_filter').empty(); // clears the content generated    
 
-$('div.toolbar').append("<div class='col-sm-12 col-sm-4'><span style='color:black'>Mostrar <select id='tamano' class='form-group' data-width='fit'><option>1</option><option>2</option><option>50</option><option>100</option></select> Registros</span></div>" +
-    "<div class='col-sm-12 col-sm-4'><div class='text-center'><span style='color:black'>Filtrar por: </span><select id='tipopqrs' class='form-group' data-width='fit'><option>Todos</option><option>Petición</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div></div>" +
-    "<div class='col-sm-12 col-sm-4'><label for='filtro' style='color:black;'>Buscar: </label><input id='filtro' class='form-control' style='width:70%; float:right;'></input></div>")
+$('div.toolbar').append("<div class='col-sm-12 col-sm-4'><span style='color:black'><b>Mostrar <select id='tamano' class='form-group' data-width='fit'><option>10</option><option>20</option><option>50</option><option>100</option></select> Registros</b></span></div>" +
+    "<div class='col-sm-12 col-sm-4'><label style='color:black;margin-bottom:5px;'><b>Filtrar por: <b></label><select id='tipopqrs' class='form-group' data-width='fit'><option>Todos</option><option>Petición</option><option>Queja</option><option>Reclamo</option><option>Sugerencia</option></select></div>" +
+    "<div class='col-sm-12 col-sm-4'><label for='filtro' style='color:black;margin-left:35px;margin-top:5px;'>Buscar: </label><input id='filtro' class='form-control' style='width:70%; float:right;'></input></div>")
 
 $('#filtro').keyup(function() {
     tabla.search(this.value).draw();

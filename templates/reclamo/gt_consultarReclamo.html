@@ -225,7 +225,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <a href="#">
+                                        <a href=" {% url 'atenderReclamo' reclamo.codReclamo  %} ">
                                             <button type="button" class="btn bg-indigo waves-effect">Agregar
                                                 Comentario</button>
 
@@ -236,7 +236,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <a href="{% url 'atenderReclamo' %}">
+                                        <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
                                             <button type="button" class="btn bg-green waves-effect">Atender</button>
 
                                         </a>

@@ -69,7 +69,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Categoría</th>
-                        <th>Nombre de usuario</th>
+                        <th>Nombre del cliente</th>
                         <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
@@ -78,8 +78,8 @@
                     <tr>
                         <th>Código</th>
                         <th>Categoría</th>
-                        <th>Nombre de usuario</th>
-                        <th>Estado</th>
+                        <th>Nombre del cliente</th>
+                        <th>Estado</th>                   
                         <th>Opciones</th>
                     </tr>
                 </tfoot>
@@ -88,8 +88,8 @@
                     <tr>
                         <td> {{ pqs.codPQS }} </td>
                         <td> {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %} </td>
-                        <td> {{ pqs.nombreUsuario }} </td>
-                        <td> {{ pqs.estatus }} </td>
+                        <td> {{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }} </td>
+                        <td>{% if pqs.estatus == 'P' %}Pendiente{% elif pqs.estatus == 'M' %}Marcada{% elif pqs.estatus == 'A' %}Atendida{% endif %} </td>
                         <td> 
                             <center><a href="{% url 'consultarpqs' pqs.codPQS %}">
                             <button type="button"

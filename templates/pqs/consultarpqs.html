@@ -19,77 +19,61 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="col-md-6">
                             <p>
-                                <b>Código</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                                    <b>Código</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    {% if user.codTipoUser.codTipoUser == 'gpqs' %}
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Nombre de Usuario</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.nombreUsuario }}" readonly>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Nombre y apellido</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Tipo de solicitud</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.get_categoria_display }}"
-                                        readonly>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Tipo de solicitud</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.get_categoria_display }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Fecha de emisión</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.fechaRegistro }}" readonly>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Fecha de emisión</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.fechaRegistro }}" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Estatus</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.get_estatus_display }}"
-                                        readonly>
+                            <div class="col-md-6">
+                                <p>
+                                    <b>Estatus</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ pqs.get_estatus_display }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
+                            <div class=" col-md-6">
                             <p>
                                 <b>Fecha de atención</b>
                             </p>
@@ -99,10 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
+                        <div class=" col-md-12">
                             <p>
                                 <b>Descripción</b>
                             </p>
@@ -112,7 +93,7 @@
                                         readonly>{{ pqs.descripcion }}</textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>    
                     </div>
                     {% if user.codTipoUser.codTipoUser == 'cli' %}
                     <div class="row clearfix">

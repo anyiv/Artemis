@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
 from apps.datos_externos.models import DetalleContrato
 from apps.usuario.models import User
 from apps.usuario.models import EficienciaGestor
@@ -88,6 +88,15 @@ def asignar_reclamo(sender, instance, **kwargs):
             
             if cantidad < minimo:
                 instance.responsableReclamo.add(gestor)
+                dias_tarda = round((cantidad / eg.eficiencia) + 0.5) + 1
+                hoy = datetime.now()
+                while dias_tarda > 0:
+                    hoy += timedelta(days=1)
+                    dia_semana = hoy.weekday()
+                    if dia_semana >= 5:
+                        continue
+                    dias_tarda -= 1
+                instance.fechaEstimada = hoy
                 instance.save()
                 return
             elif cantidad < maximo:
@@ -100,9 +109,31 @@ def asignar_reclamo(sender, instance, **kwargs):
         if len(correspondencia) != 0:
             indice = correspondencia.index(min(correspondencia))
             instance.responsableReclamo.add(gestores_posibles[indice])
+            cantidad = Reclamo.objects.filter(responsableReclamo=gestores_posibles[indice]).exclude(estatus="F").count()
+            eg = EficienciaGestor.objects.get(nombreUsuario=gestores_posibles[indice])
+            dias_tarda = round((cantidad / eg.eficiencia) + 0.5) + 2
+            hoy = datetime.now()
+            while dias_tarda > 0:
+                hoy += timedelta(days=1)
+                dia_semana = hoy.weekday()
+                if dia_semana >= 5:
+                    continue
+                dias_tarda -= 1
+            instance.fechaEstimada = hoy
             instance.save()
         elif len(correspondencia_max) != 0:
             indice = correspondencia_max.index(min(correspondencia_max))
             instance.responsableReclamo.add(gestores_max[indice])
+            cantidad = Reclamo.objects.filter(responsableReclamo=gestores_max[indice]).exclude(estatus="F").count()
+            eg = EficienciaGestor.objects.get(nombreUsuario=gestores_max[indice])
+            dias_tarda = round((cantidad / eg.eficiencia) + 0.5) + 2
+            hoy = datetime.now()
+            while dias_tarda > 0:
+                hoy += timedelta(days=1)
+                dia_semana = hoy.weekday()
+                if dia_semana >= 5:
+                    continue
+                dias_tarda -= 1
+            instance.fechaEstimada = hoy
             instance.save()
     
