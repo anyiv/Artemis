@@ -91,10 +91,12 @@ class AtenderReclamo(forms.ModelForm):
             'fechaEstimada',
             'codCategoria',
             'estatus',
+            'fechaFinalizada',
         ]
 
         widgets = {
             'fechaEstimada' : forms.DateInput(attrs={'class':'form-control'}),
             'estatus' : forms.Select(attrs={'class':'form-control','id':'estatus'}),
             'codCategoria' : forms.Select(attrs={'class':'form-control'}),
+            'fechaFinalizada' : forms.DateTimeInput(attrs={'class':'form-control'}),
         }

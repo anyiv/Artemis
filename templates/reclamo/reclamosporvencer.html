@@ -21,31 +21,36 @@
         <table id="tabla-generica" class="table table-bordered" style="width: 100%">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre del Cliente</th>
                     <th>Categoría</th>
-                    <th>Fecha de emisión</th>
+                    <th>Fecha de compromiso</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre del Cliente</th>
                     <th>Categoría</th>
-                    <th>Fecha de emisión</th>
+                    <th>Fecha de compromiso</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+            {% for rec in object_list %}
                 <tr>
-                    <td>AnaMaria</td>
-                    <td>Fallas de cobertura</td>
-                    <td>15/05/2019</td>
+                    <td>{{ rec.codReclamo }}</td>
+                    <td>{{ rec.nombreUsuario.idCliente.nombre }} {{ rec.nombreUsuario.idCliente.apellido }}</td>
+                    <td>{{ rec.codCategoria }} </td>
+                    <td>{{ rec.fechaEstimada }}</td>
                     <td>
-                        <center><button type="button"
+                        <center><a type="button" href="{% url 'gt_consultarReclamo' rec.codReclamo %}"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
+                                    class="material-icons">remove_red_eye</i></a></center>
                     </td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

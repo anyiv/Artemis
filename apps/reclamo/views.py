@@ -12,6 +12,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin, AuthenticatedGPQSAtClienteClienteMixin
 from django.http import HttpResponseRedirect
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -33,9 +34,16 @@ class g_reclamosfinalizados(ListView):
         context = super(g_reclamosfinalizados, self).get_context_data(**kwargs)
         context['object_list'] = Reclamo.objects.filter(estatus='F')
         return context
+    
+class reclamosporvencer(ListView):
+    model = Reclamo
+    template_name = "reclamo/reclamosporvencer.html"
 
-def reclamosporvencer(request):
-    return render(request, 'reclamo/reclamosporvencer.html', {})
+    def get_context_data(self, **kwargs):
+        context = super(reclamosporvencer, self).get_context_data(**kwargs)
+        fecha_tope = datetime.now() + timedelta(days=7)
+        context['object_list'] = Reclamo.objects.filter(responsableReclamo=self.request.user, fechaEstimada__lte=fecha_tope).exclude(estatus='F')
+        return context
 
 class cli_crearReclamo(SuccessMessageMixin, CreateView):
     model = Reclamo
@@ -82,6 +90,13 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
     form_class = AtenderReclamo
     success_url = reverse_lazy('gt_consultarReclamo')
     success_message = "e"
+
+    def form_valid(self, form):
+        reclamo = form.save()
+        if reclamo.estatus == "F":
+            reclamo.fechaFinalizada = datetime.now()
+            reclamo.save()
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super(atenderReclamo, self).get_context_data(**kwargs)

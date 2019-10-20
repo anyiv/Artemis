@@ -9,7 +9,7 @@ from apps.pqs.models import PQS
 from apps.resp_predefinida.models import RespuestaPredefinida
 from django.contrib.messages.views import SuccessMessageMixin
 from Artemis.mixin import *
-
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -36,9 +36,12 @@ class inicio_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(inicio_gestreclamo, self).get_context_data(**kwargs)
-        context['object_list'] = Reclamo.objects.filter(estatus = 'P',responsableReclamo=self.request.user)
-        context['contrec'] = Reclamo.objects.filter(estatus = 'P', responsableReclamo=self.request.user).count()
-        context['recfin'] = Reclamo.objects.filter(responsableReclamo=self.request.user, estatus='F').count()
+        fecha_tope = datetime.now() + timedelta(days=7)
+        reclamos = Reclamo.objects.filter(responsableReclamo=self.request.user)
+        context['object_list'] = reclamos.filter(estatus = 'P')
+        context['contrec'] = reclamos.filter(estatus = 'P').count()
+        context['recfin'] = reclamos.filter(estatus='F').count()
+        context['cantpav'] = reclamos.filter(fechaEstimada__lte=fecha_tope).exclude(estatus='F').count()
         return context
 
 class inicio_cliente(AuthenticatedClienteMixin, ListView):
@@ -67,10 +70,11 @@ class inicio_gestorpqs(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(inicio_gestorpqs, self).get_context_data(**kwargs)
-        context['object_list'] = PQS.objects.all().reverse()
-        context['cant_pen'] = PQS.objects.filter(estatus='P').count()
-        context['cant_mar'] = PQS.objects.filter(estatus='M').count()
-        context['cant_sug'] = PQS.objects.filter(estatus='P').count()
+        pqs = PQS.objects.all()
+        context['object_list'] = pqs.all().reverse()
+        context['cant_pen'] = pqs.filter(estatus='P').count()
+        context['cant_mar'] = pqs.filter(estatus='M').count()
+        context['cant_sug'] = pqs.filter(estatus='P').count()
         return context
 
 def inicio_tecnico(request):
@@ -82,9 +86,10 @@ class inicio_admin(AuthenticatedAdminMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(inicio_admin, self).get_context_data(**kwargs)
+        user = User.objects.filter(estatus='A')
         context['cant_categorias'] = Categoria.objects.filter(estatus='A').count()
-        context['cant_empleados'] = User.objects.filter(idCliente=None, estatus='A').count()
-        context['cant_clientes'] = User.objects.filter(idEmpleado=None, estatus='A').count()
+        context['cant_empleados'] = user.filter(idCliente=None).count()
+        context['cant_clientes'] = user.filter(idEmpleado=None).count()
         context['cant_rp'] = RespuestaPredefinida.objects.filter(estatus='A').count()
         return context
 
