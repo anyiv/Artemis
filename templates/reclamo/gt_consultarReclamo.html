@@ -13,11 +13,13 @@
         </h2>
     </div>
     <div class="body">
+    <form method="POST" id="formulario">
+            {% csrf_token %}
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                    <li role="presentation" class="active"><a href="#consulta" data-toggle="tab">Consulta</a></li>
+                    <li role="presentation" class="active" ><a href="#consulta" data-toggle="tab">Consulta</a></li>
                     <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
                 </ul>
                 <!-- Tab panes -->
@@ -38,7 +40,7 @@
                                             <p>
                                                 <b>Nro de identificación</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nro de idenficación." value="{{ reclamo.codDetContrato.nroContrato.codCliente.identificacion }}">
+                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.nroContrato.codCliente.identificacion }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +50,7 @@
                                             <p>
                                                 <b>Número de contrato</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nro de contrato." value="{{ reclamo.codDetContrato.nroContrato.nroContrato }}">
+                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.nroContrato.nroContrato }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +60,7 @@
                                             <p>
                                                 <b>Nombre</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Nombre" value="{{reclamo.codDetContrato.nroContrato.codCliente.nombre}}">
+                                            <input type="text" class="form-control" value="{{reclamo.codDetContrato.nroContrato.codCliente.nombre}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +70,7 @@
                                             <p>
                                                 <b>Apellido</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Apellido" value="{{reclamo.codDetContrato.nroContrato.codCliente.apellido}}">
+                                            <input type="text" class="form-control" placeholder="Apellido" value="{{reclamo.codDetContrato.nroContrato.codCliente.apellido}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +80,7 @@
                                             <p>
                                                 <b>Teléfono</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Teléfono" value="{{reclamo.codDetContrato.nroContrato.codCliente.telefono}}">
+                                            <input type="text" class="form-control" placeholder="Teléfono" value="{{reclamo.codDetContrato.nroContrato.codCliente.telefono}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +90,7 @@
                                             <p>
                                                 <b>Correo</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Correo" value="{{user_cliente.correo}}">
+                                            <input type="text" class="form-control" placeholder="Correo" value="{{user_cliente.correo}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +100,7 @@
                                             <p>
                                                 <b>Dirección</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Dirección" value="{{reclamo.codDetContrato.nroContrato.codCliente.direccion}}">
+                                            <input type="text" class="form-control" value="{{reclamo.codDetContrato.nroContrato.codCliente.direccion}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +119,7 @@
                                             <p>
                                                 <b>Código</b>
                                             </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}">
+                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -127,8 +129,7 @@
                                             <p>
                                                 <b>Estado</b>
                                             </p>
-                                            <input type="text" class="form-control" value=" {{ reclamo.get_estatus_display }} ">
-                                        </div>
+                                            <input type="text" name="estatus" value="{{reclamo.get_estatus_display}}" readonly="" required class="form-control" id="id_estatus">                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -139,7 +140,7 @@
                                         <div class="input-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control date"
-                                                    value=" {{ reclamo.fechaRegistro }} ">
+                                                    value=" {{ reclamo.fechaRegistro }} " readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +153,7 @@
                                         <div class="input-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control date"
-                                                    value=" {{ reclamo.fechaEstimada }} ">
+                                                    value=" {{ reclamo.fechaEstimada }} " readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +164,7 @@
                                             <p>
                                                 <b>Categoría</b>
                                             </p>
-                                            <input type="text" class="form-control" value=" {{ reclamo.codCategoria }} ">
+                                            <input type="text" class="form-control" value=" {{ reclamo.codCategoria }} " readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +174,7 @@
                                             <p>
                                                 <b>Tipo de servicio</b>
                                             </p>
-                                            <input type="text" class="form-control" placeholder="Tipo de servicio" value="{{ reclamo.codDetContrato.codServicio.nombre }}">
+                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.codServicio.nombre }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +186,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <textarea rows="6" class="form-control no-resize"
-                                                    >{{ reclamo.descripcion }}</textarea>
+                                                    readonly>{{ reclamo.descripcion }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -237,8 +238,7 @@
                                 <div class="form-group">
                                     <div class="button-demo">
                                         <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
-                                            <button type="button" class="btn bg-green waves-effect">Atender</button>
-
+                                            <button type="button" onclick="javascript:atenderReclamo();" class="btn bg-green waves-effect">Atender</button>
                                         </a>
                                     </div>
                                 </div>
@@ -288,6 +288,7 @@
                 </div>
             </div>
         </div>
+    </form>
     </div>
 </div>
 
@@ -295,5 +296,22 @@
 {% endblock %}
 
 {% block javascript %}
+
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Guardado", "Ha sido guardado con exito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<script>
+    function atenderReclamo() {
+        document.getElementById('estatus').value = 'R';
+        formulario.submit();
+    }
+</script>
 
 {% endblock %}

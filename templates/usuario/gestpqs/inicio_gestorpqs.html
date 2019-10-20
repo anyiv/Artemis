@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="block-header">
-    <h2>FILTRAR LISTADO POR ESTATUS PENDIENTE</h2> <!-- aun no funciona este filtrado -->
+    <h2>LISTADOS</h2> 
 </div>
 
 <div class="row clearfix">
@@ -18,8 +18,8 @@
                     <i class="material-icons">question_answer</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Peticiones</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_pet }}" data-speed="1500"
+                    <div class="text" style="color:white">QPS Pendientes</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_pen }}" data-speed="1500"
                         data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -29,11 +29,11 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box-3  hover-expand-effect">
                 <div class="icon">
-                    <i class="material-icons">thumb_down</i>
+                    <i class="material-icons">question_answer</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Quejas</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_que }}" data-speed="1500"
+                    <div class="text" style="color:white">PQS Marcadas</div>
+                    <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_mar }}" data-speed="1500"
                         data-fresh-interval="20"></div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <i class="material-icons">loyalty</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Sugerencias</div>
+                    <div class="text" style="color:white">Reporte de PQS</div>
                     <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_sug }}" data-speed="1500"
                         data-fresh-interval="20"></div>
                 </div>

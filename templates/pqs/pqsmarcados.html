@@ -13,7 +13,7 @@
         </h2>
     </div>
     <div class="body table-responsive">
-        <table id="tabla-atcli" class="table table-bordered dataTable js-exportable" style="width: 100%">
+        <table id="js-exportable" class="table table-bordered dataTable js-exportable" style="width: 100%">
             <thead>
                 <tr>
                     <th>Nombre de Cliente</th>
@@ -49,13 +49,5 @@
 {% endblock content %}
 
 {% block javascript %}
- <script src=" {% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %} "></script>
-<script src=" {% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %} "></script>
-<script src=" {% static ' plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
-<script src=" {% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %} "></script>
-<script src=" {% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %} "></script>
-<script src=" {% static ' plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
-<script src=" {% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %} "></script>
-<script src=" {% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %} "></script>
-
+<script src="{% static 'js/pages/tables/jquery-datatable.js' %}" type="text/javascript"></script>
 {% endblock javascript %}

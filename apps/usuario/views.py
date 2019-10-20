@@ -37,7 +37,7 @@ class inicio_gestreclamo(AuthenticatedGestorReclamosMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(inicio_gestreclamo, self).get_context_data(**kwargs)
         context['object_list'] = Reclamo.objects.filter(estatus = 'P',responsableReclamo=self.request.user)
-        context['contrec'] = Reclamo.objects.filter(responsableReclamo=self.request.user).count()
+        context['contrec'] = Reclamo.objects.filter(estatus = 'P', responsableReclamo=self.request.user).count()
         context['recfin'] = Reclamo.objects.filter(responsableReclamo=self.request.user, estatus='F').count()
         return context
 
@@ -68,9 +68,9 @@ class inicio_gestorpqs(ListView):
     def get_context_data(self, **kwargs):
         context = super(inicio_gestorpqs, self).get_context_data(**kwargs)
         context['object_list'] = PQS.objects.all().reverse()
-        context['cant_pet'] = PQS.objects.filter(categoria='P',estatus='P').count()
-        context['cant_que'] = PQS.objects.filter(categoria='Q',estatus='P').count()
-        context['cant_sug'] = PQS.objects.filter(categoria='S',estatus='P').count()
+        context['cant_pen'] = PQS.objects.filter(estatus='P').count()
+        context['cant_mar'] = PQS.objects.filter(estatus='M').count()
+        context['cant_sug'] = PQS.objects.filter(estatus='P').count()
         return context
 
 def inicio_tecnico(request):

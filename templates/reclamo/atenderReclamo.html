@@ -18,6 +18,7 @@
             <div class="body">
                 <form method="POST" id="formulario">
                     {% csrf_token %}
+                    {{form.errors}}
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="col-md-2"></div>
@@ -46,10 +47,9 @@
                                             <p>
                                                 <b>Estado</b>
                                             </p>
-                                            <select class="form-control">
-                                                <option>Pendiente</option>
-                                                <option>En proceso</option>
-                                                <option>Finalizada</option>
+                                            <select name="estatus" class="form-control" id="estatus">
+                                                <option value="R">En proceso</option>
+                                                <option value="F">Finalizado</option>
                                             </select>
                                         </div>
                                     </div>
@@ -72,10 +72,11 @@
                                         <p>
                                             <b>Fecha de compromiso</b>
                                         </p>
-                                        <div class="input-group">
+                                        <div class="input-daterange input-group" id="fechaEstimada_dp">
                                             <div class="form-line">
-                                                <input type="text" class="form-control date"
-                                                    placeholder="Ej: 30/07/2016">
+                                                <input id="fechaEstimada" name="fechaEstimada" type="text"
+                                                    class="form-control" placeholder="Ej:23/07/2019"
+                                                    value="{{reclamo.fechaEstimada|date:'Y-m-d'}}">
                                             </div>
                                         </div>
                                     </div>
@@ -111,23 +112,6 @@
                                                 <textarea rows="6" class="form-control no-resize"
                                                     readonly> {{ reclamo.descripcion }} </textarea>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <p>
-                                            <b>Comentarios</b>
-                                        </p>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item" style="text-align:center">No
-                                                se ha
-                                                podido
-                                                atender por falta de luz en la zona</button>
-                                            <button type="button" class="list-group-item" style="text-align:center">El
-                                                técnico
-                                                está
-                                                atendiendo el reclamo</button>
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +154,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="button-demo">
-                                <center><button type="button" class="btn bg-green waves-effect">Guardar</button>
+                                <center><button type="button" onclick="javascript:confirmarSeleccion();"
+                                        class="btn bg-green waves-effect">Guardar</button>
                                 </center>
                             </div>
                         </div>
@@ -226,4 +211,35 @@
 
 {% block javascript %}
 <script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
+<script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+<script>
+    $('#fechaEstimada_dp').datepicker({
+        autoclose: true,
+        language: "es",
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        container: '#fechaEstimada_dp'
+    });
+
+    function confirmarSeleccion() {
+        swal({
+            title: "Confirmar",
+            text: "¿Está seguro que desea guardar?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#58a05d",
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                formulario.submit();
+            } else {
+                swal("Cancelado", "Los cambios no han sido guardados.", "error");
+            }
+        });
+    }
+</script>
 {% endblock %}

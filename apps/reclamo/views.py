@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
-from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, AtenderReclamo
+from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, ConsultarReclamo, AtenderReclamo
 from .models import Categoria, Reclamo
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
@@ -11,6 +11,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin, AuthenticatedGPQSAtClienteClienteMixin
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -18,6 +19,11 @@ from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin, Au
 class g_listareclamos(ListView):
     model = Reclamo
     template_name = "reclamo/g_listareclamos.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(g_listareclamos, self).get_context_data(**kwargs)
+        context['object_list'] = Reclamo.objects.filter(responsableReclamo=self.request.user)
+        return context  
 
 class g_reclamosfinalizados(ListView):
     model = Reclamo
@@ -59,8 +65,9 @@ class atc_crearReclamo(SuccessMessageMixin, CreateView):
         context['catreclamo'] = Categoria.objects.filter(estatus='A')
         return context
 
-class gt_consultarReclamo(DetailView):
+class gt_consultarReclamo(UpdateView):
     model = Reclamo
+    form_class = ConsultarReclamo
     template_name = "reclamo/gt_consultarReclamo.html"
 
     def get_context_data(self, **kwargs):
@@ -69,7 +76,7 @@ class gt_consultarReclamo(DetailView):
         return context
     
 
-class atenderReclamo(SuccessMessageMixin, DetailView):
+class atenderReclamo(SuccessMessageMixin, UpdateView):
     model = Reclamo
     template_name= "reclamo/atenderReclamo.html"
     form_class = AtenderReclamo
@@ -80,6 +87,10 @@ class atenderReclamo(SuccessMessageMixin, DetailView):
         context = super(atenderReclamo, self).get_context_data(**kwargs)
         context['rp'] = RespuestaPredefinida.objects.filter(categoria='rec',estatus='A')
         return context
+
+    def get_success_url(self):
+        idreclamo=self.kwargs['pk']
+        return reverse_lazy('gt_consultarReclamo', kwargs={'pk': idreclamo})
 
 def cli_reclamosfinalizados(request):
     return render(request, 'reclamo/cli_reclamosfinalizados.html', {})

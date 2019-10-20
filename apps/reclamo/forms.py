@@ -69,6 +69,19 @@ class IncluirReclamo(forms.ModelForm):
             'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':12,'placeholder':'Por favor escriba su reclamo aquí...'}),
         }
 
+class ConsultarReclamo(forms.ModelForm):
+    
+    class Meta:
+        model = Reclamo
+
+        fields = [
+            'estatus',
+        ]
+        
+        widgets = {
+            'estatus' :  forms.TextInput(attrs={'class':'form-control','readonly':''}),
+        }
+
 class AtenderReclamo(forms.ModelForm):
 
     class Meta:
@@ -81,7 +94,7 @@ class AtenderReclamo(forms.ModelForm):
         ]
 
         widgets = {
-            'fechaEstimada' : forms.TextInput(attrs={'class':'form-control','id':'fechaEstimada'}),
+            'fechaEstimada' : forms.DateInput(attrs={'class':'form-control'}),
             'estatus' : forms.Select(attrs={'class':'form-control','id':'estatus'}),
             'codCategoria' : forms.Select(attrs={'class':'form-control'}),
         }

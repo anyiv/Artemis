@@ -21,7 +21,7 @@
                     <th>Nombre del Cliente</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
-                    <th>Fecha estimada de atención </th>
+                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -30,22 +30,24 @@
                     <th>Nombre del Cliente</th>
                     <th>Categoría</th>
                     <th>Fecha de emisión</th>
-                    <th>Fecha estimada de atención</th>
+                    <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+            {% for rec in object_list %}
                 <tr>
-                    <td>AnaMaria</td>
-                    <td>Fallas de cobertura</td>
-                    <td>15/05/2019</td>
-                    <td>30/05/2019</td>
+                    <td>{{ rec.nombreUsuario.idCliente.nombre }} {{ rec.nombreUsuario.idCliente.apellido }}</td>
+                    <td>{{ rec.codCategoria }}</td>
+                    <td>{{ rec.fechaRegistro }}</td>
+                    <td>{{ rec.get_estatus_display }}</td>
                     <td>
-                        <center><a href="#"> <button type="button"
+                        <center><a href="{% url 'gt_consultarReclamo' rec.codReclamo %}"> <button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                     class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
