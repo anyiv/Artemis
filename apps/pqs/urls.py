@@ -11,5 +11,5 @@ urlpatterns = [
     path('consulta/<pk>/', views.consultarpqs.as_view(), name='consultarpqs'),
     path('atender/<pk>/', views.atenderpqs.as_view(), name='atenderpqs'),
     path('marcadas/',views.pqsmarcados, name='pqsmarcados'),
-    path('pqs/lista/', views.g_listapqs, name='g_listapqs'),
+    path('pqs/lista/', views.g_listapqs.as_view(), name='g_listapqs'),
 ]

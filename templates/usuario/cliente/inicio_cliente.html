@@ -94,8 +94,7 @@
                         <td>{{ reclamo.codReclamo }}</td>
                         <td>{{ reclamo.codCategoria }}</td>
                         <td>{{ reclamo.fechaRegistro|date:'l d-m-Y' }} a las {{ reclamo.fechaRegistro|date:'h:i a' }}</td>
-                        <td>{% if reclamo.estatus == 'P' %}Pendiente{% elif reclamo.estatus == 'R' %}En
-                            Proceso{% elif reclamo.estatus == 'F' %}Finalizado{% endif %}</td>
+                        <td>{{ reclamo.get_estatus_display }}</td>
                         <td>
                             <center><a href="{% url 'cli_consultarReclamo' reclamo.codReclamo %}">
                             <button type="button"

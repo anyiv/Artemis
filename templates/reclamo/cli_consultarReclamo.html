@@ -20,111 +20,95 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Código</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.codReclamo }}" readonly>
+                        <div class="col-md-1"></div>
+                        <div class=" col-md-10">
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Código</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Tipo de solicitud</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="Reclamo"
-                                        readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Tipo de solicitud</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="Reclamo" readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Categoría del Reclamo</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.codCategoria }}"
-                                        readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Categoría del Reclamo</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.codCategoria }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Fecha de emisión</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.fechaRegistro }}" readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Fecha de emisión</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.fechaRegistro }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Estado</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.get_estatus_display }}"
-                                        readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Estado</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.get_estatus_display }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Fecha de Estimada</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.fechaEstimada }}" readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Fecha de Estimada</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.fechaEstimada }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Fecha de Finalización</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ reclamo.fechaFinalizado }}" readonly>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Fecha de Finalización</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" value="{{ reclamo.fechaFinalizado }}"
+                                            readonly>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-md-2"></div>
-                        <div class=" col-md-8">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea rows="12" class="form-control no-resize"
-                                        readonly>{{ reclamo.descripcion }}</textarea>
+                            <div class=" col-md-12">
+                                <p>
+                                    <b>Descripción</b>
+                                </p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <textarea rows="12" class="form-control no-resize"
+                                            readonly>{{ reclamo.descripcion }}</textarea>
+                                    </div>
                                 </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                     <div class="row clearfix">

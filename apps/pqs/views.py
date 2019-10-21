@@ -36,7 +36,17 @@ class atc_crearpeticion(AuthenticatedAtClienteMixin, SuccessMessageMixin, Create
     success_url = reverse_lazy('atc_crearpeticion')
     success_message = "e"
 
-
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nueva petición registrada con éxito',
+            'Gracias por comunicarnos tu petición.',
+            'Es muy útil escuchar las peticiones como la tuya.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
 
 #QUEJA
 class cli_crearqueja(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
@@ -66,6 +76,18 @@ class atc_crearqueja(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateVie
     success_url = reverse_lazy('atc_crearqueja')
     success_message = "e"
 
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nueva queja registrada con éxito',
+            'Gracias por comunicarnos tu queja.',
+            'Es muy útil para nosotros saber tus opiniones.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
+
 #SUGERENCIA
 class cli_crearsugerencia(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
@@ -93,6 +115,18 @@ class atc_crearsugerencia(AuthenticatedAtClienteMixin, SuccessMessageMixin, Crea
     success_url = reverse_lazy('atc_crearsugerencia')
     success_message = "e"
 
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
+            'Gracias por comunicarnos tu sugerencia.',
+            'Es muy útil para nosotros saber las sugerencias que tienes para mejorar nuestra organización.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
+
 #CONSULTAR PQS CLIENTE
 class consultarpqs(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = PQS
@@ -118,5 +152,11 @@ def pqsmarcados(request):
     return render(request, 'pqs/pqsmarcados.html', {})
 
 
-def g_listapqs(request):
-    return render(request, 'usuario/gestpqs/g_listapqs.html', {})
+class g_listapqs(ListView):
+    model = PQS
+    template_name = "pqs/g_listapqs.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(g_listapqs, self).get_context_data(**kwargs)
+        context['pqs_pen'] = PQS.objects.filter(estatus='P')
+        return context

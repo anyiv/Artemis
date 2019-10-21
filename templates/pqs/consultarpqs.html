@@ -79,7 +79,9 @@
                             </p>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" value="{{ pqs.fechaFinalizado }}" readonly>
+                                    <input type="text" class="form-control" {% if pqs.fechaFinalizado == None %}
+                                    value=""
+                                    {% else %} value="{{ pqs.fechaFinalizado }}" {% endif %}  readonly>
                                 </div>
                             </div>
                         </div>

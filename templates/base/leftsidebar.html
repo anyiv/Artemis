@@ -174,17 +174,6 @@
             </li>
             {% endif %}
 
-            {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
-            {% comment "GESTORES DE PQRS Y TECNICOS" %}{% endcomment %}
-            <!--ATENDER PQS/RECLAMO-->
-            <li id="atender" class="">
-                <a href="#">
-                    <i class="material-icons">build</i>
-                    <span>En Proceso</span>
-                </a>
-            </li>
-            {% endif %}
-
             {% if user.codTipoUser.codTipoUser == 'gpqs' or user.codTipoUser.codTipoUser == 'ger' %}
             {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
             <!--REPORTES-->

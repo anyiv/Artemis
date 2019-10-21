@@ -39,21 +39,26 @@
             </div>
         </div>
     </a>
-    <a href="{% url 'inicio_gestorpqs' %}">
+</div>
+<div class="block-header">
+    <h2>REPORTES</h2> 
+</div>
+<div class="row clearfix">
+    <a href="{% url 'pqsmarcados' %}">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box-3  hover-expand-effect">
+            <div class="info-box-3 hover-expand-effect">
                 <div class="icon">
                     <i class="material-icons">loyalty</i>
                 </div>
                 <div class="content">
-                    <div class="text" style="color:white">Reporte de PQS</div>
-                    <div class="number count-to" style="color:white" data-from="0" data-to="{{ cant_sug }}" data-speed="1500"
-                        data-fresh-interval="20"></div>
+                    <div class="text" style="color:white">Reporte</div>
+                    <div class="number" style="color:white">PQS marcadas</div>
                 </div>
             </div>
         </div>
     </a>
 </div>
+
 
 
 <div class="card">
@@ -87,9 +92,9 @@
                 {% for pqs in object_list %}
                     <tr>
                         <td> {{ pqs.codPQS }} </td>
-                        <td> {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %} </td>
+                        <td> {{ pqs.get_categoria_display }} </td>
                         <td> {{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }} </td>
-                        <td>{% if pqs.estatus == 'P' %}Pendiente{% elif pqs.estatus == 'M' %}Marcada{% elif pqs.estatus == 'A' %}Atendida{% endif %} </td>
+                        <td>{{ pqs.get_estatus_display }} </td>
                         <td> 
                             <center><a href="{% url 'consultarpqs' pqs.codPQS %}">
                             <button type="button"
