@@ -36,6 +36,8 @@ class atc_crearpeticion(AuthenticatedAtClienteMixin, SuccessMessageMixin, Create
     success_url = reverse_lazy('atc_crearpeticion')
     success_message = "e"
 
+
+
 #QUEJA
 class cli_crearqueja(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
@@ -43,6 +45,19 @@ class cli_crearqueja(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView)
     template_name = "queja/cli_crearqueja.html"
     success_url = reverse_lazy('cli_crearqueja')
     success_message = "e"
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nueva queja registrada con éxito',
+            'Gracias por comunicarnos tu queja.',
+            'Es muy útil para nosotros saber tus opiniones.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
+
 
 class atc_crearqueja(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
@@ -58,6 +73,18 @@ class cli_crearsugerencia(AuthenticatedClienteMixin, SuccessMessageMixin, Create
     template_name = "sugerencia/cli_crearsugerencia.html"
     success_url = reverse_lazy('cli_crearsugerencia')
     success_message = "e"
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
+            'Gracias por comunicarnos tu sugerencia.',
+            'Es muy útil para nosotros saber las sugerencias que tienes para mejorar nuestra organización.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
 
 class atc_crearsugerencia(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateView):
     model = PQS
@@ -78,9 +105,10 @@ class atenderpqs(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(atenderpqs, self).get_context_data(**kwargs)
-        pet = RespuestaPredefinida.objects.filter(categoria = 'pet', estatus = 'A' )
-        que = RespuestaPredefinida.objects.filter(categoria = 'que', estatus = 'A' )
-        sug = RespuestaPredefinida.objects.filter(categoria = 'sug', estatus = 'A' )
+        rp = RespuestaPredefinida.objects.filter(estatus = 'A')
+        pet = rp.filter(categoria = 'pet')
+        que = rp.filter(categoria = 'que' )
+        sug = rp.filter(categoria = 'sug')
         pri = pet.union(que)
         context['resp'] = pri.union(sug)
         return context

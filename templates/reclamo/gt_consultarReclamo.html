@@ -238,7 +238,7 @@
                                 <div class="form-group">
                                     <div class="button-demo">
                                         <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
-                                            <button type="button" onclick="javascript:atenderReclamo();" class="btn bg-green waves-effect">Atender</button>
+                                            <button type="button" class="btn bg-green waves-effect">Atender</button>
                                         </a>
                                     </div>
                                 </div>
@@ -266,7 +266,7 @@
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>Comentario</th>
+                                        <th>Detalles</th>
                                         <th>Usuario Encargado</th>
                                     </tr>
                                 </thead>
@@ -306,12 +306,5 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
-<script>
-    function atenderReclamo() {
-        document.getElementById('estatus').value = 'R';
-        formulario.submit();
-    }
-</script>
 
 {% endblock %}

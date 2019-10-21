@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, ConsultarReclamo, AtenderReclamo
@@ -51,6 +52,18 @@ class cli_crearReclamo(SuccessMessageMixin, CreateView):
     template_name = "reclamo/cli_crearReclamo.html"
     success_url = reverse_lazy('cli_crearReclamo')
     success_message = "e"
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.add_message(self.request,messages.INFO,'e')
+        usuario = self.object.nombreUsuario
+        usuario.enviarCorreo('Nuevo reclamo registrado con éxito',
+            'Gracias por comunicarnos tu reclamo.',
+            'Para nosotros es importante hacerle saber que te valoramos como cliente de nuestra empresa y que estamos trabajando al máximo para que tus problemas sean solucionados cuanto antes.',
+            'Tu mensaje: ' + self.object.descripcion, 
+            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+        )
+        return redirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super(cli_crearReclamo, self).get_context_data(**kwargs)
