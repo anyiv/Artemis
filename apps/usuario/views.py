@@ -77,8 +77,14 @@ class inicio_gestorpqs(ListView):
         context['cant_sug'] = pqs.filter(estatus='P').count()
         return context
 
-def inicio_tecnico(request):
-    return render(request, 'usuario/tecnico/inicio_tecnico.html', {})
+class inicio_tecnico(ListView):
+    model = Reclamo
+    template_name = "usuario/tecnico/inicio_tecnico.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(inicio_tecnico, self).get_context_data(**kwargs)
+        context['object_list'] = Reclamo.objects.filter(nombreUsuario = self.request.user.nombreUsuario, estatus = 'P')
+        return context
 
 class inicio_admin(AuthenticatedAdminMixin, ListView):
     model = User

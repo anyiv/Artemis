@@ -32,7 +32,7 @@ class g_reclamosfinalizados(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(g_reclamosfinalizados, self).get_context_data(**kwargs)
-        context['object_list'] = Reclamo.objects.filter(estatus='F')
+        context['object_list'] = Reclamo.objects.filter(responsableReclamo=self.request.user, estatus='F')
         return context
     
 class reclamosporvencer(ListView):
@@ -101,6 +101,7 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(atenderReclamo, self).get_context_data(**kwargs)
         context['rp'] = RespuestaPredefinida.objects.filter(categoria='rec',estatus='A')
+        context['tecnicos'] = User.objects.filter(estatus='A', codTipoUser='tc')
         return context
 
     def get_success_url(self):

@@ -16,31 +16,36 @@
         <table id="tabla-generica" class="table table-bordered nowrap" style="width: 100%">
             <thead>
                 <tr> 
+                    <th>Código</th>
                     <th>Nombre del cliente</th>
                     <th>Categoría</th>
-                    <th>Fecha de emisión</th>
+                    <th>Fecha de compromiso</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre del cliente</th>
                     <th>Categoría</th>
-                    <th>Fecha de emisión</th>
+                    <th>Fecha de compromiso</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
             <tbody>
+            {% for rec in object_list %}
                 <tr>
-                    <td>María Pérez</td>
-                    <td>Fallas de Internet</td>
-                    <td>2019/06/30</td>
+                    <th>{{rec.codReclamo}}</th>
+                    <td>{{ rec.nombreUsuario.idCliente.nombre }} {{ rec.nombreUsuario.idCliente.apellido }}</td>
+                    <td>{{ rec.codCategoria}}</td>
+                    <td>{{ rec.fechaEstimada }}</td>
                     <td>
                         <center><button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                     class="material-icons">remove_red_eye</i></button></center>
                     </td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

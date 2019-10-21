@@ -136,7 +136,7 @@
                             <div class="button-demo">
                                 <div class="button-demo js-modal-buttons">
                                     <center><button type="button" data-color="blue-grey"
-                                            class="btn bg-blue-grey waves-effect">Enviar respuesta</button>
+                                            class="btn bg-blue-grey waves-effect" id="respuestas">Enviar respuesta</button>
                                     </center>
                                 </div>
                             </div>
@@ -144,11 +144,11 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <div class="button-demo">
-                                <center><button type="button" class="btn bg-indigo waves-effect">Asignar
-                                        técnico</button>
-                                </center>
-                            </div>
+                                <div class="button-demo js-modal-buttons">
+                                    <center><button type="button" data-color="blue-grey" id="asignar" class="btn bg-indigo waves-effect">Asignar
+                                            técnico</button>
+                                    </center>
+                                </div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -207,6 +207,36 @@
         </div>
     </div>
 </div>
+
+<!--Modal de asignar tecnico-->
+<div class="modal fade" id="tecnicos" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Asignar tecnico</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <p>
+                            <b>Seleccione el tecnico a asignar:</b>
+                        </p>
+                        <select class="form-control" id="responsableReclamo" name="responsableReclamo">
+                            {% for tc in tecnicos %}
+                            <option>{{ tc.idEmpleado.nombre }} {{ tc.idEmpleado.apellido }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-link waves-effect">Asignar</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -241,5 +271,6 @@
             }
         });
     }
+
 </script>
 {% endblock %}
