@@ -83,7 +83,7 @@ class inicio_tecnico(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(inicio_tecnico, self).get_context_data(**kwargs)
-        context['object_list'] = Reclamo.objects.filter(nombreUsuario = self.request.user.nombreUsuario, estatus = 'P')
+        context['object_list'] = Reclamo.objects.filter(responsableReclamo = self.request.user.nombreUsuario, estatus = 'P')
         return context
 
 class inicio_admin(AuthenticatedAdminMixin, ListView):

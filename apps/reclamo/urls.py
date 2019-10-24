@@ -14,7 +14,7 @@ urlpatterns = [
     path('categoria/lista/', views.listacatreclamo.as_view(), name='listacatreclamo'),
     path('categoria/consulta/<pk>/', views.consultarcatreclamo.as_view(), name='consultarcatreclamo'),
     path('categoria/modificar/<pk>/', views.modificarcatreclamo.as_view(), name='modificarcatreclamo'),
-    path('satisfaccion/lista/', views.cli_reclamosfinalizados, name='cli_reclamosfinalizados'),
+    path('finalizados/lista/', views.cli_reclamosfinalizados.as_view(), name='cli_reclamosfinalizados'),
     path('satisfaccion/encuesta/', views.encuesta_cliente, name='encuesta_cliente'),
     path('cliente/consultar/<pk>/', views.cli_consultarReclamo.as_view(), name='cli_consultarReclamo'),
 ]

@@ -35,14 +35,14 @@
             <tbody>
             {% for rec in object_list %}
                 <tr>
-                    <th>{{rec.codReclamo}}</th>
+                    <td>{{rec.codReclamo}}</td>
                     <td>{{ rec.nombreUsuario.idCliente.nombre }} {{ rec.nombreUsuario.idCliente.apellido }}</td>
                     <td>{{ rec.codCategoria}}</td>
                     <td>{{ rec.fechaEstimada }}</td>
                     <td>
-                        <center><button type="button"
+                        <center><a type="button" href= "{% url 'gt_consultarReclamo' rec.codReclamo %}"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></center>
+                                    class="material-icons">remove_red_eye</i></a></center>
                     </td>
                 </tr>
             {% endfor %}

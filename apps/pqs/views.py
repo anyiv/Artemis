@@ -24,8 +24,7 @@ class cli_crearpeticion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateVi
         usuario.enviarCorreo('Nueva petición registrada con éxito',
             'Gracias por comunicarnos tu petición.',
             'Es muy útil escuchar las peticiones como la tuya.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -43,8 +42,7 @@ class atc_crearpeticion(AuthenticatedAtClienteMixin, SuccessMessageMixin, Create
         usuario.enviarCorreo('Nueva petición registrada con éxito',
             'Gracias por comunicarnos tu petición.',
             'Es muy útil escuchar las peticiones como la tuya.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -63,8 +61,7 @@ class cli_crearqueja(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView)
         usuario.enviarCorreo('Nueva queja registrada con éxito',
             'Gracias por comunicarnos tu queja.',
             'Es muy útil para nosotros saber tus opiniones.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -83,8 +80,7 @@ class atc_crearqueja(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateVie
         usuario.enviarCorreo('Nueva queja registrada con éxito',
             'Gracias por comunicarnos tu queja.',
             'Es muy útil para nosotros saber tus opiniones.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -103,8 +99,7 @@ class cli_crearsugerencia(AuthenticatedClienteMixin, SuccessMessageMixin, Create
         usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
             'Gracias por comunicarnos tu sugerencia.',
             'Es muy útil para nosotros saber las sugerencias que tienes para mejorar nuestra organización.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -122,8 +117,7 @@ class atc_crearsugerencia(AuthenticatedAtClienteMixin, SuccessMessageMixin, Crea
         usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
             'Gracias por comunicarnos tu sugerencia.',
             'Es muy útil para nosotros saber las sugerencias que tienes para mejorar nuestra organización.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 

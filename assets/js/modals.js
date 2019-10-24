@@ -1,7 +1,7 @@
 $('#respuestas').on('click', function () {
     var color = $(this).data('color');
-    $('#mdModal .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
-    $('#mdModal').modal('show');
+    $('#responderCliente .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+    $('#responderCliente').modal('show');
 });
 
 $('#asignar').on('click', function () {

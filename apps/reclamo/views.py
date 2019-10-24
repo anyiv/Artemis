@@ -60,8 +60,7 @@ class cli_crearReclamo(SuccessMessageMixin, CreateView):
         usuario.enviarCorreo('Nuevo reclamo registrado con éxito',
             'Gracias por comunicarnos tu reclamo.',
             'Para nosotros es importante hacerle saber que te valoramos como cliente de nuestra empresa y que estamos trabajando al máximo para que tus problemas sean solucionados cuanto antes.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -88,8 +87,7 @@ class atc_crearReclamo(SuccessMessageMixin, CreateView):
         usuario.enviarCorreo('Nuevo reclamo registrado con éxito',
             'Gracias por comunicarnos tu reclamo.',
             'Para nosotros es importante hacerle saber que te valoramos como cliente de nuestra empresa y que estamos trabajando al máximo para que tus problemas sean solucionados cuanto antes.',
-            'Tu mensaje: ' + self.object.descripcion, 
-            self.object.nombreUsuario.idCliente.nombre + ' ' + self.object.nombreUsuario.idCliente.apellido
+            'Tu mensaje: ' + self.object.descripcion
         )
         return redirect(self.get_success_url())
 
@@ -106,6 +104,11 @@ class gt_consultarReclamo(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(gt_consultarReclamo, self).get_context_data(**kwargs)
         context['user_cliente'] = User.objects.get(idCliente=context['reclamo'].codDetContrato.nroContrato.codCliente.identificacion)
+        tec_asignado = context['reclamo'].responsableReclamo.all().filter(codTipoUser='tc')
+        if tec_asignado:
+            context['tec_asignado'] = tec_asignado[0].idEmpleado.nombre + ' ' + tec_asignado[0].idEmpleado.apellido
+        else:
+            context['tec_asignado'] = 'El reclamo no tiene asignado un técnico aún.'
         return context
     
 
@@ -125,16 +128,26 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(atenderReclamo, self).get_context_data(**kwargs)
-        context['rp'] = RespuestaPredefinida.objects.filter(categoria='rec',estatus='A')
+        context['rp'] = RespuestaPredefinida.objects.filter(categoria='rec',estatus='A').order_by('-contUso')
         context['tecnicos'] = User.objects.filter(estatus='A', codTipoUser='tc')
+        tec_asignado = context['reclamo'].responsableReclamo.all().filter(codTipoUser='tc')
+        if tec_asignado:
+            context['tec_asignado'] = tec_asignado[0].idEmpleado.nombre + ' ' + tec_asignado[0].idEmpleado.apellido
+        else:
+            context['tec_asignado'] = 'El reclamo no tiene asignado un técnico aún.'
         return context
 
     def get_success_url(self):
         idreclamo=self.kwargs['pk']
         return reverse_lazy('gt_consultarReclamo', kwargs={'pk': idreclamo})
 
-def cli_reclamosfinalizados(request):
-    return render(request, 'reclamo/cli_reclamosfinalizados.html', {})
+class cli_reclamosfinalizados(ListView):
+    model = Reclamo
+    template_name = "reclamo/cli_reclamosfinalizados.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(cli_reclamosfinalizados, self).get_context_data(**kwargs)
+        context['recfin'] =  Reclamo.objects.filter(nombreUsuario=self.request.user, estatus='F')
 
 def encuesta_cliente(request):
     return render(request, 'reclamo/encuesta_cliente.html', {})

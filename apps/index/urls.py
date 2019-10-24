@@ -12,4 +12,7 @@ urlpatterns = [
     path('correo_enviado/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('contrasenna_cambiada/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('ajax/validar_identidad/', views.validar_cliente, name='validar_cliente'),
+    path('ajax/asignar_tecnico/', views.asignar_tecnico, name='asignar_tecnico'),
+    path('ajax/obtener_respuesta/', views.obtener_respuesta, name='obtener_respuesta'),
+    path('ajax/enviar_rp/', views.enviar_rp, name='enviar_respuesta'),
 ]

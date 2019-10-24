@@ -6,7 +6,9 @@ from django.contrib.auth import (
 )
 from django.http import HttpResponseRedirect
 from apps.usuario.models import User
+from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
+from apps.reclamo.models import Reclamo
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -59,6 +61,59 @@ def validar_cliente(request):
         data = {
             'cliente_existe' : ce,
             'usuario_existe' : ue
+        }
+    return JsonResponse(data)
+
+def asignar_tecnico(request):
+    cod_reclamo = request.POST.get('cod_reclamo', None)
+    id_tecnico = request.POST.get('id_tecnico', None)
+    reclamo = Reclamo.objects.get(codReclamo=cod_reclamo)
+    tecnico = User.objects.get(nombreUsuario=id_tecnico)
+    if reclamo.responsableReclamo.all().count() != 1:
+        data = {
+            'respuesta': 'El reclamo ya tiene un técnico asignado.',
+            'icono': 'error',
+            }
+    else:
+        reclamo.responsableReclamo.add(tecnico)
+        reclamo.save()
+        data = {
+            'respuesta': 'Técnico asignado correctamente.',
+            'icono': 'success',
+        }
+    return JsonResponse(data)
+
+def obtener_respuesta(request):
+    codrp = request.POST.get('cod',None)
+    rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
+    data = {
+        'descripcion':rp.descripcion
+    }
+    return JsonResponse(data)
+
+def enviar_rp(request):
+    try:
+        respp = request.POST.get('resp',None)
+        codrp = request.POST.get('codresp',None)
+        codrec = request.POST.get('codrec',None)
+        rec = Reclamo.objects.get(codReclamo = codrec)
+        if rec.estatus != 'F':
+            rec.estatus = 'R'
+            rec.save()
+        cli = rec.nombreUsuario
+        cli.enviarCorreo("Nueva respuesta recibida","Tu reclamo "+codrec+" ha recibido una nueva respuesta.","Texto de la respuesta: "+respp)
+        if codrp != '-':
+            rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
+            rp.contUso += 1
+            rp.save()
+        data = {
+            'texto':'Respuesta enviada con éxito.',
+            'icono':'success',
+        }
+    except:
+        data = {
+            'texto':'Hubo un error en el envío.',
+            'icono':'error',
         }
     return JsonResponse(data)
 

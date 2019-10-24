@@ -1,0 +1,50 @@
+function obtenerRespuesta() {
+    var resp = $("#respuestaP").val();
+    var token = $('input[name="csrfmiddlewaretoken"]').val();
+    if (resp == '-') {
+        $("#descripcionRP").val("")
+    } else {
+        $.ajax({
+            url: '/ajax/obtener_respuesta/',
+            type: 'POST',
+            data: {
+                'cod': resp,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function (data) {
+                $("#descripcionRP").val(data.descripcion);
+            }
+        });
+    }
+};
+
+function enviarRespuesta() {
+    var resp = $("#descripcionRP").val();
+    var codresp = $("#respuestaP").val();
+    var codrec = $("#codReclamo").val();
+    var token = $('input[name="csrfmiddlewaretoken"]').val();
+    if (resp == '') {
+        swal("Error", "Debe introducir o seleccionar una respuesta.", "warning")
+    } else {
+        $.ajax({
+            url: '/ajax/enviar_rp/',
+            type: 'POST',
+            data: {
+                'resp': resp,
+                'codresp': codresp,
+                'codrec': codrec,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function (data) {
+                swal("Resultado", data.texto, data.icono)
+                $('#responderCliente').modal('hide');
+                $("#descripcionRP").val("");
+                $("#respuestaP").val("-");
+                $('#respuestaP').selectpicker('refresh');
+                $('#respuestaP').selectpicker('render');
+            }
+        });
+    }
+};

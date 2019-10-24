@@ -112,14 +112,12 @@
                             <span>Reclamos </span>
                         </a>
                     </li>
-                    {% if user.codTipoUser.codTipoUser == 'grec' %}
                     <li id="consultar_reclamos" class="{% if 'reclamo/lista/proximovencimiento/' in request.path %}active{% endif %}">
                         <a href="{% url 'reclamosporvencer' %}">
                             <i class="material-icons">notification_important</i>
                             <span>Reclamos prox a vencer</span>
                         </a>
                     </li>
-                    {% endif %}
                     <li id="consultar_reclamos" class="{% if 'reclamo/lista/finalizados/' in request.path %}active{% endif %}">
                         <a href="{% url 'g_reclamosfinalizados' %}">
                             <i class="material-icons">assignment_turned_in</i>

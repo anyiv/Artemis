@@ -36,8 +36,8 @@
                                             <p>
                                                 <b>Código</b>
                                             </p>
-                                            <input type="text" class="form-control" value=" {{reclamo.codReclamo }}"
-                                                readonly>
+                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
+                                                id="codReclamo" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -102,6 +102,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Técnico asignado</b>
+                                            </p>
+                                            <input type="text" class="form-control" id="tecnicoAsignado"
+                                                value="{{tec_asignado}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class=" col-md-12">
                                     <div class="form-group">
                                         <p>
@@ -121,6 +132,9 @@
                 </form>
 
                 <div class="row clearfix">
+                {% if user.codTipoUser.codTipoUser == 'tc' %}
+                <div class="col-md-1"></div>
+                {% endif %}
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="button-demo">
@@ -142,6 +156,7 @@
                             </div>
                         </div>
                     </div>
+                    {% if user.codTipoUser.codTipoUser == 'grec' %}
                     <div class="col-md-3">
                         <div class="form-group">
                                 <div class="button-demo js-modal-buttons">
@@ -151,6 +166,7 @@
                                 </div>
                         </div>
                     </div>
+                    {% endif %}
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="button-demo">
@@ -168,7 +184,7 @@
 
 
 <!--Modal de las respuestas-->
-<div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="responderCliente" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,9 +197,10 @@
                         <p>
                             <b>Selecciones respuesta predefinida:</b>
                         </p>
-                        <select class="form-control">
+                        <select class="form-control" id="respuestaP" onchange="javascript:obtenerRespuesta();">
+                            <option value="-">---------------</option>
                             {% for resp in rp %}
-                            <option>{{ resp.descripcion }}</option>
+                            <option value="{{resp.codRespuestaP}}">{{ resp.descripcion|truncatewords:6 }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -193,7 +210,7 @@
                     <div class=" col-md-8">
                         <div class="form-group">
                             <div class="form-line">
-                                <textarea rows="12" class="form-control no-resize"
+                                <textarea rows="12" class="form-control no-resize" id="descripcionRP"
                                     placeholder="Escriba su respuesta aquí." maxlength=500></textarea>
                             </div>
                         </div>
@@ -202,7 +219,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect">Enviar</button>
+                <button type="button" class="btn btn-link waves-effect" onclick="javascript:enviarRespuesta();">Enviar</button>
             </div>
         </div>
     </div>
@@ -223,8 +240,9 @@
                             <b>Seleccione el tecnico a asignar:</b>
                         </p>
                         <select class="form-control" id="responsableReclamo" name="responsableReclamo">
+                            <option value="-">-----</option>
                             {% for tc in tecnicos %}
-                            <option>{{ tc.idEmpleado.nombre }} {{ tc.idEmpleado.apellido }}</option>
+                            <option value="{{tc.nombreUsuario}}">{{ tc.idEmpleado.nombre }} {{ tc.idEmpleado.apellido }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -232,7 +250,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect">Asignar</button>
+                <button type="button" class="btn btn-link waves-effect" onclick="javascript:asignarTecnico();">Asignar</button>
             </div>
         </div>
     </div>
@@ -240,13 +258,16 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{% static 'plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/asignar_tecnico.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/enviar_rp.js' %}" type="text/javascript"></script>
 <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
 <script src="{% static 'plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
 <script>
     $('#fechaEstimada_dp').datepicker({
         autoclose: true,
-        language: "es",
+        language: 'es',
         todayHighlight: true,
         format: 'yyyy-mm-dd',
         container: '#fechaEstimada_dp'
