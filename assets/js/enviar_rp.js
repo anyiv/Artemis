@@ -48,3 +48,24 @@ function enviarRespuesta() {
         });
     }
 };
+
+function obt_rp_pqs() {
+    var resp_pqs = $("#respuesta_pqs").val();
+    var token = $('input[name="csrfmiddlewaretoken"]').val();
+    if (resp_pqs == '-') {
+        $("#descripcion_rp").val("")
+    } else {
+        $.ajax({
+            url: '/ajax/obtener_rp_pqs/',
+            type: 'POST',
+            data: {
+                'cod': resp_pqs,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function (data) {
+                $("#descripcion_rp").val(data.descripcion);
+            }
+        });
+    }
+};

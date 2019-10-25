@@ -51,3 +51,16 @@ class CrearSugerencia(forms.ModelForm):
             'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Por favor ingrese su sugerencia aquí...'}),
             'nombreUsuario' : forms.TextInput(attrs={'type':'hidden','id':'nombreusuario'}),
         }
+
+class AtenderPQS(forms.ModelForm):
+
+    class Meta:
+        model = PQS
+
+        fields = [
+            'estatus',
+        ]
+
+        widgets = {
+            'estatus' : forms.TextInput(attrs={'class':'form-control'}),
+        }

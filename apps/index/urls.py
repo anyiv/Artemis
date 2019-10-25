@@ -15,4 +15,6 @@ urlpatterns = [
     path('ajax/asignar_tecnico/', views.asignar_tecnico, name='asignar_tecnico'),
     path('ajax/obtener_respuesta/', views.obtener_respuesta, name='obtener_respuesta'),
     path('ajax/enviar_rp/', views.enviar_rp, name='enviar_respuesta'),
+    path('ajax/obtener_rp_pqs/', views.obt_rp_pqs, name='obtener_rp_pqs'),
+    path('ajax/enviar_rp_pqs/', views.enviar_rp_pqs, name='enviar_rp_pqs'),
 ]

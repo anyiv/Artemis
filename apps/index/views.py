@@ -117,6 +117,19 @@ def enviar_rp(request):
         }
     return JsonResponse(data)
 
+def obt_rp_pqs(request):
+    codrp = request.POST.get('cod',None)
+    rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
+    data = {
+        'descripcion':rp.descripcion
+    }
+    return JsonResponse(data)
+
+
+def enviar_rp_pqs(request):
+    data = list()
+    return JsonResponse(data)
+
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
     template_name = 'index/index.html'
 

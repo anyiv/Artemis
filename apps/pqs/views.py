@@ -4,9 +4,10 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import PQS
+from django.http import HttpResponseRedirect
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
-from .forms import CrearPeticion, CrearQueja, CrearSugerencia
+from .forms import CrearPeticion, CrearQueja, CrearSugerencia, AtenderPQS
 from Artemis.mixin import AuthenticatedClienteMixin, AuthenticatedClienteGPQSMixin, AuthenticatedAtClienteMixin, AuthenticatedGPQSAtClienteClienteMixin
 
 #PETICION
@@ -127,9 +128,12 @@ class consultarpqs(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     template_name= "pqs/consultarpqs.html"
 
 #ATENDER PQS
-class atenderpqs(DetailView):
+class atenderpqs(UpdateView):
     model = PQS
+    form_class = AtenderPQS
     template_name = "pqs/atenderpqs.html"
+    success_url = reverse_lazy('consultarpqs')
+    success_message = "e"
 
     def get_context_data(self, **kwargs):
         context = super(atenderpqs, self).get_context_data(**kwargs)
@@ -140,6 +144,10 @@ class atenderpqs(DetailView):
         pri = pet.union(que)
         context['resp'] = pri.union(sug)
         return context
+
+    def get_success_url(self):
+        idpqs=self.kwargs['pk']
+        return reverse_lazy('consultarpqs', kwargs={'pk': idpqs})
 
 #PQS MARCADAS
 def pqsmarcados(request):
