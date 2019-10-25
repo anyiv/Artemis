@@ -10,6 +10,7 @@ urlpatterns = [
     path('sugerencia/atc_registrar/', views.atc_crearsugerencia.as_view(), name='atc_crearsugerencia'),
     path('consulta/<pk>/', views.consultarpqs.as_view(), name='consultarpqs'),
     path('atender/<pk>/', views.atenderpqs.as_view(), name='atenderpqs'),
-    path('marcadas/',views.pqsmarcados, name='pqsmarcados'),
+    path('reporte/marcadas/',views.reporte_pqsmarcados.as_view(), name='reporte_pqsmarcados'),
+    path('marcadas/',views.pqsmarcados.as_view(), name='pqsmarcados'),
     path('pqs/lista/', views.g_listapqs.as_view(), name='g_listapqs'),
 ]

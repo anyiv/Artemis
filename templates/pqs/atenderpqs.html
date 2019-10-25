@@ -7,91 +7,100 @@
 {% block content %}
 
 <div class="row clearfix">
-<form method="POST" id="formulario">
-{% csrf_token %}
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        Atender
-                        {% if pqs.categoria == 'P' %} Petición
-                        {% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
-                    </h2>
-                </div>
-                <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                        {{form.errors}}
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Código</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Nombre y apellido</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}"
-                                            readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-md-12">
-                                <p>
-                                    <b>Descripción</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <textarea rows="9" class="form-control no-resize"
-                                            readonly>{{ pqs.descripcion }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-md-8">
-                                <div class="demo-checkbox">
-                                    <input type="checkbox" id="marca" class="filled-in chk-col-black" {% if pqs.estatus == 'M' %}checked{% endif %}/>
-                                    <label for="marca" style="color:black;font-size:1em;">Marcar</label>
-                                </div>
-                            </div>
-                            <input type="hidden" name="estatus" value="{{pqs.estatus}}" class="form-control" id="id_estatus" required>                        </div>
+    <form method="POST" id="formulario">
+        {% csrf_token %}
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Atender
+                            {% if pqs.categoria == 'P' %} Petición
+                            {% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
+                        </h2>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'consultarpqs' pqs.codPQS %} ">
-                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                {{form.errors}}
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Código</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="codPQS" value="{{ pqs.codPQS }}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Nombre y apellido</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-12">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <textarea rows="9" class="form-control no-resize"
+                                                readonly>{{ pqs.descripcion }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-8">
+                                    <div class="demo-checkbox">
+                                        <input type="checkbox" id="marca" class="filled-in chk-col-black"
+                                            {% if pqs.estatus == 'M' %}checked{% endif %} />
+                                        <label for="marca" style="color:black;font-size:1em;">Marcar</label>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="estatus" value="{{pqs.estatus}}" class="form-control"
+                                    id="id_estatus" required>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'consultarpqs' pqs.codPQS %} ">
+                                            <center><button type="button"
+                                                    class="btn bg-teal waves-effect">Atrás</button>
+                                            </center>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo js-modal-buttons">
+                                        <center><button type="button" data-color="blue-grey"
+                                                class="btn bg-indigo waves-effect"
+                                                id="respuestas_pqs">Responder</button>
                                         </center>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo js-modal-buttons">
-                                    <center><button type="button" data-color="blue-grey"
-                                            class="btn bg-indigo waves-effect" id="respuestas_pqs">Responder</button>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo js-modal-buttons">
-                                    <center><button type="button" data-color="blue-grey"
-                                            class="btn bg-green waves-effect" onclick="javascript:confirmarSeleccion();">Guardar</button>
-                                    </center>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo js-modal-buttons">
+                                        <center><button type="button" data-color="blue-grey"
+                                                class="btn bg-green waves-effect"
+                                                onclick="javascript:confirmarSeleccion();">Guardar</button>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,8 +108,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</form>    
+    </form>
 </div>
 
 <div class="modal fade" id="resp_pqs" tabindex="-1" role="dialog">
@@ -119,7 +127,7 @@
                         <select class="form-control" id="respuesta_pqs" onchange="javascript:obt_rp_pqs();">
                             <option value="-">-----------</option>
                             {% for rp in resp %}
-                            <option value="{{rp.codRespuestaP}}" >{{ rp.descripcion|truncatewords:6 }}</option>
+                            <option value="{{rp.codRespuestaP}}">{{ rp.descripcion|truncatewords:6 }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -138,7 +146,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect">Enviar</button>
+                <button type="button" class="btn btn-link waves-effect"
+                    onclick="javascript:enviar_rp_pqs();">Enviar</button>
             </div>
         </div>
     </div>
@@ -163,10 +172,10 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                if (document.getElementById("marca").checked){
+                if (document.getElementById("marca").checked) {
                     $("#id_estatus").val("M");
                 } else {
-                    if ($("#id_estatus").val()=="M"){
+                    if ($("#id_estatus").val() == "M") {
                         $("#id_estatus").val("P");
                     }
                 }

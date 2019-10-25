@@ -9,6 +9,7 @@ from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
 from apps.reclamo.models import Reclamo
+from apps.pqs.models import PQS
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -127,7 +128,29 @@ def obt_rp_pqs(request):
 
 
 def enviar_rp_pqs(request):
-    data = list()
+    try:
+        respp = request.POST.get('resp',None)
+        codrp = request.POST.get('codresp',None)
+        codpqs = request.POST.get('codpqs',None)
+        pqs = PQS.objects.get(codPQS = codpqs)
+        if pqs.estatus == 'P':
+            pqs.estatus = 'A'
+            pqs.save()
+        cli = pqs.nombreUsuario
+        cli.enviarCorreo("Nueva respuesta recibida","Tu "+pqs.get_categoria_display()+" "+codpqs+" ha recibido una nueva respuesta.","Texto de la respuesta: "+respp)
+        if codrp != '-':
+            rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
+            rp.contUso += 1
+            rp.save()
+        data = {
+            'texto':'Respuesta enviada con éxito.',
+            'icono':'success',
+        }
+    except:
+        data = {
+            'texto':'Hubo un error en el envío.',
+            'icono':'error',
+        }
     return JsonResponse(data)
 
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):

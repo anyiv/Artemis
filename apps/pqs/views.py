@@ -150,9 +150,23 @@ class atenderpqs(UpdateView):
         return reverse_lazy('consultarpqs', kwargs={'pk': idpqs})
 
 #PQS MARCADAS
-def pqsmarcados(request):
-    return render(request, 'pqs/pqsmarcados.html', {})
+class reporte_pqsmarcados(ListView):
+    model = PQS
+    template_name = "pqs/reporte_pqsmarcados.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(reporte_pqsmarcados, self).get_context_data(**kwargs)
+        context['pqsmar'] = PQS.objects.filter(estatus = 'M')
+        return context
+
+class pqsmarcados(ListView):
+    model = PQS
+    template_name = "pqs/pqsmarcados.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(pqsmarcados, self).get_context_data(**kwargs)
+        context['pqsmar'] = PQS.objects.filter(estatus = 'M')
+        return context
 
 class g_listapqs(ListView):
     model = PQS

@@ -69,3 +69,33 @@ function obt_rp_pqs() {
         });
     }
 };
+
+function enviar_rp_pqs() {
+    var resp = $("#descripcion_rp").val();
+    var codresp = $("#respuesta_pqs").val();
+    var codpqs = $("#codPQS").val();
+    var token = $('input[name="csrfmiddlewaretoken"]').val();
+    if (resp == '') {
+        swal("Error", "Debe introducir o seleccionar una respuesta.", "warning")
+    } else {
+        $.ajax({
+            url: '/ajax/enviar_rp_pqs/',
+            type: 'POST',
+            data: {
+                'resp': resp,
+                'codresp': codresp,
+                'codpqs': codpqs,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function (data) {
+                swal("Resultado", data.texto, data.icono)
+                $('#resp_pqs').modal('hide');
+                $("#descripcion_rp").val("");
+                $("#respuesta_pqs").val("-");
+                $('#respuesta_pqs').selectpicker('refresh');
+                $('#respuesta_pqs').selectpicker('render');
+            }
+        });
+    }
+};

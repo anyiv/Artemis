@@ -2,18 +2,17 @@
 
 {% load static %}
 
-{% block titulo %} PQS Marcadas | Artemis{% endblock  %}
+{% block titulo %} Reporte PQS Marcadas | Artemis{% endblock  %}
 
 {% block content %}
 <div class="card">
     <div class="header">
         <h2>
-            PQS marcadas <small style="color:#171d40; align-justify;">Las peticiones, quejas y sugerencias que podrían
-                ser útiles para la empresa.</small>
+            Reporte de PQS marcadas <small style="color:#171d40; align-justify;">Las peticiones, quejas y sugerencias que podrían ser útiles para la empresa.</small>
         </h2>
     </div>
     <div class="body table-responsive">
-        <table id="tabla-gestpqs" class="table table-bordered " style="width: 100%">
+        <table id="js-exportable" class="table table-bordered dataTable js-exportable" style="width: 100%">
             <thead>
                 <tr>
                     <th>Nombre de Cliente</th>
@@ -37,12 +36,9 @@
                     <td>{{ pqsm.get_categoria_display }}</td>
                     <td>{{ pqsm.descripcion|truncatewords:6 }}</td>
                     <td>
-                        <a href="#"> <button type="button"
+                        <center><a href="#"> <button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">remove_red_eye</i></button></a>
-                        <a href="#"> <button type="button"
-                                class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">check</i></button></a>
+                                    class="material-icons">remove_red_eye</i></button></a></center>
                     </td>
                 </tr>
                 {% endfor %}
@@ -54,5 +50,6 @@
 {% endblock content %}
 
 {% block javascript %}
-<script src="{% static 'js/pages/tables/tabla-gestorpqs.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/pages/tables/tabla-exportable.js' %}" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 {% endblock javascript %}
