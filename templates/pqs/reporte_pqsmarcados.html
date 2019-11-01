@@ -12,6 +12,7 @@
         </h2>
     </div>
     <div class="body table-responsive">
+    {% csrf_token %}
         <table id="js-exportable" class="table table-bordered dataTable js-exportable" style="width: 100%">
             <thead>
                 <tr>
@@ -36,7 +37,7 @@
                     <td>{{ pqsm.get_categoria_display }}</td>
                     <td>{{ pqsm.descripcion|truncatewords:6 }}</td>
                     <td>
-                        <center><a href="#"> <button type="button"
+                        <center><a href="{% url 'consultarpqs' pqsm.codPQS %}"> <button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                     class="material-icons">remove_red_eye</i></button></a></center>
                     </td>

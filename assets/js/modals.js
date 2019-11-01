@@ -15,3 +15,9 @@ $('#respuestas_pqs').on('click', function () {
     $('#resp_pqs .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
     $('#resp_pqs').modal('show');
 });
+
+$('#agregarcom').on('click', function () {
+    var color = $(this).data('color');
+    $('#comentarios .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+    $('#comentarios').modal('show');
+});

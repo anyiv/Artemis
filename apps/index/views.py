@@ -153,6 +153,23 @@ def enviar_rp_pqs(request):
         }
     return JsonResponse(data)
 
+def finalizarpqs(request):
+    try:
+        codpqs = request.POST.get('codpqs',None)
+        pqs = PQS.objects.get(codPQS = codpqs)
+        pqs.estatus = 'F'
+        pqs.save()
+        data = {
+            'texto':'PQS finalizada con éxito.',
+            'icono':'success',
+        }
+    except:
+        data = {
+            'texto':'Hubo un error en el envío.',
+            'icono':'error',
+        }
+    return JsonResponse(data)
+
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
     template_name = 'index/index.html'
 

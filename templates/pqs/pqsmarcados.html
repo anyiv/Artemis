@@ -12,10 +12,12 @@
                 ser útiles para la empresa.</small>
         </h2>
     </div>
+    {% csrf_token %}
     <div class="body table-responsive">
         <table id="tabla-gestpqs" class="table table-bordered " style="width: 100%">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre de Cliente</th>
                     <th>Categoría</th>
                     <th>Descripción</th>
@@ -24,6 +26,7 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre de Cliente</th>
                     <th>Categoría</th>
                     <th>Descripción</th>
@@ -33,16 +36,17 @@
             <tbody>
                 {% for pqsm in pqsmar %}
                 <tr>
+                    <td>{{ pqsm.codPQS }}</td>
                     <td>{{ pqsm.nombreUsuario.idCliente.nombre }} {{ pqsm.nombreUsuario.idCliente.apellido }}</td>
                     <td>{{ pqsm.get_categoria_display }}</td>
                     <td>{{ pqsm.descripcion|truncatewords:6 }}</td>
                     <td>
-                        <a href="#"> <button type="button"
+                        <a href="{% url 'consultarpqs' pqsm.codPQS %}"> <button type="button"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                     class="material-icons">remove_red_eye</i></button></a>
-                        <a href="#"> <button type="button"
+                        <button type="button" onclick="javascript:confirmarSeleccion('{{pqsm.codPQS}}');"
                                 class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
-                                    class="material-icons">check</i></button></a>
+                                    class="material-icons">check</i></button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -55,4 +59,5 @@
 
 {% block javascript %}
 <script src="{% static 'js/pages/tables/tabla-gestorpqs.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/finalizarpqs.js' %}" type="text/javascript"></script>
 {% endblock javascript %}

@@ -13,305 +13,352 @@
         </h2>
     </div>
     <div class="body">
-    <form method="POST" id="formulario">
+        <form method="POST" id="formulario">
             {% csrf_token %}
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                    <li role="presentation" class="active" ><a href="#consulta" data-toggle="tab">Consulta</a></li>
-                    <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="consulta" style="margin-top:1.5em;">
-                        <div class="row clearfix">
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <div class="header bg-blue-grey">
-                                        <h2>
-                                            Datos del cliente:
-                                        </h2>
-                                    </div>
-                                </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#consulta" data-toggle="tab">Consulta</a></li>
+                        <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="consulta" style="margin-top:1.5em;">
+                            <div class="row clearfix">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Nro de identificación</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.nroContrato.codCliente.identificacion }}" readonly>
+                                    <div class="col-md-12">
+                                        <div class="header bg-blue-grey">
+                                            <h2>
+                                                Datos del cliente:
+                                            </h2>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Número de contrato</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.nroContrato.nroContrato }}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Nombre</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{reclamo.codDetContrato.nroContrato.codCliente.nombre}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Apellido</b>
-                                            </p>
-                                            <input type="text" class="form-control" placeholder="Apellido" value="{{reclamo.codDetContrato.nroContrato.codCliente.apellido}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Teléfono</b>
-                                            </p>
-                                            <input type="text" class="form-control" placeholder="Teléfono" value="{{reclamo.codDetContrato.nroContrato.codCliente.telefono}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Correo</b>
-                                            </p>
-                                            <input type="text" class="form-control" placeholder="Correo" value="{{user_cliente.correo}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Dirección</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{reclamo.codDetContrato.nroContrato.codCliente.direccion}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-md-12">
-                                    <div class="header bg-blue-grey">
-                                        <h2>
-                                            Datos del Reclamo:
-                                        </h2>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Código</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Estado</b>
-                                            </p>
-                                            <input type="text" name="estatus" value="{{reclamo.get_estatus_display}}" readonly="" required class="form-control" id="id_estatus">                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Fecha de emisión</b>
-                                        </p>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control date"
-                                                    value=" {{ reclamo.fechaRegistro }} " readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Fecha de compromiso</b>
-                                        </p>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control date"
-                                                    value=" {{ reclamo.fechaEstimada }} " readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Categoría</b>
-                                            </p>
-                                            <input type="text" class="form-control" value=" {{ reclamo.codCategoria }} " readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Tipo de servicio</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codDetContrato.codServicio.nombre }}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Técnico asignado</b>
-                                            </p>
-                                            <input type="text" class="form-control" id="responsableReclamo"
-                                                value="{{tec_asignado}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-md-12">
-                                    <div class="form-group">
-                                        <p>
-                                            <b>Descripción</b>
-                                        </p>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <textarea rows="6" class="form-control no-resize"
-                                                    readonly>{{ reclamo.descripcion }}</textarea>
+                                                <p>
+                                                    <b>Nro de identificación</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value="{{ reclamo.codDetContrato.nroContrato.codCliente.identificacion }}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Número de contrato</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value="{{ reclamo.codDetContrato.nroContrato.nroContrato }}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Nombre</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value="{{reclamo.codDetContrato.nroContrato.codCliente.nombre}}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Apellido</b>
+                                                </p>
+                                                <input type="text" class="form-control" placeholder="Apellido"
+                                                    value="{{reclamo.codDetContrato.nroContrato.codCliente.apellido}}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Teléfono</b>
+                                                </p>
+                                                <input type="text" class="form-control" placeholder="Teléfono"
+                                                    value="{{reclamo.codDetContrato.nroContrato.codCliente.telefono}}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Correo</b>
+                                                </p>
+                                                <input type="text" class="form-control" placeholder="Correo"
+                                                    value="{{user_cliente.correo}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Dirección</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value="{{reclamo.codDetContrato.nroContrato.codCliente.direccion}}"
+                                                    readonly>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <p>
-                                            <b>Comentarios</b>
-                                        </p>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item" style="text-align:center">No
-                                                se ha
-                                                podido
-                                                atender por falta de luz en la zona</button>
-                                            <button type="button" class="list-group-item" style="text-align:center">El
-                                                técnico
-                                                está
-                                                atendiendo el reclamo</button>
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <div class="header bg-blue-grey">
+                                            <h2>
+                                                Datos del Reclamo:
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Código</b>
+                                                </p>
+                                                <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Estado</b>
+                                                </p>
+                                                <input type="text" name="estatus"
+                                                    value="{{reclamo.get_estatus_display}}" readonly="" required
+                                                    class="form-control" id="id_estatus">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Fecha de emisión</b>
+                                            </p>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date"
+                                                        value=" {{ reclamo.fechaRegistro }} " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Fecha de compromiso</b>
+                                            </p>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date"
+                                                        value=" {{ reclamo.fechaEstimada }} " readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Categoría</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value=" {{ reclamo.codCategoria }} " readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Tipo de servicio</b>
+                                                </p>
+                                                <input type="text" class="form-control"
+                                                    value="{{ reclamo.codDetContrato.codServicio.nombre }}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <p>
+                                                    <b>Técnico asignado</b>
+                                                </p>
+                                                <input type="text" class="form-control" id="responsableReclamo"
+                                                    value="{{tec_asignado}}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-12">
+                                        <div class="form-group">
+                                            <p>
+                                                <b>Descripción</b>
+                                            </p>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <textarea rows="6" class="form-control no-resize"
+                                                        readonly>{{ reclamo.descripcion }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <p>
+                                                <b>Comentarios</b>
+                                            </p>
+                                            <div class="list-group">
+                                                <button type="button" class="list-group-item"
+                                                    style="text-align:center">No
+                                                    se ha
+                                                    podido
+                                                    atender por falta de luz en la zona</button>
+                                                <button type="button" class="list-group-item"
+                                                    style="text-align:center">El
+                                                    técnico
+                                                    está
+                                                    atendiendo el reclamo</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <a href="{% url 'inicio_gestreclamo' %}">
-                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                            {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
+                            <div class="row clearfix">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="button-demo">
+                                            <a href="{% url 'inicio_gestreclamo' %}">
+                                                <button type="button" class="btn bg-teal waves-effect">Atrás</button>
 
-                                        </a>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="button-demo">
+                                            <div class="button-demo js-modal-buttons">
+                                                <button type="button" id="agregarcom" data-color="blue-grey"
+                                                    class="btn bg-indigo waves-effect">Agregar
+                                                    Comentario</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="button-demo">
+                                            <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
+                                                <button type="button" class="btn bg-green waves-effect">Atender</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <a href=" {% url 'atenderReclamo' reclamo.codReclamo  %} ">
-                                            <button type="button" class="btn bg-indigo waves-effect">Agregar
-                                                Comentario</button>
+                            {% elif user.codTipoUser.codTipoUser == 'atc' %}
+                            <div class="row clearfix">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="button-demo">
+                                            <a href="{% url 'inicio_atencioncli' %}">
+                                                <button type="button" class="btn bg-teal waves-effect">Atrás</button>
 
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
-                                            <button type="button" class="btn bg-green waves-effect">Atender</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
-                        {% elif user.codTipoUser.codTipoUser == 'atc' %}
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <a href="{% url 'inicio_atencioncli' %}">
-                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-
-                                        </a>
-                                    </div>
-                                </div>
+                        <div role="tabpanel" class="tab-pane fade" id="historial">
+                            <div class="body table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Detalles</th>
+                                            <th>Usuario Encargado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" style="text-align:left;">19/09/2019</th>
+                                            <td style="text-align:left;">Se ha respondido al reclamo</td>
+                                            <td style="text-align:left;">Alan M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="text-align:left;">19/09/2019</th>
+                                            <td style="text-align:left;">Se ha respondido al reclamo</td>
+                                            <td style="text-align:left;">Alan M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="historial">
-                        <div class="body table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Fecha</th>
-                                        <th>Detalles</th>
-                                        <th>Usuario Encargado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" style="text-align:left;">1</th>
-                                        <td style="text-align:left;">Mark</td>
-                                        <td style="text-align:left;">Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="text-align:left;">2</th>
-                                        <td style="text-align:left;">Jacob</td>
-                                        <td style="text-align:left;">Thornton</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
     </div>
 </div>
 
+<!--Modal de agregar comentario-->
+<div class="modal fade" id="comentarios" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Agregar comentario.</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-md-2"></div>
+                    <div class=" col-md-8">
+                        <div class="form-line">
+                            <textarea rows="4" class="form-control no-resize"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-link waves-effect">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block javascript %}
+<script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
 
 {% if messages %}
 {% for m in messages %}
 {% if m.message == "e" %}
-<script> //hacer que funcione el mensaje de exito
+<script>
+    //hacer que funcione el mensaje de exito
     swal("Guardado", "Ha sido guardado con exito.", "success");
 </script>
 {% endif %}

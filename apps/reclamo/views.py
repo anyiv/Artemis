@@ -116,8 +116,6 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
     model = Reclamo
     template_name= "reclamo/atenderReclamo.html"
     form_class = AtenderReclamo
-    success_url = reverse_lazy('gt_consultarReclamo')
-    success_message = "e"
 
     def form_valid(self, form):
         reclamo = form.save()
@@ -139,6 +137,7 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
 
     def get_success_url(self):
         idreclamo=self.kwargs['pk']
+        messages.add_message(self.request, messages.INFO, 'e')
         return reverse_lazy('gt_consultarReclamo', kwargs={'pk': idreclamo})
 
 class cli_reclamosfinalizados(ListView):

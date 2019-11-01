@@ -132,8 +132,6 @@ class atenderpqs(UpdateView):
     model = PQS
     form_class = AtenderPQS
     template_name = "pqs/atenderpqs.html"
-    success_url = reverse_lazy('consultarpqs')
-    success_message = "e"
 
     def get_context_data(self, **kwargs):
         context = super(atenderpqs, self).get_context_data(**kwargs)
@@ -147,6 +145,7 @@ class atenderpqs(UpdateView):
 
     def get_success_url(self):
         idpqs=self.kwargs['pk']
+        messages.add_message(self.request, messages.INFO, 'e')
         return reverse_lazy('consultarpqs', kwargs={'pk': idpqs})
 
 #PQS MARCADAS
