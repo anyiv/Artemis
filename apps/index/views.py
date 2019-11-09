@@ -17,6 +17,7 @@ from django.urls import reverse_lazy
 from Artemis.mixin import LoginAuthenticatedMixin, LoginRequiredMixin
 from .forms import Cambiarcontrasena
 from django.http import JsonResponse
+from datetime import datetime
 
 #Vista que valida que un cliente esté registrado en el sistema para que un usuario
 #atención al cliente pueda crear un PQRS para él.
@@ -158,6 +159,7 @@ def finalizarpqs(request):
         codpqs = request.POST.get('codpqs',None)
         pqs = PQS.objects.get(codPQS = codpqs)
         pqs.estatus = 'F'
+        pqs.fechaFinalizado = datetime.now()
         pqs.save()
         data = {
             'texto':'PQS finalizada con éxito.',

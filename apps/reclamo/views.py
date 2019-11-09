@@ -147,6 +147,7 @@ class cli_reclamosfinalizados(ListView):
     def get_context_data(self, **kwargs):
         context = super(cli_reclamosfinalizados, self).get_context_data(**kwargs)
         context['recfin'] =  Reclamo.objects.filter(nombreUsuario=self.request.user, estatus='F')
+        return context
 
 def encuesta_cliente(request):
     return render(request, 'reclamo/encuesta_cliente.html', {})

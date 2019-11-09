@@ -67,6 +67,12 @@ class Reclamo(models.Model):
     def __str__(self):
         return self.codReclamo + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'
 
+class HistoricoReclamo(models.Model):
+    reclamo = models.ForeignKey(Reclamo, on_delete=models.CASCADE,blank=True, null=True)
+    fecha = models.DateField(blank=True, null=True)
+    detalle = models.CharField(max_length = 200)
+    usuarioEncargado = models.CharField(max_length = 20)
+
 class Configuracion(models.Model):
     nombre = models.CharField(max_length=10)
     valor = models.IntegerField()
@@ -136,4 +142,4 @@ def asignar_reclamo(sender, instance, **kwargs):
                 dias_tarda -= 1
             instance.fechaEstimada = hoy
             instance.save()
-    
+

@@ -37,3 +37,9 @@ class PQS(models.Model):
 
     def __str__(self):
         return self.codPQS + ' / ' + self.nombreUsuario.nombreUsuario +' / ' + self.nombreUsuario.idCliente.nombre + ' / ' + self.descripcion[:20] + '...'
+
+class HistoricoPQS(models.Model):
+    pqs = models.ForeignKey(PQS, on_delete=models.CASCADE,blank=True, null=True)
+    fecha = models.DateField(blank=True, null=True)
+    detalle = models.CharField(max_length = 200)
+    usuarioEncargado = models.CharField(max_length = 20)

@@ -22,115 +22,105 @@
                     <form method="POST" id="formulario">
                         {% csrf_token %}
                         <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Nro de identificación</b>
-                                        </p>
-                                        {{ form.idEmpleado }}
-                                        {{ form.idEmpleado.errors }}
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Nro de identificación</b>
+                                            </p>
+                                            {{ form.idEmpleado }}
+                                            {{ form.idEmpleado.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Nombre de Usuario</b>
-                                        </p>
-                                        {{ form.nombreUsuario }}
-                                        {{ form.nombreUsuario.errors }}
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Nombre de Usuario</b>
+                                            </p>
+                                            {{ form.nombreUsuario }}
+                                            {{ form.nombreUsuario.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Contraseña</b>
-                                        </p>
-                                        {{ form.password1| addclass:'form-control,Ingrese la contraseña' }}
-                                        {{ form.password1.errors }}
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Contraseña</b>
+                                            </p>
+                                            {{ form.password1| addclass:'form-control,Ingrese la contraseña' }}
+                                            {{ form.password1.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Confirmar Contraseña</b>
-                                        </p>
-                                        {{ form.password2| addclass:'form-control,Confirme la contraseña' }}
-                                        {{ form.password2.errors }}
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Confirmar Contraseña</b>
+                                            </p>
+                                            {{ form.password2| addclass:'form-control,Confirme la contraseña' }}
+                                            {{ form.password2.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Correo</b>
-                                        </p>
-                                        {{ form.correo }}
-                                        {{ form.correo.errors }}
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Correo</b>
+                                            </p>
+                                            {{ form.correo }}
+                                            {{ form.correo.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class=" col-md-2"></div>
-                            <div class=" col-md-8">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <p>
-                                            <b>Tipo de usuario</b>
-                                        </p>
-                                        <select name="codTipoUser" id="id_codTipoUser" class="form-control">
-                                            <option value="">---------</option>
-                                            {% for opcion in tipousers %} <option value="{{ opcion.codTipoUser }}" selected>{{ opcion }}</option>{% endfor %}
-                                        </select>
-                                        {{ form.codTipoUser.errors }}
+                                <div class=" col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <p>
+                                                <b>Tipo de usuario</b>
+                                            </p>
+                                            <select name="codTipoUser" id="id_codTipoUser" class="form-control">
+                                                <option value="">---------</option>
+                                                {% for opcion in tipousers %} <option value="{{ opcion.codTipoUser }}"
+                                                    selected>{{ opcion }}</option>{% endfor %}
+                                            </select>
+                                            {{ form.codTipoUser.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <a href="{% url 'inicio_admin' %}">
-                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                        </a>
+                                <div class="row clearfix">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <a href="{% url 'inicio_admin' %}">
+                                                    <button type="button"
+                                                        class="btn bg-teal waves-effect">Atrás</button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <button type="reset" class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <button type="reset"
+                                                    class="btn bg-blue-grey waves-effect">Limpiar</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <div class="button-demo">
-                                        <button type="button" onclick="javascript:confirmarSeleccion();"
-                                            class="btn bg-green waves-effect">Crear</button>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <button type="button" onclick="javascript:confirmarSeleccion();"
+                                                    class="btn bg-green waves-effect">Crear</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

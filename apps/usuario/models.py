@@ -111,7 +111,10 @@ class EficienciaGestor(models.Model):
 
 @receiver(post_save, sender=User)
 def crear_eficiciencia(sender, instance, **kwargs):
-    if instance.codTipoUser.codTipoUser == "grec" and EficienciaGestor.objects.get(nombreUsuario = instance.nombreUsuario) == None:
-        eg = EficienciaGestor()
-        eg.nombreUsuario = instance
-        eg.save()
+    try:
+        EficienciaGestor.objects.get(nombreUsuario = instance.nombreUsuario)
+    except:
+        if instance.codTipoUser.codTipoUser == "grec":
+            eg = EficienciaGestor()
+            eg.nombreUsuario = instance
+            eg.save()
