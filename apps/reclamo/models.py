@@ -69,7 +69,7 @@ class Reclamo(models.Model):
 
 class HistoricoReclamo(models.Model):
     reclamo = models.ForeignKey(Reclamo, on_delete=models.CASCADE,blank=True, null=True)
-    fecha = models.DateField(blank=True, null=True)
+    fecha = models.DateField(auto_now = True, blank=True, null=True)
     detalle = models.CharField(max_length = 200)
     usuarioEncargado = models.CharField(max_length = 20)
 

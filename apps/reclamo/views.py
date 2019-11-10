@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, ConsultarReclamo, AtenderReclamo
-from .models import Categoria, Reclamo
+from .models import Categoria, Reclamo, HistoricoReclamo
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Contrato, DetalleContrato, Cliente, Servicio
@@ -55,6 +55,10 @@ class cli_crearReclamo(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
+        hr = HistoricoReclamo()
+        hr.reclamo = self.object
+        hr.detalle = "El reclamo ha sido creado."
+        hr.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nuevo reclamo registrado con éxito',
@@ -82,6 +86,10 @@ class atc_crearReclamo(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
+        hr = HistoricoReclamo()
+        hr.reclamo = self.object
+        hr.detalle = "El reclamo ha sido creado."
+        hr.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nuevo reclamo registrado con éxito',
@@ -103,6 +111,7 @@ class gt_consultarReclamo(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(gt_consultarReclamo, self).get_context_data(**kwargs)
+        context['hist'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'])
         context['user_cliente'] = User.objects.get(idCliente=context['reclamo'].codDetContrato.nroContrato.codCliente.identificacion)
         tec_asignado = context['reclamo'].responsableReclamo.all().filter(codTipoUser='tc')
         if tec_asignado:
@@ -118,10 +127,30 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
     form_class = AtenderReclamo
 
     def form_valid(self, form):
-        reclamo = form.save()
-        if reclamo.estatus == "F":
-            reclamo.fechaFinalizada = datetime.now()
-            reclamo.save()
+        reclamo_nvo = form.save(commit=False)
+        reclamo_viejo = Reclamo.objects.get(codReclamo=self.kwargs['pk'])
+        if reclamo_nvo.estatus == "R":
+            hr = HistoricoReclamo()
+            hr.detalle = "El reclamo ha cambiado de estatus de Pendiente a En proceso."
+            hr.reclamo = reclamo_viejo
+            hr.usuarioEncargado = self.request.user
+            hr.save()
+        if reclamo_viejo.codCategoria != reclamo_nvo.codCategoria:
+            hr = HistoricoReclamo()
+            hr.detalle = "El reclamo fue cambiado de categoría a '" + reclamo_nvo.codCategoria.nombre + "'."
+            hr.reclamo = reclamo_viejo
+            hr.usuarioEncargado = self.request.user
+            hr.save()
+        if reclamo_viejo.responsableReclamo.all()[1] != reclamo_nvo.responsableReclamo.all()[1]:
+            hr = HistoricoReclamo()
+            hr.detalle = "Se le ha asignado un técnico al reclamo."
+            hr.reclamo = reclamo_viejo
+            hr.usuarioEncargado = self.request.user
+            hr.save()
+        if reclamo_nvo.estatus == "F":
+            reclamo_nvo.fechaFinalizada = datetime.now()
+            hr.usuarioEncargado = self.request.user
+        reclamo_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
@@ -155,6 +184,11 @@ def encuesta_cliente(request):
 class cli_consultarReclamo(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = Reclamo
     template_name = "reclamo/cli_consultarReclamo.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(cli_consultarReclamo, self).get_context_data(**kwargs)
+        context['hist'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'])
+        return context
 
 #CATEGORIA DE RECLAMOS
 class crearcatreclamo(AuthenticatedAdminMixin, SuccessMessageMixin, CreateView):

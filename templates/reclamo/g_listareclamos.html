@@ -18,8 +18,8 @@
         <table id="tabla-generica" class="table table-bordered " >
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre del Cliente</th>
-                    <th>Categoría</th>
                     <th>Fecha de emisión</th>
                     <th>Estado</th>
                     <th>Opciones</th>
@@ -27,8 +27,8 @@
             </thead>
             <tfoot>
                 <tr>
+                    <th>Código</th>
                     <th>Nombre del Cliente</th>
-                    <th>Categoría</th>
                     <th>Fecha de emisión</th>
                     <th>Estado</th>
                     <th>Opciones</th>
@@ -37,8 +37,8 @@
             <tbody>
             {% for rec in object_list %}
                 <tr>
+                    <td>{{ rec.codReclamo }}</td>
                     <td>{{ rec.nombreUsuario.idCliente.nombre }} {{ rec.nombreUsuario.idCliente.apellido }}</td>
-                    <td>{{ rec.codCategoria }}</td>
                     <td>{{ rec.fechaRegistro }}</td>
                     <td>{{ rec.get_estatus_display }}</td>
                     <td>

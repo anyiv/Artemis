@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="text" class="form-control"
-                                                value="{{ reclamo.fechaFinalizada }}" readonly>
+                                                {% if reclamo.fechaFinalizado == None %} value="" {% else %}value="{{ reclamo.fechaFinalizada }}" {% endif %} readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -144,16 +144,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% for h in hist %}
                                     <tr>
-                                        <th scope="row" style="text-align:left;">19/09/2019</th>
-                                        <td style="text-align:left;">Se ha respondido al reclamo</td>
-                                        <td style="text-align:left;">Alan M</td>
+                                        <th scope="row" style="text-align:left;">{{ h.fecha }}</th>
+                                        <td style="text-align:left;">{{ h.detalle }}</td>
+                                        <td style="text-align:left;">{{h.usuarioEncargado}}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row" style="text-align:left;">19/09/2019</th>
-                                        <td style="text-align:left;">Se ha respondido al reclamo</td>
-                                        <td style="text-align:left;">Alan M</td>
-                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

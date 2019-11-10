@@ -20,8 +20,8 @@
             <table id="tabla-generica" class="table table-bordered " style="width: 100%">
                 <thead>
                     <tr>
+                        <th>Código</th>
                         <th>Nombre del Cliente</th>
-                        <th>Categoría</th>
                         <th>Fecha de emisión</th>
                         <th>Fecha de finalización </th>
                         <th>Opciones</th>
@@ -29,8 +29,8 @@
                 </thead>
                 <tfoot>
                     <tr>
+                        <th>Código</th>
                         <th>Nombre del Cliente</th>
-                        <th>Categoría</th>
                         <th>Fecha de emisión</th>
                         <th>Fecha de finalización</th>
                         <th>Opciones</th>
@@ -39,8 +39,8 @@
                 <tbody>
                 {% for rf in object_list %}
                     <tr>
+                        <td>{{ rf.codReclamo }}</td>
                         <td>{{ rf.nombreUsuario.idCliente.nombre }} {{ rf.nombreUsuario.idCliente.apellido }}</td>
-                        <td>{{ rf.codCategoria }}</td>
                         <td>{{ rf.fechaRegistro }}</td>
                         <td>{{ rf.fechaFinalizada }}</td>
                         <td>

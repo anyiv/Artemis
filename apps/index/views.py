@@ -158,7 +158,7 @@ def finalizarpqs(request):
     try:
         codpqs = request.POST.get('codpqs',None)
         pqs = PQS.objects.get(codPQS = codpqs)
-        pqs.estatus = 'F'
+        pqs.estatus = 'A'
         pqs.fechaFinalizado = datetime.now()
         pqs.save()
         data = {

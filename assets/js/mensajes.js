@@ -81,3 +81,23 @@ function confirmarSugerencia() {
 function exitoSugerencia() {
     swal("Enviada", "La sugerencia ha sido enviada con éxito.", "success");
 };
+
+function confirmarCambiarContraseña(){
+    swal({
+        title: "Confirmar",
+        text: "¿Está seguro que desea cambiar la contraseña?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#58a05d",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            formulario.submit();
+        } else {
+            swal("Cancelada", "El cambio ha sido cancelado.", "error");
+        }
+    });
+}
