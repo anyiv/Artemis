@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
-from apps.reclamo.models import Reclamo
+from apps.reclamo.models import Reclamo, HistoricoReclamo
 from apps.pqs.models import PQS
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
@@ -70,6 +70,7 @@ def asignar_tecnico(request):
     cod_reclamo = request.POST.get('cod_reclamo', None)
     id_tecnico = request.POST.get('id_tecnico', None)
     reclamo = Reclamo.objects.get(codReclamo=cod_reclamo)
+    gestor = reclamo.responsableReclamo.all()[0]
     tecnico = User.objects.get(nombreUsuario=id_tecnico)
     if reclamo.responsableReclamo.all().count() != 1:
         data = {
@@ -79,9 +80,16 @@ def asignar_tecnico(request):
     else:
         reclamo.responsableReclamo.add(tecnico)
         reclamo.save()
+        hr = HistoricoReclamo()
+        hr.detalle = "Se le ha asignado un técnico al reclamo."
+        hr.reclamo = reclamo
+        hr.usuarioEncargado = gestor
+        hr.save()
+        print(tecnico.idEmpleado.nombre)
         data = {
             'respuesta': 'Técnico asignado correctamente.',
             'icono': 'success',
+            'tecnico': tecnico.idEmpleado.nombre +' '+ tecnico.idEmpleado.apellido
         }
     return JsonResponse(data)
 
@@ -99,11 +107,17 @@ def enviar_rp(request):
         codrp = request.POST.get('codresp',None)
         codrec = request.POST.get('codrec',None)
         rec = Reclamo.objects.get(codReclamo = codrec)
+        gestor = rec.responsableReclamo.all()[0]
         if rec.estatus != 'F':
             rec.estatus = 'R'
             rec.save()
         cli = rec.nombreUsuario
         cli.enviarCorreo("Nueva respuesta recibida","Tu reclamo "+codrec+" ha recibido una nueva respuesta.","Texto de la respuesta: "+respp)
+        hr = HistoricoReclamo()
+        hr.reclamo = rec
+        hr.detalle = "Se ha enviado una respuesta."
+        hr.usuarioEncargado = gestor
+        hr.save()
         if codrp != '-':
             rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
             rp.contUso += 1

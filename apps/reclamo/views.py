@@ -129,7 +129,7 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
     def form_valid(self, form):
         reclamo_nvo = form.save(commit=False)
         reclamo_viejo = Reclamo.objects.get(codReclamo=self.kwargs['pk'])
-        if reclamo_nvo.estatus == "R":
+        if reclamo_nvo.estatus == "R" and reclamo_viejo.estatus != "R":
             hr = HistoricoReclamo()
             hr.detalle = "El reclamo ha cambiado de estatus de Pendiente a En proceso."
             hr.reclamo = reclamo_viejo
@@ -141,9 +141,9 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
-        if reclamo_viejo.responsableReclamo.all()[1] != reclamo_nvo.responsableReclamo.all()[1]:
+        if reclamo_nvo.fechaEstimada != reclamo_viejo.fechaEstimada:
             hr = HistoricoReclamo()
-            hr.detalle = "Se le ha asignado un técnico al reclamo."
+            hr.detalle = "La fecha de compromiso fue cambiada."
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()

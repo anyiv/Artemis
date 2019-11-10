@@ -16,7 +16,8 @@ function asignarTecnico() {
             dataType: 'json',
             success: function (data) {
                 swal("Resultado",data.respuesta,data.icono);
-                $('#tecnicos').modal('hide')
+                $('#tecnicos').modal('hide');
+                $('#tecnicoAsignado').val(data.tecnico);
             }
         });
     }
