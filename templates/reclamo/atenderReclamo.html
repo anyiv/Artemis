@@ -20,109 +20,107 @@
                     {% csrf_token %}
                     {{form.errors}}
                     <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
-                                <div class="col-md-12">
-                                    <div class="header bg-blue-grey">
-                                        <h2>
-                                            Datos del Reclamo:
-                                        </h2>
-                                    </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="col-md-12">
+                                <div class="header bg-blue-grey">
+                                    <h2>
+                                        Datos del Reclamo:
+                                    </h2>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Código</b>
-                                            </p>
-                                            <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
-                                                id="codReclamo" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Estado</b>
-                                            </p>
-                                            <select name="estatus" class="form-control" id="estatus">
-                                                <option value="R">En proceso</option>
-                                                <option value="F">Finalizado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <div class="form-line">
                                         <p>
-                                            <b>Fecha de emisión</b>
+                                            <b>Código</b>
                                         </p>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control date"
-                                                    value="{{ reclamo.fechaRegistro }}" readonly>
-                                            </div>
-                                        </div>
+                                        <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
+                                            id="codReclamo" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <div class="form-line">
                                         <p>
-                                            <b>Fecha de compromiso</b>
+                                            <b>Estado</b>
                                         </p>
-                                        <div class="input-daterange input-group" id="fechaEstimada_dp">
-                                            <div class="form-line">
-                                                <input id="fechaEstimada" name="fechaEstimada" type="text"
-                                                    class="form-control" placeholder="Ej:23/07/2019"
-                                                    value="{{reclamo.fechaEstimada|date:'Y-m-d'}}">
-                                            </div>
-                                        </div>
+                                        <select name="estatus" class="form-control" id="estatus">
+                                            <option value="R">En proceso</option>
+                                            <option value="F">Finalizado</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Fecha de emisión</b>
+                                    </p>
+                                    <div class="input-group">
                                         <div class="form-line">
-                                            <p>
-                                                <b>Categoría</b>
-                                            </p>
-                                            {{ form.codCategoria }}
+                                            <input type="text" class="form-control date"
+                                                value="{{ reclamo.fechaRegistro }}" readonly>
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-line">
+                                    <p>
+                                        <b>Fecha de compromiso</b>
+                                    </p>
+                                    <div class="input-daterange input-group" id="fechaEstimada_dp">
                                         <div class="form-line">
-                                            <p>
-                                                <b>Tipo de servicio</b>
-                                            </p>
-                                            <input type="text" class="form-control"
-                                                value="{{ reclamo.codDetContrato.codServicio.nombre }}" readonly>
+                                            <input id="fechaEstimada" name="fechaEstimada" type="text"
+                                                class="form-control" placeholder="Ej:23/07/2019"
+                                                value="{{reclamo.fechaEstimada|date:'Y-m-d'}}">
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <p>
-                                                <b>Técnico asignado</b>
-                                            </p>
-                                            <input type="text" class="form-control" id="tecnicoAsignado" name="tecnicoAsignado"
-                                                value="{{tec_asignado}}" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class=" col-md-12">
-                                    <div class="form-group">
+                            </div>
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
                                         <p>
-                                            <b>Descripción</b>
+                                            <b>Categoría</b>
                                         </p>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <textarea rows="6" class="form-control no-resize"
-                                                    readonly> {{ reclamo.descripcion }} </textarea>
-                                            </div>
+                                        {{ form.codCategoria }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Tipo de servicio</b>
+                                        </p>
+                                        <input type="text" class="form-control"
+                                            value="{{ reclamo.codDetContrato.codServicio.nombre }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Técnico asignado</b>
+                                        </p>
+                                        <input type="text" class="form-control" id="tecnicoAsignado"
+                                            name="tecnicoAsignado" value="{{tec_asignado}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-12">
+                                <div class="form-group">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <textarea rows="6" class="form-control no-resize"
+                                                readonly> {{ reclamo.descripcion }} </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -132,9 +130,9 @@
                 </form>
 
                 <div class="row clearfix">
-                {% if user.codTipoUser.codTipoUser == 'tc' %}
-                <div class="col-md-1"></div>
-                {% endif %}
+                    {% if user.codTipoUser.codTipoUser == 'tc' %}
+                    <div class="col-md-1"></div>
+                    {% endif %}
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="button-demo">
@@ -159,11 +157,12 @@
                     {% if user.codTipoUser.codTipoUser == 'grec' %}
                     <div class="col-md-3">
                         <div class="form-group">
-                                <div class="button-demo js-modal-buttons">
-                                    <center><button type="button" data-color="blue-grey" id="asignar" class="btn bg-indigo waves-effect">Asignar
-                                            técnico</button>
-                                    </center>
-                                </div>
+                            <div class="button-demo js-modal-buttons">
+                                <center><button type="button" data-color="blue-grey" id="asignar"
+                                        class="btn bg-indigo waves-effect">Asignar
+                                        técnico</button>
+                                </center>
+                            </div>
                         </div>
                     </div>
                     {% endif %}
@@ -219,7 +218,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect" onclick="javascript:enviarRespuesta();">Enviar</button>
+                <button type="button" class="btn btn-link waves-effect"
+                    onclick="javascript:enviarRespuesta();">Enviar</button>
             </div>
         </div>
     </div>
@@ -242,7 +242,8 @@
                         <select class="form-control" id="responsableReclamo" name="responsableReclamo">
                             <option value="-">-----</option>
                             {% for tc in tecnicos %}
-                            <option value="{{tc.nombreUsuario}}">{{ tc.idEmpleado.nombre }} {{ tc.idEmpleado.apellido }}</option>
+                            <option value="{{tc.nombreUsuario}}">{{ tc.idEmpleado.nombre }} {{ tc.idEmpleado.apellido }}
+                            </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -250,7 +251,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect" onclick="javascript:asignarTecnico();">Asignar</button>
+                <button type="button" class="btn btn-link waves-effect"
+                    onclick="javascript:asignarTecnico();">Asignar</button>
             </div>
         </div>
     </div>
@@ -258,7 +260,8 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{% static 'plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}" type="text/javascript">
+</script>
 <script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/asignar_tecnico.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/enviar_rp.js' %}" type="text/javascript"></script>
@@ -292,6 +295,5 @@
             }
         });
     }
-
 </script>
 {% endblock %}

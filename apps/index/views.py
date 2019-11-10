@@ -9,7 +9,7 @@ from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
 from apps.reclamo.models import Reclamo, HistoricoReclamo
-from apps.pqs.models import PQS
+from apps.pqs.models import PQS, HistoricoPQS
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -151,6 +151,11 @@ def enviar_rp_pqs(request):
         if pqs.estatus == 'P':
             pqs.estatus = 'A'
             pqs.save()
+        hst = HistoricoPQS()
+        hst.detalle = "Se ha enviado una respuesta."
+        hst.pqs = pqs
+        hst.usuarioEncargado = request.user
+        hst.save()
         cli = pqs.nombreUsuario
         cli.enviarCorreo("Nueva respuesta recibida","Tu "+pqs.get_categoria_display()+" "+codpqs+" ha recibido una nueva respuesta.","Texto de la respuesta: "+respp)
         if codrp != '-':
@@ -174,6 +179,11 @@ def finalizarpqs(request):
         pqs = PQS.objects.get(codPQS = codpqs)
         pqs.estatus = 'A'
         pqs.fechaFinalizado = datetime.now()
+        hst = HistoricoPQS()
+        hst.detalle = "La "+ pqs.get_categoria_display() +" ha sido atendida."
+        hst.pqs = pqs
+        hst.usuarioEncargado = request.user
+        hst.save()
         pqs.save()
         data = {
             'texto':'PQS finalizada con éxito.',

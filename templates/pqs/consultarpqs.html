@@ -7,151 +7,185 @@
 {% block content %}
 
 <div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        Consultar
-                        {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
-                    </h2>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Consultar
+                    {% if pqs.categoria == 'P' %}Petición{% elif pqs.categoria == 'Q' %}Queja{% elif pqs.categoria == 'S'%}Sugerencia{% endif %}
+                </h2>
+            </div>
+            <div class="body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#consulta" data-toggle="tab">Consulta</a></li>
+                    <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="consulta" style="margin-top:1.5em;">
+                        <div class="row clearfix">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Código</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Nombre y apellido</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Tipo de solicitud</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                value="{{ pqs.get_categoria_display }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Fecha de emisión</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" value="{{ pqs.fechaRegistro }}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <b>Estado</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                value="{{ pqs.get_estatus_display }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <p>
+                                        <b>Fecha de atención</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" {% if pqs.fechaFinalizado == None %}
+                                                value="" {% else %} value="{{ pqs.fechaFinalizado }}" {% endif %}
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-12">
+                                    <p>
+                                        <b>Descripción</b>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <textarea rows="12" class="form-control no-resize"
+                                                readonly>{{ pqs.descripcion }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="historial">
+                        <div class="body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Detalles</th>
+                                        <th>Usuario Encargado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for h in hist %}
+                                    <tr>
+                                        <th scope="row" style="text-align:left;">{{ h.fecha}}</th>
+                                        <td style="text-align:left;">{{ h.detalle }}</td>
+                                        <td style="text-align:left;">{{h.usuarioEncargado}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <div class="col-md-6">
-                            <p>
-                                    <b>Código</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.codPQS }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Nombre y apellido</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.nombreUsuario.idCliente.nombre }} {{ pqs.nombreUsuario.idCliente.apellido }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Tipo de solicitud</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.get_categoria_display }}"
-                                            readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Fecha de emisión</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.fechaRegistro }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <b>Estado</b>
-                                </p>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" value="{{ pqs.get_estatus_display }}"
-                                            readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-md-6">
-                            <p>
-                                <b>Fecha de atención</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" class="form-control" {% if pqs.fechaFinalizado == None %}
-                                    value=""
-                                    {% else %} value="{{ pqs.fechaFinalizado }}" {% endif %}  readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-md-12">
-                            <p>
-                                <b>Descripción</b>
-                            </p>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea rows="12" class="form-control no-resize"
-                                        readonly>{{ pqs.descripcion }}</textarea>
-                                </div>
-                            </div>
-                        </div>    
-                    </div>
-                    {% if user.codTipoUser.codTipoUser == 'cli' %}
-                    <div class="row clearfix">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'lista_pqrscliente' %} ">
-                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                        </center>
-                                    </a>
-                                </div>
+                {% if user.codTipoUser.codTipoUser == 'cli' %}
+                <div class="row clearfix">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'lista_pqrscliente' %} ">
+                                    <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </center>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    {% elif user.codTipoUser.codTipoUser == 'atc' %}
-                    <div class="row clearfix">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'inicio_atencioncli' %} ">
-                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                        </center>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% if user.codTipoUser.codTipoUser == 'gpqs' %}
-                    <div class="row clearfix">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'inicio_gestorpqs' %} ">
-                                        <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
-                                        </center>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="button-demo">
-                                    <a href="{% url 'atenderpqs' pqs.codPQS %}">
-                                        <center><button type="button" class="btn bg-green waves-effect">Atender</button>
-                                        </center>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
                 </div>
+                {% elif user.codTipoUser.codTipoUser == 'atc' %}
+                <div class="row clearfix">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'inicio_atencioncli' %} ">
+                                    <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if user.codTipoUser.codTipoUser == 'gpqs' %}
+                <div class="row clearfix">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'inicio_gestorpqs' %} ">
+                                    <center><button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="button-demo">
+                                <a href="{% url 'atenderpqs' pqs.codPQS %}">
+                                    <center><button type="button" class="btn bg-green waves-effect">Atender</button>
+                                    </center>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

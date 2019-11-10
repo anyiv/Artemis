@@ -149,7 +149,11 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             hr.save()
         if reclamo_nvo.estatus == "F":
             reclamo_nvo.fechaFinalizada = datetime.now()
+            hr = HistoricoReclamo()
+            hr.detalle = "El reclamo ha sido finalizado."
+            hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
+            hr.save()
         reclamo_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
 

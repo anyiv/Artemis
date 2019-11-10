@@ -3,7 +3,7 @@ from django.views.generic import ListView, UpdateView, CreateView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .models import PQS
+from .models import PQS, HistoricoPQS
 from django.http import HttpResponseRedirect
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
@@ -20,6 +20,10 @@ class cli_crearpeticion(AuthenticatedClienteMixin, SuccessMessageMixin, CreateVi
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La petición se ha creado."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva petición registrada con éxito',
@@ -38,6 +42,10 @@ class atc_crearpeticion(AuthenticatedAtClienteMixin, SuccessMessageMixin, Create
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La petición se ha sido creada."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva petición registrada con éxito',
@@ -57,6 +65,10 @@ class cli_crearqueja(AuthenticatedClienteMixin, SuccessMessageMixin, CreateView)
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La queja se ha sido creada."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva queja registrada con éxito',
@@ -76,6 +88,10 @@ class atc_crearqueja(AuthenticatedAtClienteMixin, SuccessMessageMixin, CreateVie
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La queja se ha sido creada."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva queja registrada con éxito',
@@ -95,6 +111,10 @@ class cli_crearsugerencia(AuthenticatedClienteMixin, SuccessMessageMixin, Create
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La sugerencia se ha sido creada."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
@@ -113,6 +133,10 @@ class atc_crearsugerencia(AuthenticatedAtClienteMixin, SuccessMessageMixin, Crea
 
     def form_valid(self, form):
         self.object = form.save()
+        hpqs = HistoricoPQS()
+        hpqs.detalle = "La sugerencia se ha sido creada."
+        hpqs.pqs = self.object
+        hpqs.save()
         messages.add_message(self.request,messages.INFO,'e')
         usuario = self.object.nombreUsuario
         usuario.enviarCorreo('Nueva sugerencia registrada con éxito',
@@ -127,11 +151,30 @@ class consultarpqs(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = PQS
     template_name= "pqs/consultarpqs.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(consultarpqs, self).get_context_data(**kwargs)
+        context["hist"] = HistoricoPQS.objects.filter(pqs=self.kwargs['pk'])
+        return context
+    
+
 #ATENDER PQS
 class atenderpqs(UpdateView):
     model = PQS
     form_class = AtenderPQS
     template_name = "pqs/atenderpqs.html"
+
+    def form_valid(self, form):
+        pqs_vjo = PQS.objects.get(codPQS=self.kwargs['pk'])
+        pqs_nvo = form.save()
+        pqs_nvo.responsablePQS.add(self.request.user)
+        if pqs_nvo.estatus == 'M' and pqs_vjo.estatus == 'P':
+            hpqs = HistoricoPQS()
+            hpqs.detalle= "La " + pqs_vjo.get_categoria_display() + "ha cambiado de estatus a Marcada."
+            hpqs.usuarioEncargado = self.request.user
+            hpqs.pqs = pqs_vjo
+            hpqs.save()
+        pqs_nvo.save()
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super(atenderpqs, self).get_context_data(**kwargs)

@@ -18,7 +18,7 @@ class PQS(models.Model):
         return nvo_codpqs
 
     codPQS = models.CharField(max_length=8,default=cod_pqs, primary_key=True)
-    nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
+    nombreUsuario = models.ForeignKey(User, related_name='creador', on_delete=models.CASCADE, blank=False, null=False)
     CATEGORIA = (
         ('P','Peticion'),
         ('Q','Queja'),
@@ -28,6 +28,7 @@ class PQS(models.Model):
     descripcion = models.CharField(max_length=500)
     fechaRegistro = models.DateTimeField(default=datetime.now)
     fechaFinalizado = models.DateTimeField(blank=True ,null=True)
+    responsablePQS = models.ManyToManyField(User, related_name='responsable', blank=True)
     ESTATUS = ( 
         ('P','Pendiente'),
         ('M','Marcada'),
@@ -40,6 +41,6 @@ class PQS(models.Model):
 
 class HistoricoPQS(models.Model):
     pqs = models.ForeignKey(PQS, on_delete=models.CASCADE,blank=True, null=True)
-    fecha = models.DateField(blank=True, null=True)
+    fecha = models.DateField(auto_now = True, blank=True, null=True)
     detalle = models.CharField(max_length = 200)
     usuarioEncargado = models.CharField(max_length = 20)
