@@ -196,6 +196,28 @@ def finalizarpqs(request):
         }
     return JsonResponse(data)
 
+def anadir_comentario(request):
+    try:
+        codrec = request.POST.get('cod_reclamo',None)
+        comentario = request.POST.get('comentario',None)
+        rec = Reclamo.objects.get(codReclamo = codrec)
+        hst = HistoricoReclamo()
+        hst.tipo = 'C'
+        hst.detalle = comentario
+        hst.usuarioEncargado = request.user
+        hst.reclamo = rec
+        hst.save()
+        data = {
+            'texto':'Comentario guardado con éxito.',
+            'icono':'success',
+        }
+    except:
+        data = {
+            'texto':'Hubo un error en error guargando el comentario.',
+            'icono':'error',
+        }
+    return JsonResponse(data)
+
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
     template_name = 'index/index.html'
 

@@ -71,6 +71,11 @@ class HistoricoReclamo(models.Model):
     reclamo = models.ForeignKey(Reclamo, on_delete=models.CASCADE,blank=True, null=True)
     fecha = models.DateField(auto_now = True, blank=True, null=True)
     detalle = models.CharField(max_length = 200)
+    TIPO = (
+        ('A','Actualizacion'),
+        ('C','Comentario'),
+    )
+    tipo = models.CharField(max_length=1,choices=TIPO, default='A')
     usuarioEncargado = models.CharField(max_length = 20)
 
 class Configuracion(models.Model):

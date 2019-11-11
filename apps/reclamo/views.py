@@ -112,12 +112,13 @@ class gt_consultarReclamo(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(gt_consultarReclamo, self).get_context_data(**kwargs)
         context['hist'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'])
+        context['comm'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'],tipo='C')
         context['user_cliente'] = User.objects.get(idCliente=context['reclamo'].codDetContrato.nroContrato.codCliente.identificacion)
         tec_asignado = context['reclamo'].responsableReclamo.all().filter(codTipoUser='tc')
         if tec_asignado:
             context['tec_asignado'] = tec_asignado[0].idEmpleado.nombre + ' ' + tec_asignado[0].idEmpleado.apellido
         else:
-            context['tec_asignado'] = 'El reclamo no tiene asignado un técnico aún.'
+            context['tec_asignado'] = 'No tiene asignado un técnico aún.'
         return context
     
 

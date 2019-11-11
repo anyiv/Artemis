@@ -18,7 +18,7 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <ul class="nav nav-tabs tab-nav-right tab-col-pink" role="tablist">
                         <li role="presentation" class="active"><a href="#consulta" data-toggle="tab">Consulta</a></li>
                         <li role="presentation"><a href="#historial" data-toggle="tab">Historial</a></li>
                     </ul>
@@ -132,7 +132,7 @@
                                                 <p>
                                                     <b>Código</b>
                                                 </p>
-                                                <input type="text" class="form-control" value="{{ reclamo.codReclamo }}"
+                                                <input type="text" id="codReclamo" class="form-control" value="{{ reclamo.codReclamo }}"
                                                     readonly>
                                             </div>
                                         </div>
@@ -222,75 +222,91 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+                                        <div class="panel-group" id="accordion_17" role="tablist"
+                                            aria-multiselectable="true">
+                                            <div class="panel panel-col-blue-grey">
+                                                <div class="panel-heading" role="tab" id="headingOne_17">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse"
+                                                            data-parent="#accordion_17" href="#collapseOne_17"
+                                                            aria-expanded="true" aria-controls="collapseOne_17">
+                                                            <i class="material-icons">perm_contact_calendar</i>
+                                                            Comentarios
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne_17" class="panel-collapse collapse in"
+                                                    role="tabpanel" aria-labelledby="headingOne_17">
+                                                    <div class="panel-body">
+                                                        <div class="list-group">
+                                                            {% if comm %}
+                                                            {% for c in comm %}
+                                                            <button type="button" class="list-group-item"
+                                                                style="text-align:center">{{ c.detalle }}</button>
+                                                            {% endfor %}
+                                                            {% else %}
+                                                            <button type="button" class="list-group-item"
+                                                                style="text-align:center">Este reclamo no tiene comentarios aún.</button>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
+                                <div class="row clearfix">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <p>
-                                                <b>Comentarios</b>
-                                            </p>
-                                            <div class="list-group">
-                                                <button type="button" class="list-group-item"
-                                                    style="text-align:center">No
-                                                    se ha
-                                                    podido
-                                                    atender por falta de luz en la zona</button>
-                                                <button type="button" class="list-group-item"
-                                                    style="text-align:center">El
-                                                    técnico
-                                                    está
-                                                    atendiendo el reclamo</button>
+                                            <div class="button-demo">
+                                                <a href="{% url 'inicio_gestreclamo' %}">
+                                                    <button type="button"
+                                                        class="btn bg-teal waves-effect">Atrás</button>
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <div class="button-demo js-modal-buttons">
+                                                    <button type="button" id="agregarcom" data-color="blue-grey"
+                                                        class="btn bg-indigo waves-effect">Agregar
+                                                        Comentario</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
+                                                    <button type="button"
+                                                        class="btn bg-green waves-effect">Atender</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
-                            <div class="row clearfix">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="button-demo">
-                                            <a href="{% url 'inicio_gestreclamo' %}">
-                                                <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="button-demo">
-                                            <div class="button-demo js-modal-buttons">
-                                                <button type="button" id="agregarcom" data-color="blue-grey"
-                                                    class="btn bg-indigo waves-effect">Agregar
-                                                    Comentario</button>
+                                {% elif user.codTipoUser.codTipoUser == 'atc' %}
+                                <div class="row clearfix">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="button-demo">
+                                                <a href="{% url 'inicio_atencioncli' %}">
+                                                    <button type="button"
+                                                        class="btn bg-teal waves-effect">Atrás</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="button-demo">
-                                            <a href="{% url 'atenderReclamo' reclamo.codReclamo %}">
-                                                <button type="button" class="btn bg-green waves-effect">Atender</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endif %}
                             </div>
-                            {% elif user.codTipoUser.codTipoUser == 'atc' %}
-                            <div class="row clearfix">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="button-demo">
-                                            <a href="{% url 'inicio_atencioncli' %}">
-                                                <button type="button" class="btn bg-teal waves-effect">Atrás</button>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="historial">
                             <div class="body table-responsive">
@@ -303,13 +319,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for h in hist %}
+                                        {% for h in hist %}
                                         <tr>
                                             <th scope="row" style="text-align:left;">{{ h.fecha }}</th>
                                             <td style="text-align:left;">{{ h.detalle }}</td>
                                             <td style="text-align:left;">{{ h.usuarioEncargado}}</td>
                                         </tr>
-                                    {% endfor %}
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -333,14 +349,14 @@
                     <div class="col-md-2"></div>
                     <div class=" col-md-8">
                         <div class="form-line">
-                            <textarea rows="4" class="form-control no-resize"></textarea>
+                            <textarea id="comentario" rows="4" class="form-control no-resize"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Atrás</button>
-                <button type="button" class="btn btn-link waves-effect">Guardar</button>
+                <button type="button" onclick="javascript:anadir_comentario();" class="btn btn-link waves-effect">Guardar</button>
             </div>
         </div>
     </div>
@@ -350,6 +366,7 @@
 
 {% block javascript %}
 <script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/anadir_comentario.js' %}" type="text/javascript"></script>
 
 {% if messages %}
 {% for m in messages %}
