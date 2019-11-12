@@ -13,11 +13,13 @@ from apps.pqs.models import PQS, HistoricoPQS
 from apps.usuario.forms import CrearUsuario
 from django.views.generic import UpdateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from Artemis.mixin import LoginAuthenticatedMixin, LoginRequiredMixin
 from .forms import Cambiarcontrasena
 from django.http import JsonResponse
 from datetime import datetime
+from django.contrib.auth.forms import PasswordChangeForm
 
 #Vista que valida que un cliente esté registrado en el sistema para que un usuario
 #atención al cliente pueda crear un PQRS para él.
@@ -239,18 +241,27 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     model = User
     form_class = CrearUsuario
     template_name = "index/signup.html"
-    success_url = reverse_lazy('signup')
+    success_url = reverse_lazy('index')
     success_message = "u"
 
 class cambiar_contrasena(FormView):
-    model = User
     form_class = Cambiarcontrasena
     template_name = "index/cambiar_contrasena.html"
+    success_url = reverse_lazy('cambiar_contrasena')
+    success_message = "ec"
 
-    # def get_form_kwargs(self):
-    #     kwargs = super(cambiar_contrasena, self).get_form_kwargs()
-    #     kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
-    #     return kwargs
+    def get_form_kwargs(self):
+        kwargs = super(cambiar_contrasena, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
-# def cambiar_contrasena(request):
-#     return render(request, 'index/cambiar_contrasena.html', {})
+    def form_valid(self, form):
+        datos = form.cleaned_data
+        self.request.user.set_password(datos['new_password1'])
+        self.request.user.save()
+        update_session_auth_hash(self.request, form.user)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, 'ec')
+        return reverse_lazy('cambiar_contrasena')

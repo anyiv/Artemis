@@ -20,6 +20,22 @@
                 <div class="body">
                     <form method="POST" id="formulario">
                         {% csrf_token %}
+                        {{form.errors.as_p}}
+                        <div class="row clearfix">
+                            <div class="col-md-3"></div>
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <p>
+                                            <b>Contraseña Actual</b>
+                                        </p>
+                                        <input type="password" id="id_old_password" name="old_password" required
+                                            class="form-control" placeholder="Ingrese la nueva contraseña">
+                                    </div>
+                                    {{form.old_password.errors}}
+                                </div>
+                            </div>
+                        </div>
                         <div class="row clearfix">
                             <div class="col-md-3"></div>
                             <div class=" col-md-6">
@@ -28,12 +44,12 @@
                                         <p>
                                             <b>Contraseña Nueva</b>
                                         </p>
-                                        <input type="password" id="id_new_password_1" name="new_password_1"
-                                            class="form-control" placeholder="Ingrese la nueva contraseña"
-                                            required="">
+                                        <input type="password" id="id_new_password_1" name="new_password1"
+                                            id="id_new_password1" class="form-control"
+                                            placeholder="Ingrese la nueva contraseña" required="">
                                     </div>
                                 </div>
-                                {{ form.new_password_1.errors }}
+                                {{ form.new_password1.errors }}
                             </div>
                         </div>
                         <div class="row clearfix">
@@ -44,12 +60,11 @@
                                         <p>
                                             <b>Confirmar contraseña</b>
                                         </p>
-                                        <input type="password" id="id_new_password_2" name="new_password_2"
-                                            class="form-control" placeholder="Confirme la nueva contraseña"
-                                            required="">
+                                        <input type="password" id="id_new_password2" name="new_password2"
+                                            class="form-control" placeholder="Confirme la nueva contraseña" required="">
                                     </div>
                                 </div>
-                                {{ form.new_password_2.errors }}
+                                {{ form.new_password2.errors }}
                             </div>
                         </div>
                         <div class="row clearfix">
@@ -74,7 +89,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <button type="button" onclick="javascript:confirmarCambiarContraseña();" class="btn bg-green waves-effect">Cambiar</button>
+                                        <button type="button" onclick="javascript:confirmarCambiarContraseña();"
+                                            class="btn bg-green waves-effect">Cambiar</button>
                                     </div>
                                 </div>
                             </div>
@@ -90,5 +106,12 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script>
+{% for m in messages %}
+{% if m.message == "ec" %}
+<script>
+    swal("Cambiada", "Contraseña cambiada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
 {% endblock %}
