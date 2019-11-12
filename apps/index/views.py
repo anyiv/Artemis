@@ -243,14 +243,20 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     success_message = "u"
 
 class cambiar_contrasena(FormView):
-    model = User
     form_class = Cambiarcontrasena
     template_name = "index/cambiar_contrasena.html"
+    success_url = reverse_lazy('index')
 
-    # def get_form_kwargs(self):
-    #     kwargs = super(cambiar_contrasena, self).get_form_kwargs()
-    #     kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
-    #     return kwargs
+    def get_form_kwargs(self):
+        kwargs = super(cambiar_contrasena, self).get_form_kwargs()
+        kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
+        return kwargs
+
+    def form_valid(self, form):
+        print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+        print(form.cleaned_data['new_password1'])
+        print(form.cleaned_data['new_password2'])
+        return super().form_valid(form)
 
 # def cambiar_contrasena(request):
 #     return render(request, 'index/cambiar_contrasena.html', {})
