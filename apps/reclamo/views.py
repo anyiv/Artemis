@@ -2,15 +2,14 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
-from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, ConsultarReclamo, AtenderReclamo
+from .forms import IncluirCategoriaForm, ConsultarCategoriaForm, ActualizarCategoriaForm, IncluirReclamo, ConsultarReclamo, AtenderReclamo, EncuestaCliente
 from .models import Categoria, Reclamo, HistoricoReclamo
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Contrato, DetalleContrato, Cliente, Servicio
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, FormView, ListView
 from Artemis.mixin import AuthenticatedAdminMixin, AuthenticatedClienteMixin, AuthenticatedGPQSAtClienteClienteMixin
 from django.http import HttpResponseRedirect
 from datetime import datetime, timedelta
@@ -183,8 +182,22 @@ class cli_reclamosfinalizados(ListView):
         context['recfin'] =  Reclamo.objects.filter(nombreUsuario=self.request.user, estatus='F')
         return context
 
-def encuesta_cliente(request):
-    return render(request, 'reclamo/encuesta_cliente.html', {})
+class encuesta_cliente(SuccessMessageMixin, FormView):
+    template_name= "reclamo/encuesta_cliente.html"
+    form_class = EncuestaCliente
+    success_url = reverse_lazy('cli_reclamosfinalizados')
+    success_message = "e"
+
+    def get_context_data(self, **kwargs):
+        context = super(encuesta_cliente, self).get_context_data(**kwargs)
+        rec = Reclamo.objects.get(codReclamo=self.kwargs['pk'])
+        context['reclamo'] = rec
+        context['gestor'] = rec.responsableReclamo.all()[0]
+        tardo = rec.fechaFinalizada - rec.fechaRegistro
+        context['dias'] = tardo.days + 1
+        return context
+    
+    
 
 class cli_consultarReclamo(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = Reclamo

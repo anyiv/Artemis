@@ -9,7 +9,7 @@
 <div class="card">
     <div class="header">
         <h2>
-            Mis Reclamos Finalizados <small style="color:#171d40; align-justify;">Reclamos finalizados a los que puedes llenar la encuesta de satisfacción</small>
+            Mis Reclamos Finalizados <small style="color:black; align-justify;">Reclamos finalizados a los que puedes llenar la encuesta de satisfacción</small>
         </h2>
     </div>
     <div class="body table-responsive">
@@ -40,7 +40,7 @@
                     <td>{{rcf.fechaRegistro}}</td>
                     <td>{{rcf.fechaFinalizada}}</td>
                     <td>
-                        <center><a href="{% url 'encuesta_cliente' %}"> <button type="button"
+                        <center><a href="{% url 'encuesta_cliente' rcf.codReclamo %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
                                         class="material-icons">favorite</i></button></a></center>
                     </td>
@@ -54,4 +54,12 @@
 
 {% block javascript %}
 <script src="{% static 'js/pages/tables/tabla-generica.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>exitoValoracion();</script>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}

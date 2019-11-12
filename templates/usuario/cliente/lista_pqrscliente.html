@@ -10,7 +10,7 @@
 <div class="card">
     <div class="header">
         <h2>
-            PQRS enviados<small style="color:#171d40; align-justify;">Peticiones, quejas, reclamos y sugenrencias enviados.</small>
+            PQRS enviados<small style="color:black; align-justify;">Peticiones, quejas, reclamos y sugenrencias enviados.</small>
         </h2>
     </div>
     <div class="body">
@@ -20,8 +20,8 @@
                     <tr>
                         <th>Código</th>
                         <th>Categoría</th>
-                        <th>Descripción</th>
                         <th>Fecha de emisión</th>
+                        <th>Estatus</th>
                         <td>Opciones</td>
                     </tr>
                 </thead>
@@ -31,8 +31,8 @@
                     <tr>
                         <td>{{ pqrs.codPQS }}</td>
                         <td>{% if pqrs.categoria == 'P' %} Petición {% elif pqrs.categoria == 'Q' %}Queja {% elif pqrs.categoria == 'S' %}Sugerencia{% endif %}</td>
-                        <td>{{ pqrs.descripcion|truncatewords:5 }}</td>
                         <td>{{ pqrs.fechaRegistro|date:'l d-m-Y' }} a las {{ pqrs.fechaRegistro|date:'h:i a' }}</td>
+                        <td>{% if pqrs.estatus == 'P' %}Pendiente {% elif pqrs.estatus == 'M' %} Marcada {% else %} Atendida{% endif %}</td>
                         <td>
                             <center><a href="{% url 'consultarpqs' pqrs.codPQS %}"><button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
@@ -43,8 +43,8 @@
                     <tr>
                         <td>{{ pqrs.codPQS }}</td>
                         <td>Reclamo</td> 
-                        <td>{{ pqrs.descripcion|truncatewords:5 }}</td>
                         <td>{{ pqrs.fechaRegistro|date:'l d-m-Y' }} a las {{ pqrs.fechaRegistro|date:'h:i a' }}</td>
+                        <td>{% if pqrs.estatus == 'P' %}Pendiente {% elif pqrs.estatus == 'R' %}En proceso {% else %}Finalizada{% endif %}</td>
                         <td>
                             <center><a href="{% url 'cli_consultarReclamo' pqrs.codPQS %}">
                             <button type="button"

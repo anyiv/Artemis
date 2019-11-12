@@ -65,7 +65,7 @@ def validar_cliente(request):
             'usuario_existe' : ue
         }
     return JsonResponse(data)
-
+#asigna reclamos a un tecnico
 def asignar_tecnico(request):
     cod_reclamo = request.POST.get('cod_reclamo', None)
     id_tecnico = request.POST.get('id_tecnico', None)
@@ -93,6 +93,7 @@ def asignar_tecnico(request):
         }
     return JsonResponse(data)
 
+#obtiene la respuesta del texarea
 def obtener_respuesta(request):
     codrp = request.POST.get('cod',None)
     rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
@@ -101,6 +102,7 @@ def obtener_respuesta(request):
     }
     return JsonResponse(data)
 
+#envia la respuesta en los reclamos
 def enviar_rp(request):
     try:
         respp = request.POST.get('resp',None)
@@ -133,6 +135,7 @@ def enviar_rp(request):
         }
     return JsonResponse(data)
 
+#obtiene la respuesta del texarea
 def obt_rp_pqs(request):
     codrp = request.POST.get('cod',None)
     rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
@@ -141,7 +144,7 @@ def obt_rp_pqs(request):
     }
     return JsonResponse(data)
 
-
+#envia la respuesta de las pqs
 def enviar_rp_pqs(request):
     try:
         respp = request.POST.get('resp',None)
@@ -173,6 +176,7 @@ def enviar_rp_pqs(request):
         }
     return JsonResponse(data)
 
+#finaliza pqs
 def finalizarpqs(request):
     try:
         codpqs = request.POST.get('codpqs',None)
@@ -196,6 +200,7 @@ def finalizarpqs(request):
         }
     return JsonResponse(data)
 
+#añade comentarios en el consultar reclamo
 def anadir_comentario(request):
     try:
         codrec = request.POST.get('cod_reclamo',None)
@@ -237,15 +242,15 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('signup')
     success_message = "u"
 
-# class cambiar_contrasena(LoginRequiredMixin, FormView):
-#     model = User
-#     form_class = Cambiarcontrasena
-#     template_name = "index/cambiar_contrasena.html"
+class cambiar_contrasena(FormView):
+    model = User
+    form_class = Cambiarcontrasena
+    template_name = "index/cambiar_contrasena.html"
 
-#     def get_form_kwargs(self):
-#         kwargs = super(cambiar_contrasena, self).get_form_kwargs()
-#         kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
-#         return kwargs
+    # def get_form_kwargs(self):
+    #     kwargs = super(cambiar_contrasena, self).get_form_kwargs()
+    #     kwargs['user'] = User.objects.filter(pk = self.request.user.nombreUsuario)
+    #     return kwargs
 
-def cambiar_contrasena(request):
-    return render(request, 'index/cambiar_contrasena.html', {})
+# def cambiar_contrasena(request):
+#     return render(request, 'index/cambiar_contrasena.html', {})

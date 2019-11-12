@@ -1005,6 +1005,14 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
   .panel-group .panel-col-blue-grey .panel-body {
     border-top-color: transparent !important; }
 
+.panel-group .panel-col-morado {
+  border: 1px solid #858392; }
+  .panel-group .panel-col-morado .panel-title {
+    background-color: #858392 !important;
+    color: #fff; }
+  .panel-group .panel-col-morado .panel-body {
+    border-top-color: transparent !important; }
+
 .panel-group .panel-col-black {
   border: 1px solid #000000; }
   .panel-group .panel-col-black .panel-title {

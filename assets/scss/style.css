@@ -7842,7 +7842,7 @@ fieldset[disabled] .form-control {
 }
 
 .pagination li.active a {
-  background-color: #2196F3;
+  background-color: #858392;
 }
 
 .pagination li {
@@ -10046,7 +10046,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #00BCD4;
+  background-color: #00072D;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -10062,7 +10062,7 @@ fieldset[disabled] .form-control {
 .login-page .login-box a {
   font-size: 14px;
   text-decoration: none;
-  color: #00BCD4;
+  color: #00072D;
 }
 
 .login-page .login-box .logo {

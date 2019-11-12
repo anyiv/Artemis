@@ -101,3 +101,27 @@ function confirmarCambiarContraseña(){
         }
     });
 }
+
+function confirmarValoración(){
+    swal({
+        title: "Confirmar",
+        text: "¿Está seguro que desea enviar la valoración?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#58a05d",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            formulario.submit();
+        } else {
+            swal("Cancelada", "El envío ha sido cancelado.", "error");
+        }
+    });
+}
+
+function exitoValoracion() {
+    swal("Enviada", "La valoración ha sido enviada con éxito.", "success");
+};

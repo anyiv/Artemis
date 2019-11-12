@@ -17,69 +17,58 @@
                 </h2>
             </div>
             <div class="body">
-                <center>
-                    <h2 style="color:black;">¡Cuéntanos tu experiencia!</h2>
-                    <h4 style="color:black;">Para nosotros es importante saber cómo fue tu experiencia al momento de atender su reclamo</h4>
-                    <h3 style="color:black;">Reclamo RC-1423</h3>
-                    <p style="color:#403e49;">Reclamo solucionado tras 21 días de espera.</p>
-                    <p style="color:#403e49;">Atendido por: José Ignacio Martínez.</p>
-                    <br />
-                </center>
-                <div class="row clearfix">
-                    <div class="col-md-4"></div>
-                    <div class=" col-md-4 ">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <p style="text-align:center;">
-                                    <b>¿Cómo valorarías la atención que recibiste?</b>
-                                </p>
-                                <center><i class="material-icons" style="color:yellow; "
-                                        style="color:yellow; ">star_border</i><i class="material-icons"
-                                        style="color:yellow; ">star_border</i><i class="material-icons"
-                                        style="color:yellow; ">star_border</i><i class="material-icons"
-                                        style="color:yellow; ">star_border</i><i class="material-icons"
-                                        style="color:yellow; ">star_border</i></center>
+                <form id="formulario" method="POST">
+                    {% csrf_token %}
+                    <center>
+                        <h2 style="color:black;">¡Cuéntanos tu experiencia!</h2>
+                        <h4 style="color:black;margin-right:1em;margin-left:1em;">Para nosotros es importante saber cómo
+                            fue
+                            tu experiencia al momento de atender su reclamo</h4>
+                        <br />
+                    </center>
+                    <h4 style="color:black;text-align:center;">Datos del reclamo</h4>
+                    <h5 style="color:#403e49;margin-left:10em;">Reclamo {{ reclamo.codReclamo }}</h5>
+                    <h5 style="color:#403e49;margin-left:10em;">Reclamo solucionado tras {{dias}} días de espera.</h5>
+                    <h5 style="color:#403e49;margin-left:10em;">Atendido por: {{ gestor.idEmpleado.nombre }}
+                        {{ gestor.idEmpleado.apellido }}</h5>
+                    <br /><br />
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p style="text-align:center;">
+                                        <b>¿Cómo valorarías la atención que recibiste?</b>
+                                    </p>
+                                    <div class="irs-demo">
+                                        <input type="text" id="valoracion" name="valoracion" value="" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-3"></div>
-                    <div class=" col-md-6">
-                        <p>
-                            <b>Deja tu opinión acá:</b>
-                        </p>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <textarea rows="6" class="form-control no-resize"
-                                    placeholder="Ingresa tu opinión aquí"></textarea>
+                    <div class="row clearfix">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'cli_reclamosfinalizados' %}">
+                                        <center><button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                                        </center>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="button-demo">
-                                <a href="{% url 'cli_reclamosfinalizados' %}">
-                                    <center><button type="button" class="btn bg-teal waves-effect">Cancelar</button>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <center><button type="button" onclick="javascript:confirmarValoración();" class="btn bg-green waves-effect">Valorar</button>
                                     </center>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="button-demo">
-                                <a href="{% url 'cli_reclamosfinalizados' %}">
-                                    <center><button type="button" class="btn bg-green waves-effect">Valorar</button>
-                                    </center>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -89,5 +78,7 @@
 {% endblock %}
 
 {% block javascript %}
-
+<script src="{% static 'plugins/ion-rangeslider/js/ion.rangeSlider.js' %}"></script>
+<script src="{% static 'js/pages/ui/range-sliders.js' %}"></script>
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
 {% endblock %}

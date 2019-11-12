@@ -107,7 +107,7 @@ class EficienciaGestor(models.Model):
     nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     diasActivo = models.IntegerField(default=0)
     recAtendidos = models.IntegerField(default=0)
-    eficiencia = models.FloatField(default=0)
+    eficiencia = models.FloatField(default=0.001)
 
 @receiver(post_save, sender=User)
 def crear_eficiciencia(sender, instance, **kwargs):

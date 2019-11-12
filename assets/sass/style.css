@@ -4120,7 +4120,7 @@ section.content {
 /* ======= TABLE =============================*/
 /* ======= BODY =============================*/
 body {
-  background: #BDD4E7;
+  background: #CCCCCC;
   font-family: 'Roboto', Arial, Tahoma, sans-serif;
 }
 
@@ -4179,7 +4179,7 @@ body {
 
 /* ======= LEFT BAR =============================*/
 .sidebar {
-  background-color: #7EA2AA;
+  background-color: #93b0c9;
 }
 
 .sidebar .menu .list .header {
@@ -4187,7 +4187,7 @@ body {
 }
 
 .sidebar .menu .list li.active {
-  background-color: #124559;
+  background-color: #2e3453;
 }
 
 .sidebar .menu .list li.active > :first-child i, .sidebar .menu .list li.active > :first-child span {
@@ -4212,20 +4212,20 @@ body {
 
 /* ======= CARD =============================*/
 .card {
-  background: #839ba0;
+  background: #97c092;
 }
 
 .card .header {
-  background: #3E717A;
+  background: #5b7458;
 }
 
 /* ======= TABLE =============================*/
 .table {
-  background: #A1C6EA;
+  background: #cbcdd8;
 }
 
 .table thead, .table tfoot {
-  background: #41729f;
+  background: #858392;
   text-align: center;
 }
 
