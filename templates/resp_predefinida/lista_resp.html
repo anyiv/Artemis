@@ -55,4 +55,13 @@
 
 {% block javascript %}
 <script src="{% static 'js/pages/tables/tabla-generica.js' %}" type="text/javascript"></script>
+{% if messages %}
+{% for m in messages %}
+{% if m.message == "e" %}
+<script>
+    swal("Eliminada", "La respuesta predefinida ha sido eliminada con éxito.", "success");
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock %}

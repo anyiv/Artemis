@@ -15,9 +15,22 @@ function anadir_comentario() {
             },
             dataType: 'json',
             success: function (data) {
-                swal("Resultado",data.texto,data.icono);
                 $('#comentarios').modal('hide');
-                window.location.reload();
+                $('#comentario').val('');
+                swal({
+                    title: "Resultado",
+                    text: data.texto,
+                    type: data.icono,
+                    showCancelButton: false,
+                    confirmButtonColor: "#58a05d",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        location.reload();
+                    }
+                });
             }
         });
     }

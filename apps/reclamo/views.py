@@ -110,7 +110,7 @@ class gt_consultarReclamo(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(gt_consultarReclamo, self).get_context_data(**kwargs)
-        context['hist'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'])
+        context['hist'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'], tipo='A')
         context['comm'] = HistoricoReclamo.objects.filter(reclamo=self.kwargs['pk'],tipo='C')
         context['user_cliente'] = User.objects.get(idCliente=context['reclamo'].codDetContrato.nroContrato.codCliente.identificacion)
         tec_asignado = context['reclamo'].responsableReclamo.all().filter(codTipoUser='tc')
@@ -154,6 +154,11 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
+            usuario = self.object.nombreUsuario
+            usuario.enviarCorreo('Su reclamo '+ reclamo_viejo.codReclamo +' ha sido finalizado',
+            'Nos tomamos muy en serio los inconvenientes que le puedan surgir a nuestros clientes.',
+            'También queremos ofrecerle una disculpa por las molestas ocasionadas, esperamos que la atención haya sido la mejor. ¡Puedes valorar la atención del reclamo en el sistema!',
+            'Tu mensaje: '+ reclamo_viejo.descripcion)
         reclamo_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
 

@@ -176,12 +176,12 @@
             {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
             <!--REPORTES-->
             <li id="reportes" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if 'pqs/marcadas/' in request.path %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if 'reporte/marcadas/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">insert_chart</i>
                     <span>Reportes</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="reporte_pqs_marcadas" class="{% if 'pqs/marcadas/' in request.path %}active{% endif %}">
+                    <li id="pqs_marcadas" class="{% if 'reporte/marcadas/' in request.path %}active{% endif %}">
                         <a href=" {% url 'reporte_pqsmarcados'  %} ">
                             <i class="material-icons">bookmarks</i>
                             <span>PQS Marcadas</span>
