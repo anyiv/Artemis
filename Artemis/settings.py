@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'apps.pqs',
     'apps.usuario.templatetags',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -228,3 +229,4 @@ EMAIL_HOST_USER = 'artemis.elitech@gmail.com'
 EMAIL_HOST_PASSWORD = 'artemis-1234'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Artemis <credenciales@artemis.com>'
+DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}

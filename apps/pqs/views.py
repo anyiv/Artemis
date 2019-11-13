@@ -173,6 +173,7 @@ class atenderpqs(UpdateView):
             hpqs.usuarioEncargado = self.request.user
             hpqs.pqs = pqs_vjo
             hpqs.save()
+            hpqs.notificar("fue marcada")
         pqs_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
 

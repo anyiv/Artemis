@@ -18,6 +18,7 @@ from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path, include
+import notifications.urls
 
 urlpatterns = [
     path('', include('apps.index.urls')),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('resp_predefinida/', include('apps.resp_predefinida.urls')),
     path('pqs/', include('apps.pqs.urls')),
     path('datosexternos/', include('apps.datos_externos.urls')),
+    path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
