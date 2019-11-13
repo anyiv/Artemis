@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Configuración del sistema | Artemis {% endblock %}
+
+{% block content %}
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        Configurar gestión asignación de Reclamos.
+                    </h2>
+                </div>
+                <div class="body">
+                    <form method="POST" id="formulario">
+                    {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-6">
+                                <p>
+                                    <b>Establecer valores mínimo y máximo de reclamos que cada gestor de reclamo puede
+                                        tener:</b>
+                                </p>
+                                <div class="form-group">
+                                    <p>
+                                        <b>Mínimo</b>
+                                    </p>
+                                    <input type="text" id="valormin" value="{{min}}" class="form-control"
+                                        placeholder="Valor mínimo.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-2"></div>
+                            <div class=" col-md-6">
+                                <div class="form-group">
+                                    <p>
+                                        <b>Máximo</b>
+                                    </p>
+                                    <input type="text" id="valormax" value="{{max}}" class="form-control"
+                                        placeholder="Valor mínimo.">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <a href="{% url 'inicio_admin' %}">
+                                            <button type="button" class="btn bg-teal waves-effect">Atrás</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="button-demo">
+                                        <button type="button" onclick="javascript:confirmarConfig();"
+                                            class="btn bg-green waves-effect">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/guardar_minymax.js' %}" type="text/javascript"></script>
+
+{% endblock %}

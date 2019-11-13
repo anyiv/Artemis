@@ -8,11 +8,12 @@
             <img src="{{ user.foto.url }}" style="width:48px;height:48px;object-fit:cover;" alt="User" />
         </div>
         <div class="info-container" style="margin-top:-10px">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if user.idCliente is not none %}
-            {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
-            {% else %}
-            {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
-            {% endif %}</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if user.idCliente is not none %}
+                {{ user.idCliente.nombre }} {{ user.idCliente.apellido }}
+                {% else %}
+                {{ user.idEmpleado.nombre }} {{ user.idEmpleado.apellido }}
+                {% endif %}</div>
             <div class="email">{{ user.correo }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
@@ -20,7 +21,8 @@
                 <ul class="dropdown-menu pull-right">
                     <li><a href="{% url 'perfil' %}"><i class="material-icons">person</i>Perfil</a></li>
                     <li role="separator" class="divider"></li>
-                    <li style="align-center"><a href="{% url 'cambiar_contrasena' %}"><i class="material-icons">lock</i>Cambiar <br> contraseña</a></li>
+                    <li style="align-center"><a href="{% url 'cambiar_contrasena' %}"><i
+                                class="material-icons">lock</i>Cambiar <br> contraseña</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{% url 'logout' %}"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a>
                     </li>
@@ -53,28 +55,32 @@
                     <span>Crear</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="crear_peticion" class="{% if '/peticion/registrar/' in request.path or '/peticion/atc_registrar/' in request.path %}active{% endif %}">
+                    <li id="crear_peticion"
+                        class="{% if '/peticion/registrar/' in request.path or '/peticion/atc_registrar/' in request.path %}active{% endif %}">
                         <a
                             href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'cli_crearpeticion' %} {% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_crearpeticion' %} {% endif %}">
                             <i class="material-icons">question_answer</i>
                             <span>Petición</span>
                         </a>
                     </li>
-                    <li id="crear_queja" class="{% if '/queja/registrar/' in request.path or '/queja/atc_registrar/' in request.path %}active{% endif %}">
+                    <li id="crear_queja"
+                        class="{% if '/queja/registrar/' in request.path or '/queja/atc_registrar/' in request.path %}active{% endif %}">
                         <a
                             href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'cli_crearqueja' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_crearqueja' %} {% endif %}">
                             <i class="material-icons">thumb_down</i>
                             <span>Queja</span>
                         </a>
                     </li>
-                    <li id="crear_reclamo" class="{% if '/reclamo/registrar/' in request.path or '/reclamo/atc_registrar/' in request.path %}active{% endif %}">
+                    <li id="crear_reclamo"
+                        class="{% if '/reclamo/registrar/' in request.path or '/reclamo/atc_registrar/' in request.path %}active{% endif %}">
                         <a
                             href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'cli_crearReclamo' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_crearReclamo' %} {% endif %}">
                             <i class="material-icons">report</i>
                             <span>Reclamo</span>
                         </a>
                     </li>
-                    <li id="crear_sugerencia" class="{% if '/sugerencia/registrar/' in request.path or '/sugerencia/atc_registrar/' in request.path%}active{% endif %}">
+                    <li id="crear_sugerencia"
+                        class="{% if '/sugerencia/registrar/' in request.path or '/sugerencia/atc_registrar/' in request.path%}active{% endif %}">
                         <a
                             href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'cli_crearsugerencia' %}{% elif user.codTipoUser.codTipoUser == 'atc' %} {% url 'atc_crearsugerencia' %} {% endif %}">
                             <i class="material-icons">loyalty</i>
@@ -99,26 +105,30 @@
             {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
             {% comment "GESTORES DE RECLAMO Y TECNICOS" %}{% endcomment %}
             <li id="consultar" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/lista/' in request.path %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);"
+                    class="menu-toggle {% if '/lista/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">find_in_page</i>
                     <span>Consultar</span>
                 </a>
                 <ul class="ml-menu">
                     {% if user.codTipoUser.codTipoUser == 'grec' or user.codTipoUser.codTipoUser == 'tc' %}
                     {% comment "SÓLO EL GESTOR DE RECLAMOS Y EL TECNICO" %}{% endcomment %}
-                    <li id="consultar_reclamos" class="{% if 'reclamo/lista/todos/' in request.path %}active{% endif %}">
+                    <li id="consultar_reclamos"
+                        class="{% if 'reclamo/lista/todos/' in request.path %}active{% endif %}">
                         <a href="{% url 'g_listareclamos' %}">
                             <i class="material-icons">report</i>
                             <span>Reclamos </span>
                         </a>
                     </li>
-                    <li id="consultar_reclamos" class="{% if 'reclamo/lista/proximovencimiento/' in request.path %}active{% endif %}">
+                    <li id="consultar_reclamos"
+                        class="{% if 'reclamo/lista/proximovencimiento/' in request.path %}active{% endif %}">
                         <a href="{% url 'reclamosporvencer' %}">
                             <i class="material-icons">notification_important</i>
                             <span>Reclamos prox a vencer</span>
                         </a>
                     </li>
-                    <li id="consultar_reclamos" class="{% if 'reclamo/lista/finalizados/' in request.path %}active{% endif %}">
+                    <li id="consultar_reclamos"
+                        class="{% if 'reclamo/lista/finalizados/' in request.path %}active{% endif %}">
                         <a href="{% url 'g_reclamosfinalizados' %}">
                             <i class="material-icons">assignment_turned_in</i>
                             <span>Reclamos finalizados</span>
@@ -130,14 +140,17 @@
             {% endif %}
 
             <!--GESTIONAR CRUD-->
-            {% if user.codTipoUser.codTipoUser == 'admin' %} {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
+            {% if user.codTipoUser.codTipoUser == 'admin' %}
+            {% comment "SÓLO ADMINISTRADOR DEL SISTEMA" %}{% endcomment %}
             <li id="gestionar" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if '/categoria/' in request.path or '/empleados/' in request.path or '/clientes/' in request.path or '/resp_predefinida/' in request.path %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);"
+                    class="menu-toggle {% if '/categoria/' in request.path or '/empleados/' in request.path or '/clientes/' in request.path or '/resp_predefinida/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">dashboard</i>
                     <span>Gestionar</span>
                 </a>
                 <ul class="ml-menu">
-                    <li id="gestionar_categorias_reclamos" class="{% if '/categoria/' in request.path %}active{% endif %}">
+                    <li id="gestionar_categorias_reclamos"
+                        class="{% if '/categoria/' in request.path %}active{% endif %}">
                         <a href="{% url 'listacatreclamo' %}">
                             <i class="material-icons">report</i>
                             <span>Categorías de Reclamos</span>
@@ -155,8 +168,8 @@
                             <span>Clientes</span>
                         </a>
                     </li>
-
-                    <li id="gestionar_respuestas_predefinidas" class="{% if '/resp_predefinida/' in request.path %}active{% endif %}">
+                    <li id="gestionar_respuestas_predefinidas"
+                        class="{% if '/resp_predefinida/' in request.path %}active{% endif %}">
                         <a href="{% url 'lista_resp' %}">
                             <i class="material-icons">comment</i>
                             <span>Respuestas Predefinidas</span>
@@ -164,7 +177,13 @@
                     </li>
                 </ul>
             </li>
-            <li id="configuracion" class="">
+            <li id="configuracion_rec" class="{% if '/configuracion_sistema/' in request.path %}active{% endif %}">
+                <a href="{% url 'config_sistema' %}">
+                    <i class="material-icons">settings</i>
+                    <span>Configuración del sistema</span>
+                </a>
+            </li>
+            <li id="configuracion" class="{% if '/datosexternos/' in request.path %}active{% endif %}">
                 <a href="{% url 'datos_externos' %}">
                     <i class="material-icons">sync</i>
                     <span>Datos Externos</span>
@@ -176,7 +195,8 @@
             {% comment "GESTOR DE PQS O GERENTE" %}{% endcomment %}
             <!--REPORTES-->
             <li id="reportes" class="">
-                <a id="a_listados" href="javascript:void(0);" class="menu-toggle {% if 'reporte/marcadas/' in request.path %}toggled{% endif %}">
+                <a id="a_listados" href="javascript:void(0);"
+                    class="menu-toggle {% if 'reporte/marcadas/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">insert_chart</i>
                     <span>Reportes</span>
                 </a>
@@ -215,16 +235,6 @@
                 </a>
             </li>
             {% endif %}
-
-            {% comment "" %}
-            <!--CONFIGURACION DE USUARIO-->
-            <li id="configuracion" class="">
-                <a href="#">
-                    <i class="material-icons">settings</i>
-                    <span>Configuración</span>
-                </a>
-            </li>
-            {% endcomment %}
 
             <!--CERRAR SESION-->
             <li>

@@ -11,6 +11,7 @@ urlpatterns = [
     path('cambiarclave/<uidb64>/<token>/', PasswordResetConfirmView.as_view() , name='password_reset_confirm'),
     path('correo_enviado/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('contrasenna_cambiada/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('configuracion_sistema/', views.config_sistema.as_view(), name='config_sistema'),
     path('ajax/validar_identidad/', views.validar_cliente, name='validar_cliente'),
     path('ajax/asignar_tecnico/', views.asignar_tecnico, name='asignar_tecnico'),
     path('ajax/obtener_respuesta/', views.obtener_respuesta, name='obtener_respuesta'),
@@ -19,4 +20,5 @@ urlpatterns = [
     path('ajax/enviar_rp_pqs/', views.enviar_rp_pqs, name='enviar_rp_pqs'),
     path('ajax/finalizarpqs/', views.finalizarpqs, name='finalizarpqs'),
     path('ajax/anadir_comentario/', views.anadir_comentario, name='anadir_comentario'),
+    path('ajax/guardarminymax/', views.guardarminymax, name='guardarminymax'),
 ]

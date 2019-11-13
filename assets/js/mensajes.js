@@ -125,3 +125,43 @@ function confirmarValoración(){
 function exitoValoracion() {
     swal("Enviada", "La valoración ha sido enviada con éxito.", "success");
 };
+
+function confirmarCopiarDatos(){
+    swal({
+        title: "Confirmar",
+        text: "¿Está seguro que desea copiar los datos externos ahora?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#58a05d",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            swal("Copiado", "La copia se ha realizado con éxito.", "success");
+        } else {
+            swal("Cancelada", "El proceso ha sido cancelado.", "error");
+        }
+    });
+}
+
+function confirmarDatosExternos(){
+    swal({
+        title: "Confirmar",
+        text: "¿Está seguro que desea guardar los cambios ahora?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#58a05d",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            swal("Guardado", "Los cambios se han realizado con éxito.", "success");
+        } else {
+            swal("Cancelada", "El proceso ha sido cancelado.", "error");
+        }
+    });
+}

@@ -8,10 +8,10 @@ from django.http import HttpResponseRedirect
 from apps.usuario.models import User
 from apps.resp_predefinida.models import RespuestaPredefinida
 from apps.datos_externos.models import Cliente, Contrato, DetalleContrato
-from apps.reclamo.models import Reclamo, HistoricoReclamo
+from apps.reclamo.models import Reclamo, HistoricoReclamo, Configuracion
 from apps.pqs.models import PQS, HistoricoPQS
 from apps.usuario.forms import CrearUsuario
-from django.views.generic import UpdateView, CreateView, FormView
+from django.views.generic import UpdateView, CreateView, FormView, TemplateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -224,9 +224,24 @@ def anadir_comentario(request):
         }
     except:
         data = {
-            'texto':'Hubo un error en error guargando el comentario.',
+            'texto':'Hubo un error guardando el comentario.',
             'icono':'error',
         }
+    return JsonResponse(data)
+
+def guardarminymax(request):
+    valormin = request.POST.get('valormin',None)
+    valormax = request.POST.get('valormax',None)
+    min = Configuracion.objects.get(id=1)
+    max = Configuracion.objects.get(id=2)
+    min.valor = valormin
+    max.valor = valormax
+    min.save()
+    max.save()
+    data = {
+        'texto':'Cambios guardados con éxito.',
+        'icono':'success',
+    }
     return JsonResponse(data)
 
 class index(LoginAuthenticatedMixin, SuccessMessageMixin, LoginView):
@@ -269,3 +284,12 @@ class cambiar_contrasena(FormView):
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, 'ec')
         return reverse_lazy('cambiar_contrasena')
+
+class config_sistema(SuccessMessageMixin, TemplateView):
+    template_name= "config_sistema.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(config_sistema, self).get_context_data(**kwargs)
+        context['min'] = Configuracion.objects.all()[0].valor
+        context['max'] = Configuracion.objects.all()[1].valor
+        return context
