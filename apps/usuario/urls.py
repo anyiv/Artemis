@@ -21,4 +21,5 @@ urlpatterns = [
     path('reporte/fallas/', views.reporte_fallas, name='reporte_fallas'),
     path('reporte/satisfaccionclientes/', views.reporte_encuestas, name='reporte_encuestas'),
     path('reporte/pqsmarcadas/', views.reporte_pqs, name='reporte_pqs'),
+    path('notificaciones/todas', views.lista_notificaciones.as_view(), name='lista_notificaciones'),
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, UpdateView, CreateView, DetailView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView, TemplateView
 from django.urls import reverse_lazy
 from .models import User, TipoUser
 from .forms import ActualizarUsuarioForm, CrearUsuario, ConsultarEmpleado, ConsultarCliente
@@ -199,3 +199,11 @@ def reporte_encuestas(request):
 
 def reporte_pqs(request):
     return render(request, 'usuario/gerente/reporte_pqs.html', {})
+
+class lista_notificaciones(LoginRequiredMixin, TemplateView):
+    template_name = "usuario/notificaciones.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(lista_notificaciones, self).get_context_data(**kwargs)
+        context['notificaciones'] = self.request.user.notifications.all()
+        return context
