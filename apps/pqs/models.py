@@ -44,3 +44,9 @@ class HistoricoPQS(models.Model):
     fecha = models.DateField(auto_now = True, blank=True, null=True)
     detalle = models.CharField(max_length = 200)
     usuarioEncargado = models.CharField(max_length = 20)
+
+    def notificar(self, descripcion):
+        notify.send(sender=self, recipient=self.pqs.nombreUsuario, verb='n', description=descripcion)
+
+    def __str__(self):
+        return self.pqs.codPQS

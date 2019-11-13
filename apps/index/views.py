@@ -87,6 +87,7 @@ def asignar_tecnico(request):
         hr.reclamo = reclamo
         hr.usuarioEncargado = gestor
         hr.save()
+        hr.notificar("se asignó un técnico")
         print(tecnico.idEmpleado.nombre)
         data = {
             'respuesta': 'Técnico asignado correctamente.',
@@ -122,6 +123,7 @@ def enviar_rp(request):
         hr.detalle = "Se ha enviado una respuesta."
         hr.usuarioEncargado = gestor
         hr.save()
+        hr.notificar("recibió una respuesta")
         if codrp != '-':
             rp = RespuestaPredefinida.objects.get(codRespuestaP=codrp)
             rp.contUso += 1
@@ -161,6 +163,7 @@ def enviar_rp_pqs(request):
         hst.pqs = pqs
         hst.usuarioEncargado = request.user
         hst.save()
+        hst.notificar("recibió una respuesta")
         cli = pqs.nombreUsuario
         cli.enviarCorreo("Nueva respuesta recibida","Tu "+pqs.get_categoria_display()+" "+codpqs+" ha recibido una nueva respuesta.","Texto de la respuesta: "+respp)
         if codrp != '-':
@@ -190,6 +193,7 @@ def finalizarpqs(request):
         hst.pqs = pqs
         hst.usuarioEncargado = request.user
         hst.save()
+        hst.notificar("ha sido finalizada")
         pqs.save()
         data = {
             'texto':'PQS finalizada con éxito.',

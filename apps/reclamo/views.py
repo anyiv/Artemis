@@ -135,18 +135,21 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
+            hr.notificar("cambió de estatus")
         if reclamo_viejo.codCategoria != reclamo_nvo.codCategoria:
             hr = HistoricoReclamo()
             hr.detalle = "El reclamo fue cambiado de categoría a '" + reclamo_nvo.codCategoria.nombre + "'."
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
+            hr.notificar("fue recategorizado")
         if reclamo_nvo.fechaEstimada != reclamo_viejo.fechaEstimada:
             hr = HistoricoReclamo()
             hr.detalle = "La fecha de compromiso fue cambiada."
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
+            hr.notificar("fue reprogramado")
         if reclamo_nvo.estatus == "F":
             reclamo_nvo.fechaFinalizada = datetime.now()
             hr = HistoricoReclamo()
@@ -154,6 +157,7 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             hr.reclamo = reclamo_viejo
             hr.usuarioEncargado = self.request.user
             hr.save()
+            hr.notificar("fue finalizado")
         reclamo_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
 

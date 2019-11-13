@@ -5,6 +5,7 @@ from apps.usuario.models import User
 from apps.usuario.models import EficienciaGestor
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from notifications.signals import notify
 
 # Create your models here.
 class Categoria(models.Model):
@@ -78,6 +79,12 @@ class HistoricoReclamo(models.Model):
     tipo = models.CharField(max_length=1,choices=TIPO, default='A')
     usuarioEncargado = models.CharField(max_length = 20)
 
+    def notificar(self, descripcion):
+        notify.send(sender=self, recipient=self.reclamo.nombreUsuario, verb='n', description=descripcion)
+
+    def __str__(self):
+        return self.reclamo.codReclamo
+
 class Configuracion(models.Model):
     nombre = models.CharField(max_length=10)
     valor = models.IntegerField()
@@ -147,4 +154,3 @@ def asignar_reclamo(sender, instance, **kwargs):
                 dias_tarda -= 1
             instance.fechaEstimada = hoy
             instance.save()
-
