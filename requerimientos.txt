@@ -10,3 +10,4 @@ pynliner==0.8.0
 pytz==2019.1
 soupsieve==1.9.2
 sqlparse==0.3.0
+django-notifications-hq==1.5.0
