@@ -169,7 +169,7 @@ class atenderpqs(UpdateView):
         pqs_nvo.responsablePQS.add(self.request.user)
         if pqs_nvo.estatus == 'M' and pqs_vjo.estatus == 'P':
             hpqs = HistoricoPQS()
-            hpqs.detalle= "La " + pqs_vjo.get_categoria_display() + "ha cambiado de estatus a Marcada."
+            hpqs.detalle= "La " + pqs_vjo.get_categoria_display() + " ha cambiado de estatus a Marcada."
             hpqs.usuarioEncargado = self.request.user
             hpqs.pqs = pqs_vjo
             hpqs.save()

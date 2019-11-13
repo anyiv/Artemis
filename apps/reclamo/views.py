@@ -157,7 +157,7 @@ class atenderReclamo(SuccessMessageMixin, UpdateView):
             usuario = self.object.nombreUsuario
             usuario.enviarCorreo('Su reclamo '+ reclamo_viejo.codReclamo +' ha sido finalizado',
             'Nos tomamos muy en serio los inconvenientes que le puedan surgir a nuestros clientes.',
-            'También queremos ofrecerle una disculpa por las molestas ocasionadas, esperamos que la atención haya sido la mejor. ¡Puedes valorar la atención del reclamo en el sistema!',
+            'También queremos ofrecerle una disculpa por las molestias ocasionadas, esperamos que la atención haya sido la mejor. ¡Puedes valorar la atención del reclamo en el sistema!',
             'Tu mensaje: '+ reclamo_viejo.descripcion)
         reclamo_nvo.save()
         return HttpResponseRedirect(self.get_success_url())
