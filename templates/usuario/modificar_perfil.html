@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <div class="button-demo">
                                     <a
-                                        href="{% if user.codTipoUser.codTipoUser == 'cli' %} {% url 'inicio_cliente' %} {% elif user.codTipoUser.codTipoUser == 'atc' %}{% url 'inicio_atencioncli' %}{% elif user.codTipoUser.codTipoUser == 'admin' %}{% url 'inicio_admin' %}{% elif user.codTipoUser.codTipoUser == 'ger'%}{% url 'inicio_gerente' %}{% elif user.codTipoUser.codTipoUser == 'tec' %} {% url 'inicio_tecnico' %} {% elif user.codTipoUser.codTipoUser == 'gpqs' %} {% url 'inicio_gestorpqs' %} {% elif user.codTipoUser.codTipoUser == 'grec' %} {% url 'inicio_gestreclamo' %} {% endif %}">
+                                        href="{% url 'perfil' %}">
                                         <button type="button" class="btn bg-teal waves-effect">Atrás</button>
                                     </a>
                                 </div>
