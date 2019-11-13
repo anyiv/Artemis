@@ -1,6 +1,7 @@
 from django.db import models
 from apps.usuario.models import User
 from datetime import datetime
+from notifications.signals import notify
 
 # Create your models here.
 class PQS(models.Model):
