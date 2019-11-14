@@ -191,11 +191,11 @@ class lista_pqrscliente(AuthenticatedClienteMixin, ListView):
         return context
 
 #REPORTES DEL GERENTE
-def reporte_fallas(request):
-    return render(request, 'usuario/gerente/reporte_fallas.html', {})
+class reporte_fallas(TemplateView):
+    template_name = 'usuario/gerente/reporte_fallas.html'
 
-def reporte_encuestas(request):
-    return render(request, 'usuario/gerente/reporte_encuestas.html', {})
+class reporte_encuestas(TemplateView):
+    template_name = 'usuario/gerente/reporte_encuestas.html'
 
 class reporte_pqs(ListView):
     model = PQS
