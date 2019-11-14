@@ -347,7 +347,6 @@ class signup(LoginAuthenticatedMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('index')
     success_message = "u"
 
-
 class cambiar_contrasena(FormView):
     form_class = Cambiarcontrasena
     template_name = "index/cambiar_contrasena.html"
