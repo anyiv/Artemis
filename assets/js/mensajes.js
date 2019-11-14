@@ -165,3 +165,27 @@ function confirmarDatosExternos(){
         }
     });
 }
+
+function confirmarEnvioReclamo() {
+    swal({
+        title: "Confirmar envío",
+        text: "¿Está seguro que desea enviar el reclamo?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#58a05d",
+        confirmButtonText: "Sí",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            formulario.submit();
+        } else {
+            swal("Cancelada", "El reclamo no ha sido enviado.", "error");
+        }
+    });
+}
+
+function exitoEnviarReclamo() {
+    swal("Enviado", "El Reclamo ha sido enviado con éxito.", "success");
+};

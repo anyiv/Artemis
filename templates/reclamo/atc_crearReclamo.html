@@ -37,7 +37,7 @@
                                         <b>Nro de identificación</b>
                                     </p>
                                     <input type="text" class="form-control" name="identificacion" id="identificacion"
-                                        placeholder="Ingrese el nro de idenficación.">
+                                        placeholder="Ingrese el nro de idenficación." required="">
                                 </div>
                             </div>
                         </div>
@@ -109,10 +109,12 @@
                                 <b>Categoría</b>
                             </p>
                             <select class="form-control" name="codCategoria" id="id_codCategoria">
+                            <option value="-">-----</option>
                             {% for ct in catreclamo %}
                                 <option value="{{ ct.codCategoria }}">{{ ct.nombre }}</option>
                             {% endfor %}
                             </select>
+                            {{form.codCategoria.errors}}
                         </div>
                         <div class="col-md-12">
                             <p>
@@ -188,7 +190,12 @@
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
+                var id = $("#identificacion").val();
+                if( id == ''){
+                    swal("Error", "La identificación no puede estar vacía, debe buscar un cliente.", "error");
+                }else{
                 formulario.submit();
+                }
             } else {
                 swal("Cancelada", "El reclamo no ha sido enviado.", "error");
             }
