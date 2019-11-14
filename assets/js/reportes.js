@@ -56,3 +56,62 @@ function llenarReporteFallas() {
         });
     }
 }
+
+function llenarReporteSatisfaccion() {
+    document.getElementById('donut_chart_encuesta').innerHTML = "";
+    var fechai = $("#fecha_i").val();
+    var fechaf = $("#fecha_f").val();
+    var token = $('input[name="csrfmiddlewaretoken"]').val();
+    if (fechai == '' || fechaf == '') {
+        swal("Error", "Debe introducir ambas fechas para realizar la consulta.", "warning")
+    } else {
+        $.ajax({
+            url: '/ajax/reporte/satisfaccion/',
+            type: 'POST',
+            data: {
+                'fechai': fechai,
+                'fechaf': fechaf,
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function (data) {
+                $("#reporte_satisfaccion_body").css("display", "");
+                if (data.resultado) {
+                    swal("Error", data.resultado, "warning");
+                    $("#reporte_satisfaccion").css("display", "none");
+                } else {
+                    var colores = ["#d8a47f", "#88498f", "#fac85f", "#f06543", "#706c61", "#2f97c1"]
+                    Morris.Donut({
+                        element: 'donut_chart_encuesta',
+                        data: data,
+                        colors: colores,
+                        formatter: function (y) {
+                            return y + '%'
+                        }
+                    });
+                    var tabla = ""
+                    data.forEach(function (valoracion, indice, array) {
+                        var color = "";
+                        if (indice>colores.length){
+                            color = colores[indice%colores.length-1];
+                        } else {
+                            color = colores[indice];
+                        }
+                        tabla +=
+                            "<tr>" +
+                            "<td>" + valoracion.label + "</td>" +
+                            "<td>" + valoracion.conteo + "</td>" +
+                            "<td>" +
+                            "<div class=\"progress\">" +
+                            "<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"" + valoracion.value_int + "\"" +
+                            "aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + valoracion.value_int + "%;background-color:" + color + ";\"></div>" + valoracion.value + "%" +
+                            "</div>" +
+                            "</td>" +
+                            "</tr>"
+                    });
+                    document.getElementById('cuerpo_tabla_encuesta').innerHTML = tabla;
+                }
+            }
+        });
+    }
+}

@@ -18,7 +18,7 @@ from django.urls import reverse_lazy
 from Artemis.mixin import LoginAuthenticatedMixin, LoginRequiredMixin
 from .forms import Cambiarcontrasena
 from django.http import JsonResponse
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.contrib.auth.forms import PasswordChangeForm
 
 # Vista que valida que un cliente esté registrado en el sistema para que un usuario
@@ -268,31 +268,60 @@ def guardarminymax(request):
         }
     return JsonResponse(data)
 
+
 def reportefallas(request):
     try:
-        fecha_i = datetime.strptime(request.POST.get('fechai', None), '%Y-%m-%d')
-        fecha_f = datetime.strptime(request.POST.get('fechaf', None), '%Y-%m-%d')
+        fecha_i = datetime.strptime(request.POST.get(
+            'fechai', None), '%Y-%m-%d') - timedelta(days=1)
+        fecha_f = datetime.strptime(request.POST.get(
+            'fechaf', None), '%Y-%m-%d') + timedelta(days=1)
         datos_reporte = list()
         reclamos_totales = Reclamo.objects.filter(
             fechaRegistro__range=(fecha_i, fecha_f)).count()
         for categoria in Categoria.objects.filter(estatus='A'):
             conteo = Reclamo.objects.filter(
                 codCategoria=categoria, fechaRegistro__range=(fecha_i, fecha_f)).count()
-            if reclamos_totales==0:
+            if reclamos_totales == 0:
                 return JsonResponse({
-                    'resultado':'No hay datos para mostrar.'
+                    'resultado': 'No hay datos para mostrar.'
                 })
             else:
-                porcentaje = round(conteo/reclamos_totales*100,2)
+                porcentaje = round(conteo/reclamos_totales*100, 2)
             datos_reporte.append({
                 'label': categoria.nombre,
                 'value': porcentaje,
-                'value_int': round(porcentaje,0),
+                'value_int': round(porcentaje, 0),
                 'conteo': conteo,
             })
     except:
         return JsonResponse({
-            'resultado':'Error desconocido del servidor.'
+            'resultado': 'Error desconocido del servidor.'
+        })
+    return JsonResponse(datos_reporte, safe=False)
+
+
+def reportesatisfaccion(request):
+    fecha_i = datetime.strptime(request.POST.get(
+        'fechai', None), '%Y-%m-%d') - timedelta(days=1)
+    fecha_f = datetime.strptime(request.POST.get(
+        'fechaf', None), '%Y-%m-%d') + timedelta(days=1)
+    datos_reporte = list()
+    reclamos_estudio = Reclamo.objects.filter(
+        fechaFinalizada__range=(fecha_i, fecha_f), estatus='F')
+    reclamos_totales = reclamos_estudio.count()
+    for valoracion in range(0, 6):
+        conteo = reclamos_estudio.filter(valoracion=valoracion).count()
+        if reclamos_totales == 0:
+            return JsonResponse({
+                'resultado': 'No hay datos para mostrar.'
+            })
+        else:
+            porcentaje = round(conteo/reclamos_totales*100, 2)
+        datos_reporte.append({
+            'label': str(valoracion) + ' estrellas',
+            'value': porcentaje,
+            'value_int': round(porcentaje, 0),
+            'conteo': conteo,
         })
     return JsonResponse(datos_reporte, safe=False)
 

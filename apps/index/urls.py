@@ -22,4 +22,5 @@ urlpatterns = [
     path('ajax/anadir_comentario/', views.anadir_comentario, name='anadir_comentario'),
     path('ajax/guardarminymax/', views.guardarminymax, name='guardarminymax'),
     path('ajax/reporte/fallas/', views.reportefallas, name='reporte_fallas'),
+    path('ajax/reporte/satisfaccion/', views.reportesatisfaccion, name='reporte_satisfaccion'),
 ]
