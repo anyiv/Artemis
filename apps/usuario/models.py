@@ -95,9 +95,6 @@ class User(AbstractBaseUser,PermissionsMixin):
             eg.save()
             self.actualizar_eficiencia()
 
-    def actualizar_rec_atendidos(self):
-        print("TBD")
-
     def actualizar_eficiencia(self):
         eg = EficienciaGestor.objects.get(nombreUsuario = self)
         eg.eficiencia = eg.recAtendidos / eg.diasActivo
