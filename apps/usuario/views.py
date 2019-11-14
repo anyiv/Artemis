@@ -197,8 +197,14 @@ def reporte_fallas(request):
 def reporte_encuestas(request):
     return render(request, 'usuario/gerente/reporte_encuestas.html', {})
 
-def reporte_pqs(request):
-    return render(request, 'usuario/gerente/reporte_pqs.html', {})
+class reporte_pqs(ListView):
+    model = PQS
+    template_name = "usuario/gerente/reporte_pqs.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(reporte_pqs, self).get_context_data(**kwargs)
+        context['object_list'] = PQS.objects.filter(estatus='M')
+        return context
 
 class lista_notificaciones(LoginRequiredMixin, TemplateView):
     template_name = "usuario/notificaciones.html"
