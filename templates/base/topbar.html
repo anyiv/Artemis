@@ -25,7 +25,8 @@
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
-                        <span class="label-count" id="cant_not">{% notifications_unread %}</span>
+                        <span class="label-count {% if user.notifications.unread %}bg-red{% endif %}"
+                            id="cant_not">{% notifications_unread %}</span>
                     </a>
                     <ul class="dropdown-menu notify">
                         <li class="header">NOTIFICACIONES</li>
@@ -34,7 +35,8 @@
                                 <li>
                                     {% if user.notifications.unread %}
                                     {% for notificacion in user.notifications.unread|slice:":5" %}
-                                    <a onclick="marcar_notificacion({{notificacion.slug}},'{{notificacion.actor}}')" id="noti-{{notificacion.slug}}">
+                                    <a onclick="marcar_notificacion({{notificacion.slug}},'{{notificacion.actor}}')"
+                                        id="noti-{{notificacion.slug}}">
                                         <div class="icon-circle bg-light-green">
                                             <i class="material-icons">mail</i>
                                         </div>
@@ -47,9 +49,9 @@
                                     </a>
                                     {% endfor %}
                                     {% else %}
-                                        <div class="menu-info">
-                                            <h4> Sin notificaciones.</h4>
-                                        </div>
+                                    <div class="menu-info" style="margin-top:10px;margin-bottom:10px;text-align: center;transform: translate(65%, 0);">
+                                        Sin notificaciones.
+                                    </div>
                                     {% endif %}
                                 </li>
                             </ul>

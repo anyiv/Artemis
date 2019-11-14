@@ -64,5 +64,5 @@
     <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
     {% if user.codTipoUser.codTipoUser == 'cli' %}
     <script src="{% static 'js/notificaciones.js' %}" type="text/javascript"></script>
-    {% register_notify_callbacks callbacks='llenar_notificaciones,fill_notification_badge' refresh_period=5 %}
+    {% register_notify_callbacks callbacks='llenar_notificaciones,fill_notification_badge' refresh_period=15 %}
     {% endif %}

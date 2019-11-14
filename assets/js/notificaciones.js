@@ -1,4 +1,4 @@
-function marcar_notificacion(id, cod) {
+function marcar_notificacion(id, cod, limpiar = true) {
     $.ajax({
         url: '/inbox/notifications/mark-as-read/' + id + '/',
         type: 'GET',
@@ -7,13 +7,48 @@ function marcar_notificacion(id, cod) {
             var actuales = parseInt(cant_not.innerHTML);
             var nuevos_actuales = actuales - 1;
             cant_not.innerHTML = nuevos_actuales;
-            document.getElementById('noti-' + id).innerHTML = "";
+            if (limpiar) {
+                document.getElementById('noti-' + id).innerHTML = "";
+            }
             console.log(cod.substring(0, 3));
             if (cod.substring(0, 3) == 'REC') {
                 window.location.replace('/reclamo/cliente/consultar/' + cod + '/');
             } else if (cod.substring(0, 3) == 'PQS') {
                 window.location.replace('/pqs/consulta/' + cod + '/');
             }
+        }
+    });
+}
+
+function marcar_notificacion_no_redirect(id) {
+    $.ajax({
+        url: '/inbox/notifications/mark-as-read/' + id + '/',
+        type: 'GET',
+        success: function (data) {
+            document.getElementById('marcarl-' + id).innerHTML = ""
+            document.getElementById('icomail-' + id).innerHTML = "mail_outline"
+            $.notify({
+                message: "Notificación marcada como leída."
+            },
+                {
+                    type: "bg-black",
+                    newest_on_top: true,
+                    timer: 5000,
+                    placement: {
+                        from: "bottom",
+                        align: "left"
+                    },
+                    template: '<div data-notify="container" class="bootstrap-notify-container alert alert-dismissible {0}\" role="alert">' +
+                        '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                        '<span data-notify="icon"></span> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                        '</div>'
+                });
         }
     });
 }
@@ -101,3 +136,36 @@ function llenar_notificaciones(data) {
     }
 }
 
+function marcar_todas() {
+    $.ajax({
+        url: '/inbox/notifications/mark-all-as-read/',
+        type: 'GET',
+        success: function (data) {
+            $.notify({
+                message: "Todas las notificaciones han sido marcadas como leídas."
+            },
+                {
+                    type: "bg-black",
+                    newest_on_top: true,
+                    timer: 5000,
+                    placement: {
+                        from: "bottom",
+                        align: "left"
+                    },
+                    template: '<div data-notify="container" class="bootstrap-notify-container alert alert-dismissible {0}\" role="alert">' +
+                        '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                        '<span data-notify="icon"></span> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                        '</div>'
+                });
+            setTimeout(function () {
+                window.location.reload()
+            }, 2000);
+        }
+    });
+}
