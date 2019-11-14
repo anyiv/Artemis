@@ -55,11 +55,11 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser,PermissionsMixin):
-    nombreUsuario = models.CharField(max_length=20, primary_key=True, unique=True)
-    idEmpleado = models.OneToOneField(Empleado,on_delete=models.CASCADE, default=None, blank=True, null=True)  
-    idCliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None, blank=True, null=True)
-    codTipoUser = models.ForeignKey(TipoUser, on_delete=models.CASCADE, blank=True, null=True, default = 'cli')
-    correo = models.EmailField(max_length=30,unique=True)
+    nombreUsuario = models.CharField(max_length=20, primary_key=True, unique=True,verbose_name='nombre de usuario')
+    idEmpleado = models.OneToOneField(Empleado,on_delete=models.CASCADE, blank=True, null=True, verbose_name='identificación del empleado')  
+    idCliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, blank=True, null=True, verbose_name='identificación del cliente')
+    codTipoUser = models.ForeignKey(TipoUser, on_delete=models.CASCADE, blank=True, null=True, default = 'cli', verbose_name='tipo de usuario')
+    correo = models.EmailField(max_length=30,unique=True, verbose_name='correo electrónico')
     foto = models.ImageField(upload_to='usuarios/fotos/', default='usuarios/fotos/default.jpg')
     ESTATUS = ( 
         ('A','Activo'),
@@ -99,6 +99,10 @@ class User(AbstractBaseUser,PermissionsMixin):
         eg = EficienciaGestor.objects.get(nombreUsuario = self)
         eg.eficiencia = eg.recAtendidos / eg.diasActivo
         eg.save()
+
+    class Meta:
+        verbose_name = 'usuario'
+        verbose_name_plural = 'usuarios'
 
 class EficienciaGestor(models.Model):
     nombreUsuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

@@ -8,7 +8,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>¡Registrate! | Artemis</title>
     <!-- Favicon-->
-    <link rel="icon" href="{% static "favicon.ico" type="image/x-icon">
+    <link rel="icon"
+        href="{% static "favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" %}">
@@ -31,13 +32,21 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-           <a href="{% url 'index' %}"><img class="img-responsive" src="{% static 'images/logo.png' %}" style="width:450px; display:table-cell;"></a><br/><br/>
+            <a href="{% url 'index' %}"><img class="img-responsive" src="{% static 'images/logo.png' %}"
+                    style="width:450px; display:table-cell;"></a><br /><br />
             <small>Artemis - Sistema de Gestión de PQRS</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="formulario" method="POST">
-                {% csrf_token %}
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                    <div class="non-field-errors">
+                        {% for err in form.non_field_errors %}
+                        <p class="form-error">{{ err }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <div class="msg">¡Resgístrate para poder enviar PQRS!</div>
                     <input name="codTipoUser" class="form-control" id="id_codTipoUser" value="cli" type="hidden">
                     <div class="input-group">
@@ -65,7 +74,7 @@
                         <div class="form-line">
                             {{ form.correo | addclass:'form-control,Correo' }}
                         </div>
-                         {{ form.correo.errors }}
+                        {{ form.correo.errors }}
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -85,12 +94,9 @@
                         </div>
                         {{ form.password2.errors }}
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
-                        <label for="terms">He leído y acepto los <a href="javascript:void(0);">términos y condiciones</a>.</label>
-                    </div>
 
-                    <button class="btn btn-block btn-lg bg-green waves-effect" onclick="javascript:confirmarSeleccion();" type="button">Registrar</button>
+                    <button class="btn btn-block btn-lg bg-green waves-effect"
+                        onclick="javascript:confirmarSeleccion();" type="button">Registrar</button>
 
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="{% url 'index' %}">¿Ya tienes una cuenta?</a>
@@ -123,23 +129,27 @@
 <!--JS-->
 <script>
     function confirmarSeleccion() {
-        swal({
-            title: "Confirmar creación",
-            text: "¿Está seguro que desea crear el usuario?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#58a05d",
-            confirmButtonText: "Sí",
-            cancelButtonText: "Cancelar",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                formulario.submit();
-            } else {
-                swal("Cancelada", "El usuario no ha sido creado.", "error");
-            }
-        });
+        if ($('#id_idCliente').val()!=''){
+            swal({
+                title: "Confirmar creación",
+                text: "¿Está seguro que desea crear el usuario?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#58a05d",
+                confirmButtonText: "Sí",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    formulario.submit();
+                } else {
+                    swal("Cancelada", "El usuario no ha sido creado.", "error");
+                }
+            });
+        } else {
+            swal("Error","La identificación del usuario no puede estar vacía", "warning");  
+        }
     }
 </script>
 
