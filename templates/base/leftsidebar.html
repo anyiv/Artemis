@@ -196,7 +196,7 @@
             <!--REPORTES-->
             <li id="reportes" class="">
                 <a id="a_listados" href="javascript:void(0);"
-                    class="menu-toggle {% if 'reporte/marcadas/' in request.path %}toggled{% endif %}">
+                    class="menu-toggle {% if 'reporte/' in request.path %}toggled{% endif %}">
                     <i class="material-icons">insert_chart</i>
                     <span>Reportes</span>
                 </a>
@@ -209,14 +209,14 @@
                     </li>
                     {% if user.codTipoUser.codTipoUser != 'gpqs' %}
                     {% comment "LOS QUE SIGUEN SOLO PARA EL GERENTE" %}{% endcomment %}
-                    <li id="reporte_satisfaccion">
-                        <a href="#">
+                    <li id="reporte_satisfaccion" class="{% if 'reporte/satisfaccionclientes/' in request.path %}active{% endif %}">
+                        <a href="{% url 'reporte_encuestas' %}">
                             <i class="material-icons">favorite</i>
                             <span>Satisfacción de Usuarios</span>
                         </a>
                     </li>
-                    <li id="reporte_fallas">
-                        <a href="#">
+                    <li id="reporte_fallas" class="{% if 'reporte/fallas/' in request.path %}active{% endif %}">
+                        <a href="{% url 'reporte_fallas' %}">
                             <i class="material-icons">domain</i>
                             <span>Fallas</span>
                         </a>

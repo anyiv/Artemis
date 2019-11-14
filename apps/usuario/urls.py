@@ -18,7 +18,8 @@ urlpatterns = [
     path('empleados/lista/', views.lista_empleados.as_view(), name='lista_empleados'),
     path('empleados/ver/<pk>/', views.consultar_empleado.as_view(), name='consultar_empleado'),
     path('cliente/pqrs/lista/', views.lista_pqrscliente.as_view(), name='lista_pqrscliente'),
-    path('reporte/fallas/', views.reporte_fallas, name='reporte_fallas'),
-    path('reporte/satisfaccionclientes/', views.reporte_encuestas, name='reporte_encuestas'),
-    path('reporte/pqsmarcadas/', views.reporte_pqs, name='reporte_pqs'),
+    path('reporte/fallas/', views.reporte_fallas.as_view(), name='reporte_fallas'),
+    path('reporte/satisfaccionclientes/', views.reporte_encuestas.as_view(), name='reporte_encuestas'),
+    path('reporte/pqsmarcadas/', views.reporte_pqs.as_view(), name='reporte_pqs'),
+    path('notificaciones/todas', views.lista_notificaciones.as_view(), name='lista_notificaciones'),
 ]

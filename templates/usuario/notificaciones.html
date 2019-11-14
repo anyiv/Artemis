@@ -1,0 +1,86 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %} Mis Notificaciones | Artemis {% endblock  %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-xs-2 col-sm-2"></div>
+    <div class="col-xs-8 col-sm-8">
+        <div class="card">
+            <div class="header">
+                <h2><strong>Mis notificaciones</strong></h2>
+            </div>
+            <div class="body">
+                <div class="list-group">
+                    {% if user.notifications.unread %}
+                    <a href="javascript:marcar_todas();" class="list-group-item" style="background-color:#858392;">
+                        <div class="row clearfix" style="text-align:center;">
+                            <h5 class="list-group-item-heading">Marcar todas como leídas.
+                            </h5>
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% for notificacion in notificaciones %}
+                    <a class="list-group-item" href="#">
+                        <div class="row clearfix">
+                            <div class="col-xs-1 col-sm-1"
+                                onclick="marcar_notificacion({{notificacion.slug}},'{{notificacion.actor}}',false);">
+                                <button class="btn btn-circle bg-light-green">
+                                    <i class="material-icons" style="margin-top:0.3em;" id="icomail-{{notificacion.slug}}">
+                                        mail{% if not notificacion.unread %}_outline{% endif %}
+                                    </i>
+                                </button>
+                            </div>
+                            <div class="col-xs-9 col-sm-9"
+                                onclick="marcar_notificacion({{notificacion.slug}},'{{notificacion.actor}}',false);">
+                                <h4 class="list-group-item-heading">{{notificacion.actor}}
+                                    {{notificacion.description}}.
+                                </h4>
+
+                                <p class="list-group-item-text">
+                                    Hace {{notificacion.timesince}}.
+                                </p>
+                            </div>
+                            {% if notificacion.unread %}
+                            <div class="text-right" id="marcarl-{{notificacion.slug}}">
+                                <button class="btn btn-default btn-circle" data-trigger="focus" data-container="body"
+                                    data-toggle="popover" data-placement="bottom" title="Marcar como leída."
+                                    data-content="Marca esta notificación como leída."
+                                    onclick="marcar_notificacion_no_redirect({{notificacion.slug}})">
+                                    <i class="material-icons" style="margin-top:0.3em;">
+                                        check_box
+                                    </i>
+                                </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% comment %} <div class="card header"
+                        onclick="marcar_notificacion({{notificacion.slug}},'{{notificacion.actor}}')"
+                        id="noti-{{notificacion.slug}}">
+                        <h4>{{notificacion.actor}}: {{notificacion.description}}</h4>
+                        <p>
+                            <i class="material-icons">access_time</i> {{notificacion.timesince}}
+                        </p>
+                    </div> {% endcomment %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    //Tooltip
+    $('[data-toggle="tooltip"]').tooltip({
+        container: 'body'
+    });
+</script>
+{% endblock javascript %}
