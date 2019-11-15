@@ -32,6 +32,7 @@
                     <h5 style="color:#403e49;margin-left:10em;">Atendido por: {{ gestor.idEmpleado.nombre }}
                         {{ gestor.idEmpleado.apellido }}</h5>
                     <br /><br />
+                    {% if not reclamo.valoracion %}
                     <div class="row clearfix">
                         <div class="col-md-2"></div>
                         <div class=" col-md-8">
@@ -62,12 +63,43 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="button-demo">
-                                    <center><button type="button" onclick="javascript:confirmarValoración();" class="btn bg-green waves-effect">Valorar</button>
+                                    <center><button type="button" onclick="javascript:confirmarValoración();"
+                                            class="btn bg-green waves-effect">Valorar</button>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% else %}
+                    <div class="row clearfix">
+                        <div class="col-md-2"></div>
+                        <div class=" col-md-8">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <p style="text-align:center;">
+                                        <h4 style="text-align:center;"><b>¡Ya valoraste la atención recibida en este reclamo!</b></h4>
+                                    </p>
+                                    <p style="text-align:center;">
+                                        <b>Nos valoraste con un {{reclamo.valoracion}}/5.</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="button-demo">
+                                    <a href="{% url 'cli_reclamosfinalizados' %}">
+                                        <center><button type="button" class="btn bg-teal waves-effect">Aceptar</button>
+                                        </center>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
@@ -80,5 +112,5 @@
 {% block javascript %}
 <script src="{% static 'plugins/ion-rangeslider/js/ion.rangeSlider.js' %}"></script>
 <script src="{% static 'js/pages/ui/range-sliders.js' %}"></script>
-<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script>
 {% endblock %}

@@ -206,7 +206,12 @@ class encuesta_cliente(SuccessMessageMixin, FormView):
         context['dias'] = tardo.days + 1
         return context
     
-    
+    def form_valid(self, form):
+        formulario = form.cleaned_data
+        rec = Reclamo.objects.get(codReclamo=self.kwargs['pk'])
+        rec.valoracion = formulario['valoracion']
+        rec.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 class cli_consultarReclamo(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = Reclamo
