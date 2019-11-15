@@ -213,6 +213,11 @@ class encuesta_cliente(SuccessMessageMixin, FormView):
         rec.save()
         return HttpResponseRedirect(self.get_success_url())
 
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, 'e')
+        return reverse_lazy('cli_reclamosfinalizados')
+    
+
 class cli_consultarReclamo(AuthenticatedGPQSAtClienteClienteMixin, DetailView):
     model = Reclamo
     template_name = "reclamo/cli_consultarReclamo.html"
