@@ -189,4 +189,4 @@ class DetalleContrato(models.Model):
     codServicio = models.ForeignKey(Servicio,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.codDetContrato
+        return self.codDetContrato + '/' + str(self.nroContrato)
