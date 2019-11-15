@@ -25,6 +25,8 @@
     <!-- Animation Css -->
     <link href="{% static "plugins/animate-css/animate.css" %}" rel="stylesheet" />
 
+    <link href="{% static "plugins/sweetalert/sweetalert.css" %}" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="{% static "css/style.css" %}" rel="stylesheet">
     <!-- Json -->
@@ -109,11 +111,7 @@
 
     <!-- Custom Css -->
     <link href="{% static "css/style.css" %}" rel="stylesheet">
-    <link href="{% static "plugins/sweetalert/sweetalert.css" %}" rel="stylesheet">
-
-    {% for m in messages  %}
-    {{message}} : {{m.message}}
-    {% endfor %}
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js' %}" type="text/javascript"></script>
 
     {% for m in messages %}
     {% if m.message == "u" %}
