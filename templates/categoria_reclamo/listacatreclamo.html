@@ -29,6 +29,7 @@
                 <tr>
                     <th>Código</th>
                     <th>Nombre de Categoría</th>
+                    <th>Descripción</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                 <tr>
                     <th>Código</th>
                     <th>Nombre de Categoría</th>
+                    <th>Descripción</th>
                     <th>Opciones</th>
                 </tr>
             </tfoot>
@@ -44,6 +46,7 @@
                 <tr>
                     <td>{{ categoria.codCategoria }}</td>
                     <td>{{ categoria.nombre }}</td>
+                    <td>{{ categoria.descripcion|truncatewords:5 }}</td>
                     <td>
                         <center><a href="{% url 'consultarcatreclamo' categoria.codCategoria %}"> <button type="button"
                                     class="btn bg-black btn-circle waves-effect waves-circle waves-float"><i
