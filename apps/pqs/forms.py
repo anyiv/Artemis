@@ -14,7 +14,7 @@ class CrearPeticion(forms.ModelForm):
 
         widgets = {
             'categoria' : forms.TextInput(attrs={'class':'form-control'}),
-            'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Por favor ingrese su petición aquí...'}),
+            'descripcion' : forms.Textarea(attrs={'class':'form-control','cols':6,'rows':8,'placeholder':'Por favor ingrese su petición aquí...','required':''}),
             'nombreUsuario' : forms.TextInput(attrs={'id':'nombreusuario', 'type':'hidden'}),
         }
 

@@ -167,6 +167,7 @@ function confirmarDatosExternos(){
 }
 
 function confirmarEnvioReclamo() {
+    if ($("#nombreusuario").val() != '') {
     swal({
         title: "Confirmar envío",
         text: "¿Está seguro que desea enviar el reclamo?",
@@ -184,6 +185,9 @@ function confirmarEnvioReclamo() {
             swal("Cancelada", "El reclamo no ha sido enviado.", "error");
         }
     });
+    } else {
+        swal("Error", "Debe cargar un cliente para poder enviar la petición y la identificación no puede estar vacía.", "warning");
+    }
 }
 
 function exitoEnviarReclamo() {
