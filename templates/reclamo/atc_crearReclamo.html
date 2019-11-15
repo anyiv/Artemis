@@ -148,7 +148,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="button-demo">
-                                        <button type="button" onclick="javascript:confirmarSeleccion();" class="btn bg-green waves-effect">Enviar</button>
+                                        <button type="button" onclick="javascript:confirmarEnvioReclamo();" class="btn bg-green waves-effect">Enviar</button>
                                     </div>
                                 </div>
                             </div>
@@ -166,41 +166,15 @@
 {% block javascript %}
 
 <script src="{% static 'js/verificar_cliente.js' %}" type="text/javascript"></script> 
-
+<script src="{% static 'js/mensajes.js' %}" type="text/javascript"></script> 
 {% if messages %}
 {% for m in messages %}
 {% if m.message == "e" %}
 <script>
-    swal("Enviado", "El Reclamo ha sido enviado con éxito.", "success");
+    exitoEnviarReclamo();
 </script>
 {% endif %}
 {% endfor %}
 {% endif %}
-<script>
-    function confirmarSeleccion() {
-        swal({
-            title: "Confirmar envío",
-            text: "¿Está seguro que desea enviar el reclamo?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#58a05d",
-            confirmButtonText: "Sí",
-            cancelButtonText: "Cancelar",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                var id = $("#identificacion").val();
-                if( id == ''){
-                    swal("Error", "La identificación no puede estar vacía, debe buscar un cliente.", "error");
-                }else{
-                formulario.submit();
-                }
-            } else {
-                swal("Cancelada", "El reclamo no ha sido enviado.", "error");
-            }
-        });
-    }
-</script>
 
 {% endblock %}
