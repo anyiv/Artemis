@@ -149,23 +149,27 @@
 {% endif %}
 <script>
     function confirmarSeleccion() {
-        swal({
-            title: "Confirmar creación",
-            text: "¿Está seguro que desea crear el usuario empleado?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#58a05d",
-            confirmButtonText: "Sí",
-            cancelButtonText: "Cancelar",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                formulario.submit();
-            } else {
-                swal("Cancelada", "El usuario empleado no ha sido creado.", "error");
-            }
-        });
+        if ($("#id_codTipoUser").val() != ''){
+            swal({
+                title: "Confirmar creación",
+                text: "¿Está seguro que desea crear el usuario empleado?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#58a05d",
+                confirmButtonText: "Sí",
+                cancelButtonText: "Cancelar",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    formulario.submit();
+                } else {
+                    swal("Cancelada", "El usuario empleado no ha sido creado.", "error");
+                }
+            });
+        } else {
+            swal("Error", "Debe seleccionar un tipo de usuario", "warning");
+        }
     }
 </script>
 {% endblock %}
